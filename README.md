@@ -1,4 +1,4 @@
-# The Best and Most High Tech **Sports Centre Management System** of All Time
+# This branch will handle setting up the payment portal and database
 ### To Run
 - Make sure you have flask installed
 - Run the bash script build.sh with ./build.sh

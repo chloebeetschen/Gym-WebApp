@@ -1,0 +1,51 @@
+<!-- THIS PAGE IS PROGRAMMED BY HOPE & ARCHIE -->
+
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Pay: </h1>
+<!-- Form to enter payment details -->
+<form method="post" name="create">
+    {{ form.hidden_tag() }}
+
+    <!-- Card Name: -->
+    <p>
+      Card Name:
+      {{ form.cardName(class_='form-control') }}
+    </p>
+    {% for error in form.cardName.errors %}
+    <div class="alert alert-danger" role="alert">
+      [{{ error }}]
+    </div>
+    {% endfor %}
+
+    <!-- Card number: -->
+    <p>
+      Card Number:
+      {{ form.cardNumber(class_='form-control') }}
+    </p>
+    {% for error in form.cardNumber.errors %}
+    <div class="alert alert-danger" role="alert">
+      [{{ error }}]
+    </div>
+    {% endfor %}
+
+    <!-- Card expiry: -->
+    <p>
+      Card Expiry:
+      {{ form.cardExpiry(class_='form-control') }}
+    </p>
+    {% for error in form.cardExpiry.errors %}
+    <div class="alert alert-danger" role="alert">
+     [{{ error }}]
+    </div>
+    {% endfor %}
+      
+    <!-- Form values are set, and then returned to views where they are checked with the database -->
+    <p><input type="submit" class="btn btn-primary" value="Pay"></p>
+  </form>
+
+
+
+
+{% endblock %}

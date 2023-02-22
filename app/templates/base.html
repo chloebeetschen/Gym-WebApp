@@ -1,1 +1,20 @@
 This will hold the base template (Navbar etc)
+<!DOCTYPE html>
+<head>
+
+</head>
+<body>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+{% block content %} {% endblock %}
+
+</body>
+</html>

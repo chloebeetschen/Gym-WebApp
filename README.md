@@ -1,4 +1,4 @@
-# The Best and Most High Tech **Sports Centre Management System** of All Time
+# This branch will handle the overall calendar and bookings for a user and adding activities to the  calendar from the manager
 ### To Run
 - Make sure you have flask installed
 - Run the bash script build.sh with ./build.sh

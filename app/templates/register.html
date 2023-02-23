@@ -1,0 +1,17 @@
+<!-- Template for login frontend -->
+{% extends "base.html" %}
+{% block content %}
+<h1>Register</h1>
+<form action="" method="post" name="register">
+    <!-- inserts the secret CSRF key -->
+    <!-- it is the unique identification generated for this request -->
+    {{ form.hidden_tag() }}
+    <p>{{ form.name }}<br></p>
+    <p>{{ form.dateOfBirth }}</p>
+    <p>{{ form.address }}<br></p>
+    <p>{{ form.email }}<br></p>
+    <p>{{ form.password }}</p>
+    <!-- confirm password field in sprint 2 -->
+    <p><input type="submit" value="Submit"></p>
+</form>
+{% endblock %}

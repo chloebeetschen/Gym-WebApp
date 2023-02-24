@@ -18,10 +18,11 @@ def index():
 #calendar of all sessions
 @app.route('/calendar', methods=['GET', 'POST'])
 def calendarMethod():
-    #would need to check if session  is full and alter colours/ if button can be clicked
-    # UPDATE  ^^ will  be done in the html
-    events = Calendar.query.all()
-    return render_template('calendar.html', title = 'Calendar', events = events)
+    # get all events in order of date and time
+    events = Calendar.query.order_by(activityDate, activityTime).all()
+    # get event info for each event found
+    eventInfo = Activity.query.get(events.activityId)
+    return render_template('calendar.html', title = 'Calendar', events = events, eventInfo = eventInfo)
 
 ###DONE
 #this is a book event button for the calendar

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!--Basic Header-->
+<h1>Calendar</h1>
+
+<!--Basic table to hold calendar information-->
+<table class="calendar">
+    <thead>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Acitivity Name</th>
+        <th>Spaces Left</th>
+        <th></th>
+        <th></th>
+    <tbody>
+        {% for e,eI in zip(events, eventInfo) %}
+        <tr>
+            <!--display event and event info in the tables-->
+            <td>{{e.activityDate}}</td>
+            <td>{{e.activityTime}}</td>
+            <td>{{eventInfo.activityType}}</td>
+            <td>{{e.activityCurrent}}/{{eventInfo.activityType}}</td>
+            <!--TODO Popup for event info-->
+            <td><a href=""></a><button type="button" class="btns">Event Info</button></td>
+
+            <!--If statement to see if acitivity is full and whether or not to dispay bookable button-->
+            <td>{% if e.activityFull == True %}
+                    <a href=""><button type="button" class="btn">Full</button>
+                {% else %}
+                    <a href="/makeBooking/{{e.id}}"><button type="button" class="btn">Book</button>
+                {% endif %}
+            </td>
+
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

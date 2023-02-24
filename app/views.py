@@ -66,7 +66,12 @@ def userBookingMethod():
     bookings = UserBookings.query.get(0)
     #for unique user we would do
     #bookings = UserBookings.query.filter_by(currentUserId = id).all()
-    return render_template('myBookings.html', title = 'My Bookings', bookings = bookings)
+
+    # get all events in order of date and time
+    events = Calendar.query.filter_by(calendarId=bookings.calendarId)
+    # get event info for each event found
+    eventInfo = Activity.query.get(events.activityId)
+    return render_template('myBookings.html', title = 'My Bookings', events = events, eventInfo = eventInfo)
 
 ##DONE
 #this is so the user is able to delete the booking - delete button
@@ -74,8 +79,16 @@ def userBookingMethod():
 def deleteBooking(id): #id passed in will be  the id of the calendar
     # get the booking that matches the id of the parameter given and that of the userId (which is 0 for now)
     booking = UserBookings.filter_by(calendarId = id, userId = 0)
+    # get the event in the calendar
+    calendarBooking = Calendar.filter_by(id=id)
+    # alter capacity of calendar
+    calendarBooking.activityCurrent = calendarBooking.activityCurrent - 1
+    #if was full now make bookable
+    if event.activityFull:
+        event.activityFull == False
+    
     db.session.delete(booking)
-    db.session.commit
+    db.session.commit()
     return redirect('/myBookings')
 
 

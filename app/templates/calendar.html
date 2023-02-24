@@ -26,9 +26,9 @@
 
             <!--If statement to see if acitivity is full and whether or not to dispay bookable button-->
             <td>{% if e.activityFull == True %}
-                    <a href=""><button type="button" class="btn">Full</button>
+                    <a href=""><button type="button" class="btn">Full</button></a>
                 {% else %}
-                    <a href="/makeBooking/{{e.id}}"><button type="button" class="btn">Book</button>
+                    <a href="/makeBooking/{{e.id}}"><button type="button" class="btn">Book</button></a>
                 {% endif %}
             </td>
 

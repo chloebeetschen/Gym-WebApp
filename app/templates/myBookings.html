@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!--Basic Header-->
+<h1>My Bookings</h1>
+
+<!--Basic table to hold booking information of a user-->
+<table class="calendar">
+    <tbody>
+        {% for e,eI in zip(events, eventInfo) %}
+        <tr>
+            <!--display event and event info in the tables-->
+            <td>{{eventInfo.activityType}}</td>
+            <td>{{e.activityDate}}</td>
+            <td>{{e.activityTime}}</td>
+            <td>{{e.activityDuration}}</td>
+            <td>{{eventInfo.activityLocation}}</td>
+
+            <!--Delete activity button-->
+            <td>
+                <a href="/deleteBooking/{{e.id}}"><button type="button" class="btn">Cancel</button></a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

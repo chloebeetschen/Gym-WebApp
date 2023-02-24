@@ -1,6 +1,5 @@
 from flask import render_template, flash, request, redirect, session, url_for, g
-from app import app, db
-from .models import UserBookings, Calendar, Activity
+from app import app, db, models
 from .forms import addActivityForm, addEventForm
 
 @app.route('/')

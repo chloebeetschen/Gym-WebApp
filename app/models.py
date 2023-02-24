@@ -9,7 +9,7 @@ class UserLogin(db.Model):
     email = db.Column(db.String(150), nullable=False, unique=True)
     password = db.Column(db.String(150), nullable=False)  # Encrypt (Hash)
 
-    child = db.relationship('User Details', backref='UserDetails', uselist=False)
+    child = db.relationship('User Details', backref='loginDetails', uselist=False)
 
 
 # User info (Sensitive info -> encryption)

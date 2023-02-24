@@ -1,5 +1,5 @@
 ## DEVELOPMENT BRANCH
-Pull/push/merge to here instead of main
+merge and branch to here instead of main
 
 ## The Best and Most High Tech **Sports Centre Management System** of All Time
 ### To Run

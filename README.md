@@ -12,6 +12,10 @@
 - It should run on http://127.0.0.1:5000
 - Add the route /paymentForm
 
+### Important NB: Babel doesn't work out of the box on feng-linux, so you wil need to modify your flask_babel init file
+- This can be done in the following path: /home/csunix/YOUR_USERNAME_HERE/flask/lib/python3.6/site-packages/flask_babel/__init__.py
+- Within this init file, you have to add the following line to your imports: from flask_babel import Babel
+
 ### To view the database
 - Go to http://127.0.0.1:5000/admin/
 

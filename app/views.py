@@ -88,7 +88,7 @@ def addActivity():
     #validate on submission
     if formActivity.validate_on_submission():
         #create new activity
-        newAct = Activity(activityType = form.type.data, activityPrice = form.price.data, activityLocation = form.loc.data, activityCapacity = form.cap.data, activityStaffName = form.name.data)
+        newAct = Activity(activityType = form.aType.data, activityPrice = form.aPrice.data, activityLocation = form.aLocation.data, activityCapacity = form.aCapacity.data, activityStaffName = form.aStaffName.data)
         #add and commit to db
         db.session.add(newAct)
         db.session.commit()

@@ -2,16 +2,20 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-
-#create instance of database object
-#db = SQLAlchemy(app)
+from flask_admin import Admin
 
 app = Flask(__name__)
 
-# include configuration file:
+# Include configuration file:
 app.config.from_object('config')
 
-# allow for columns to be added or dropped in db
-#migrate = Migrate(app, db, render_as_batch=True)
+# Create instance of database object
+db = SQLAlchemy(app)
 
-from app import views#, models
+# Allow for columns to be added or dropped in db
+migrate = Migrate(app, db, render_as_batch=True)
+
+# Set up flask admin to manage db
+admin = Admin(app, template_mode='bootstrap4')
+
+from app import views, models

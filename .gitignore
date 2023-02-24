@@ -1,0 +1,4 @@
+# Ignore database initialisations when pushing to git
+migrations/
+*.db
+__pycache__/

@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField, TextAreaField, SubmitField, SelectField, SelectMultipleField, DateField
+from wtforms import StringField, BooleanField, IntegerField, TextAreaField, SubmitField, SelectField, SelectMultipleField, DateField
 from wtforms.validators import DataRequired, Length
 from .models import UserBookings, Calendar, Activity
 

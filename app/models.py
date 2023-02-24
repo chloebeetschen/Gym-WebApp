@@ -9,7 +9,7 @@ class UserLogin(db.Model):
     email = db.Column(db.String(150), nullable=False, unique=True)
     password = db.Column(db.String(150), nullable=False)  # Encrypt (Hash)
 
-    child = db.relationship('User Details', backref='loginData', uselist=False)
+    child = db.relationship('User Details', backref='UserDetails', uselist=False)
 
 
 # User info (Sensitive info -> encryption)
@@ -18,7 +18,7 @@ class UserDetails(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)  # userDetailId
     name = db.Column(db.String(150), nullable=False)
-    age = db.Column(db.Integer, nullable=False)
+    dateOfBirth = db.Column(db.Date, nullable=False)
     address = db.Column(db.String(150))
 
     parentId = db.Column(db.Integer, db.ForeignKey('User Login.id'))

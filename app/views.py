@@ -9,9 +9,10 @@ admin.add_view(ModelView(PaymentCard, db.session))
 
 @app.route('/')
 def index():
-    return '<h1>This is working.</h1>'
+    return render_template('home.html', title='home')
 
-#Register Page
+
+#Payment Form page
 @app.route('/paymentForm', methods=['GET', 'POST'])
 def paymentForm():
     form = PaymentForm()

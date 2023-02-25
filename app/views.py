@@ -2,6 +2,10 @@ from flask import render_template, flash, request, redirect, session, url_for, g
 from app import app, db, models
 from .forms import addActivityForm, addEventForm
 
+@app.before_first_request
+def create_tables():
+    db.create_all()
+
 @app.route('/')
 def index():
     return '<h1>This is working.</h1>'

@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, BooleanField, IntegerField, TextAreaField, SubmitField, SelectField, SelectMultipleField, DateField
 from wtforms.validators import DataRequired, Length
-from .models import UserBookings, Calendar, Activity
+from .models import *
 
 #for the manager to add a new activity e.g. swimming
 class addActivityForm(FlaskForm):

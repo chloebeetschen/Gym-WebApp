@@ -16,7 +16,7 @@ from .forms import addActivityForm, addEventForm
 @app.route('/calendar', methods=['GET', 'POST'])
 def calendarMethod():
     # get all events in order of date and time
-    events = Calendar.query.order_by(activityDate, activityTime).all()
+    events = Calendar.query.order_by(Calendar.activityDate, Calendar.activityTime).all()
     # get event info for each event found
     eventInfo = Sports.query.get(events.activityId)
     return render_template('calendar.html', title = 'Calendar', events = events, eventInfo = eventInfo)
@@ -134,5 +134,5 @@ def addEvent():
 
 @app.route('/')
 def index():
-    return redirect('/home')
+    return redirect('/calendar')
 

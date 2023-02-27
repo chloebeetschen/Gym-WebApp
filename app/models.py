@@ -6,6 +6,8 @@ from app import db
 
 class Calendar(db.Model):
 
+    __tablename__ = 'calendar'
+
     id = db.Column(db.Integer, primary_key=True)
 
     activityDate = db.Column(db.Date, nullable=False)

@@ -6,6 +6,8 @@ from flask_admin.contrib.sqla import ModelView
 
 admin.add_view(ModelView(Calendar, db.session))
 admin.add_view(ModelView(Activity, db.session))
+admin.add_view(ModelView(UserBookings, db.session))
+
 
 #we want 4 pages
 #calendar of all sessions - and pop up for the info button
@@ -111,16 +113,20 @@ def addActivity():
     form = addActivityForm()
     #validate on submission
     if form.validate_on_submit():
-        #create new activity
-        newAct = Activity(activityType = form.aType.data, activityPrice = form.aPrice.data, activityLocation = form.aLocation.data, activityCapacity = form.aCapacity.data, activityStaffName = form.aStaffName.data)
-        #add and commit to db
-        db.session.add(newAct)
-        db.session.commit()
+        # Activity type is unique so first check that the activity doesn't exist already
+        if(bool(Activity.query.filter_by(activityType=form.aType.data).first())==False):
+            #create new activity
+            newAct = Activity(activityType = form.aType.data, activityPrice = form.aPrice.data, activityLocation = form.aLocation.data, activityCapacity = form.aCapacity.data, activityStaffName = form.aStaffName.data)
+            #add and commit to db
+            db.session.add(newAct)
+            db.session.commit()
+            flash('New activity added')
+            #return to calendar for now
+            return redirect('/calendar')
+        else:
+            # If already exists activity with same type then display error
+            flash('That activity type already exists, please chose a different one')
 
-        #return to home for now
-        return redirect('/home')
-
-    #if validation failed  return to add activity
     return render_template('addActivity.html', title = 'Add Activity', form = form)
 
 

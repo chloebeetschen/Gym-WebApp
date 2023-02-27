@@ -118,7 +118,7 @@ def addActivity():
         db.session.commit()
 
         #return to home for now
-        return redirect('/')
+        return redirect('/addEvent')
 
     #if validation failed  return to add activity
     return render_template('addActivity.html', title = 'Add Activity', form = form)
@@ -132,10 +132,9 @@ def addEvent():
     #validate on submission
     if form.validate_on_submit():
         #get activity type id
-        #actTypeTemp = Activity.filter_by(activityType = form.type.data).first()
-        actTypeTemp = form.cType.data
+        actTypeTemp = Activity.filter_by(activityType = form.cType.data).first()
         #create new event
-        newEvent = Calendar(activityDate = form.cDate.data, activityTime = form.cTime.data, activityDuration = form.cDuration.data, activityFull = False, activityCurrent = 0, activityId = actTypeTemp)
+        newEvent = Calendar(activityDate = form.cDate.data, activityTime = form.cTime.data, activityDuration = form.cDuration.data, activityFull = False, activityCurrent = 0, activityId = actTypeTemp.id)
         #add and commit to db
         db.session.add(newEvent)
         db.session.commit()

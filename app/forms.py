@@ -23,8 +23,8 @@ class addEventForm(FlaskForm):
     cFull = BooleanField('cFull', validators=[DataRequired()])
     cCurrent = IntegerField('cCurrent', validators=[DataRequired()])
 
-    #choicesType = [(a.activityType) for a in Sports.query.all()]
-    cType = SelectField('cType', choices = {(700,'07:00'), (730,'07:30')}, validators=[DataRequired()])
+    choicesType = [(a.activityType) for a in Activity.query.all()]
+    cType = SelectField('cType', choices = choicesType, validators=[DataRequired()])
 
     addEvent = SubmitField('addEvent')
 

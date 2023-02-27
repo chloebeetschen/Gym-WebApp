@@ -7,6 +7,7 @@
 <!--Form for manager to create a new event for their chosen activity to be insterted into the calendar-->
 <form method="post" name="addEvent">
     {{ form.hidden_tag() }}
+   
 
     <!--Type (Name of Activity)-->
     <p>Activity Name
@@ -35,6 +36,16 @@
         <br>
     </p>
     {% for error in form.cTime.errors %}
+        [{{ error }}]
+    {% endfor %}
+
+    <!-- Duration of activity-->
+    <p>Activity Duration
+        <br>
+        {{ form.cDuration(class='form-control')}}
+        <br>
+    </p>
+    {% for error in form.cDuration.errors %}
         [{{ error }}]
     {% endfor %}
 

@@ -137,16 +137,14 @@ def addEvent():
     form = addEventForm()
     #validate on submission
     if form.validate_on_submit():
-        #get activity type id
-        actTypeTemp = Activity.filter_by(activityType = form.cType.data).first()
         #create new event
-        newEvent = Calendar(activityDate = form.cDate.data, activityTime = form.cTime.data, activityDuration = form.cDuration.data, activityFull = False, activityCurrent = 0, activityId = actTypeTemp.id)
+        newEvent = Calendar(activityDate = form.cDate.data, activityTime = form.cTime.data, activityDuration = form.cDuration.data, activityFull = False, activityCurrent = 0, activityId = form.cType.data)
         #add and commit to db
         db.session.add(newEvent)
         db.session.commit()
-
-        #return to calendar
-        return redirect('/calendar')
+        flash('Event succesfully added!')
+        #return to same page for now
+        return redirect('/addEvent')
 
     #if validation failed  return to add event
     return render_template('addEvent.html', title = 'Add Event', form = form)

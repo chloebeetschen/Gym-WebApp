@@ -118,7 +118,7 @@ def addActivity():
         db.session.commit()
 
         #return to home for now
-        return redirect('/addEvent')
+        return redirect('/home')
 
     #if validation failed  return to add activity
     return render_template('addActivity.html', title = 'Add Activity', form = form)

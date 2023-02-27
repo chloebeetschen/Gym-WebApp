@@ -2,18 +2,7 @@ from app import db
 
 # table for Bookings
 
-class Activity(db.Model):
 
-    id = db.Column(db.Integer, primary_key=True)
-
-    activityType = db.Column(db.String(250))
-    activityPrice = db.Column(db.Float)
-    activityLocation = db.Column(db.String(250))
-    activityCapacity = db.Column(db.Integer)
-    activityStaffName = db.Column(db.String(250))
-
-    #relationship with calendar
-    events = db.relationship('Calendar', backref='activity_info')
 
 class Calendar(db.Model):
 
@@ -27,17 +16,35 @@ class Calendar(db.Model):
     activityCurrent = db.Column(db.Integer)
     
     # foreign key for activity table
-    activityId = db.Column(db.Integer, db.ForeignKey('Activity.id'))
+    #activityId = db.Column(db.Integer, db.ForeignKey('Activity.id'))
+    activityId = db.Column(db.Integer)
 
     # link to user bookings table
-    bookings = db.relationship('UserBookings', backref='calendar_user')
+    #bookings = db.relationship('UserBookings', backref='calendar_user')\
+
+class Sports(db.Model):
+
+    __tablename__ = 'sport'
+
+    id = db.Column(db.Integer, primary_key=True)
+
+    activityType = db.Column(db.String(250), unique=True)
+    activityPrice = db.Column(db.Float)
+    activityLocation = db.Column(db.String(250))
+    activityCapacity = db.Column(db.Integer)
+    activityStaffName = db.Column(db.String(250))
+
+    #relationship with calendar
+    #events = db.relationship('Calendar', backref='activity_info')
 
 class UserBookings(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
-    
     # can be added once we have the userLogin table
+
+    userId = db.Column(db.Integer)
+    calendarId = db.Column(db.Integer)
     # userId = db.Column(db.Integer, db.ForeignKey('UserLogin.id'))
-    calendarId = db.Column(db.Integer, db.ForeignKey('calendar.id'))
+    # calendarId = db.Column(db.Integer, db.ForeignKey('calendar.id'))
 
 

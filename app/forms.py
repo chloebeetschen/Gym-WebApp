@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, BooleanField, IntegerField, TextAreaField, SubmitField, SelectField, SelectMultipleField, DateField
 from wtforms.validators import DataRequired, Length
-from .models import *
+from .models import Sports
 
 #for the manager to add a new activity e.g. swimming
 class addActivityForm(FlaskForm):
@@ -23,8 +23,8 @@ class addEventForm(FlaskForm):
     cFull = BooleanField('cFull', validators=[DataRequired()])
     cCurrent = IntegerField('cCurrent', validators=[DataRequired()])
 
-    choicesType = [(a.activityType) for a in Activity.query.all()]
-    cType = SelectField('cType', choices = choicesType, validators=[DataRequired()])
+    #choicesType = [(a.activityType) for a in Sports.query.all()]
+    cType = SelectField('cType', choices = {(700,'07:00'), (730,'07:30')}, validators=[DataRequired()])
 
     addEvent = SubmitField('addEvent')
 

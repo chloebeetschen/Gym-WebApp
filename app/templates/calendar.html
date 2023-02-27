@@ -4,13 +4,12 @@
 <!--Basic Header-->
 <h1>Calendar</h1>
 
-{{events[0].activityDate}}
 <!--Basic table to hold calendar information-->
-<table class="calendar">
+<table class="table">
     <thead>
         <tr>
-            <th>Date</th>
-            <th>Time</th>
+            <th >Date</th>
+            <th >Time</th>
             <th>Activity Name</th>
             <th>Spaces Left</th>
             <th></th>
@@ -25,7 +24,7 @@
             <td>{{events[i].activityDate}}</td>
             <td>{{events[i].activityTime}}</td>
             <td>{{eventInfo[i].activityType}}</td>
-            <td>{{events[i].activityCurrent}}/{{eventInfo[i].activityType}}</td>
+            <td>{{events[i].activityCurrent}}/{{eventInfo[i].activityCapacity}}</td>
             <!--TODO Popup for event info-->
             <td><a href=""></a><button type="button" class="btns">Event Info</button></td>
 
@@ -33,7 +32,7 @@
             <td>{% if events[i].activityFull == True %}
                     <a href=""><button type="button" class="btn">Full</button></a>
                 {% else %}
-                    <a href="/makeBooking/{{e.id}}"><button type="button" class="btn">Book</button></a>
+                    <a href="/makeBooking/{{events.id}}"><button type="button" class="btn">Book</button></a>
                 {% endif %}
             </td>
 

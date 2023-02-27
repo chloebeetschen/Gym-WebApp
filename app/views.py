@@ -23,12 +23,9 @@ def calendarMethod():
     # get all events in order of date and time
     events = Calendar.query.order_by(Calendar.activityDate, Calendar.activityTime).all()
     # get event info for each event found
-    
     eventInfo = []
-    for i in range (0, len(events)-1):
-        eventInfo[i] = Activity.query.filter_by(id=events[i].activityId).first()
-    #eventInfo = Activity.query.get(events.activityId)
-
+    for i in events:
+        eventInfo.append(Activity.query.filter_by(id=i.activityId).first())
     return render_template('calendar.html', title = 'Calendar', numEvents=len(events), events = events, eventInfo = eventInfo, zip=zip)
 
 ###DONE

@@ -1,8 +1,11 @@
 from flask import render_template, flash, request, redirect, session, url_for, g
-from app import app, db
+from app import app, db, models, admin
 from .models import Sports, Calendar, UserBookings
 from .forms import addActivityForm, addEventForm
+from flask_admin.contrib.sqla import ModelView
 
+admin.add_view(ModelView(Calendar, db.session))
+admin.add_view(ModelView(Sports, db.session))
 
 #we want 4 pages
 #calendar of all sessions - and pop up for the info button
@@ -18,8 +21,13 @@ def calendarMethod():
     # get all events in order of date and time
     events = Calendar.query.order_by(Calendar.activityDate, Calendar.activityTime).all()
     # get event info for each event found
-    eventInfo = Sports.query.get(events.activityId)
-    return render_template('calendar.html', title = 'Calendar', events = events, eventInfo = eventInfo)
+    
+    eventInfo = []
+    for i in range (0, len(events)-1):
+        eventInfo[i] = Sports.query.filter_by(id=events[i].activityId).first()
+
+
+    return render_template('calendar.html', title = 'Calendar', numEvents=len(events), events = events, eventInfo = eventInfo, zip=zip)
 
 ###DONE
 #this is a book event button for the calendar

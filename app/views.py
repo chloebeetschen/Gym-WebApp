@@ -1,11 +1,11 @@
 from flask import render_template, flash, request, redirect, session, url_for, g
 from app import app, db, models, admin
-from .models import Sports, Calendar, UserBookings
+from .models import Activity, Calendar, UserBookings
 from .forms import addActivityForm, addEventForm
 from flask_admin.contrib.sqla import ModelView
 
 admin.add_view(ModelView(Calendar, db.session))
-admin.add_view(ModelView(Sports, db.session))
+admin.add_view(ModelView(Activity, db.session))
 
 #we want 4 pages
 #calendar of all sessions - and pop up for the info button
@@ -24,8 +24,8 @@ def calendarMethod():
     
     eventInfo = []
     for i in range (0, len(events)-1):
-        eventInfo[i] = Sports.query.filter_by(id=events[i].activityId).first()
-
+        eventInfo[i] = Activity.query.filter_by(id=events[i].activityId).first()
+    #eventInfo = Activity.query.get(events.activityId)
 
     return render_template('calendar.html', title = 'Calendar', numEvents=len(events), events = events, eventInfo = eventInfo, zip=zip)
 
@@ -42,7 +42,7 @@ def makeBookingsMethod(id): # << id passed here is the calendar id (not user)
     #update number of people on current
     event.activityCurrent += + 1
     #get capactiy of that activity
-    eventType = Sports.query.get(event.activityId)
+    eventType = Activity.query.get(event.activityId)
     #check if now it is  equal to capacity
     if event.activityCurrent == eventType.activityCapacity:
         #update  fullness so that it can be represented in the table displayed
@@ -68,15 +68,20 @@ def makeBookingsMethod(id): # << id passed here is the calendar id (not user)
 def userBookingMethod():
     #need a parameter id for the user that is logged in (can be done once cookies is enabled)
     #for now we are using user of id 0
-    bookings = UserBookings.query.get(0)
+    bookings = UserBookings.query.filter_by(userId=0).all()
     #for unique user we would do
     #bookings = UserBookings.query.filter_by(currentUserId = id).all()
 
     # get all events in order of date and time
-    events = Calendar.query.filter_by(calendarId=bookings.calendarId)
-    # get event info for each event found
-    eventInfo = Sports.query.get(events.activityId)
-    return render_template('myBookings.html', title = 'My Bookings', events = events, eventInfo = eventInfo)
+    events = []
+    eventInfo = []
+    for i in range (0, len(bookings)-1):
+        events[i] = Calendar.query.filter_by(id=bookings[i].calendarId).first()
+    
+        # get event info for each event found
+        eventInfo[i] = Activity.query.filter_by(id=events[i].activityId).first()
+
+    return render_template('myBookings.html', title = 'My Bookings', numEvents=len(bookings), events = events, eventInfo = eventInfo, zip=zip)
 
 ##DONE
 #this is so the user is able to delete the booking - delete button
@@ -103,11 +108,11 @@ def deleteBooking(id): #id passed in will be  the id of the calendar
 #manager add activity 
 @app.route('/addActivity', methods=['POST', 'GET'])
 def addActivity():
-    formActivity = addActivityForm()
+    form = addActivityForm()
     #validate on submission
-    if formActivity.validate_on_submission():
+    if form.validate_on_submit():
         #create new activity
-        newAct = Sports(activityType = form.aType.data, activityPrice = form.aPrice.data, activityLocation = form.aLocation.data, activityCapacity = form.aCapacity.data, activityStaffName = form.aStaffName.data)
+        newAct = Activity(activityType = form.aType.data, activityPrice = form.aPrice.data, activityLocation = form.aLocation.data, activityCapacity = form.aCapacity.data, activityStaffName = form.aStaffName.data)
         #add and commit to db
         db.session.add(newAct)
         db.session.commit()
@@ -116,20 +121,21 @@ def addActivity():
         return redirect('/')
 
     #if validation failed  return to add activity
-    return render_template('addActivity', title = 'Add Sport', formActivity = formActivity)
+    return render_template('addActivity.html', title = 'Add Activity', form = form)
 
 
 ##DONE
 #manager add event
 @app.route('/addEvent', methods=['POST', 'GET'])
 def addEvent():
-    formEvent = addEventForm()
+    form = addEventForm()
     #validate on submission
-    if formActivity.validate_on_submission():
+    if form.validate_on_submit():
         #get activity type id
-        actTypeTemp = Sports.filter_by(activityType = form.type.data).first()
+        #actTypeTemp = Activity.filter_by(activityType = form.type.data).first()
+        actTypeTemp = form.cType.data
         #create new event
-        newEvent = Calendar(activityDate = form.date.data, activityTime = form.time.data, activityDuration = form.dur.data, activityFull = False, activityCurrent = 0, activityId = actTypeTemp.id)
+        newEvent = Calendar(activityDate = form.cDate.data, activityTime = form.cTime.data, activityDuration = form.cDuration.data, activityFull = False, activityCurrent = 0, activityId = actTypeTemp)
         #add and commit to db
         db.session.add(newEvent)
         db.session.commit()
@@ -138,7 +144,7 @@ def addEvent():
         return redirect('/calendar')
 
     #if validation failed  return to add event
-    return render_template('addEvent', title = 'Add Event', formEvent = formEvent)
+    return render_template('addEvent.html', title = 'Add Event', form = form)
 
 @app.route('/')
 def index():

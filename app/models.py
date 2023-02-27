@@ -24,9 +24,9 @@ class Calendar(db.Model):
     # link to user bookings table
     #bookings = db.relationship('UserBookings', backref='calendar_user')\
 
-class Sports(db.Model):
+class Activity(db.Model):
 
-    __tablename__ = 'sport'
+    __tablename__ = 'activity'
 
     id = db.Column(db.Integer, primary_key=True)
 

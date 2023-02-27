@@ -7,8 +7,10 @@ class UserLogin(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)  # userId
     email = db.Column(db.String(150), nullable=False, unique=True)
     password = db.Column(db.String(150), nullable=False)  # Encrypt (Hash)
+    #Customer is userType 1, Employee is userType 2, and Manager is useType3
+    userType = db.Column(db.Integer, nullable=False) 
 
-    child = db.relationship('UserDetails', backref='loginDetails', uselist=False)
+    userDetails = db.relationship('UserDetails', backref='loginDetails', uselist=False)
 
 
 # User info (Sensitive info -> encryption)

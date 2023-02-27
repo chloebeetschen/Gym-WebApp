@@ -1,10 +1,14 @@
 from flask import Flask, render_template, flash, url_for, redirect
-from app import app, db, models
+from app import app, db, models, admin
+from .models import UserLogin
 from .forms import *
-from flask_login import login_user, LoginManager, login_required, logout_user, current_user
+from flask_login import current_user, login_user, LoginManager, login_required, logout_user, current_user
 from flask_bcrypt import Bcrypt
+from flask_admin.contrib.sqla import ModelView
 
 bcrypt = Bcrypt(app)
+
+admin.add_view(ModelView(UserLogin, db.session))
 
 loginManager = LoginManager()
 loginManager.init_app(app)
@@ -19,8 +23,16 @@ def loadUser(userId):
     return models.UserLogin.query.get(int(userId))
 
 @app.route('/')
+@login_required
 def index():
-    return '<h1>This is working.</h1>'
+    #check the user type
+    if current_user.userType == 3:
+        admin.add_view(ModelView(UserLogin, db.session))
+    if currentUser.userType == 2:
+        return '<h1>This is working.</h1>'
+    if currentUser.userType == 1:
+        return '<h1>This is working.</h1>' 
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -63,7 +75,7 @@ def register():
         hashedPassword = bcrypt.generate_password_hash(form.Password.data)
 
         # Create new user and details
-        newUser = models.UserLogin(email=Email, password=hashedPassword)
+        newUser = models.UserLogin(email=Email, password=hashedPassword, userType =1) #users that register are automatically set to 1
         newUserDetails = models.UserDetails(name=Name, dateOfBirth=dob, address=Address, loginDetails=newUser.id)
 
         # Add to the database

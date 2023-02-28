@@ -188,6 +188,8 @@ def addActivity():
     
     return render_template('addActivity.html', title = 'Add Activity', form = form)
 
+#go to event edit page
+
 ##DONE
 #manager edit activity
 #for now just redirects to viewAEManager
@@ -212,8 +214,7 @@ def editActivity(id):
         return redirect('/viewAEManager')
 
     #if validation failed  return to add event
-    flash('Activity edit failed')
-    return render_template('viewAEManager.html', title = 'Add Event', form = form)
+    return render_template('editActivity.html', title = 'Add Event', form = form)
 
 
 ##DONE
@@ -264,8 +265,7 @@ def editEvent(id):
         return redirect('/viewAEManager')
 
     #if validation failed  return to add event
-    flash('Event edit failed')
-    return render_template('viewAEManager.html', title = 'Add Event', form = form)
+    return render_template('editEvent.html', title = 'Add Event', form = form, eventid=id)
 
 
 @app.route('/')

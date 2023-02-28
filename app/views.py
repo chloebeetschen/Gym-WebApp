@@ -31,7 +31,7 @@ def calendarMethod():
 ###DONE
 #this is a book event button for the calendar
 @app.route('/makeBooking/<id>', methods=['GET'])
-def makeBookingsMethod(id): # << id passed here is the calendar id (not user)
+def makeBooking(id): # << id passed here is the calendar id (not user)    
     #makeBooking = Calendar.get()
     #update userBookings (make one), update calendar event (increment no. of ppl and check if its full)
 
@@ -55,8 +55,6 @@ def makeBookingsMethod(id): # << id passed here is the calendar id (not user)
     #add and update db
     db.session.add(newBooking)
     db.session.commit()
-        
-
     return redirect('/myBookings')
 
 
@@ -64,7 +62,7 @@ def makeBookingsMethod(id): # << id passed here is the calendar id (not user)
 ##DONE
 #this is for the my bookings page
 @app.route('/myBookings', methods=['GET', 'POST'])
-def userBookingMethod():
+def myBookings():
     #need a parameter id for the user that is logged in (can be done once cookies is enabled)
     #for now we are using user of id 0
     bookings = UserBookings.query.filter_by(userId=0).all()
@@ -74,11 +72,13 @@ def userBookingMethod():
     # get all events in order of date and time
     events = []
     eventInfo = []
-    for i in range (0, len(bookings)-1):
-        events[i] = Calendar.query.filter_by(id=bookings[i].calendarId).first()
-    
+
+    for i in bookings:
+        events.append(Calendar.query.filter_by(id=i.calendarId).first())
+    for j in events:
         # get event info for each event found
-        eventInfo[i] = Activity.query.filter_by(id=events[i].activityId).first()
+        eventInfo.append(Activity.query.filter_by(id=j.activityId).first())
+
 
     return render_template('myBookings.html', title = 'My Bookings', numEvents=len(bookings), events = events, eventInfo = eventInfo, zip=zip)
 
@@ -87,14 +87,14 @@ def userBookingMethod():
 @app.route('/deleteBooking/<id>', methods=['GET'])
 def deleteBooking(id): #id passed in will be  the id of the calendar
     # get the booking that matches the id of the parameter given and that of the userId (which is 0 for now)
-    booking = UserBookings.filter_by(calendarId = id, userId = 0)
+    booking = UserBookings.query.filter_by(calendarId = id, userId = 0).first()
     # get the event in the calendar
-    calendarBooking = Calendar.filter_by(id=id)
+    calendarBooking = Calendar.query.filter_by(id=id).first()
     # alter capacity of calendar
     calendarBooking.activityCurrent -= 1
     #if was full now make bookable
-    if event.activityFull:
-        event.activityFull == False
+    if calendarBooking.activityFull:
+        calendarBooking.activityFull == False
     
     db.session.delete(booking)
     db.session.commit()

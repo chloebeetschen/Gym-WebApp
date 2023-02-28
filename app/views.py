@@ -63,15 +63,16 @@ def makeBooking(id): # << id passed here is the calendar id (not user)
 
 ##DONE
 #calendar of all sessions (manager)
-@app.route('/calendarManager', methods=['GET', 'POST'])
-def calendarMethodManager():
+@app.route('/viewAEManager', methods=['GET', 'POST'])
+def viewAEManager():
+    activities = Activity.query.all()
     # get all events in order of date and time
     events = Calendar.query.order_by(Calendar.activityDate, Calendar.activityTime).all()
     # get event info for each event found
     eventInfo = []
     for i in events:
         eventInfo.append(Activity.query.filter_by(id=i.activityId).first())
-    return render_template('calendarManager.html', title = 'Calendar (Manager)', numEvents=len(events), events = events, eventInfo = eventInfo, zip=zip)
+    return render_template('viewAEManager.html', title = '(Manager)', activities = activities, numEvents=len(events), events = events, eventInfo = eventInfo, zip=zip)
 
 ##DONE
 #this is so the manager is able to delete an event - delete button
@@ -144,6 +145,7 @@ def addActivity():
     form = addActivityForm()
     #validate on submission
     if form.validate_on_submit():
+
         # Activity type is unique so first check that the activity doesn't exist already
         if(bool(Activity.query.filter_by(activityType=form.aType.data).first())==False):
             #create new activity
@@ -153,7 +155,7 @@ def addActivity():
             db.session.commit()
             flash('New activity added')
             #return to calendar for now
-            return redirect('/calendar')
+            return redirect('/addActivity')
         else:
             # If already exists activity with same type then display error
             flash('That activity type already exists, please chose a different one')

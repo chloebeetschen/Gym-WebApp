@@ -11,7 +11,7 @@ class Calendar(db.Model):
     id = db.Column(db.Integer, primary_key=True)
 
     activityDate = db.Column(db.Date, nullable=False)
-    activityTime = db.Column(db.String, nullable=False)
+    activityTime = db.Column(db.Integer, nullable=False)
     activityDuration = db.Column(db.Integer, nullable=False)
     activityFull = db.Column(db.Boolean, nullable=False)
     #this is the number of people signed up to the activity, which will need to be incremented

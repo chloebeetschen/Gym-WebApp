@@ -3,7 +3,6 @@ from app import app, db, models, admin
 from .models import Activity, Calendar, UserBookings
 from .forms import addActivityForm, addEventForm
 from flask_admin.contrib.sqla import ModelView
-from flask_migrate import migrate
 
 admin.add_view(ModelView(Calendar, db.session))
 admin.add_view(ModelView(Activity, db.session))

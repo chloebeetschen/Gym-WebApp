@@ -59,6 +59,40 @@ def makeBooking(id): # << id passed here is the calendar id (not user)
 
 
 
+    
+
+##DONE
+#calendar of all sessions (manager)
+@app.route('/calendarManager', methods=['GET', 'POST'])
+def calendarMethodManager():
+    # get all events in order of date and time
+    events = Calendar.query.order_by(Calendar.activityDate, Calendar.activityTime).all()
+    # get event info for each event found
+    eventInfo = []
+    for i in events:
+        eventInfo.append(Activity.query.filter_by(id=i.activityId).first())
+    return render_template('calendarManager.html', title = 'Calendar (Manager)', numEvents=len(events), events = events, eventInfo = eventInfo, zip=zip)
+
+##DONE
+#this is so the manager is able to delete an event - delete button
+@app.route('/deleteEvent/<id>', methods=['GET'])
+def deleteEvent(id): #id passed in will be  the id of the calendar
+    # get the booking that matches the id of the parameter given and that of the userId (which is 0 for now)
+    # get the event in the calendar
+    
+    userBs = UserBookings.query.filter_by(calendarId=id).all()
+    
+    for i in userBs:
+        db.session.delete(i)
+    
+    db.session.delete(Calendar.query.get(id))
+    db.session.commit()
+
+    return redirect('/calendarManager')
+
+
+
+
 ##DONE
 #this is for the my bookings page
 @app.route('/myBookings', methods=['GET', 'POST'])

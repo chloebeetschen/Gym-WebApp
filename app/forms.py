@@ -1,15 +1,17 @@
 from flask_wtf import FlaskForm
 from flask import flash
 import datetime
-from wtforms import StringField, PasswordField, IntegerField, DateField
+from wtforms import StringField, PasswordField, IntegerField, DateField, EmailField
 from wtforms.validators import DataRequired, EqualTo, Length, NumberRange, ValidationError
 from app import app
 from luhn import *
+
 
 # function to check that card number is a Luhn number
 def validateLuhn(form, field):
     if verify(str(field.data)) == False:
         raise ValidationError('Card Number is not valid')
+
 
 # function to check expiry date is in the future
 def validateExpiry(form, field):
@@ -24,3 +26,15 @@ class PaymentForm(FlaskForm):
     cExpDate = DateField('Expiry', validators=[DataRequired(message='Please enter an expiry date'), validateExpiry])
     cCVV = IntegerField('CVV', validators=[DataRequired(message='Please enter the CVV'), NumberRange(min=100, max=999, message='CVV needs to be 3 digits')])
 
+
+class RegisterForm(FlaskForm):
+    Name = StringField('Name', validators=[DataRequired()], render_kw={"placeholder": "Name"})
+    DateOfBirth = DateField('Date of birth', validators=[DataRequired()], render_kw={"placeholder": "Date of Birth"})
+    Address = StringField('Address', validators=[DataRequired()], render_kw={"placeholder": "Address"})
+    Email = EmailField('Email', validators=[DataRequired()], render_kw={"placeholder": "Email"})
+    Password = PasswordField('Password', validators=[DataRequired()], render_kw={"placeholder": "Password"})
+
+
+class LoginForm(FlaskForm):
+    Email = EmailField('email', validators=[DataRequired()], render_kw={"placeholder": "Email"})
+    Password = PasswordField('password', validators=[DataRequired()], render_kw={"placeholder": "Password"})

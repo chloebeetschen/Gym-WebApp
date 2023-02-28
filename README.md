@@ -1,19 +1,15 @@
-# This branch will handle setting up the payment portal and database
-### Initialise the Database
-- Before running the application, activate the virtual environment and navigate to project directory
-- In the terminal type 'flask db init'
-- Then 'flask db migrate -m "Initial migration"
-- Then 'flask db upgrade'
-- This will initialise the database and you can then run the program
+## DEVELOPMENT BRANCH
+merge and branch to here instead of main
+
+## The Best and Most High Tech **Sports Centre Management System** of All Time
 
 ### To Run
 - Make sure you have flask installed
 - Run the bash script build.sh with ./build.sh
 - It should run on http://127.0.0.1:5000
-- Add the route /paymentForm
 
 ### Important NB: Babel doesn't work out of the box on feng-linux, so you wil need to modify your flask_babel init file
-- This can be done in the following path: /home/csunix/YOUR_USERNAME_HERE/flask/lib/python3.6/site-packages/flask_babel/__init__.py
+- This can be done in the following path: /home/csunix/<YOUR_USERNAME_HERE>/flask/lib/python3.6/site-packages/flask_babel/__init__.py
 - Within this init file, you have to add the following line to your imports: from flask_babel import Babel
 
 ### To view the database

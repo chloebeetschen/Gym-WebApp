@@ -1,5 +1,5 @@
-# Ignore database initialisations when pushing to git
-migrations/
+# Files to be ignored by git
 *.db
 __pycache__/
 app/__pycache__/
+migrations/

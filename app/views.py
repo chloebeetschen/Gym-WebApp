@@ -90,5 +90,5 @@ def register():
 @app.route('/home', methods=['GET', 'POST'])
 @login_required # You have to be logged in to see the homepage
 def home():
+    return render_template('home.html', title='home')
 
-    return render_template('home.html')

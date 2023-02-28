@@ -1,4 +1,8 @@
-# This branch will handle the development of the login frontend and backend! ;;))
+## DEVELOPMENT BRANCH
+merge and branch to here instead of main
+
+## The Best and Most High Tech **Sports Centre Management System** of All Time
+
 ### To Run
 - Make sure you have flask installed
 - Run the bash script build.sh with ./build.sh

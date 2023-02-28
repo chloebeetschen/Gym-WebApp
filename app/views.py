@@ -3,6 +3,7 @@ from app import app, db, models, admin
 from .models import Activity, Calendar, UserBookings
 from .forms import addActivityForm, addEventForm
 from flask_admin.contrib.sqla import ModelView
+from datetime import *
 
 admin.add_view(ModelView(Calendar, db.session))
 admin.add_view(ModelView(Activity, db.session))
@@ -21,7 +22,9 @@ admin.add_view(ModelView(UserBookings, db.session))
 @app.route('/calendar', methods=['GET', 'POST'])
 def calendarMethod():
     # get all events in order of date and time
-    events = Calendar.query.order_by(Calendar.activityDate, Calendar.activityTime).all()
+    days = datetime.now()+timedelta(days=14)
+
+    events = Calendar.query.filter(Calendar.activityDate>=datetime.now()).filter(Caledndar.activityDate<= days).order_by(Calendar.activityDate, Calendar.activityTime).all()
     # get event info for each event found
     eventInfo = []
     for i in events:
@@ -179,11 +182,13 @@ def addActivity():
             db.session.commit()
             flash('New activity added')
             #return to calendar for now
+            
             return redirect('/addActivity')
         else:
             # If already exists activity with same type then display error
             flash('That activity type already exists, please chose a different one')
 
+    
     return render_template('addActivity.html', title = 'Add Activity', form = form)
 
 
@@ -209,4 +214,6 @@ def addEvent():
 @app.route('/')
 def index():
     return redirect('/calendar')
+
+##TO DO: create a view for the popup to be able to edit an activity 
 

@@ -1,6 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
 
+<!-- hide and show the popup-->
+<style>
+    .Popup.show 
+    {
+        visibility: visible;
+
+    }
+</style>
+
 <!--Basic Header-->
 <h1>Edit Activities and Events</h1>
 
@@ -35,8 +44,14 @@
                         <td>{{a.activityStaffName}}</td>
                         
                         <!--TODO Popup for event info-->
-                        <td><a href=""><button type="button" class="btns">Edit Activity</button></td>
-            
+                        
+                        <!--view for edit activity goes in the href -->
+                        <td><a href=" ">
+                            <div class = "Popup" onclick="editFunction()"> Edit Activity
+                                <span class = "popupClass", id="editPopup ">TEST </span>
+                            </div>
+                        </td>
+
                         <!--If statement to see if acitivity is full and whether or not to dispay bookable button-->
                         <td><a href="/deleteActivity/{{a.id}}"><button type="button" class="btns">Delete Activity</button></td>
             
@@ -81,6 +96,14 @@
 
     </tbody>
 </table>
+
+<script>
+    function editFunction() 
+    {
+        var edit = document.getElementById("editPopup");
+        edit.classList.toggle("show");
+    }
+</script>
 
 
 {% endblock %}

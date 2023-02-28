@@ -195,26 +195,27 @@ def addActivity():
 #for now just redirects to viewAEManager
 @app.route('/editActivity/<id>', methods=['POST', 'GET'])
 def editActivity(id):
+    activityName = (Activity.query.get(id)).activityType
     form = editActivityForm()
     #validate on submission
     if form.validate_on_submit(): 
-        edit = Activity.query.get(id)       
-        arr = ['Type', 'Price', 'Location', 'Capacity', 'StaffName']
-        for i in arr:
-            if not(form.i.data == '' or form.i.data is None):
-                stringTempTable = "activity" + i
-                stringTempValue = "a" + i 
-                edit.stringTempTable = form.stringTempValue.data
+        edit = Calendar.query.get(id) 
+        if form.aPrice.data is not None:
+            edit.activityPrice = form.aPrice.data
+        if form.aLocation.data is not None:
+            edit.activityLocation = form.aLocation.data
+        if form.aCapacity.data is not None:
+            edit.activityCapacity = form.aCapacity.data
+        if form.aStaffName.data is not None:
+            edit.activityStaffName = form.aStaffName.data
 
-        #add and commit to db
-        db.session.add(newEvent)
         db.session.commit()
         flash('Activity edited succesfully!')
         #return to same page for now
         return redirect('/viewAEManager')
 
     #if validation failed  return to add event
-    return render_template('editActivity.html', title = 'Add Event', form = form)
+    return render_template('editActivity.html', title = 'Add Event', form = form, activityName = activityName)
 
 
 ##DONE
@@ -242,30 +243,26 @@ def addEvent():
 #for now just redirects to viewAEManager
 @app.route('/editEvent/<id>', methods=['POST', 'GET'])
 def editEvent(id):
+    eventName = (Activity.query.get((Calendar.query.get(id)).activityId)).activityType
     form = editEventForm()
     #validate on submission
     if form.validate_on_submit(): 
-        edit = Calendar.query.get(id)       
-        arr = ['Date', 'Time', 'Duration', 'Full', 'Current', 'ActivityId']
-        for i in arr:
-            if not(form.i.data == '' or form.i.data is None):
-                if i == 'Activity':
-                    actType = Activity.query.filter_by(activityType = form.cType.data).first()
-                    edit.activityId = actType
-                else:
-                    stringTempTable = "activity" + i
-                    stringTempValue = "c" + i 
-                    edit.stringTempTable = form.stringTempValue.data
+        edit = Calendar.query.get(id) 
+        if form.cDate.data is not None:
+            edit.activityData = form.cDate.data
+        if form.cTime.data is not None:
+            edit.activityTime = form.cTime.data
+        if form.cDuration.data is not None:
+            edit.activityDuration = form.cDuration.data
+        
 
-        #add and commit to db
-        db.session.add(newEvent)
         db.session.commit()
         flash('Event edited succesfully!')
         #return to same page for now
         return redirect('/viewAEManager')
 
     #if validation failed  return to add event
-    return render_template('editEvent.html', title = 'Add Event', form = form, eventid=id)
+    return render_template('editEvent.html', title = 'Add Event', form = form, eventName=eventName)
 
 
 @app.route('/')

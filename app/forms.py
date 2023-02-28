@@ -50,9 +50,6 @@ class editEventForm(FlaskForm):
     cFull = BooleanField('cFull')
     cCurrent = IntegerField('cCurrent')
 
-    choicesType = [(a.id, a.activityType) for a in Activity.query.all()]
-    cType = SelectField('cType', coerce=int, choices = choicesType)
-
     editEvent = SubmitField('editEvent')
 
 

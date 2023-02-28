@@ -28,7 +28,7 @@
             
                     <tr>
                         <!--display event and event info in the tables-->
-                        <td>{{a.actibvityType}}</td>
+                        <td>{{a.activityType}}</td>
                         <td>{{a.activityPrice}}</td>
                         <td>{{a.activityLocation}}</td>
                         <td>{{a.activityCapacity}}</td>
@@ -38,7 +38,7 @@
                         <td><a href=""><button type="button" class="btns">Edit Activity</button></td>
             
                         <!--If statement to see if acitivity is full and whether or not to dispay bookable button-->
-                        <td><a href="/deleteAcivity/{{a.id}}"><button type="button" class="btns">Delete Activity</button></td>
+                        <td><a href="/deleteActivity/{{a.id}}"><button type="button" class="btns">Delete Activity</button></td>
             
                     </tr>
                     {% endfor %}

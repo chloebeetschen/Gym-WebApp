@@ -89,7 +89,27 @@ def deleteEvent(id): #id passed in will be  the id of the calendar
     db.session.delete(Calendar.query.get(id))
     db.session.commit()
 
-    return redirect('/calendarManager')
+    return redirect('/viewAEManager')
+
+#something needs to be changed here
+@app.route('/deleteActivity/<id>', methods=['GET'])
+def deleteActivity(id): #id passed in will be  the id of the calendar
+    # get the booking that matches the id of the parameter given and that of the userId (which is 0 for now)
+    # get the event in the calendar
+    
+    calendarBs = Calendar.query.filter_by(ActivityId=id).all()
+    userBs = Activity.query.filter_by(CalendarId=calendarBs.id).all()
+    
+    for i in userBs:
+        db.session.delete(i)
+    
+    for j in calendarBs:
+        db.session.delete(j)
+
+    db.session.delete(actBs)
+    db.session.commit() 
+
+    return redirect('/viewAEManager')
 
 
 

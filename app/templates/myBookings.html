@@ -28,7 +28,9 @@
 
             <!--Delete activity button-->
             <td>
-                <a href="/deleteBooking/{{events[i].id}}"><button type="button" class="btn">Cancel</button></a>
+                {% if events[i].activityDate > today %}
+                    <a href="/deleteBooking/{{events[i].id}}"><button type="button" class="btn">Cancel</button></a>
+                {% endif %}
             </td>
         </tr>
         {% endfor %}

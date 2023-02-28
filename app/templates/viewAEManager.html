@@ -1,15 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
 
-<!-- hide and show the popup-->
-<style>
-    .Popup.show 
-    {
-        visibility: visible;
-
-    }
-</style>
-
 <!--Basic Header-->
 <h1>Edit Activities and Events</h1>
 
@@ -46,11 +37,7 @@
                         <!--TODO Popup for event info-->
                         
                         <!--view for edit activity goes in the href -->
-                        <td><a href=" ">
-                            <div class = "Popup" onclick="editFunction()"> Edit Activity
-                                <span class = "popupClass", id="editPopup ">TEST </span>
-                            </div>
-                        </td>
+                        <td><a href=""><button type="button" class="btns">Edit Activity</button></td>
 
                         <!--If statement to see if acitivity is full and whether or not to dispay bookable button-->
                         <td><a href="/deleteActivity/{{a.id}}"><button type="button" class="btns">Delete Activity</button></td>
@@ -82,9 +69,10 @@
                         <td>{{events[i].activityTime}}</td>
                         <td>{{eventInfo[i].activityType}}</td>
                         <td>{{events[i].activityCurrent}}/{{eventInfo[i].activityCapacity}}</td>
-                        <!--TODO Popup for event info-->
+                        
+                        <!--view for edit activity goes in the href -->
                         <td><a href=""><button type="button" class="btns">Edit Event</button></td>
-            
+                            
                         <td><a href="/deleteEvent/{{events[i].id}}"><button type="button" class="btns">Delete Event</button></td>
             
             
@@ -96,14 +84,5 @@
 
     </tbody>
 </table>
-
-<script>
-    function editFunction() 
-    {
-        var edit = document.getElementById("editPopup");
-        edit.classList.toggle("show");
-    }
-</script>
-
 
 {% endblock %}

@@ -2,6 +2,7 @@
 merge and branch to here instead of main
 
 ## The Best and Most High Tech **Sports Centre Management System** of All Time
+
 ### To Run
 - Make sure you have flask installed
 - Run the bash script build.sh with ./build.sh

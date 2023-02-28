@@ -97,13 +97,17 @@ def deleteActivity(id): #id passed in will be  the id of the calendar
     # get the booking that matches the id of the parameter given and that of the userId (which is 0 for now)
     # get the event in the calendar
     
-    calendarBs = Calendar.query.filter_by(ActivityId=id).all()
-    userBs = Activity.query.filter_by(CalendarId=calendarBs.id).all()
+    actBs = Activity.query.get(id)
+    calendarBs = Calendar.query.filter_by(activityId=id).all()
+    #userBs = UserBookings.query.filter_by(calendarId=calendarBs.id).all()
     
-    for i in userBs:
-        db.session.delete(i)
+ #   for i in userBs:
+ #       db.session.delete(i)
     
     for j in calendarBs:
+        userBs = UserBookings.query.filter_by(calendarId=j.id).all()
+        for i in userBs:
+            db.session.delete(i)
         db.session.delete(j)
 
     db.session.delete(actBs)

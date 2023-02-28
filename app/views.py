@@ -1,11 +1,17 @@
+
+# Register table models with flask admin
+# admin.add_view(ModelView(PaymentCard, db.session))
+
 from flask import Flask, render_template, flash, url_for, redirect
 from app import app, db, models, admin
-from .models import UserLogin
+from .models import UserLogin, PaymentCard
 from .forms import *
+from flask_admin.contrib.sqla import ModelView
+
 from flask_login import current_user, login_user, LoginManager, login_required
 from flask_login import logout_user, current_user
+
 from flask_bcrypt import Bcrypt
-from flask_admin.contrib.sqla import ModelView
 
 bcrypt = Bcrypt(app)
 
@@ -35,6 +41,27 @@ def index():
         admin.add_view(ModelView(UserLogin, db.session))
     elif current_user.userType == 2 or current_user.userType == 1:
         return redirect(url_for('home'))
+
+
+#Payment Form page
+@app.route('/paymentForm', methods=['GET', 'POST'])
+def paymentForm():
+    form = PaymentForm()
+    
+    # Add data to database on submit:
+    if form.validate_on_submit():
+        # Create Payment Card field with entered details
+        newCard = models.PaymentCard(cardName=form.cName.data,
+                                     cardNum=form.cNum.data,
+                                     cardExpDate=form.cExpDate.data,
+                                     cardCVV=form.cCVV.data)
+
+        # Add new card entry to database and commit
+        db.session.add(newCard)
+        db.session.commit()
+
+        flash('Payment details registered')
+    return render_template('paymentForm.html', title='Payment Form', form=form)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -72,10 +99,10 @@ def register():
             return redirect(url_for('login'))
 
         # Get data from the form
-        Name = form.Name.data
-        dob = form.DateOfBirth.data
+        Name    = form.Name.data
+        dob     = form.DateOfBirth.data
         Address = form.Address.data
-        Email = form.Email.data
+        Email   = form.Email.data
         hashedPassword = bcrypt.generate_password_hash(form.Password.data)
 
         # Create new user and details

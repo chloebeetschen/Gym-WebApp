@@ -1,0 +1,98 @@
+<!-- THIS PAGE IS PROGRAMMED BY HOPE & ARCHIE -->
+
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Pay: </h1>
+<!-- Form to enter payment details -->
+<form method="post" name="create">
+    {{ form.hidden_tag() }}
+
+    <!-- Card Name: -->
+    <p>
+      Card Name:
+      {{ form.cName(class_='form-control') }}
+    </p>
+    {% for error in form.cName.errors %}
+    <div class="alert alert-danger" role="alert">
+      [{{ error }}]
+    </div>
+    {% endfor %}
+
+    <!-- Card number: -->
+    <p>
+      Card Number:
+      {{ form.cNum(class_='form-control') }}
+    </p>
+    {% for error in form.cNum.errors %}
+    <div class="alert alert-danger" role="alert">
+      [{{ error }}]
+    </div>
+    {% endfor %}
+
+    <!-- Card expiry: -->
+    <p>
+      CVV:
+      {{ form.cCVV(class_='form-control') }}
+    </p>
+    {% for error in form.cCVV.errors %}
+    <div class="alert alert-danger" role="alert">
+      [{{ error }}]
+    </div>
+    {% endfor %}
+
+    <!-- Card expiry: -->
+    <p>
+      Card Expiry:
+      {{ form.cExpDate(class_='form-control') }}
+    </p>
+    {% for error in form.cExpDate.errors %}
+    <div class="alert alert-danger" role="alert">
+     [{{ error }}]
+    </div>
+    {% endfor %}
+      
+    <!-- Form values are set, and then returned to views where they are checked with the database -->
+	<div style="text-align: center;"> <p><input type="submit" class="btn btn-primary" value="Pay"></p> </div>
+  </form>
+
+  <div iv id="smart-button-container">
+        <div style="text-align: center;">
+			<div id="paypal-button-container"></div>
+		</div>
+  </div>
+  <script src="https://www.paypal.com/sdk/js?client-id=sb&enable-funding=venmo&currency=GBP" data-sdk-integration-source="button-factory"></script>
+  <script>
+	function initPayPalButton() {
+		paypal.Buttons({
+			style: {
+			    shape: 'rect',
+			    color: 'gold',
+			    layout: 'vertical',
+			    label: 'paypal',      
+				},
+		createOrder: function(data, actions) {																																												            return actions.order.create({purchase_units: [{"description":"Booking","amount":{"currency_code":"GBP","value":10}}]});
+				},
+		onApprove: function(data, actions) {
+			         return actions.order.capture().then(function(orderData) {
+																																																										              
+																																																										              // Full available details
+																																																										              console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+
+																																																										              // Show a success message within this page, e.g.
+																																																										              const element = document.getElementById('paypal-button-container');
+																																																										              element.innerHTML = '';
+																																																										              element.innerHTML = '<h3>Thank you for your payment!</h3>';
+
+																																																										              // Or go to another URL:  actions.redirect('thank_you.html');
+								});
+						},
+
+		onError: function(err) {console.log(err);}
+		}).render('#paypal-button-container');
+	}
+initPayPalButton();
+</script>
+
+
+{% endblock %}

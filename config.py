@@ -12,7 +12,7 @@ WTF_CSRF_ENABLED = True
 
 # key used to create secure token
 # Key should be something secretive.
-# Can use
+# Can use:
 # import secrets
 # secretKey = secrets.token_hex()
 SECRET_KEY = 'group6-secret-key'

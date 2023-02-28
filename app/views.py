@@ -1,7 +1,4 @@
 
-# Register table models with flask admin
-# admin.add_view(ModelView(PaymentCard, db.session))
-
 from flask import Flask, render_template, flash, url_for, redirect
 from app import app, db, models, admin
 from .models import UserLogin, PaymentCard
@@ -15,7 +12,9 @@ from flask_bcrypt import Bcrypt
 
 bcrypt = Bcrypt(app)
 
+# Register tables with flask admin
 admin.add_view(ModelView(UserLogin, db.session))
+admin.add_view(ModelView(PaymentCard, db.session))
 
 loginManager = LoginManager()
 loginManager.init_app(app)

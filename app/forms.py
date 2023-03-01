@@ -9,8 +9,8 @@ from luhn import *
 
 # function to check that card number is a Luhn number
 def validateLuhn(form, field):
-    if verify(str(field.data)) == False:
-        raise ValidationError('Card Number is not valid')
+     if verify(str(field.data)) == False:
+         raise ValidationError('Card Number is not valid')
 
 
 # function to check expiry date is in the future

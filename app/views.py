@@ -360,13 +360,14 @@ def register():
         dob     = form.DateOfBirth.data
         Address = form.Address.data
         Email   = form.Email.data
+        
         hashedPassword = bcrypt.generate_password_hash(form.Password.data)
 
         # Create new user and details
         # users that register are automatically set to 1
         newUser = models.UserLogin(email=Email,
                                    password=hashedPassword,
-                                   userType=1)
+                                   userType=form.Type.data)
         newUserDetails = models.UserDetails(name=Name,
                                             dateOfBirth=dob,
                                             address=Address,

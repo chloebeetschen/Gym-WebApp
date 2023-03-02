@@ -97,7 +97,7 @@ class RegisterForm(FlaskForm):
     Address     = StringField('Address', validators=[DataRequired()], render_kw={"placeholder": "Address"})
     Email       = EmailField('Email', validators=[DataRequired()], render_kw={"placeholder": "Email"})
     Password    = PasswordField('Password', validators=[DataRequired()], render_kw={"placeholder": "Password"})
-
+    Type        = IntegerField('Type', validators=[DataRequired(), NumberRange(min=1, max=3)])
 
 class LoginForm(FlaskForm):
     Email    = EmailField('email', validators=[DataRequired()], render_kw={"placeholder": "Email"})

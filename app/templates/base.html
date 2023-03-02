@@ -4,11 +4,14 @@
       <!-- Required meta tags -->
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      
       <!-- Bootstrap CSS -->
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+      
       <!-- other css sheet: -->
       <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" type="text/css">
       <script type="text/javascript" src="{{ url_for('static', filename='jquery.min.js') }}" ></script>
+      
       <!-- Set title: -->
       {% if title %}
         <title>{{ title }}</title>
@@ -22,26 +25,31 @@
       <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
 
         <!-- When we have users logged on, we can personalise navbar message for them here -->
-
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
           
+          <ul class="navbar-nav mr-auto">
             <li class="nav-item"><a class="nav-link" href="{{ url_for('home') }}">Home<span class="sr-only">(current)</span></a></li>
             <li class="nav-item"><a class="nav-link" href="/">Book</a></li>
             <li class="nav-item"><a class="nav-link" href="/calendar">Calendar</a></li>
             <li class="nav-item"><a class="nav-link" href="/myBookings">My Bookings</a></li>
-            <li class="nav-item"><a class="nav-link" href="/addEvent">Add Event</a></li>
-            <li class="nav-item"><a class="nav-link" href="/addActivity">Add Activity</a></li>
-            <li class="nav-item"><a class="nav-link" href="/viewAEManager">Edit (Manager)</a></li>
-
+            <!-- Only managers should have access to these pages -->
+            {% if current_user.userType == 3 %}
+              <li class="nav-item"><a class="nav-link" href="/addEvent">Add Event</a></li>
+              <li class="nav-item"><a class="nav-link" href="/addActivity">Add Activity</a></li>
+              <li class="nav-item"><a class="nav-link" href="/viewAEManager">Edit</a></li>
+              <li class="nav-item"><a class="nav-link" href="/manageUsers">Manage Users</a></li>
+            {% endif %}
           </ul>
+
           <ul class="nav navbar-nav navbar-right">
             <li class="nav-item"><a class="nav-link" href="/">Basket</a></li>
             <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+            <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
           </ul>
+
         </div>
       </nav>
   
@@ -50,20 +58,19 @@
         <div class="row">
           <div class="col-3"></div>
             <div class="col-6">
-                <br>
+              <br>
               {% with messages = get_flashed_messages() %}
                 {% if messages %}
                   {% for message in messages %}
-                  <div class="alert alert-success">
-                       {{ message }}
-                  </div>
+                    <div class="alert alert-success">
+                      {{ message }}
+                    </div>
                   {% endfor %}
                 {% endif %}
               {% endwith %}
               <!-- Block content inserted here: -->
               {% block content %}{% endblock %}
               <br> <br>
-              
            </div>
         </div>
       </div>

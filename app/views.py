@@ -21,7 +21,7 @@ admin.add_view(ModelView(UserBookings, db.session))
 
 loginManager = LoginManager()
 loginManager.init_app(app)
-loginManager.login_view = "Login"
+loginManager.login_view = "login"
 
 
 @app.before_first_request

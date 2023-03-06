@@ -1,5 +1,4 @@
-## DEVELOPMENT BRANCH
-merge and branch to here instead of main
+## Ammend details branch
 
 ## The Best and Most High Tech **Sports Centre Management System** of All Time
 

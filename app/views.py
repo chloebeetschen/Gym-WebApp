@@ -40,7 +40,7 @@ def index():
     # check the user type
     # If admin, show them the admin page
     if current_user.userType == 3:
-        admin.add_view(ModelView(UserLogin, db.session))
+        return redirect(url_for('admin'))
     elif current_user.userType == 2 or current_user.userType == 1:
         return redirect(url_for('home'))
 
@@ -379,9 +379,15 @@ def register():
         db.session.commit()
         return redirect(url_for('login'))
 
-    return render_template('register.html', form=form)
+    return render_template('register.html', form=form, title="Register")
 
 
 @app.route('/home', methods=['GET', 'POST'])
 def home():
     return render_template('home.html', title='home')
+
+@app.route('/settings', methods=['GET', 'POST'])
+@login_required
+def settings():
+    return render_template('settings.html',
+                            title='Settings')

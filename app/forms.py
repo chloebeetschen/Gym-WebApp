@@ -6,8 +6,8 @@ from wtforms.validators import DataRequired, Length, EqualTo, NumberRange, Valid
 from luhn import *
 # from .models import Activity
 
-timeChoices = [(700,'07:00'), (730,'07:30'), (800,'08:00'), (830,'08:30'),
-               (900,'09:00'), (900,'09:30'), (1000,'10:00'), (1030,'10:30'),
+timeChoices = [(700,'07:00'),  (730,'07:30'),  (800,'08:00'),  (830,'08:30'),
+               (900,'09:00'),  (900,'09:30'),  (1000,'10:00'), (1030,'10:30'),
                (1100,'11:00'), (1130,'11:30'), (1200,'12:00'), (1230,'12:30'),
                (1300,'13:00'), (1330,'13:30'), (1400,'14:00'), (1430,'14:30'),
                (1500,'15:00'), (1530,'15:30'), (1600,'16:00'), (1630,'16:30'),
@@ -102,3 +102,11 @@ class RegisterForm(FlaskForm):
 class LoginForm(FlaskForm):
     Email    = EmailField('email', validators=[DataRequired()], render_kw={"placeholder": "Email"})
     Password = PasswordField('password', validators=[DataRequired()], render_kw={"placeholder": "Password"})
+
+class SettingsForm(FlaskForm):
+    Name        = StringField('Name', validators=[DataRequired()], render_kw={"placeholder": "Name"})
+    DateOfBirth = DateField('Date of birth', validators=[DataRequired()], render_kw={"placeholder": "Date of Birth"})
+    Address     = StringField('Address', validators=[DataRequired()], render_kw={"placeholder": "Address"})
+    Email       = EmailField('Email', validators=[DataRequired()], render_kw={"placeholder": "Email"})
+    Password    = PasswordField('Password', validators=[DataRequired()], render_kw={"placeholder": "Password"})
+    NewPassword = PasswordField('Password', validators=[DataRequired()], render_kw={"placeholder": "New Password"})

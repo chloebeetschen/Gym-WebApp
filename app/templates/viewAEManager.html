@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!--Basic Header-->
+<h1>Edit Activities and Events</h1>
+
+<table class="table">
+    <thead>
+        <th>Edit Activities</th>
+        <th>Edit Events</th>
+    </thead>
+    <tbody>
+        <td>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Activity Name</th>
+                        <th>Price</th>
+                        <th>Location</th>
+                        <th>Capacity</th>
+                        <th>Staff Member</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for a in activities %}
+                        <tr>
+                            <!--display event and event info in the tables-->
+                            <td>{{a.activityType}}</td>
+                            <td>{{a.activityPrice}}</td>
+                            <td>{{a.activityLocation}}</td>
+                            <td>{{a.activityCapacity}}</td>
+                            <td>{{a.activityStaffName}}</td>
+                            
+                            <!--TODO Popup for event info-->
+                            
+                            <!--view for edit activity goes in the href -->
+                            <td><a href="/editActivity/{{a.id}}"><button type="button" class="btns">Edit Activity</button></td>
+
+                            <!--If statement to see if acitivity is full and whether or not to dispay bookable button-->
+                            <td><a href="/deleteActivity/{{a.id}}"><button type="button" class="btns">Delete Activity</button></td>
+                
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </td>
+        <td>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th >Date</th>
+                        <th >Time</th>
+                        <th>Activity Name</th>
+                        <th>Spaces Left</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in range (0 , numEvents-1) %}
+                        <tr>
+                            <!--display event and event info in the tables-->
+                            <td>{{events[i].activityDate}}</td>
+                            <td>{{events[i].activityTime}}</td>
+                            <td>{{eventInfo[i].activityType}}</td>
+                            <td>{{events[i].activityCurrent}}/{{eventInfo[i].activityCapacity}}</td>
+                            
+                            <!--view for edit activity goes in the href -->
+                            <td><a href="/editEvent/{{events[i].id}}"><button type="button" class="btns">Edit Event</button></td> 
+                            <td><a href="/deleteEvent/{{events[i].id}}"><button type="button" class="btns">Delete Event</button></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </td>
+    </tbody>
+</table>
+
+{% endblock %}

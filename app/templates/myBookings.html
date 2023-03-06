@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!--Basic Header-->
+<h1>My Bookings</h1>
+
+<!--Basic table to hold booking information of a user-->
+<table class="table">
+    <thead>
+        <tr>
+            <th>Activity</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Duration</th>
+            <th>Location</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in range (0 , numEvents-1) %}
+            <tr>
+                <!--display event and event info in the tables-->
+                <td>{{eventInfo[i].activityType}}</td>
+                <td>{{events[i].activityDate}}</td>
+                <td>{{events[i].activityTime}}</td>
+                <td>{{events[i].activityDuration}} Minutes</td>
+                <td>{{eventInfo[i].activityLocation}}</td>
+
+                <!--Delete activity button-->
+                <td>
+                    {% if events[i].activityDate > today %}
+                        <a href="/deleteBooking/{{events[i].id}}"><button type="button" class="btn">Cancel</button></a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

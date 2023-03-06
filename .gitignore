@@ -1,0 +1,6 @@
+# Files to be ignored by git
+*.db
+__pycache__/
+app/__pycache__/
+migrations/
+.vim/

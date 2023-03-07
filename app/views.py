@@ -37,12 +37,7 @@ def loadUser(userId):
 @app.route('/')
 @login_required
 def index():
-    # check the user type
-    # If admin, show them the admin page
-    if current_user.userType == 3:
-        admin.add_view(ModelView(UserLogin, db.session))
-    elif current_user.userType == 2 or current_user.userType == 1:
-        return redirect(url_for('home'))
+    return redirect(url_for('home'))
 
 
 #we want 4 pages

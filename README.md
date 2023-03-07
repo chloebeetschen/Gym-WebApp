@@ -1,4 +1,4 @@
-## Ammend details branch
+## Amend details branch
 
 ## The Best and Most High Tech **Sports Centre Management System** of All Time
 

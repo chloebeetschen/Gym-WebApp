@@ -75,7 +75,7 @@ def makeBooking(id): # << id passed here is the calendar id (not user)
     #get calendar event of id
     event = Calendar.query.get(id)
     #update number of people on current
-    event.activityCurrent += + 1
+    event.activitySlotsTaken += 1
     #get capactiy of that activity
     eventType = Activity.query.get(event.activityId)
     #check if now it is  equal to capacity

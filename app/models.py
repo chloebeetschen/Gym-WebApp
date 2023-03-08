@@ -2,11 +2,18 @@ from app import db
 from flask_login import UserMixin
 
 
+class Activity(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    
+    # foreign key for activity table
+    calendarEvents = db.relationship('Calendar', backref='activity')
+
+    # link to user bookings table
+    #bookings = db.relationship('UserBookings', backref='calendar_user')
 
 class Calendar(db.Model):
-
-
     id = db.Column(db.Integer, primary_key=True)
+    activityType = db.Column(db.String(250), unique=True)
 
     activityDate = db.Column(db.Date, nullable=False)
     activityTime = db.Column(db.Integer, nullable=False)
@@ -14,25 +21,12 @@ class Calendar(db.Model):
     activityStaffName = db.Column(db.String(250))
     activityPrice = db.Column(db.Float)
     activityCapacity = db.Column(db.Integer)
+
     #this is the number of people signed up to the activity, which will need to be incremented
     activitySlotsTaken = db.Column(db.Integer)
-    
-    # foreign key for activity table
+
+    # Relationship with calendar
     activityId = db.Column(db.Integer, db.ForeignKey('activity.id'))
-    #activityId = db.Column(db.Integer)
-
-    # link to user bookings table
-    #bookings = db.relationship('UserBookings', backref='calendar_user')\
-
-class Activity(db.Model):
-
-
-    id = db.Column(db.Integer, primary_key=True)
-    activityType = db.Column(db.String(250), unique=True)
-    calender = db.relationship('calender', backref='calender')
-
-    #relationship with calendar
-    #events = db.relationship('Calendar', backref='activity_info')
 
 
 class UserBookings(db.Model):

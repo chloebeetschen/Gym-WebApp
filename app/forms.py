@@ -105,8 +105,6 @@ class LoginForm(FlaskForm):
 
 class SettingsForm(FlaskForm):
     Name        = StringField('Name', validators=[DataRequired()], render_kw={"placeholder": "Name"})
-    DateOfBirth = DateField('Date of birth', validators=[DataRequired()], render_kw={"placeholder": "Date of Birth"})
     Address     = StringField('Address', validators=[DataRequired()], render_kw={"placeholder": "Address"})
-    Email       = EmailField('Email', validators=[DataRequired()], render_kw={"placeholder": "Email"})
     Password    = PasswordField('Password', validators=[DataRequired()], render_kw={"placeholder": "Password"})
     NewPassword = PasswordField('Password', validators=[DataRequired()], render_kw={"placeholder": "New Password"})

@@ -39,10 +39,7 @@ def loadUser(userId):
 def index():
     # check the user type
     # If admin, show them the admin page
-    if current_user.userType == 3:
-        return redirect(url_for('admin'))
-    elif current_user.userType == 2 or current_user.userType == 1:
-        return redirect(url_for('home'))
+    return redirect(url_for('home'))
 
 
 #we want 4 pages
@@ -386,8 +383,28 @@ def register():
 def home():
     return render_template('home.html', title='home')
 
+
 @app.route('/settings', methods=['GET', 'POST'])
 @login_required
 def settings():
+    form = SettingsForm()
+    if form.validate_on_submit():
+        # Check the old password matches the current password
+        if not bcrypt.check_password_hash(current_user.password, form.Password.data):
+            flash('Incorrect password')
+            return redirect(url_for('settings'))
+        # Update the user's details
+        cUserLogin   = models.UserLogin.query.get(current_user.id)
+        cUserDetails = models.UserDetails.query.get(current_user.id)
+
+        cUserDetails.name    = form.Name.data
+        cUserDetails.address = form.Address.data
+        cUserLogin.password  = bcrypt.generate_password_hash(form.NewPassword.data)
+
+        db.session.commit()
+        flash('User Details updated')
+        
     return render_template('settings.html',
-                            title='Settings')
+                            title='Settings',
+                            form=form,
+                            user=current_user)

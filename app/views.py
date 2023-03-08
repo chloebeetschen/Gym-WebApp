@@ -39,10 +39,7 @@ def loadUser(userId):
 def index():
     # check the user type
     # If admin, show them the admin page
-    if current_user.userType == 3:
-        admin.add_view(ModelView(UserLogin, db.session))
-    elif current_user.userType == 2 or current_user.userType == 1:
-        return redirect(url_for('home'))
+    return redirect(url_for('home'))
 
 
 #we want 4 pages
@@ -78,7 +75,7 @@ def makeBooking(id): # << id passed here is the calendar id (not user)
     #get calendar event of id
     event = Calendar.query.get(id)
     #update number of people on current
-    event.activityCurrent += + 1
+    event.activitySlotsTaken += 1
     #get capactiy of that activity
     eventType = Activity.query.get(event.activityId)
     #check if now it is  equal to capacity
@@ -379,9 +376,35 @@ def register():
         db.session.commit()
         return redirect(url_for('login'))
 
-    return render_template('register.html', form=form)
+    return render_template('register.html', form=form, title="Register")
 
 
 @app.route('/home', methods=['GET', 'POST'])
 def home():
     return render_template('home.html', title='home')
+
+
+@app.route('/settings', methods=['GET', 'POST'])
+@login_required
+def settings():
+    form = SettingsForm()
+    if form.validate_on_submit():
+        # Check the old password matches the current password
+        if not bcrypt.check_password_hash(current_user.password, form.Password.data):
+            flash('Incorrect password')
+            return redirect(url_for('settings'))
+        # Update the user's details
+        cUserLogin   = models.UserLogin.query.get(current_user.id)
+        cUserDetails = models.UserDetails.query.get(current_user.id)
+
+        cUserDetails.name    = form.Name.data
+        cUserDetails.address = form.Address.data
+        cUserLogin.password  = bcrypt.generate_password_hash(form.NewPassword.data)
+
+        db.session.commit()
+        flash('User Details updated')
+        
+    return render_template('settings.html',
+                            title='Settings',
+                            form=form,
+                            user=current_user)

@@ -1,40 +1,33 @@
 from app import db
 from flask_login import UserMixin
 
-class Calendar(db.Model):
 
-    __tablename__ = "calendar"
-
+class Activity(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    
+    # foreign key for activity table
+    calendarEvents = db.relationship('Calendar', backref='activity')
+
+    # link to user bookings table
+    #bookings = db.relationship('UserBookings', backref='calendar_user')
+
+class Calendar(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    activityType = db.Column(db.String(250), unique=True)
 
     activityDate = db.Column(db.Date, nullable=False)
     activityTime = db.Column(db.Integer, nullable=False)
-    activityDuration = db.Column(db.Integer, nullable=False)
-    activityFull = db.Column(db.Boolean, nullable=False)
-    #this is the number of people signed up to the activity, which will need to be incremented
-    activityCurrent = db.Column(db.Integer)
-    
-    # foreign key for activity table
-    #activityId = db.Column(db.Integer, db.ForeignKey('Activity.id'))
-    activityId = db.Column(db.Integer)
-
-    # link to user bookings table
-    #bookings = db.relationship('UserBookings', backref='calendar_user')\
-
-class Activity(db.Model):
-
-    __tablename__ = 'activity'
-
-    id = db.Column(db.Integer, primary_key=True)
-
-    activityType = db.Column(db.String(250), unique=True)
-    activityPrice = db.Column(db.Float)
-    activityLocation = db.Column(db.String(250))
-    activityCapacity = db.Column(db.Integer)
+    activityDuration = db.Column(db.Integer, nullable=False)    
     activityStaffName = db.Column(db.String(250))
+    activityPrice = db.Column(db.Float)
+    activityCapacity = db.Column(db.Integer)
 
-    #relationship with calendar
-    #events = db.relationship('Calendar', backref='activity_info')
+    #this is the number of people signed up to the activity, which will need to be incremented
+    activitySlotsTaken = db.Column(db.Integer)
+
+    # Relationship with calendar
+    activityId = db.Column(db.Integer, db.ForeignKey('activity.id'))
+
 
 class UserBookings(db.Model):
 

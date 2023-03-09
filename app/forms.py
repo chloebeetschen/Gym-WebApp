@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 import datetime
 from wtforms import PasswordField, EmailField, TextAreaField, SubmitField, SelectField, SelectMultipleField, DateField
-from wtforms import StringField, BooleanField, IntegerField 
+from wtforms import StringField, BooleanField, IntegerField, FloatField
 from wtforms.validators import DataRequired, Length, EqualTo, NumberRange, ValidationError
 from luhn import *
 # from .models import Activity
@@ -15,47 +15,32 @@ timeChoices = [(700,'07:00'),  (730,'07:30'),  (800,'08:00'),  (830,'08:30'),
                (1900,'19:00'), (1930,'19:30'), (2000,'20:00'), (2030,'20:30'),
                (2100,'21:00'), (2130,'21:30')]
 
-#for the manager to add a new activity e.g. swimming
-class addActivityForm(FlaskForm):
-    aType      = StringField('aType', validators=[DataRequired()])
-    aPrice     = IntegerField('aPrice', validators=[DataRequired()])
-    aLocation  = StringField('aLocation', validators=[DataRequired()])
-    aCapacity  = IntegerField('aCapacity', validators=[DataRequired()])
-    aStaffName = StringField('aStaffName', validators=[DataRequired()])
-
-    addActivity = SubmitField('addActivity')
-
-#for the manager to edit an activity e.g. swimming
-class editActivityForm(FlaskForm):
-    aPrice = IntegerField('aPrice')
-    aLocation = StringField('aLocation')
-    aCapacity = IntegerField('aCapacity')
-    aStaffName = StringField('aStaffName')
-
-    editActivity = SubmitField('editActivity')
+# For the manager to add a new activity e.g. swimming
+# Can be used for editing and creating activities
+class ActivityForm(FlaskForm):
+    aType       = StringField('aType', validators=[DataRequired()])
 
 
-#for the manager to add a new event  e.g. swimming at a new location/time
-class addEventForm(FlaskForm):
-    cDate = DateField('cDate', validators=[DataRequired()])
-    #manager can select a time in 30 min increments 
-    cTime = SelectField('cTime', choices=timeChoices, validators=[DataRequired()])
-
-    cDuration = SelectField('cDuration', choices = [(30, '30mins'), (60, '60mins')], validators=[DataRequired()])
-    cFull = BooleanField('cFull')
-    cCurrent = IntegerField('cCurrent')
-
-    #choicesType = [(a.id, a.activityType) for a in Activity.query.all()]
-    #cType = SelectField('cType', coerce=int, choices = choicesType, validators=[DataRequired()])
-    addEvent = SubmitField('addEvent')
+# Form to add an activity to the calendar
+# Can be used for editing and adding calendar events
+class EventForm(FlaskForm):
+    aDate        = DateField('Date of activity', validators=[DataRequired()], render_kw={"placeholder": "Date of activity"})
+    aTime        = DateField('Time of activity', validators=[DataRequired()], render_kw={"placeholder": "Time of activity"})
+    aDuration    = IntegerField('Duration of activity', validators=[DataRequired()],
+                                render_kw={"placeholder": "Duration of activity"})
+    aStaffName   = StringField("Staff Name", validators=[DataRequired()], render_kw={"placeholder": "Time of activity"}) 
+    aPrice       = FloatField("Price", validators=[DataRequired()], render_kw={"placeholder": "Price of activity"}) 
+    aCapacity    = IntegerField('Capacity of activity', validators=[DataRequired()],
+                               render_kw={"placeholder": "Capacity of activity"})
+    # The activity id slot will be added in the html and passed in the route
 
 
 #for the manager to edit an  event  e.g. swimming at a new location/time
 class editEventForm(FlaskForm):
     cDate = DateField('cDate')
     #manager can select a time in 30 min increments 
-    cTime = SelectField('cTime', choices = timeChoices)
-    cDuration = SelectField('cDuration', choices = [(30, '30mins'), (60, '60mins')])
+    cTime = SelectField('cTime', choices=timeChoices)
+    cDuration = SelectField('cDuration', choices=[(30, '30mins'), (60, '60mins')])
 
     editEvent = SubmitField('editEvent')
 

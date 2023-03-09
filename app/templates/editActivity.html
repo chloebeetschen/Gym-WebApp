@@ -2,55 +2,31 @@
 {% block content %}
 
 <!--Basic Header-->
-<h1>Edit Event (Manager)</h1>
+<h1>Edit Activity (Manager)</h1>
 
-<!--Form for manager to create a new event for their chosen activity to be insterted into the calendar-->
-<form method="post" name="addEvent">
+<!--Form for manager to create a new activity-->
+<form action="{{ url_for('editActivity') }}" method="post" name="addActivity">
     {{ form.hidden_tag() }}
-   
-    <!--Type (Name of Activity)-->
-    <p>Activity: {{activityName}}</p>
 
-    <!--Price of activity-->
-    <p>Price
-        <br>
-        {{ form.aPrice(class='form-control')}}
-        <br>
-    </p>
-    {% for error in form.aPrice.errors %}
+    <!-- You need to be able to pick the activity you want to edit -->
+    <label for="activities">Choose Activity</label>
+    {% if activities == none %}
+        <p>There are currently no activites.</p>
+    {% else %}
+        <select name="activity" class="form-control" id="activities">
+        {% for activity in activities %}
+            <option value="{{activity.activityType}}">{{ activity.activityType }}</option>
+        {% endfor %}
+        </select>
+    {% endif %}
+    <br><br>
+    <label for="newType">New activity type</label>
+    {{ form.aType(id="newType", class="form-control") }}
+
+    {% for error in form.aType.errors %}
         [{{ error }}]
     {% endfor %}
 
-    <!--Location of activity-->
-    <p>Loaction
-        <br>
-        {{ form.aLocation(class='form-control')}}
-        <br>
-    </p>
-    {% for error in form.aLocation.errors %}
-        [{{ error }}]
-    {% endfor %}
-
-    <!--Capacity of activity-->
-    <p>Capacity
-        <br>
-        {{ form.aCapacity(class='form-control')}}
-        <br>
-    </p>
-    {% for error in form.aCapacity.errors %}
-        [{{ error }}]
-    {% endfor %}
-
-    <!--Staff member on activity-->
-    <p>Staff Member
-        <br>
-        {{ form.aStaffName(class='form-control')}}
-        <br>
-    </p>
-    {% for error in form.aStaffName.errors %}
-        [{{ error }}]
-    {% endfor %}
-
-    <p><input type="submit" value="Edit Activity"></p>
+    <p><input type="submit" class="btn btn-primary mt-5" value="Edit Activity"></p>
 </form>
 {% endblock %}

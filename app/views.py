@@ -42,11 +42,11 @@ def index():
     return redirect(url_for('home'))
 
 
-#we want 4 pages
-#calendar of all sessions - and pop up for the info button
-#my bookings page for the user
-#manager add activity 
-#manger add event 
+# we want 4 pages
+# calendar of all sessions - and pop up for the info button
+# my bookings page for the user
+# manager add activity 
+# manger add event 
 
 #calendar of all sessions
 @app.route('/calendar', methods=['GET', 'POST'])
@@ -63,7 +63,8 @@ def calendarMethod():
                             numEvents = len(events),
                             events    = events,
                             eventInfo = eventInfo,
-                            zip       = zip )
+                            zip       = zip)
+
 
 #this is a book event button for the calendar
 @app.route('/makeBooking/<id>', methods=['GET'])
@@ -75,7 +76,7 @@ def makeBooking(id): # << id passed here is the calendar id (not user)
     #get calendar event of id
     event = Calendar.query.get(id)
     #update number of people on current
-    event.activitySlotsTaken += 1
+    event.aSlotsTaken += 1
     #get capactiy of that activity
     eventType = Activity.query.get(event.activityId)
     #check if now it is  equal to capacity
@@ -190,29 +191,22 @@ def deleteBooking(id): #id passed in will be  the id of the calendar
 #manager add activity 
 @app.route('/addActivity', methods=['POST', 'GET'])
 def addActivity():
-    form = addActivityForm()
+    form = ActivityForm()
     #validate on submission
     if form.validate_on_submit():
-
+        aExists = Activity.query.filter_by(activityType=form.aType.data).first()
         # Activity type is unique so first check that the activity doesn't exist already
-        if(bool(Activity.query.filter_by(activityType=form.aType.data).first())==False):
-            #create new activity
-            newAct = Activity( activityType      = form.aType.data, 
-                               activityPrice     = form.aPrice.data,
-                               activityLocation  = form.aLocation.data,
-                               activityCapacity  = form.aCapacity.data,
-                               activityStaffName = form.aStaffName.data )
-
-            #add and commit to db
-            db.session.add(newAct)
-            db.session.commit()
-            flash('New activity added')
-            #return to calendar for now
+        if(aExists):
+            flash("This activity already exists.")
             return redirect(url_for('addActivity'))
-        else:
-            # If already exists activity with same type then display error
-            flash('That activity type already exists, please chose a different one')
 
+        #create new activity
+        newAct = Activity( activityType=form.aType.data )
+
+        #add and commit to db
+        db.session.add(newAct)
+        db.session.commit()
+        flash('New activity added')
     
     return render_template('addActivity.html', title='Add Activity', form=form)
 
@@ -221,54 +215,38 @@ def addActivity():
 ##DONE
 #manager edit activity
 #for now just redirects to viewAEManager
-@app.route('/editActivity/<id>', methods=['POST', 'GET'])
-def editActivity(id):
-    activityName = (Activity.query.get(id)).activityType
-    form = editActivityForm()
-    #validate on submission
-    if form.validate_on_submit(): 
-        edit = Calendar.query.get(id) 
-        if form.aPrice.data is not None:
-            edit.activityPrice = form.aPrice.data
+@app.route('/editActivity', methods=['POST', 'GET'])
+@login_required
+def editActivity():
+    form       = ActivityForm()
+    activities = Activity.query.all()  # Get all activities
+    if form.validate_on_submit():
+        sActivity = Activity.query.filter_by(activityType=request.form['activity']).first()  # The activity selected
 
-        if form.aLocation.data is not None:
-            edit.activityLocation = form.aLocation.data
-
-        if form.aCapacity.data is not None:
-            edit.activityCapacity = form.aCapacity.data
-
-        if form.aStaffName.data is not None:
-            edit.activityStaffName = form.aStaffName.data
-
+        # Check the new name isn't the same as any of the other names
+        for activity in activities:
+            if form.aType.data.upper() == activity.activityType.upper():
+                flash("This activity name is already taken")
+                return redirect(url_for('editActivity'))
+        
+        # update the name with the new name
+        sActivity.activityType = form.aType.data
         db.session.commit()
-        flash('Activity edited succesfully!')
-        # return to same page for now
-        return redirect('/viewAEManager')
+        flash("Updated activity type successfully")
 
-    # if validation failed  return to add event
-    return render_template('editActivity.html', title='Add Event', form=form, activityName=activityName)
+    return render_template('editActivity.html', title='Add Event',
+                            form=form, activities=activities)
 
 
 # manager add event
+"""
 @app.route('/addEvent', methods=['POST', 'GET'])
 @login_required
 def addEvent():
-    form = addEventForm()
-    #validate on submission
-    if form.validate_on_submit():
-        # create new event
-        actType = Activity.query.filter_by(activityType = form.cType.data).first()
-        newEvent = Calendar(activityDate = form.cDate.data, activityTime = form.cTime.data, activityDuration = form.cDuration.data, activityFull = False, activityCurrent = 0, activityId = actType.id)
-        # add and commit to db
-        db.session.add(newEvent)
-        db.session.commit()
-        flash('Event succesfully added!')
-        #return to same page for now
-        return redirect('/addEvent')
+    form = EventForm()
 
     #if validation failed  return to add event
     return render_template('addEvent.html', title = 'Add Event', form = form)
-
 
 #manager edit event
 #for now just redirects to viewAEManager
@@ -295,7 +273,7 @@ def editEvent(id):
 
     #if validation failed  return to add event
     return render_template('editEvent.html', title = 'Add Event', form = form, eventName=eventName)
-
+"""
 
 #Payment Form page
 @app.route('/paymentForm', methods=['GET', 'POST'])

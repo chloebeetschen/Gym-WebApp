@@ -13,18 +13,19 @@ class Activity(db.Model):
     # link to user bookings table
     #bookings = db.relationship('UserBookings', backref='calendar_user')
 
+
 class Calendar(db.Model):
     id = db.Column(db.Integer, primary_key=True)
 
-    activityDate = db.Column(db.Date, nullable=False)
-    activityTime = db.Column(db.Integer, nullable=False)
-    activityDuration = db.Column(db.Integer, nullable=False)    
-    activityStaffName = db.Column(db.String(250))
-    activityPrice = db.Column(db.Float)
-    activityCapacity = db.Column(db.Integer)
+    aDate = db.Column(db.Date, nullable=False)
+    aTime = db.Column(db.Integer, nullable=False)
+    aDuration = db.Column(db.Integer, nullable=False)    
+    aStaffName = db.Column(db.String(250))
+    aPrice = db.Column(db.Float)
+    aCapacity = db.Column(db.Integer)
 
     #this is the number of people signed up to the activity, which will need to be incremented
-    activitySlotsTaken = db.Column(db.Integer)
+    aSlotsTaken = db.Column(db.Integer)
 
     # Relationship with calendar
     activityId = db.Column(db.Integer, db.ForeignKey('activity.id'))

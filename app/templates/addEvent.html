@@ -9,40 +9,39 @@
     {{ form.hidden_tag() }}
 
     <!--Type (Name of Activity)-->
+<<<<<<< HEAD
     <p>Activity Name
         <br>
         {{ form.activityEvent(class='form-control')}}
         <br>
+=======
+    <p>
+        {{ form.cType(class='form-control')}}
+>>>>>>> e82dc1e711f6911c532cfc0850464c70039f3352
     </p>
     {% for error in form.cType.errors %}
         [{{ error }}]
     {% endfor %}
 
     <!--Date of activity-->
-    <p>Date
-        <br>
+    <p>
         {{ form.cDate(class='form-control')}}
-        <br>
     </p>
     {% for error in form.cDate.errors %}
         [{{ error }}]
     {% endfor %}
 
     <!--Time of activity-->
-    <p>Time
-        <br>
+    <p>
         {{ form.cTime(class='form-control')}}
-        <br>
     </p>
     {% for error in form.cTime.errors %}
         [{{ error }}]
     {% endfor %}
 
     <!-- Duration of activity-->
-    <p>Activity Duration
-        <br>
+    <p>
         {{ form.cDuration(class='form-control')}}
-        <br>
     </p>
     {% for error in form.cDuration.errors %}
         [{{ error }}]

@@ -8,6 +8,7 @@
 <form action="{{ url_for('editActivity') }}" method="post" name="addActivity">
     {{ form.hidden_tag() }}
 
+<<<<<<< HEAD
     <!-- You need to be able to pick the activity you want to edit -->
     <label for="activities">Choose Activity</label>
     {% if activities == none %}
@@ -24,6 +25,37 @@
     {{ form.aType(id="newType", class="form-control") }}
 
     {% for error in form.aType.errors %}
+=======
+    <!--Price of activity-->
+    <p>
+        {{ form.aPrice(class='form-control')}}
+    </p>
+    {% for error in form.aPrice.errors %}
+        [{{ error }}]
+    {% endfor %}
+
+    <!--Location of activity-->
+    <p>
+        {{ form.aLocation(class='form-control')}}
+    </p>
+    {% for error in form.aLocation.errors %}
+        [{{ error }}]
+    {% endfor %}
+
+    <!--Capacity of activity-->
+    <p>
+        {{ form.aCapacity(class='form-control')}}
+    </p>
+    {% for error in form.aCapacity.errors %}
+        [{{ error }}]
+    {% endfor %}
+
+    <!--Staff member on activity-->
+    <p>
+        {{ form.aStaffName(class='form-control')}}
+    </p>
+    {% for error in form.aStaffName.errors %}
+>>>>>>> e82dc1e711f6911c532cfc0850464c70039f3352
         [{{ error }}]
     {% endfor %}
 

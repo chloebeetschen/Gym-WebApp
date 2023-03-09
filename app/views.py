@@ -122,30 +122,22 @@ def deleteEvent(id): #id passed in will be  the id of the calendar
 
     return redirect('/viewAEManager')
 
-#something needs to be changed here
-@app.route('/deleteActivity/<id>', methods=['GET'])
-def deleteActivity(id): #id passed in will be  the id of the calendar
-    # get the booking that matches the id of the parameter given and that of the userId (which is 0 for now)
-    # get the event in the calendar
-    
-    actBs = Activity.query.get(id)
-    calendarBs = Calendar.query.filter_by(activityId=id).all()
-    #userBs = UserBookings.query.filter_by(calendarId=calendarBs.id).all()
-    
-    for j in calendarBs:
-        userBs = UserBookings.query.filter_by(calendarId=j.id).all()
-        for i in userBs:
-            db.session.delete(i)
-        db.session.delete(j)
-
-    db.session.delete(actBs)
-    db.session.commit() 
-
-    return redirect('/viewAEManager')
+@app.route('/deleteActivity', methods=['GET', 'POST'])
+@login_required
+def deleteActivity(): 
+    # Should delete the activity
+    # Also deletes associated calendar events
+    activities = Activity.query.all()  # Get all activities
+    # Selected activity
+    sActivity = Activity.query.filter_by(activityType=request.form['activity']).first()  # The activity selected
+    # db.session.commit()
+    flash("This needs to be implemented")
+    return redirect('/editActivity')
 
 
 #this is for the my bookings page
 @app.route('/myBookings', methods=['GET', 'POST'])
+@login_required
 def myBookings():
     today = date.today()
     #need a parameter id for the user that is logged in (can be done once cookies is enabled)
@@ -214,7 +206,7 @@ def addActivity():
 @app.route('/editActivity', methods=['POST', 'GET'])
 @login_required
 def editActivity():
-    form       = ActivityForm()
+    form = ActivityForm()
     activities = Activity.query.all()  # Get all activities
     if form.validate_on_submit():
         sActivity = Activity.query.filter_by(activityType=request.form['activity']).first()  # The activity selected
@@ -235,14 +227,18 @@ def editActivity():
 
 
 # manager add event
-"""
 @app.route('/addEvent', methods=['POST', 'GET'])
 @login_required
 def addEvent():
     form = EventForm()
+    activities = Activity.query.all()
+
+    if form.validate_on_submit():
+        # Make a new event with the data in the form
 
     #if validation failed  return to add event
-    return render_template('addEvent.html', title = 'Add Event', form = form)
+    return render_template('addEvent.html', title='Add Event',
+                           form=form, activities=activities)
 
 #manager edit event
 #for now just redirects to viewAEManager
@@ -269,7 +265,6 @@ def editEvent(id):
 
     #if validation failed  return to add event
     return render_template('editEvent.html', title = 'Add Event', form = form, eventName=eventName)
-"""
 
 #Payment Form page
 @app.route('/paymentForm', methods=['GET', 'POST'])

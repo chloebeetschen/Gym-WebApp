@@ -1,10 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import PasswordField, EmailField, TextAreaField, SubmitField, SelectField, SelectMultipleField, DateField
-<<<<<<< HEAD
-from wtforms import StringField, BooleanField, IntegerField, FloatField
-=======
-from wtforms import StringField, BooleanField, IntegerField, DecimalField
->>>>>>> e82dc1e711f6911c532cfc0850464c70039f3352
+from wtforms import StringField, BooleanField, IntegerField, FloatField, TimeField
 from wtforms.validators import DataRequired, Length, EqualTo, NumberRange, ValidationError
 from luhn import *
 from datetime import *
@@ -20,26 +16,6 @@ timeChoices = [(700,'07:00'),  (730,'07:30'),  (800,'08:00'),  (830,'08:30'),
                (1900,'19:00'), (1930,'19:30'), (2000,'20:00'), (2030,'20:30'),
                (2100,'21:00'), (2130,'21:30')]
 
-<<<<<<< HEAD
-# For the manager to add a new activity e.g. swimming
-# Can be used for editing and creating activities
-class ActivityForm(FlaskForm):
-    aType       = StringField('aType', validators=[DataRequired()])
-
-
-# Form to add an activity to the calendar
-# Can be used for editing and adding calendar events
-class EventForm(FlaskForm):
-    aDate        = DateField('Date of activity', validators=[DataRequired()], render_kw={"placeholder": "Date of activity"})
-    aTime        = DateField('Time of activity', validators=[DataRequired()], render_kw={"placeholder": "Time of activity"})
-    aDuration    = IntegerField('Duration of activity', validators=[DataRequired()],
-                                render_kw={"placeholder": "Duration of activity"})
-    aStaffName   = StringField("Staff Name", validators=[DataRequired()], render_kw={"placeholder": "Time of activity"}) 
-    aPrice       = FloatField("Price", validators=[DataRequired()], render_kw={"placeholder": "Price of activity"}) 
-    aCapacity    = IntegerField('Capacity of activity', validators=[DataRequired()],
-                               render_kw={"placeholder": "Capacity of activity"})
-    # The activity id slot will be added in the html and passed in the route
-=======
 
 # function to check that card number is a Luhn number
 def validateLuhn(form, field):
@@ -60,81 +36,45 @@ def validateAge(form, field):
         raise ValidationError("You are not old enough to register")
 
 
-# Form for the manager to add a new activity e.g. swimming
-class addActivityForm(FlaskForm):
-    aType       = StringField('aType', validators=[DataRequired(message="Please enter a type")], render_kw={"placeholder": "Type"})
-    aPrice      = DecimalField('aPrice', places=2, validators=[DataRequired(message="Please enter a price"), NumberRange(min=0, max=10000)], render_kw={"placeholder": "Price"})
-    aLocation   = StringField('aLocation', validators=[DataRequired(message="Please enter a location")], render_kw={"placeholder": "Location"})
-    aCapacity   = IntegerField('aCapacity', validators=[DataRequired(message="Please enter a capacity"), NumberRange(min=0)], render_kw={"placeholder": "Capacity"})
-    aStaffName  = StringField('aStaffName', validators=[DataRequired(message="Please enter a staff member name")], render_kw={"placeholder": "Staff Name"})
-    addActivity = SubmitField('addActivity')
+# For the manager to add a new activity e.g. swimming
+# Can be used for editing and creating activities
+class ActivityForm(FlaskForm):
+    aType       = StringField('aType', validators=[DataRequired()])
 
 
-# Form for the manager to edit an activity e.g. swimming
-class editActivityForm(FlaskForm):
-    aPrice      = DecimalField('aPrice', places=2, validators=[NumberRange(min=0, max=None, message=("Prices must be above 0"))], render_kw={"placeholder": "Price"})
-    aLocation   = StringField('aLocation', render_kw={"placeholder": "Location"})
-    aCapacity   = IntegerField('aCapacity', validators=[NumberRange(min=0, message=("Capacities must be above 0"))], render_kw={"placeholder": "Capacity"})
-    aStaffName  = StringField('aStaffName', render_kw={"placeholder": "Staff Name"})
-    editActivity = SubmitField('editActivity')
+# Form to add an activity to the calendar
+# Can be used for editing and adding calendar events
+class EventForm(FlaskForm):
+    aDate        = DateField('Date of activity', validators=[DataRequired()], render_kw={"placeholder": "Date of activity"})
+    aTime        = TimeField('Time of activity', validators=[DataRequired()], render_kw={"placeholder": "Time of activity"})
+    aDuration    = IntegerField('Duration of activity', validators=[DataRequired()],
+                                render_kw={"placeholder": "Duration of activity"})
+    aStaffName   = StringField("Staff Name", validators=[DataRequired()], render_kw={"placeholder": "Staff Member"}) 
+    aPrice       = FloatField("Price", validators=[DataRequired()], render_kw={"placeholder": "Price of activity"}) 
+    aCapacity    = IntegerField('Capacity of activity', validators=[DataRequired()],
+                               render_kw={"placeholder": "Capacity of activity"})
+    # The activity id slot will be added in the html and passed in the route
 
 
-# Form for the manager to add a new event  e.g. swimming at a new location/time
-class addEventForm(FlaskForm):
-    cDate       = DateField('cDate', validators=[DataRequired(message="Please enter a date"), validateFutureDate], render_kw={"placeholder": "Date"})
-    #manager can select a time in 30 min increments 
-    cTime       = SelectField('cTime', choices=timeChoices, validators=[DataRequired(message="Please enter a time")], render_kw={"placeholder": "Time"})
-    cDuration   = SelectField('cDuration', choices = [(30, '30mins'), (60, '60mins')], validators=[DataRequired(message="Please enter a duration")], render_kw={"placeholder": "Duration"})
-    #choicesType = [(a.id, a.activityType) for a in Activity.query.all()]
-    #cType = SelectField('cType', coerce=int, choices = choicesType, validators=[DataRequired()])
-    addEvent    = SubmitField('addEvent')
->>>>>>> e82dc1e711f6911c532cfc0850464c70039f3352
-
-
-# Form for the manager to edit an  event  e.g. swimming at a new location/time
-class editEventForm(FlaskForm):
-    cDate       = DateField('cDate', validators=[validateFutureDate], render_kw={"placeholder": "Date"})
-    #manager can select a time in 30 min increments 
-<<<<<<< HEAD
-    cTime = SelectField('cTime', choices=timeChoices)
-    cDuration = SelectField('cDuration', choices=[(30, '30mins'), (60, '60mins')])
-
-    editEvent = SubmitField('editEvent')
-
-
-# function to check that card number is a Luhn number
-def validateLuhn(form, field):
-     if verify(str(field.data)) == False:
-         raise ValidationError('Card Number is not valid')
-
-
-# function to check expiry date is in the future
-def validateExpiry(form, field):
-    if field.data < datetime.date.today():
-        raise ValidationError('The card has expired')
-=======
-    cTime       = SelectField('cTime', choices = timeChoices, render_kw={"placeholder": "Time"})
-    cDuration   = SelectField('cDuration', choices = [(30, '30mins'), (60, '60mins')], render_kw={"placeholder": "Duration"})
-    editEvent   = SubmitField('editEvent')
->>>>>>> e82dc1e711f6911c532cfc0850464c70039f3352
 
 
 # Form to create account:
 class PaymentForm(FlaskForm):
-    cName       = StringField('Name', validators=[DataRequired(message="Please enter a name")], render_kw={"placeholder": "Cardholder Name"})
-    cNum        = IntegerField('Card number',
-                        validators=[DataRequired(message='Please enter a card number'), 
-                        NumberRange(min=1000000000000000, max=9999999999999999, message='Card number needs to be 16 digits'),
-                        validateLuhn], render_kw={"placeholder": "Card Number"})
-    cExpDate    = DateField('Expiry',
-                         validators=[DataRequired(message='Please enter an expiry date'),
-                         validateFutureDate], render_kw={"placeholder": "Expiry Date"})
-    cCVV        = IntegerField('CVV', 
-                         validators=[DataRequired(message='Please enter the CVV'),
-                         NumberRange(min=100, 
-                         max=999,
-                         message='CVV needs to be 3 digits')], render_kw={"placeholder": "CVV"})
+    cName = StringField('Name', validators=[DataRequired(message="Please enter a name")], render_kw={"placeholder": "Cardholder Name"})
+    cNum  = IntegerField('Card number',
+                     validators=[DataRequired(message='Please enter a card number'), 
+                     NumberRange(min=1000000000000000, max=9999999999999999, message='Card number needs to be 16 digits'),
+                     validateLuhn], render_kw={"placeholder": "Card Number"})
 
+    cExpDate = DateField('Expiry',
+                      validators=[DataRequired(message='Please enter an expiry date'),
+                      validateFutureDate], render_kw={"placeholder": "Expiry Date"})
+                      
+    cCVV = IntegerField('CVV', 
+                        validators=[DataRequired(message='Please enter the CVV'),
+                        NumberRange(min=100, 
+                        max=999,
+                        message='CVV needs to be 3 digits')], render_kw={"placeholder": "CVV"})
 
 class RegisterForm(FlaskForm):
     Name        = StringField('Name', validators=[DataRequired(message="Please enter a name")], render_kw={"placeholder": "Name"})
@@ -154,15 +94,8 @@ class LoginForm(FlaskForm):
 
 
 class SettingsForm(FlaskForm):
-<<<<<<< HEAD
-    Name        = StringField('Name', validators=[DataRequired()], render_kw={"placeholder": "Name"})
-    Address     = StringField('Address', validators=[DataRequired()], render_kw={"placeholder": "Address"})
-    Password    = PasswordField('Password', validators=[DataRequired()], render_kw={"placeholder": "Password"})
-    NewPassword = PasswordField('Password', validators=[DataRequired()], render_kw={"placeholder": "New Password"})
-=======
     Name        = StringField('Name', render_kw={"placeholder": "Name"})
     Address     = StringField('Address', render_kw={"placeholder": "Address"})
     Password    = PasswordField('Old Password', validators=[DataRequired(message="Please enter your current password")], render_kw={"placeholder": "Password"})
     NewPassword = PasswordField('New Password', validators=[DataRequired(message="Please enter a new password")], render_kw={"placeholder": "New Password"})
     NewPasswordx2 = PasswordField('Reenter New Password', validators=[DataRequired(message="Please reenter your new password"), EqualTo('NewPassword', message="Passwords must match")], render_kw={"placeholder": "Reenter New Password"})
->>>>>>> e82dc1e711f6911c532cfc0850464c70039f3352

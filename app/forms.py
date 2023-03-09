@@ -1,9 +1,9 @@
 from flask_wtf import FlaskForm
-import datetime
 from wtforms import PasswordField, EmailField, TextAreaField, SubmitField, SelectField, SelectMultipleField, DateField
 from wtforms import StringField, BooleanField, IntegerField, DecimalField
 from wtforms.validators import DataRequired, Length, EqualTo, NumberRange, ValidationError
 from luhn import *
+from datetime import *
 # from .models import Activity
 
 
@@ -31,7 +31,7 @@ def validateFutureDate(form, field):
 
 # Function to check that registree is old enough to register
 def validateAge(form, field):
-    oldEnough = datetime.date.today() - datetime.timedelta(days=16*365)
+    oldEnough = datetime.now()-timedelta(days=16*365)
     if field.data > oldEnough:
         raise ValidationError("You are not old enough to register")
 

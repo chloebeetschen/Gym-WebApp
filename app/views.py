@@ -84,8 +84,7 @@ def makeBooking(id): # << id passed here is the calendar id (not user)
         event.activityFull = True
     
     #to update user bookings we need the user Id to be able to update for a specific user
-    #for now just generically add too userBookings table where id==0
-    newBooking = UserBookings(userId = 0, calendarId = id)
+    newBooking = UserBookings(userId = current_user.id, calendarId = id)
 
     #add and update db
     db.session.add(newBooking)
@@ -149,10 +148,7 @@ def deleteActivity(id): #id passed in will be  the id of the calendar
 def myBookings():
     today = date.today()
     #need a parameter id for the user that is logged in (can be done once cookies is enabled)
-    #for now we are using user of id 0
-    bookings = UserBookings.query.filter_by(userId=0).all()
-    #for unique user we would do
-    #bookings = UserBookings.query.filter_by(currentUserId = id).all()
+    bookings = UserBookings.query.filter_by(userId=current_user.id).all()
 
     # get all events in order of date and time
     events = []
@@ -172,8 +168,8 @@ def myBookings():
 #this is so the user is able to delete the booking - delete button
 @app.route('/deleteBooking/<id>', methods=['GET'])
 def deleteBooking(id): #id passed in will be  the id of the calendar
-    # get the booking that matches the id of the parameter given and that of the userId (which is 0 for now)
-    booking = UserBookings.query.filter_by(calendarId = id, userId = 0).first()
+    # get the booking that matches the id of the parameter given and that of the userId 
+    booking = UserBookings.query.filter_by(calendarId = id, userId = current_user.id).first()
     # get the event in the calendar
     calendarBooking = Calendar.query.filter_by(id=id).first()
     # alter capacity of calendar

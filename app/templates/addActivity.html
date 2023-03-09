@@ -9,50 +9,40 @@
     {{ form.hidden_tag() }}
 
     <!--Type (Name of activity)-->
-    <p>Activity Name
-        <br>
+    <p>
         {{ form.aType(class='form-control')}}
-        <br>
     </p>
     {% for error in form.aType.errors %}
         [{{ error }}]
     {% endfor %}
 
     <!--Price of activity-->
-    <p>Price
-        <br>
+    <p>
         {{ form.aPrice(class='form-control')}}
-        <br>
     </p>
     {% for error in form.aPrice.errors %}
         [{{ error }}]
     {% endfor %}
 
     <!--Location of activity-->
-    <p>Loaction
-        <br>
+    <p>
         {{ form.aLocation(class='form-control')}}
-        <br>
     </p>
     {% for error in form.aLocation.errors %}
         [{{ error }}]
     {% endfor %}
 
     <!--Capacity of activity-->
-    <p>Capacity
-        <br>
+    <p>
         {{ form.aCapacity(class='form-control')}}
-        <br>
     </p>
     {% for error in form.aCapacity.errors %}
         [{{ error }}]
     {% endfor %}
 
     <!--Staff member on activity-->
-    <p>Staff Member
-        <br>
+    <p>
         {{ form.aStaffName(class='form-control')}}
-        <br>
     </p>
     {% for error in form.aStaffName.errors %}
         [{{ error }}]

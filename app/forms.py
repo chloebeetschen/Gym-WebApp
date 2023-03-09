@@ -108,3 +108,6 @@ class SettingsForm(FlaskForm):
     Address     = StringField('Address', validators=[DataRequired()], render_kw={"placeholder": "Address"})
     Password    = PasswordField('Password', validators=[DataRequired()], render_kw={"placeholder": "Password"})
     NewPassword = PasswordField('Password', validators=[DataRequired()], render_kw={"placeholder": "New Password"})
+
+class MembershipForm(FlaskForm):
+    Membership  = SubmitField('Purchase')

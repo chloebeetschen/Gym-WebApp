@@ -368,6 +368,7 @@ def register():
         newUserDetails = models.UserDetails(name=Name,
                                             dateOfBirth=dob,
                                             address=Address,
+                                            membership=0,
                                             loginDetails=newUser.id)
 
         # Add to the database
@@ -408,3 +409,25 @@ def settings():
                             title='Settings',
                             form=form,
                             user=current_user)
+
+@app.route('/memberships', methods=['GET', 'POST'])
+@login_required
+def memberships():
+
+    ####### NOT CURRENTLY WORKING #######
+    form = MembershipForm()
+    if form.validate_on_submit():
+        cUserLogin   = models.UserLogin.query.get(current_user.id)
+        cUserDetails = models.UserDetails.query.get(current_user.id)
+        cUserDetails.membership = 1
+        return redirect('/paymentForm/memberships')
+    #####################################
+    
+    return render_template('memberships.html')
+ 
+    
+#Payment Form for memberships page
+@app.route('/paymentForm/memberships', methods=['GET', 'POST'])
+@login_required
+def paymentMembershipsForm():
+    return render_template('settings.html')

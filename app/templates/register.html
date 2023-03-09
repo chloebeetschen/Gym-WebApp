@@ -6,13 +6,23 @@
     <!-- inserts the secret CSRF key -->
     <!-- it is the unique identification generated for this request -->
     {{ form.hidden_tag() }}
-    <p>{{ form.Name }}<br></p>
-    <p>{{ form.DateOfBirth }}</p>
-    <p>{{ form.Address }}<br></p>
-    <p>{{ form.Email }}<br></p>
-    <p>{{ form.Password }}</p>
-    <p> {{ form.Type}} </p>
-    <!-- confirm password field in sprint 2 -->
+
+    <p>{{ form.Name(class_='form-control') }}</p>
+    <p>{{ form.DateOfBirth(class_='form-control') }}</p>
+
+    <!-- Check if registree is old enough -->
+    {% for error in form.DateOfBirth.errors %}
+    <div class="alert alert-danger" role="alert">
+      {{ error }}
+    </div>
+    {% endfor %}
+
+    <p>{{ form.Address(class_='form-control') }}</p>
+    <p>{{ form.Email(class_='form-control') }}</p>
+    <p>{{ form.Password(class_='form-control') }}</p>
+    <p>{{ form.ReenterPassword(class_='form-control') }}</p>
+
+    <p>{{ form.Type(class_='form-control') }} </p>
     <p><input type="submit" value="Submit"></p>
 </form>
 {% endblock %}

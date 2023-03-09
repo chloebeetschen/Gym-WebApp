@@ -5,6 +5,8 @@ from flask_login import UserMixin
 class Activity(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     
+    activityType = db.Column(db.String(250), unique=True)
+
     # foreign key for activity table
     calendarEvents = db.relationship('Calendar', backref='activity')
 
@@ -13,7 +15,6 @@ class Activity(db.Model):
 
 class Calendar(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    activityType = db.Column(db.String(250), unique=True)
 
     activityDate = db.Column(db.Date, nullable=False)
     activityTime = db.Column(db.Integer, nullable=False)

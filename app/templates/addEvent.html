@@ -22,6 +22,7 @@
 
     <!--Date of activity-->
     <p class="mt-4">
+        Date <br>
         {{ form.aDate(class='form-control')}}
     </p>
     {% for error in form.aDate.errors %}
@@ -30,6 +31,7 @@
 
     <!--Time of activity-->
     <p>
+        Time <br>
         {{ form.aTime(class='form-control')}}
     </p>
     {% for error in form.aTime.errors %}
@@ -38,6 +40,7 @@
 
     <!-- Duration of activity-->
     <p>
+        Duration <br>
         {{ form.aDuration(class='form-control')}}
     </p>
     {% for error in form.aDuration.errors %}
@@ -46,16 +49,25 @@
 
     <!-- Staff member -->
     <p>
+        Staff Member <br>
         {{ form.aStaffName(class='form-control')}}
+    </p>
+
+    <!-- Location -->
+    <p>
+        Location <br>
+        {{ form.aLocation(class='form-control')}}
     </p>
 
     <!-- Price -->
     <p>
+        Price <br>
         {{ form.aPrice(class='form-control')}}
     </p>
 
     <!-- Capacity -->
     <p>
+        Capacity <br>
         {{ form.aCapacity(class='form-control')}}
     </p>
 

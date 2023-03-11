@@ -31,7 +31,7 @@ def validateFutureDate(form, field):
 
 # Function to check that registree is old enough to register
 def validateAge(form, field):
-    oldEnough = datetime.now()-timedelta(days=16*365)
+    oldEnough = datetime.now().date()-timedelta(days=16*365)
     if field.data > oldEnough:
         raise ValidationError("You are not old enough to register")
 
@@ -50,6 +50,7 @@ class EventForm(FlaskForm):
     aDuration    = IntegerField('Duration of activity', validators=[DataRequired()],
                                 render_kw={"placeholder": "Duration of activity"})
     aStaffName   = StringField("Staff Name", validators=[DataRequired()], render_kw={"placeholder": "Staff Member"}) 
+    aLocation    = StringField("Location", validators=[DataRequired()], render_kw={"placeholder": "Location"}) 
     aPrice       = FloatField("Price", validators=[DataRequired()], render_kw={"placeholder": "Price of activity"}) 
     aCapacity    = IntegerField('Capacity of activity', validators=[DataRequired()],
                                render_kw={"placeholder": "Capacity of activity"})

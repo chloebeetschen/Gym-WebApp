@@ -21,6 +21,7 @@ class Calendar(db.Model):
     aTime = db.Column(db.Integer, nullable=False)
     aDuration = db.Column(db.Integer, nullable=False)    
     aStaffName = db.Column(db.String(250))
+    aLocation = db.Column(db.String(250))
     aPrice = db.Column(db.Float)
     aCapacity = db.Column(db.Integer)
 

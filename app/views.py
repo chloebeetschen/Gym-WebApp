@@ -234,7 +234,27 @@ def addEvent():
     activities = Activity.query.all()
 
     if form.validate_on_submit():
-        # Make a new event with the data in the form
+        # Make a new calendar event with the data in the form
+        sActivity = Activity.query.filter_by(activityType=request.form['activity']).first()  # The activity selected
+        
+        # Get data from the form
+        date     = form.aDate.data
+        time     = form.aTime.data
+        duration = form.aDuration.data
+        staff    = form.aStaffName.data
+        location = form.aLocation.data
+        price    = form.aPrice.data
+        capacity = form.aCapacity.data
+
+        cEvent = Calendar(aDate=date, aTime=time,
+                          aDuration=duration, aStaffName=staff,
+                          aPrice=price, aLocation=location,
+                          aCapacity=capacity, aSlotsTaken=0,
+                          activity=sActivity)
+            
+        db.session.add(cEvent)
+        db.session.commit()
+        flash("Successfully created event!")
 
     #if validation failed  return to add event
     return render_template('addEvent.html', title='Add Event',
@@ -334,6 +354,7 @@ def register():
         newUser = models.UserLogin(email=Email,
                                    password=hashedPassword,
                                    userType=form.Type.data)
+
         newUserDetails = models.UserDetails(name=Name,
                                             dateOfBirth=dob,
                                             address=Address,

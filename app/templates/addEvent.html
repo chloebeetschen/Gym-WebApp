@@ -9,37 +9,62 @@
     {{ form.hidden_tag() }}
 
     <!--Type (Name of Activity)-->
-    <p>
-        {{ form.cType(class='form-control')}}
-    </p>
-    {% for error in form.cType.errors %}
-        [{{ error }}]
-    {% endfor %}
+    <label for="activities">Choose Activity</label>
+    {% if activities == none %}
+        <p>There are currently no activites.</p>
+    {% else %}
+        <select name="activity" class="form-control" id="activities">
+        {% for activity in activities %}
+            <option value="{{activity.activityType}}">{{ activity.activityType }}</option>
+        {% endfor %}
+        </select>
+    {% endif %}
 
     <!--Date of activity-->
-    <p>
-        {{ form.cDate(class='form-control')}}
+    <p class="mt-4">
+        Date <br>
+        {{ form.aDateTime(class='form-control')}}
+    
     </p>
-    {% for error in form.cDate.errors %}
+    {% for error in form.aDateTime.errors %}
         [{{ error }}]
     {% endfor %}
 
-    <!--Time of activity-->
-    <p>
-        {{ form.cTime(class='form-control')}}
-    </p>
-    {% for error in form.cTime.errors %}
-        [{{ error }}]
-    {% endfor %}
 
     <!-- Duration of activity-->
     <p>
-        {{ form.cDuration(class='form-control')}}
+        Duration <br>
+        {{ form.aDuration(class='form-control')}}
+   
     </p>
-    {% for error in form.cDuration.errors %}
+    {% for error in form.aDuration.errors %}
         [{{ error }}]
     {% endfor %}
 
-    <p><input type="submit" value="Add Event"></p>
+    <!-- Staff member -->
+    <p>
+        Staff Member <br>
+        {{ form.aStaffName(class='form-control')}}
+    </p>
+
+    <!-- Location -->
+    <p>
+        Location <br>
+        {{ form.aLocation(class='form-control')}}
+    </p>
+
+    <!-- Price -->
+    <p>
+        Price <br>
+        {{ form.aPrice(class='form-control')}}
+    </p>
+
+    <!-- Capacity -->
+    <p>
+        Capacity <br>
+        {{ form.aCapacity(class='form-control')}}
+    </p>
+
+    <p><input type="submit" class="btn btn-primary" value="Add Event"></p>
 </form>
 {% endblock %}

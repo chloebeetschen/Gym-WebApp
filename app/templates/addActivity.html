@@ -16,38 +16,7 @@
         [{{ error }}]
     {% endfor %}
 
-    <!--Price of activity-->
-    <p>
-        {{ form.aPrice(class='form-control')}}
-    </p>
-    {% for error in form.aPrice.errors %}
-        [{{ error }}]
-    {% endfor %}
+    <p><input type="submit" class="btn btn-primary" value="Add Activity"></p>
 
-    <!--Location of activity-->
-    <p>
-        {{ form.aLocation(class='form-control')}}
-    </p>
-    {% for error in form.aLocation.errors %}
-        [{{ error }}]
-    {% endfor %}
-
-    <!--Capacity of activity-->
-    <p>
-        {{ form.aCapacity(class='form-control')}}
-    </p>
-    {% for error in form.aCapacity.errors %}
-        [{{ error }}]
-    {% endfor %}
-
-    <!--Staff member on activity-->
-    <p>
-        {{ form.aStaffName(class='form-control')}}
-    </p>
-    {% for error in form.aStaffName.errors %}
-        [{{ error }}]
-    {% endfor %}
-
-    <p><input type="submit" value="Add Activity"></p>
 </form>
 {% endblock %}

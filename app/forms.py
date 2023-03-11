@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import PasswordField, EmailField, TextAreaField, SubmitField, SelectField, SelectMultipleField, DateField
-from wtforms import StringField, BooleanField, IntegerField, DecimalField
+from wtforms import StringField, BooleanField, IntegerField, FloatField, TimeField
 from wtforms.validators import DataRequired, Length, EqualTo, NumberRange, ValidationError
 from luhn import *
 from datetime import *
@@ -31,48 +31,29 @@ def validateFutureDate(form, field):
 
 # Function to check that registree is old enough to register
 def validateAge(form, field):
-    oldEnough = datetime.now()-timedelta(days=16*365)
+    oldEnough = datetime.now().date()-timedelta(days=16*365)
     if field.data > oldEnough:
         raise ValidationError("You are not old enough to register")
 
 
-# Form for the manager to add a new activity e.g. swimming
-class addActivityForm(FlaskForm):
-    aType       = StringField('aType', validators=[DataRequired(message="Please enter a type")], render_kw={"placeholder": "Type"})
-    aPrice      = DecimalField('aPrice', places=2, validators=[DataRequired(message="Please enter a price"), NumberRange(min=0, max=10000)], render_kw={"placeholder": "Price"})
-    aLocation   = StringField('aLocation', validators=[DataRequired(message="Please enter a location")], render_kw={"placeholder": "Location"})
-    aCapacity   = IntegerField('aCapacity', validators=[DataRequired(message="Please enter a capacity"), NumberRange(min=0)], render_kw={"placeholder": "Capacity"})
-    aStaffName  = StringField('aStaffName', validators=[DataRequired(message="Please enter a staff member name")], render_kw={"placeholder": "Staff Name"})
-    addActivity = SubmitField('addActivity')
+# For the manager to add a new activity e.g. swimming
+# Can be used for editing and creating activities
+class ActivityForm(FlaskForm):
+    aType       = StringField('aType', validators=[DataRequired()])
 
 
-# Form for the manager to edit an activity e.g. swimming
-class editActivityForm(FlaskForm):
-    aPrice      = DecimalField('aPrice', places=2, validators=[NumberRange(min=0, max=None, message=("Prices must be above 0"))], render_kw={"placeholder": "Price"})
-    aLocation   = StringField('aLocation', render_kw={"placeholder": "Location"})
-    aCapacity   = IntegerField('aCapacity', validators=[NumberRange(min=0, message=("Capacities must be above 0"))], render_kw={"placeholder": "Capacity"})
-    aStaffName  = StringField('aStaffName', render_kw={"placeholder": "Staff Name"})
-    editActivity = SubmitField('editActivity')
-
-
-# Form for the manager to add a new event  e.g. swimming at a new location/time
-class addEventForm(FlaskForm):
-    cDate       = DateField('cDate', validators=[DataRequired(message="Please enter a date"), validateFutureDate], render_kw={"placeholder": "Date"})
-    #manager can select a time in 30 min increments 
-    cTime       = SelectField('cTime', choices=timeChoices, validators=[DataRequired(message="Please enter a time")], render_kw={"placeholder": "Time"})
-    cDuration   = SelectField('cDuration', choices = [(30, '30mins'), (60, '60mins')], validators=[DataRequired(message="Please enter a duration")], render_kw={"placeholder": "Duration"})
-    #choicesType = [(a.id, a.activityType) for a in Activity.query.all()]
-    #cType = SelectField('cType', coerce=int, choices = choicesType, validators=[DataRequired()])
-    addEvent    = SubmitField('addEvent')
-
-
-# Form for the manager to edit an  event  e.g. swimming at a new location/time
-class editEventForm(FlaskForm):
-    cDate       = DateField('cDate', validators=[validateFutureDate], render_kw={"placeholder": "Date"})
-    #manager can select a time in 30 min increments 
-    cTime       = SelectField('cTime', choices = timeChoices, render_kw={"placeholder": "Time"})
-    cDuration   = SelectField('cDuration', choices = [(30, '30mins'), (60, '60mins')], render_kw={"placeholder": "Duration"})
-    editEvent   = SubmitField('editEvent')
+# Form to add an activity to the calendar
+# Can be used for editing and adding calendar events
+class EventForm(FlaskForm):
+    aDateTime    = DateField('Date of activity', validators=[DataRequired()], render_kw={"placeholder": "Date of activity"})
+    aDuration    = IntegerField('Duration of activity', validators=[DataRequired()],
+                                render_kw={"placeholder": "Duration of activity"})
+    aStaffName   = StringField("Staff Name", validators=[DataRequired()], render_kw={"placeholder": "Staff Member"}) 
+    aLocation    = StringField("Location", validators=[DataRequired()], render_kw={"placeholder": "Location"}) 
+    aPrice       = FloatField("Price", validators=[DataRequired()], render_kw={"placeholder": "Price of activity"}) 
+    aCapacity    = IntegerField('Capacity of activity', validators=[DataRequired()],
+                               render_kw={"placeholder": "Capacity of activity"})
+    # The activity id slot will be added in the html and passed in the route
 
 
 # Form to create account:
@@ -115,3 +96,4 @@ class SettingsForm(FlaskForm):
     Password    = PasswordField('Old Password', validators=[DataRequired(message="Please enter your current password")], render_kw={"placeholder": "Password"})
     NewPassword = PasswordField('New Password', validators=[DataRequired(message="Please enter a new password")], render_kw={"placeholder": "New Password"})
     NewPasswordx2 = PasswordField('Reenter New Password', validators=[DataRequired(message="Please reenter your new password"), EqualTo('NewPassword', message="Passwords must match")], render_kw={"placeholder": "Reenter New Password"})
+

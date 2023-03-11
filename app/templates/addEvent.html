@@ -24,6 +24,7 @@
     <p class="mt-4">
         Date <br>
         {{ form.aDateTime(class='form-control')}}
+    
     </p>
     {% for error in form.aDateTime.errors %}
         [{{ error }}]
@@ -34,6 +35,7 @@
     <p>
         Duration <br>
         {{ form.aDuration(class='form-control')}}
+   
     </p>
     {% for error in form.aDuration.errors %}
         [{{ error }}]

@@ -56,25 +56,22 @@ class EventForm(FlaskForm):
     # The activity id slot will be added in the html and passed in the route
 
 
-
-
 # Form to create account:
 class PaymentForm(FlaskForm):
-    cName = StringField('Name', validators=[DataRequired(message="Please enter a name")], render_kw={"placeholder": "Cardholder Name"})
-    cNum  = IntegerField('Card number',
-                     validators=[DataRequired(message='Please enter a card number'), 
-                     NumberRange(min=1000000000000000, max=9999999999999999, message='Card number needs to be 16 digits'),
-                     validateLuhn], render_kw={"placeholder": "Card Number"})
+    cName       = StringField('Name', validators=[DataRequired(message="Please enter a name")], render_kw={"placeholder": "Cardholder Name"})
+    cNum        = IntegerField('Card number',
+                        validators=[DataRequired(message='Please enter a card number'), 
+                        NumberRange(min=1000000000000000, max=9999999999999999, message='Card number needs to be 16 digits'),
+                        validateLuhn], render_kw={"placeholder": "Card Number"})
+    cExpDate    = DateField('Expiry',
+                         validators=[DataRequired(message='Please enter an expiry date'),
+                         validateFutureDate], render_kw={"placeholder": "Expiry Date"})
+    cCVV        = IntegerField('CVV', 
+                         validators=[DataRequired(message='Please enter the CVV'),
+                         NumberRange(min=100, 
+                         max=999,
+                         message='CVV needs to be 3 digits')], render_kw={"placeholder": "CVV"})
 
-    cExpDate = DateField('Expiry',
-                      validators=[DataRequired(message='Please enter an expiry date'),
-                      validateFutureDate], render_kw={"placeholder": "Expiry Date"})
-                      
-    cCVV = IntegerField('CVV', 
-                        validators=[DataRequired(message='Please enter the CVV'),
-                        NumberRange(min=100, 
-                        max=999,
-                        message='CVV needs to be 3 digits')], render_kw={"placeholder": "CVV"})
 
 class RegisterForm(FlaskForm):
     Name        = StringField('Name', validators=[DataRequired(message="Please enter a name")], render_kw={"placeholder": "Name"})
@@ -99,3 +96,4 @@ class SettingsForm(FlaskForm):
     Password    = PasswordField('Old Password', validators=[DataRequired(message="Please enter your current password")], render_kw={"placeholder": "Password"})
     NewPassword = PasswordField('New Password', validators=[DataRequired(message="Please enter a new password")], render_kw={"placeholder": "New Password"})
     NewPasswordx2 = PasswordField('Reenter New Password', validators=[DataRequired(message="Please reenter your new password"), EqualTo('NewPassword', message="Passwords must match")], render_kw={"placeholder": "Reenter New Password"})
+

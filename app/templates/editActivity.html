@@ -23,6 +23,7 @@
     {{ form.aType(id="newType", class="form-control") }}
 
     {% for error in form.aType.errors %}
+
         [{{ error }}]
     {% endfor %}
     <p><input type="submit" class="btn btn-primary mt-2" value="Edit Activity"></p>

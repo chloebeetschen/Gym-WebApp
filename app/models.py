@@ -17,13 +17,12 @@ class Activity(db.Model):
 class Calendar(db.Model):
     id = db.Column(db.Integer, primary_key=True)
 
-    aDate = db.Column(db.Date, nullable=False)
-    aTime = db.Column(db.Integer, nullable=False)
-    aDuration = db.Column(db.Integer, nullable=False)    
+    aDateTime  = db.Column(db.DateTime, nullable=False)
+    aDuration  = db.Column(db.Integer, nullable=False)    
     aStaffName = db.Column(db.String(250))
-    aLocation = db.Column(db.String(250))
-    aPrice = db.Column(db.Float)
-    aCapacity = db.Column(db.Integer)
+    aLocation  = db.Column(db.String(250))
+    aPrice     = db.Column(db.Float)
+    aCapacity  = db.Column(db.Integer)
 
     #this is the number of people signed up to the activity, which will need to be incremented
     aSlotsTaken = db.Column(db.Integer)

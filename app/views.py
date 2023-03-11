@@ -235,19 +235,22 @@ def addEvent():
 
     if form.validate_on_submit():
         # Make a new calendar event with the data in the form
-        sActivity = Activity.query.filter_by(activityType=request.form['activity']).first()  # The activity selected
+        sActivity = models.Activity.query.filter_by(activityType=request.form['activity']).first()  # The activity selected
         
         # Get data from the form
-        date     = form.aDate.data
-        time     = form.aTime.data
         duration = form.aDuration.data
         staff    = form.aStaffName.data
         location = form.aLocation.data
         price    = form.aPrice.data
         capacity = form.aCapacity.data
 
-        cEvent = Calendar(aDate=date, aTime=time,
-                          aDuration=duration, aStaffName=staff,
+        # y, m, d = form.aDate.data.split('-')
+        # date = datetime.datetime(int(y), int(m), int(d))
+        print(type(form.aDateTime.data))
+        date = form.aDateTime.data
+
+        cEvent = Calendar(aDateTime=date, aDuration=duration,
+                          aStaffName=staff,
                           aPrice=price, aLocation=location,
                           aCapacity=capacity, aSlotsTaken=0,
                           activity=sActivity)

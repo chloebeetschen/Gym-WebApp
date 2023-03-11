@@ -23,20 +23,12 @@
     <!--Date of activity-->
     <p class="mt-4">
         Date <br>
-        {{ form.aDate(class='form-control')}}
+        {{ form.aDateTime(class='form-control')}}
     </p>
-    {% for error in form.aDate.errors %}
+    {% for error in form.aDateTime.errors %}
         [{{ error }}]
     {% endfor %}
 
-    <!--Time of activity-->
-    <p>
-        Time <br>
-        {{ form.aTime(class='form-control')}}
-    </p>
-    {% for error in form.aTime.errors %}
-        [{{ error }}]
-    {% endfor %}
 
     <!-- Duration of activity-->
     <p>

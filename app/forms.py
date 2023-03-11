@@ -110,4 +110,5 @@ class SettingsForm(FlaskForm):
     NewPassword = PasswordField('Password', validators=[DataRequired()], render_kw={"placeholder": "New Password"})
 
 class MembershipForm(FlaskForm):
-    Membership  = SubmitField('Purchase')
+    MembershipStart  = DateField('Start date', render_kw={"placeholder": "Start"})
+    MembershipEnd    = DateField('End date', render_kw={"placeholder": "End"})

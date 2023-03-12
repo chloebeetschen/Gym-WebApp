@@ -53,7 +53,7 @@ def index():
 def calendarMethod():
     # get all events in order of date and time
     days = datetime.now()+timedelta(days=14)
-    events = Calendar.query.filter(Calendar.activityDate >= date.today()).filter(Calendar.activityDate <= days).order_by(Calendar.activityDate, Calendar.activityTime).all()
+    events = Calendar.query.filter(Calendar.aDateTime >= date.today()).filter(Calendar.aDateTime <= days).order_by(Calendar.aDateTime).all()
     # get event info for each event found
     eventInfo = []
     for i in events:
@@ -62,9 +62,7 @@ def calendarMethod():
                             title     = 'Calendar',
                             numEvents = len(events),
                             events    = events,
-                            eventInfo = eventInfo,
-                            zip       = zip)
-
+                            eventInfo = eventInfo)
 
 #this is a book event button for the calendar
 @app.route('/makeBooking/<id>', methods=['GET'])
@@ -93,6 +91,7 @@ def makeBooking(id): # << id passed here is the calendar id (not user)
     return redirect('/myBookings')
 
 
+#can be removed??
 #calendar of all sessions (manager)
 @app.route('/viewAEManager', methods=['GET', 'POST'])
 def viewAEManager():

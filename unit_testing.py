@@ -23,7 +23,15 @@ class TestCase(unittest.TestCase):
 
         #populating the database with test data 
         self.user1 = UserLogin(email = 'michael.scott@gmail.com', password = '12345678', userType = '1')
+        self.activity1 = Activity(
+            activityType = 'Test Activity', 
+            activityPrice = '15.00',
+            activityLocation = 'Test loc',
+            activityCapacity = '30',
+            activityStaffName = 'aaditi'
+            )
         db.session.add(self.user1)
+        db.session.add(self.activity1)
         db.session.commit()
 
         pass
@@ -90,7 +98,7 @@ class TestCase(unittest.TestCase):
         ), follow_redirects = True)
         self.assertEqual(response.status_code, 200)
 
-
+    #logging in a user that doesn't exist
     def test_invalid_login(self):
         response = self.app.post('/login', data=dict(
             email = 'invalid',
@@ -98,4 +106,21 @@ class TestCase(unittest.TestCase):
             userType = 'invalid'
         ), follow_redirects = True)
         self.assertEqual(response.status_code, 200)
-        
+    
+
+    #testing that if a user books an event, it shows up on their my bookings page
+    def test_bookedActivityShowsUp(self):
+        #book the activity
+        response = self.app.post('/calendar', data=dict(
+            activityType = self.activity1.activityType,
+            activityPrice = self.activity1.activityPrice,
+            activityLocation = self.activity1.activityLocation,
+            activityCapacity = self.activity1.activityCapacity,
+            activityStaffName = self.activity1.activityStaffName,
+
+        ), follow_redirects = True)
+        self.assertEqual(response.status_code, 200)
+
+        #check that booking appears on the user's my bookings page
+        response = self.app.get('/myBookings')
+        self.assertEqual(response.status_code, 200)

@@ -1,10 +1,12 @@
 #pair programming - Aaditi and Hope 
+#used chat gpt to learn how to use unit test in python  
 
 
 import unittest
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from app import app, db, models 
+from app.models import *
 
 
 class TestCase(unittest.TestCase):
@@ -18,6 +20,12 @@ class TestCase(unittest.TestCase):
         app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
         self.app = app.test_client()
         db.create_all()
+
+        #populating the database with test data 
+        self.user1 = UserLogin(email = 'michael.scott@gmail.com', password = '12345678', userType = '1')
+        db.session.add(self.user1)
+        db.session.commit()
+
         pass
 
     #this deletes the test database once testing is complete 
@@ -71,3 +79,23 @@ class TestCase(unittest.TestCase):
         #response = self.app.get(('/manageUsers'), follow_redirects=True)
         #self.assertEqual(response.status_code, 200)  
 
+
+
+    #testing the form fields for log in 
+    def test_login(self):
+        response = self.app.post('/login', data=dict(
+            email = self.user1.email,
+            password = self.user1.password,
+            userType = self.user1.userType
+        ), follow_redirects = True)
+        self.assertEqual(response.status_code, 200)
+
+
+    def test_invalid_login(self):
+        response = self.app.post('/login', data=dict(
+            email = 'invalid',
+            password = 'invalid',
+            userType = 'invalid'
+        ), follow_redirects = True)
+        self.assertEqual(response.status_code, 200)
+        

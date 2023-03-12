@@ -67,7 +67,7 @@ def calendarMethod():
 #this is a book event button for the calendar
 @app.route('/makeBooking/<id>', methods=['GET'])
 def makeBooking(id): # << id passed here is the calendar id (not user)    
-    #makeBooking = Calendar.get()
+    
     #update userBookings (make one), update calendar event (increment no. of ppl and check if its full)
 
     #updating calendar event
@@ -78,7 +78,7 @@ def makeBooking(id): # << id passed here is the calendar id (not user)
     #get capactiy of that activity
     eventType = Activity.query.get(event.activityId)
     #check if now it is  equal to capacity
-    if event.activityCurrent == eventType.activityCapacity:
+    if event.aSlotsTaken == event.aCapacity:
         #update  fullness so that it can be represented in the table displayed
         event.activityFull = True
     
@@ -93,16 +93,16 @@ def makeBooking(id): # << id passed here is the calendar id (not user)
 
 #can be removed??
 #calendar of all sessions (manager)
-@app.route('/viewAEManager', methods=['GET', 'POST'])
-def viewAEManager():
-    activities = Activity.query.all()
-    # get all events in order of date and time
-    events = Calendar.query.order_by(Calendar.activityDate, Calendar.activityTime).all()
-    # get event info for each event found
-    eventInfo = []
-    for i in events:
-        eventInfo.append(Activity.query.filter_by(id=i.activityId).first())
-    return render_template('viewAEManager.html', title = '(Manager)', activities = activities, numEvents=len(events), events = events, eventInfo = eventInfo, zip=zip)
+#@app.route('/viewAEManager', methods=['GET', 'POST'])
+#def viewAEManager():
+#    activities = Activity.query.all()
+#    # get all events in order of date and time
+#    events = Calendar.query.order_by(Calendar.activityDate, Calendar.activityTime).all()
+#    # get event info for each event found
+#    eventInfo = []
+#    for i in events:
+#        eventInfo.append(Activity.query.filter_by(id=i.activityId).first())
+#    return render_template('viewAEManager.html', title = '(Manager)', activities = activities, numEvents=len(events), events = events, eventInfo = eventInfo, zip=zip)
 
 
 #this is so the manager is able to delete an event - delete button
@@ -111,7 +111,7 @@ def deleteEvent(id): #id passed in will be  the id of the calendar
     # get the booking that matches the id of the parameter given and that of the userId (which is 0 for now)
     # get the event in the calendar
     
-    userBs = UserBookings.query.filter_by(calendarId=id).all()
+    userBs = UserBookings.query.filter(userId=current_user.id).filter(calendarId=id).all()
     
     for i in userBs:
         db.session.delete(i)
@@ -119,7 +119,7 @@ def deleteEvent(id): #id passed in will be  the id of the calendar
     db.session.delete(Calendar.query.get(id))
     db.session.commit()
 
-    return redirect('/viewAEManager')
+    return redirect('/editEvent')
 
 @app.route('/deleteActivity', methods=['GET', 'POST'])
 @login_required
@@ -129,6 +129,15 @@ def deleteActivity():
     activities = Activity.query.all()  # Get all activities
     # Selected activity
     sActivity = Activity.query.filter_by(activityType=request.form['activity']).first()  # The activity selected
+
+    #delete all activity sessions from calendar
+    #delete all activity sessions from any user bookings
+    #userbookings needs to be done first
+
+    #get all calendar events containing the activity
+    allEvents = Calendar.query.filter_by(activityId = sActivity.id).all()
+       
+
     # db.session.commit()
     flash("This needs to be implemented")
     return redirect('/editActivity')

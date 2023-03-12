@@ -21,10 +21,10 @@
         {% for i in range (0 , numEvents-1) %}
             <tr>
                 <!--display event and event info in the tables-->
-                <td>{{events[i].activityDate}}</td>
-                <td>{{events[i].activityTime}}</td>
+                <td>{{events[i].aDateTime}}</td>
+                <td>{{events[i].aDateTime}}</td>
                 <td>{{eventInfo[i].activityType}}</td>
-                <td>{{events[i].activityCurrent}}/{{eventInfo[i].activityCapacity}}</td>
+                <td>{{events[i].aSlotsTaken}}/{{events[i].aCapacity}}</td>
                 <!--TODO Popup for event info-->
                 <td><a href=""><button type="button" class="btns">Event Info</button></td>
 

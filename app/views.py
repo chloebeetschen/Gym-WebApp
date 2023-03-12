@@ -77,10 +77,6 @@ def makeBooking(id): # << id passed here is the calendar id (not user)
     event.aSlotsTaken += 1
     #get capactiy of that activity
     eventType = Activity.query.get(event.activityId)
-    #check if now it is  equal to capacity
-    if event.aSlotsTaken == event.aCapacity:
-        #update  fullness so that it can be represented in the table displayed
-        event.activityFull = True
     
     #to update user bookings we need the user Id to be able to update for a specific user
     newBooking = UserBookings(userId = current_user.id, calendarId = id)
@@ -140,9 +136,11 @@ def deleteActivity():
 
     #get all user bookings with the calendar id of any of the calendarIds in allEvents and delete
     for i in allEvents:
-        db.session.delete(UserBookings.query.filter_by(calendarId = allEvents[i].id).all())
+        userEvents = UserBookings.query.filter_by(calendarId = allEvents[i].id).all()
+        for j in userEvents:
+            db.session.delete(j)
+        db.session.delete(i)
     
-    db.session.delete(allEvents)
     db.session.delete(sActivity)
     db.session.commit()
     
@@ -180,10 +178,7 @@ def deleteBooking(id): #id passed in will be  the id of the calendar
     # get the event in the calendar
     calendarBooking = Calendar.query.filter_by(id=id).first()
     # alter capacity of calendar
-    calendarBooking.activityCurrent -= 1
-    #if was full now make bookable
-    if calendarBooking.activityFull:
-        calendarBooking.activityFull == False
+    calendarBooking.aSlotsTaken -= 1
     
     db.session.delete(booking)
     db.session.commit()

@@ -121,6 +121,7 @@ def deleteEvent(id): #id passed in will be  the id of the calendar
 
     return redirect('/editEvent')
 
+#needs fully checking but up to date
 @app.route('/deleteActivity', methods=['GET', 'POST'])
 @login_required
 def deleteActivity(): 
@@ -136,10 +137,15 @@ def deleteActivity():
 
     #get all calendar events containing the activity
     allEvents = Calendar.query.filter_by(activityId = sActivity.id).all()
-       
 
-    # db.session.commit()
-    flash("This needs to be implemented")
+    #get all user bookings with the calendar id of any of the calendarIds in allEvents and delete
+    for i in allEvents:
+        db.session.delete(UserBookings.query.filter_by(calendarId = allEvents[i].id).all())
+    
+    db.session.delete(allEvents)
+    db.session.delete(sActivity)
+    db.session.commit()
+    
     return redirect('/editActivity')
 
 

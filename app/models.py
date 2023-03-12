@@ -41,8 +41,8 @@ class UserBookings(db.Model):
 
     #userId = db.Column(db.Integer)
     #calendarId = db.Column(db.Integer)
-    
-    userId = db.Column(db.Integer, db.ForeignKey('userlogin.id'))
+
+    userId = db.Column(db.Integer, db.ForeignKey('user_login.id'))
     calendarId = db.Column(db.Integer, db.ForeignKey('calendar.id'))
 
 
@@ -68,7 +68,7 @@ class UserLogin(db.Model, UserMixin):
     userDetails = db.relationship('UserDetails', backref='loginDetails', uselist=False)
 
     #relationship with userbookings
-    userbookings = db.relationship('UserBookings', backref='userLogin')
+    userbookings = db.relationship('UserBookings', backref='loginDetails')
 
 
 # User info (Sensitive info -> encryption)

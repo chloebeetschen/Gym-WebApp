@@ -62,10 +62,15 @@ class TestCase(unittest.TestCase):
         response = self.app.get(('/calendar'), follow_redirects=True)
         self.assertEqual(response.status_code, 200)
     
+    #payment page 
+    def test_navBarType1_paymenr(self):
+        response = self.app.get(('/paymentForm'), follow_redirects = True)
+        self.assertEqual(response.status_code, 200)
+
     #TO DO :
     #basket page 
-    #payment page 
     #detail page
+    #home page 
 
 
     #for user type 3 

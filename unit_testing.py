@@ -23,18 +23,10 @@ class TestCase(unittest.TestCase):
 
         #populating the database with test data 
         self.user1 = UserLogin(email = 'michael.scott@gmail.com', password = '12345678', userType = '1')
-        self.activity1 = Activity(
-            activityType = 'Test Activity', 
-            activityPrice = '15.00',
-            activityLocation = 'Test loc',
-            activityCapacity = '30',
-            activityStaffName = 'aaditi'
-            )
         db.session.add(self.user1)
-        db.session.add(self.activity1)
         db.session.commit()
 
-        pass
+        
 
     #this deletes the test database once testing is complete 
     def tearDown(self):
@@ -61,15 +53,15 @@ class TestCase(unittest.TestCase):
     def test_navBarType1_calendar(self):
         response = self.app.get(('/calendar'), follow_redirects=True)
         self.assertEqual(response.status_code, 200)
-    
-    #payment page 
-    def test_navBarType1_paymenr(self):
+     
+    def test_navBarType1_payment(self):
         response = self.app.get(('/paymentForm'), follow_redirects = True)
         self.assertEqual(response.status_code, 200)
 
+
     #TO DO :
     #basket page 
-    #detail page
+    #edit user detail page
     #home page 
 
 
@@ -115,17 +107,32 @@ class TestCase(unittest.TestCase):
 
     #testing that if a user books an event, it shows up on their my bookings page
     def test_bookedActivityShowsUp(self):
-        #book the activity
-        response = self.app.post('/calendar', data=dict(
-            activityType = self.activity1.activityType,
-            activityPrice = self.activity1.activityPrice,
-            activityLocation = self.activity1.activityLocation,
-            activityCapacity = self.activity1.activityCapacity,
-            activityStaffName = self.activity1.activityStaffName,
+        self.user2 = UserLogin(email = 'jim.halpert@gmail.com', password = '12345678', userType = '1')
+        db.session.add(self.user2)
+        db.session.commit()
 
-        ), follow_redirects = True)
-        self.assertEqual(response.status_code, 200)
+        with self.app:
+            self.app.post('/login', data=dict(
+                email = self.user2.email,
+                password = self.user2.password
+            ))
 
-        #check that booking appears on the user's my bookings page
-        response = self.app.get('/myBookings')
-        self.assertEqual(response.status_code, 200)
+            #create a new activity 
+            self.activity1 = Activity(
+                activityType = 'Test Activity', 
+                activityPrice = '15.00',
+                activityLocation = 'Test loc',
+                activityCapacity = '30',
+                activityStaffName = 'aaditi'
+            )
+            db.session.add(self.activity1)
+            db.session.commit()
+
+            #book the activity 
+            self.app.post(f'/calendar/{self.activity1.id}/makeBooking')
+
+            #check if activity shows up on the user's my bookings page 
+            response = self.app.get('/myBookings')
+            self.assertIn(self.activity1.activityType.encode(), response.data)
+
+    #testing that is a user cancels their booking, it is removed from their my bookings page 

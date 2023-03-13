@@ -9,26 +9,87 @@
 <table class="table">
     <thead>
         <tr>
-            <th>Type</th>
-            <th>Name</th>
             <th>Email</th>
             <th>Edit</th>
             <th>Delete</th>
         </tr>
     </thead>
     <tbody>
-        {% for i in range (0 , userType1num-1) %}
+        {% for i in range (0 , userTypeNum1) %}
             <tr>
                 <!--display event and event info in the tables-->
-                    <td>{{userType1Login.userType}}</td>
-                    <td>{{userType1Details[i].name}}</td>
-                    <td>{{userType1Login[i].email}}</td>
+                    <!--<td>{{userTypeLogin1.userType}}</td>-->
+                    <!--<td>{{userTypeLogin1[i].name}}</td>-->
+                    <td>{{userTypeLogin1[i].email}}</td>
                 <!--Delete activity button-->
                 <td>    
-                    <a href="/editUser/{{userType1Login[i].id}}"><button type="button" class="btns">Edit</button></a>
+                    <a href="/editUser/{{userTypeLogin1[i].id}}"><button type="button" class="btns">Edit</button></a>
                 </td>
                 <td>    
-                    <a href="/deleteUser/{{userType1Login[i].id}}"><button type="button" class="btns">Delete</button></a>
+                    <a href="/deleteUser/{{userTypeLogin1[i].id}}"><button type="button" class="btns">Delete</button></a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+<h2>Employees</h2>
+<!--Basic table to hold booking information of a user-->
+<table class="table">
+    <thead>
+        <tr>
+            <!--<th>Type</th>-->
+            <!--<th>Name</th>-->
+            <th>Email</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in range (0 , userTypeNum2) %}
+            <tr>
+                <!--display event and event info in the tables-->
+                    <!--<td>{{userTypeLogin1.userType}}</td>-->
+                    <!--<td>{{userTypeLogin1[i].name}}</td>-->
+                    <td>{{userTypeLogin2[i].email}}</td>
+                <!--Delete activity button-->
+                <td>    
+                    <a href="/editUser/{{userTypeLogin2[i].id}}"><button type="button" class="btns">Edit</button></a>
+                </td>
+                <td>    
+                    <a href="/deleteUser/{{userTypeLogin2[i].id}}"><button type="button" class="btns">Delete</button></a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h2>Managers</h2>
+<!--Basic table to hold booking information of a user-->
+<table class="table">
+    <thead>
+        <tr>
+            <!--<th>Type</th>-->
+            <!--<th>Name</th>-->
+            <th>Email</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in range (0 , userTypeNum3) %}
+            <tr>
+                <!--display event and event info in the tables-->
+                    <!--<td>{{userTypeLogin1.userType}}</td>-->
+                    <!--<td>{{userTypeLogin1[i].name}}</td>-->
+                    <td>{{userTypeLogin3[i].email}}</td>
+                <!--Delete activity button-->
+                <td>    
+                    <a href="/editUser/{{userTypeLogin3[i].id}}"><button type="button" class="btns">Edit</button></a>
+                </td>
+                <td>    
+                    <a href="/deleteUser/{{userTypeLogin3[i].id}}"><button type="button" class="btns">Delete</button></a>
                 </td>
             </tr>
         {% endfor %}

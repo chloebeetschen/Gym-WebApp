@@ -406,14 +406,20 @@ def settings():
 @login_required
 def manageUsers():
 
-    userType1Login = models.UserLogin.query.order_by(userType).all()
-
-
-    userType1Details = []
-    for j in userType1Login:
+    userTypeLogin1 = UserLogin.query.filter_by(userType=1).all()
+    userTypeLogin2 = UserLogin.query.filter_by(userType=2).all() 
+    userTypeLogin3 = UserLogin.query.filter_by(userType=3).all()
+   
+    userTypeDetails = []
+    #for j in userTypeLogin1:
         # get event info for each event found
-        userType1Details.append(UserDetails.query.filter_by(parentId=j.id).first())
+        #userTypeDetails.append(UserDetails.query.filter_by(parentId=j.id).first())
 
+   
     return render_template('manageUsers.html', title = 'Manage Users', 
-                            userType1num=len(userType1Login),
-                            userType1Login = userType1Login, userType1Details = userType1Details)
+                            userTypeNum1=len(userTypeLogin1),
+                            userTypeNum2 = len(userTypeLogin2),
+                            userTypeNum3 = len(userTypeLogin3),
+                            userTypeLogin1 = userTypeLogin1, 
+                            userTypeLogin2 = userTypeLogin2,
+                            userTypeLogin3= userTypeLogin3 )  

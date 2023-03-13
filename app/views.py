@@ -401,3 +401,19 @@ def settings():
                             title='Settings',
                             form=form,
                             user=current_user)
+
+@app.route('/manageUsers', methods=['POST', 'GET'])
+@login_required
+def manageUsers():
+
+    userType1Login = models.UserLogin.query.order_by(userType).all()
+
+
+    userType1Details = []
+    for j in userType1Login:
+        # get event info for each event found
+        userType1Details.append(UserDetails.query.filter_by(parentId=j.id).first())
+
+    return render_template('manageUsers.html', title = 'Manage Users', 
+                            userType1num=len(userType1Login),
+                            userType1Login = userType1Login, userType1Details = userType1Details)

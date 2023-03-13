@@ -405,16 +405,13 @@ def settings():
 @app.route('/memberships', methods=['GET', 'POST'])
 @login_required
 def memberships():
-
-    ####### NOT CURRENTLY WORKING #######
     form = MembershipForm()
     if form.validate_on_submit():
-        cUserLogin   = models.UserLogin.query.get(current_user.id)
+        
         cUserDetails = models.UserDetails.query.get(current_user.id)
-        cUserDetails.membershipStart = form.MembershipStart
+        cUserDetails.isMember = True
         cUserDetails.membershipEnd = form.MembershipEnd
         return redirect('/paymentForm/memberships')
-    #####################################
     
     return render_template('memberships.html', form=form)
  

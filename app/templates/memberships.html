@@ -6,17 +6,12 @@
 <h1>Buy a membership: </h1>
 <form method="post" name="membership">
     {{ form.hidden_tag() }}
-
-    <p>Start Date:
-        <br>
-        {{ form.MembershipStart(class='form-control')}}
-        <br>
+    <p>Monthly:
+        <input type="submit" value="Buy", id="monthly">
     </p>
-    <p>End Date:
-        <br>
-        {{ form.MembershipEnd(class='form-control')}}
-        <br>
+    <br>
+    <p>Annual:
+        <input type="submit" value="Buy", id="annual">
     </p>
-<input type="submit" value="Purchase">
 </form>
 {% endblock %}

@@ -17,7 +17,7 @@ timeChoices = [(700,'07:00'),  (730,'07:30'),  (800,'08:00'),  (830,'08:30'),
                (2100,'21:00'), (2130,'21:30')]
 
 
-# function to check that card number is a Luhn number
+# Function to check that card number is a Luhn number
 def validateLuhn(form, field):
      if verify(str(field.data)) == False:
          raise ValidationError('Card Number is not valid')
@@ -50,7 +50,7 @@ class EventForm(FlaskForm):
                                 render_kw={"placeholder": "Duration of activity"})
     aStaffName   = StringField("Staff Name", validators=[DataRequired()], render_kw={"placeholder": "Staff Member"}) 
     aLocation    = StringField("Location", validators=[DataRequired()], render_kw={"placeholder": "Location"}) 
-    aPrice       = FloatField("Price", validators=[DataRequired()], render_kw={"placeholder": "Price of activity"}) 
+    aPrice       = FloatField("Price", validators=[DataRequired(), NumberRange(min=0.0, message="Please enter a positive price"), render_kw={"placeholder": "Price of activity"}) 
     aCapacity    = IntegerField('Capacity of activity', validators=[DataRequired()],
                                render_kw={"placeholder": "Capacity of activity"})
     # The activity id slot will be added in the html and passed in the route

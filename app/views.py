@@ -29,6 +29,7 @@ def create_tables():
     db.create_all()
     
     #pre-populating calendar and activity with given data from spec
+
     db.session.add_all([
         Activity(activityType="Swimming (Team Events)"),
         Activity(activityType="Swimming (Lane Swimming)"),
@@ -51,30 +52,34 @@ def create_tables():
 
     while today < twoWeeks:
         timeStart = datetime.combine(today, time(8,00))
-        timeEnd = datetime.combine(today, time(20,00))
 
         #all activities in the while loop occur every day of the week
-        while timeStart < timeEnd:
-            #swimming, gym, squash
-            db.session.add_all([
-                #swimming (lane)
-                Calendar(aDateTime=timeStart, aDuration=1, aStaffName="Life Guard", aPrice=0, aLocation="Swimming Pool", aCapacity=30, aSlotsTaken=0, activity=Activity.query.get(2)),
-                #swimming (lessons)
-                Calendar(aDateTime=timeStart, aDuration=1, aStaffName="Life Guard", aPrice=0, aLocation="Swimming Pool", aCapacity=30, aSlotsTaken=0, activity=Activity.query.get(3)),
-                #swimming (general)
-                Calendar(aDateTime=timeStart, aDuration=1, aStaffName="Life Guard", aPrice=0, aLocation="Swimming Pool", aCapacity=30, aSlotsTaken=0, activity=Activity.query.get(4)),  
-                #gym
-                Calendar(aDateTime=timeStart, aDuration=1, aStaffName="Supervisor", aPrice=0, aLocation="Fitness Room", aCapacity=35, aSlotsTaken=0, activity=Activity.query.get(5)),
-                #squash courts
-                Calendar(aDateTime=timeStart, aDuration=1, aStaffName="None", aPrice=0, aLocation="Court 1", aCapacity=4, aSlotsTaken=0, activity=Activity.query.get(6)),
-                Calendar(aDateTime=timeStart, aDuration=1, aStaffName="None", aPrice=0, aLocation="Court 2", aCapacity=4, aSlotsTaken=0, activity=Activity.query.get(7)),
-                Calendar(aDateTime=timeStart, aDuration=1, aStaffName="Sport Organiser", aPrice=0, aLocation="Sports Hall", aCapacity=45, aSlotsTaken=0, activity=Activity.query.get(13))
-            ])
+        while timeStart < datetime.combine(today, time(22,00)):
+            if timeStart < datetime.combine(today, time(22,00)):
+                db.session.add_all([
+                    #swimming (lane)
+                    Calendar(aDateTime=timeStart, aDuration=1, aStaffName="Life Guard", aPrice=0, aLocation="Swimming Pool", aCapacity=30, aSlotsTaken=0, activity=Activity.query.get(2)),
+                    #swimming (lessons)
+                    Calendar(aDateTime=timeStart, aDuration=1, aStaffName="Life Guard", aPrice=0, aLocation="Swimming Pool", aCapacity=30, aSlotsTaken=0, activity=Activity.query.get(3)),
+                    #swimming (general)
+                    Calendar(aDateTime=timeStart, aDuration=1, aStaffName="Life Guard", aPrice=0, aLocation="Swimming Pool", aCapacity=30, aSlotsTaken=0, activity=Activity.query.get(4)),  
+                ])
             #climbing wall
             if timeStart > datetime.combine(today, time(10,00)):
                 db.session.add(
                     Calendar(aDateTime=timeStart, aDuration=2, aStaffName="Instructor", aPrice=0, aLocation="Climbing Wall", aCapacity=22, aSlotsTaken=0, activity=Activity.query.get(8))
                 )
+
+            db.session.add_all([
+                #gym
+                Calendar(aDateTime=timeStart, aDuration=1, aStaffName="Supervisor", aPrice=0, aLocation="Fitness Room", aCapacity=35, aSlotsTaken=0, activity=Activity.query.get(5)),
+                #squash courts
+                Calendar(aDateTime=timeStart, aDuration=1, aStaffName="None", aPrice=0, aLocation="Court 1", aCapacity=4, aSlotsTaken=0, activity=Activity.query.get(6)),
+                Calendar(aDateTime=timeStart, aDuration=1, aStaffName="None", aPrice=0, aLocation="Court 2", aCapacity=4, aSlotsTaken=0, activity=Activity.query.get(7)),
+                #sports hall
+                Calendar(aDateTime=timeStart, aDuration=1, aStaffName="Sport Organiser", aPrice=0, aLocation="Sports Hall", aCapacity=45, aSlotsTaken=0, activity=Activity.query.get(13))
+            ])
+            
             #increment time
             timeStart = timeStart+timedelta(hours=1)
         
@@ -125,17 +130,26 @@ def index():
 @app.route('/calendar', methods=['GET', 'POST'])
 def calendarMethod():
     # get all events in order of date and time
+    dailyConstantEvents = ["Swimming (Lane)", "Swimming (General Use)", "Swimming (Lessons)", "Squash 1", "Squash 2", "Sports Hall (Session)"]
     days = datetime.now()+timedelta(days=14)
     events = Calendar.query.filter(Calendar.aDateTime >= date.today()).filter(Calendar.aDateTime <= days).order_by(Calendar.aDateTime).all()
     # get event type for each event found
     eventInfo = []
     for i in events:
         eventInfo.append(Activity.query.filter_by(id=i.activityId).first())
+    
+    #current user
+    #if current_user.login_detail.isMember:
+    #    member = True
+    #else:
+    #    member = False
+    
     return render_template('calendar.html',
                             title     = 'Calendar',
                             numEvents = len(events),
                             events    = events,
                             eventInfo = eventInfo)
+                            #member    = member)
 
 #this is a book event button for the calendar
 @app.route('/makeBooking/<id>', methods=['GET'])
@@ -346,6 +360,7 @@ def addEvent():
     return render_template('addEvent.html', title='Add Event',
                            form=form, activities=activities)
 
+#Can this be removed it isnt being used?
 #manager edit event
 #for now just redirects to viewAEManager
 @app.route('/editEvent/<id>', methods=['POST', 'GET'])

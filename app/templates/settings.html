@@ -7,10 +7,12 @@
         <h3>Amend your details.</h3>
         <form action="" method="post">
             {{ form.hidden_tag() }}
-            <p>{{ form.Name }}</p>
-            <p>{{ form.Address(value=user.address) }}</p>
-            <p>{{ form.Password() }}</p>
-            <p>{{ form.NewPassword }}</p>
+            <p>{{ form.Name(class_='form-control') }}</p>
+            <p>{{ form.Address(value=user.address, class_='form-control') }}</p>
+            <p>{{ form.Password(class_='form-control') }}</p>
+            <p>{{ form.NewPassword(class_='form-control') }}</p>
+            <p>{{ form.NewPasswordx2(class_='form-control') }}</p>
+            
             <input type="submit" value="Submit">
         </form>
     </div>

@@ -7,8 +7,8 @@
     <!-- inserts the secret CSRF key -->
     <!-- it is the unique identification generated for this request -->
     {{ form.hidden_tag() }}
-    <p>{{ form.Email }}<br></p>
-    <p>{{ form.Password }}</p>
+    <p>{{ form.Email(class_='form-control') }}</p>
+    <p>{{ form.Password(class_='form-control') }}</p>
     <p><input type="submit" value="Submit"></p>
 </form>
 {% endblock %}

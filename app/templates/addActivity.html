@@ -10,55 +10,14 @@
     {{ form.hidden_tag() }}
 
     <!--Type (Name of activity)-->
-    <p>Activity Name
-        <br>
+    <p>
         {{ form.aType(class='form-control')}}
-        <br>
     </p>
     {% for error in form.aType.errors %}
         [{{ error }}]
     {% endfor %}
 
-    <!--Price of activity-->
-    <p>Price
-        <br>
-        {{ form.aPrice(class='form-control')}}
-        <br>
-    </p>
-    {% for error in form.aPrice.errors %}
-        [{{ error }}]
-    {% endfor %}
+    <p><input type="submit" class="btn btn-primary" value="Add Activity"></p>
 
-    <!--Location of activity-->
-    <p>Loaction
-        <br>
-        {{ form.aLocation(class='form-control')}}
-        <br>
-    </p>
-    {% for error in form.aLocation.errors %}
-        [{{ error }}]
-    {% endfor %}
-
-    <!--Capacity of activity-->
-    <p>Capacity
-        <br>
-        {{ form.aCapacity(class='form-control')}}
-        <br>
-    </p>
-    {% for error in form.aCapacity.errors %}
-        [{{ error }}]
-    {% endfor %}
-
-    <!--Staff member on activity-->
-    <p>Staff Member
-        <br>
-        {{ form.aStaffName(class='form-control')}}
-        <br>
-    </p>
-    {% for error in form.aStaffName.errors %}
-        [{{ error }}]
-    {% endfor %}
-
-    <p><input type="submit" value="Add Activity"></p>
 </form>
 {% endblock %}

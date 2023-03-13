@@ -3,7 +3,11 @@
 ### To Run
 - Make sure you have flask installed
 - Run build.sh with ./build.sh for normal mode
+<<<<<<< HEAD
 - Run build.sh with ./build.sh --clean for clean mode
+=======
+- Run build.sh with ./build.sh --clean for clean mode (remigrates the database)
+>>>>>>> d1b14ba29b3232b63fc87b5da8f7c7a09a6706e2
 - It should run on http://127.0.0.1:5000
 
 ### Important NB: Babel doesn't work out of the box on feng-linux, so you wil need to modify your flask_babel init file

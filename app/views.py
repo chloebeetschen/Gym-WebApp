@@ -93,6 +93,23 @@ def makeBooking(id): # << id passed here is the calendar id (not user)
     return redirect('/myBookings')
 
 
+# Add to basket button
+@app.route('/addBasket/<id>', methods=['GET'])
+def addBasket(id):
+
+    # If basket session doesn't already exist, add to session
+    if 'basket' not in session:
+        session['basket'] = []
+
+    # Add calendar event id to sessions
+    session['basket'].append(id)
+
+    # Flash message that event has been added to basket
+    flash("An event has been added to your basket")
+    
+    # Redirect back to calendar
+    return redirect('/calendar')
+
 #calendar of all sessions (manager)
 @app.route('/viewAEManager', methods=['GET', 'POST'])
 def viewAEManager():
@@ -349,6 +366,7 @@ def register():
         dob     = form.DateOfBirth.data
         Address = form.Address.data
         Email   = form.Email.data
+
         
         hashedPassword = bcrypt.generate_password_hash(form.Password.data)
 
@@ -361,7 +379,9 @@ def register():
         newUserDetails = models.UserDetails(name=Name,
                                             dateOfBirth=dob,
                                             address=Address,
-                                            loginDetails=newUser.id)
+                                            loginDetails=newUser.id,
+                                            isMember = False,
+                                            membershipEnd=datetime.now())
 
         # Add to the database
         db.session.add(newUser)

@@ -55,7 +55,7 @@ def index():
 def calendarMethod():
     # get all events in order of date and time
     days = datetime.now()+timedelta(days=14)
-    events = Calendar.query.filter(Calendar.activityDate >= date.today()).filter(Calendar.activityDate <= days).order_by(Calendar.activityDate, Calendar.activityTime).all()
+    events = Calendar.query.filter(Calendar.aDateTime >= date.today()).filter(Calendar.aDateTime <= days).order_by(Calendar.aDateTime).all()
     # get event info for each event found
     eventInfo = []
     for i in events:
@@ -94,6 +94,38 @@ def makeBooking(id): # << id passed here is the calendar id (not user)
     db.session.commit()
     return redirect('/myBookings')
 
+
+# Add to basket button
+@app.route('/addBasket/<id>', methods=['GET'])
+def addBasket(id):
+    # If basket session doesn't already exist, add to session
+    if 'basket' not in session:
+        session['basket'] = []
+    # Add calendar event id to sessions
+    session['basket'].append(id)
+    # Flash message that event has been added to basket
+    flash("An event has been added to your basket")
+    # Redirect back to calendar
+    return redirect('/calendar')
+
+@app.route('/basket', methods=['GET', 'POST'])
+def basket():
+    # Boolean to store whether anything in basket
+    isItems = False
+    basketItems = []
+    itemNames = []
+    
+    # If anything in basket, set isItems to true and get all the events in basket
+    if 'basket'in session:
+        isItems = True
+        # Create list of events in basket
+        for itemId in session['basket']:
+            item = Calendar.query.get(itemId)
+            basketItems.append(item)
+            itemActivity = Activity.query.get(item.activityId)
+            name = itemActivity.activityType
+            itemNames.append(name)
+    return render_template('basket.html', title='Basket', isItems=isItems, basketItems=basketItems, num=len(basketItems), itemNames=itemNames)
 
 #calendar of all sessions (manager)
 @app.route('/viewAEManager', methods=['GET', 'POST'])
@@ -351,6 +383,7 @@ def register():
         dob     = form.DateOfBirth.data
         Address = form.Address.data
         Email   = form.Email.data
+
         
         hashedPassword = bcrypt.generate_password_hash(form.Password.data)
 
@@ -363,7 +396,9 @@ def register():
         newUserDetails = models.UserDetails(name=Name,
                                             dateOfBirth=dob,
                                             address=Address,
-                                            loginDetails=newUser.id)
+                                            loginDetails=newUser.id,
+                                            isMember = False,
+                                            membershipEnd=datetime.now())
 
         # Add to the database
         db.session.add(newUser)

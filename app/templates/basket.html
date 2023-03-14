@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Basket</h1>
+
+<!-- If stuff in basket, display it -->
+{% if isItems %}
+{% for i in range (0, num) %}
+    <p> {{ itemNames[i] }}, {{ basketItems[i].aDateTime}},  {{ basketItems[i].aDuration}}, {{ basketItems[i].aLocation}},  {{ basketItems[i].aPrice}} </p>
+
+{% endfor %}
+{% else %}
+    <p> Please add something to your basket</p>
+{% endif %}
+
+
+{% endblock %}

@@ -97,8 +97,3 @@ class SettingsForm(FlaskForm):
     NewPassword   = PasswordField('Password', validators=[DataRequired()], render_kw={"placeholder": "New Password"})
     NewPasswordx2 = PasswordField('Reenter New Password', validators=[DataRequired(message="Please reenter your new password"), EqualTo('NewPassword', message="Passwords must match")], render_kw={"placeholder": "Reenter New Password"})
 
-class MonthlyForm(FlaskForm):
-    pass
-
-class AnnualForm(FlaskForm):
-    pass

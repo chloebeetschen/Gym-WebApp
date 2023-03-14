@@ -30,16 +30,20 @@ class Calendar(db.Model):
     # Relationship with calendar
     activityId = db.Column(db.Integer, db.ForeignKey('activity.id'))
 
+    #relationship with user bookings
+    userEvents = db.relationship('UserBookings', backref='calendar')
+
 
 class UserBookings(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     # can be added once we have the userLogin table
 
-    userId = db.Column(db.Integer)
-    calendarId = db.Column(db.Integer)
-    # userId = db.Column(db.Integer, db.ForeignKey('UserLogin.id'))
-    # calendarId = db.Column(db.Integer, db.ForeignKey('calendar.id'))
+    #userId = db.Column(db.Integer)
+    #calendarId = db.Column(db.Integer)
+
+    userId = db.Column(db.Integer, db.ForeignKey('user_login.id'))
+    calendarId = db.Column(db.Integer, db.ForeignKey('calendar.id'))
 
 
 # table to store payment cards
@@ -63,6 +67,9 @@ class UserLogin(db.Model, UserMixin):
 
     userDetails = db.relationship('UserDetails', backref='loginDetails', uselist=False)
 
+    #relationship with userbookings
+    userbookings = db.relationship('UserBookings', backref='loginDetails')
+
 
 # User info (Sensitive info -> encryption)
 class UserDetails(db.Model, UserMixin):
@@ -70,5 +77,6 @@ class UserDetails(db.Model, UserMixin):
     name = db.Column(db.String(150), nullable=False)
     dateOfBirth = db.Column(db.Date, nullable=False)
     address = db.Column(db.String(150))
-
+    isMember = db.Column(db.Boolean)
+    membershipEnd = db.Column(db.DateTime)
     parentId = db.Column(db.Integer, db.ForeignKey('user_login.id'))

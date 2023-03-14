@@ -1,6 +1,7 @@
+<!-- Template for viewing bookings -->
 {% extends "base.html" %}
-{% block content %}
 
+{% block content %}
 <!--Basic Header-->
 <h1>My Bookings</h1>
 
@@ -13,6 +14,7 @@
             <th>Time</th>
             <th>Duration</th>
             <th>Location</th>
+            <th>Staff Member</th>
             <th></th>
         </tr>
     </thead>
@@ -21,10 +23,11 @@
             <tr>
                 <!--display event and event info in the tables-->
                 <td>{{eventInfo[i].activityType}}</td>
-                <td>{{events[i].activityDate}}</td>
-                <td>{{events[i].activityTime}}</td>
-                <td>{{events[i].activityDuration}} Minutes</td>
-                <td>{{eventInfo[i].activityLocation}}</td>
+                <td>{{events[i].aDateTime}}</td>
+                <td>{{events[i].aDateTime}}</td>
+                <td>{{events[i].aDuration}} hrs</td>
+                <td>{{events[i].aLocation}}</td>
+                <td>{{events[i].aStaffName}}</td>
 
                 <!--Delete activity button-->
                 <td>
@@ -36,5 +39,4 @@
         {% endfor %}
     </tbody>
 </table>
-
 {% endblock %}

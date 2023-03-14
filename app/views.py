@@ -415,11 +415,6 @@ def manageUsers():
 
     ## Managers
     userTypeLogin3 = UserLogin.query.filter_by(userType=3).all()
-   
-    userTypeDetails = []
-    #for j in userTypeLogin1:
-        # get event info for each event found
-        #userTypeDetails.append(UserDetails.query.filter_by(parentId=j.id).first())
 
    
     ## Will not render unless users of every type exist in the database

@@ -14,6 +14,7 @@ bcrypt = Bcrypt(app)
 
 # Register tables with flask admin
 admin.add_view(ModelView(UserLogin, db.session))
+admin.add_view(ModelView(UserDetails, db.session))
 admin.add_view(ModelView(PaymentCard, db.session))
 admin.add_view(ModelView(Calendar, db.session))
 admin.add_view(ModelView(Activity, db.session))
@@ -402,3 +403,77 @@ def settings():
                             title='Settings',
                             form=form,
                             user=current_user)
+
+@app.route('/manageUsers', methods=['POST', 'GET'])
+@login_required
+def manageUsers():
+
+    ## Normal users
+    userTypeLogin1 = UserLogin.query.filter_by(userType=1).all()
+
+    ## Employees
+    userTypeLogin2 = UserLogin.query.filter_by(userType=2).all() 
+
+    ## Managers
+    userTypeLogin3 = UserLogin.query.filter_by(userType=3).all()
+
+   
+    ## Will not render unless users of every type exist in the database
+    return render_template('manageUsers.html', title = 'Manage Users', 
+                            userTypeNum1   = len(userTypeLogin1),
+                            userTypeNum2   = len(userTypeLogin2),
+                            userTypeNum3   = len(userTypeLogin3),
+                            userTypeLogin1 = userTypeLogin1, 
+                            userTypeLogin2 = userTypeLogin2,
+                            userTypeLogin3 = userTypeLogin3 )  
+
+## Edits a users details (name, email, password and type)
+@app.route('/editUser/<id>', methods=['GET', 'POST'])
+@login_required
+def editUser(id):
+
+    form = ManagerForm()
+    if form.validate_on_submit():
+        # Update the user's details
+        cUserLogin   = models.UserLogin.query.get(id)
+        cUserDetails = models.UserDetails.query.get(id)
+
+        cUserDetails.name    = form.Name.data
+        cUserLogin.email     = form.Email.data
+        cUserLogin.password  = bcrypt.generate_password_hash(form.NewPasswordx2.data)
+        cUserLogin.userType      = form.Type.data
+
+        db.session.commit()
+        flash('User Details updated')
+        
+    return render_template('editUser.html',
+                            title='Edit User',
+                            form=form,
+                            user=id)
+
+## Deletes a user's userlogin, userdetails, userbookings and decreases the slots taken for the calender events
+@app.route('/deleteUser/<id>', methods=['GET', 'POST'])
+@login_required
+def deleteUser(id): 
+    cUserLogin   = models.UserLogin.query.get(id)
+
+    ## Slightly problematic - should be getting parentId, but works as there shouldn't be a situation where 
+    ## userdetails.id is different from parentid
+    cUserDetails = models.UserDetails.query.get(id)
+    
+    cUserBookings = models.UserBookings.query.filter_by(userId = id).all()
+
+    for item in cUserBookings:
+        event = Calendar.query.get(item.calendarId)
+        event.aSlotsTaken -= 1
+        db.session.delete(item)
+
+
+    db.session.delete(cUserLogin)
+    db.session.delete(cUserDetails)
+
+    db.session.commit()
+    flash('User deleted')
+        
+    return render_template('home.html',
+                            title='Home')

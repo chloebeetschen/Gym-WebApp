@@ -39,21 +39,20 @@ def validateAge(form, field):
 # For the manager to add a new activity e.g. swimming
 # Can be used for editing and creating activities
 class ActivityForm(FlaskForm):
-    aType       = StringField('aType', validators=[DataRequired()])
+    aType       = StringField('Type', validators=[DataRequired()])
 
 
 # Form to add an activity to the calendar
 # Can be used for editing and adding calendar events
 class EventForm(FlaskForm):
-    aDateTime    = DateField('Date of activity', validators=[DataRequired()], render_kw={"placeholder": "Date of activity"})
+    aDateTime    = DateField('Date of activity', validators=[DataRequired(), validateFutureDate], render_kw={"placeholder": "Date of activity"})
     aDuration    = IntegerField('Duration of activity', validators=[DataRequired(), NumberRange(min=0, message="Please enter a positive duration")],
                                 render_kw={"placeholder": "Duration of activity"})
     aStaffName   = StringField("Staff Name", validators=[DataRequired()], render_kw={"placeholder": "Staff Member"}) 
     aLocation    = StringField("Location", validators=[DataRequired()], render_kw={"placeholder": "Location"}) 
-    aPrice       = FloatField("Price", validators=[DataRequired(), NumberRange(min=0.0, message="Please enter a positive price"), render_kw={"placeholder": "Price of activity"}) 
-    aCapacity    = IntegerField('Capacity of activity', validators=[DataRequired()],
+    aPrice       = FloatField("Price", validators=[DataRequired(), NumberRange(min=0.0, message="Please enter a positive price")], render_kw={"placeholder": "Price of activity"}) 
+    aCapacity    = IntegerField('Capacity of activity', validators=[DataRequired(), NumberRange(min=0, message="Please enter a postive capacity")],
                                render_kw={"placeholder": "Capacity of activity"})
-    # The activity id slot will be added in the html and passed in the route
 
 
 # Form to create account:

@@ -4,6 +4,7 @@ from .models import *
 from .forms import *
 from flask_admin.contrib.sqla import ModelView
 from datetime import *
+from dateutil.relativedelta import relativedelta
 
 from flask_login import current_user, login_user, LoginManager, login_required
 from flask_login import logout_user
@@ -405,15 +406,29 @@ def settings():
 @app.route('/memberships', methods=['GET', 'POST'])
 @login_required
 def memberships():
-    form = MembershipForm()
-    if form.validate_on_submit():
-        
+    monthlyForm = MonthlyForm()
+    annualForm = AnnualForm()
+    
+    if monthlyForm.validate_on_submit():        
         cUserDetails = models.UserDetails.query.get(current_user.id)
         cUserDetails.isMember = True
-        cUserDetails.membershipEnd = form.MembershipEnd
-        return redirect('/paymentForm/memberships')
+        today = datetime.now()
+        monthAhead = today + relativedelta(months=1)
+        cUserDetails.membershipEnd = monthAhead
+        return redirect('/admin')
     
-    return render_template('memberships.html', form=form)
+    if annualForm.validate_on_submit() & request.POST.get(__name__) == :        
+        cUserDetails = models.UserDetails.query.get(current_user.id)
+        cUserDetails.isMember = True
+        today = datetime.now()
+        yearAhead = today + relativedelta(years=1)
+        cUserDetails.membershipEnd = yearAhead
+        return redirect('/settings')
+
+
+
+    
+    return render_template('memberships.html', annualForm=annualForm, monthlyForm=monthlyForm)
  
     
 #Payment Form for memberships page

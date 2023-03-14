@@ -4,12 +4,15 @@
 {% block content %}
 <title>Memberships</title>
 <h1>Buy a membership: </h1>
-<form method="post" name="membership">
-    {{ form.hidden_tag() }}
+<form method="post" name="monthly">
+    {{ monthlyForm.hidden_tag() }}
     <p>Monthly:
         <input type="submit" value="Buy", id="monthly">
     </p>
     <br>
+</form>
+<form method="post" name="annual"> 
+    {{ annualForm.hidden_tag() }}
     <p>Annual:
         <input type="submit" value="Buy", id="annual">
     </p>

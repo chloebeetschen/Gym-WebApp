@@ -91,9 +91,9 @@ class LoginForm(FlaskForm):
 
 
 class SettingsForm(FlaskForm):
-    Name        = StringField('Name', render_kw={"placeholder": "Name"})
-    Address     = StringField('Address', render_kw={"placeholder": "Address"})
-    Password    = PasswordField('Old Password', validators=[DataRequired(message="Please enter your current password")], render_kw={"placeholder": "Password"})
-    NewPassword = PasswordField('New Password', validators=[DataRequired(message="Please enter a new password")], render_kw={"placeholder": "New Password"})
+    Name          = StringField('Name', validators=[DataRequired()], render_kw={"placeholder": "Name"})
+    Address       = StringField('Address', validators=[DataRequired()], render_kw={"placeholder": "Address"})
+    Password      = PasswordField('Password', validators=[DataRequired()], render_kw={"placeholder": "Password"})
+    NewPassword   = PasswordField('Password', validators=[DataRequired()], render_kw={"placeholder": "New Password"})
     NewPasswordx2 = PasswordField('Reenter New Password', validators=[DataRequired(message="Please reenter your new password"), EqualTo('NewPassword', message="Passwords must match")], render_kw={"placeholder": "Reenter New Password"})
 

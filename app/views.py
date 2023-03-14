@@ -4,6 +4,7 @@ from .models import *
 from .forms import *
 from flask_admin.contrib.sqla import ModelView
 from datetime import *
+from dateutil.relativedelta import relativedelta
 
 from flask_login import current_user, login_user, LoginManager, login_required
 from flask_login import logout_user
@@ -14,6 +15,7 @@ bcrypt = Bcrypt(app)
 
 # Register tables with flask admin
 admin.add_view(ModelView(UserLogin, db.session))
+admin.add_view(ModelView(UserDetails, db.session))
 admin.add_view(ModelView(PaymentCard, db.session))
 admin.add_view(ModelView(Calendar, db.session))
 admin.add_view(ModelView(Activity, db.session))
@@ -235,19 +237,37 @@ def makeBooking(id): # << id passed here is the calendar id (not user)
     return redirect('/myBookings')
 
 
-#can be removed??
-#calendar of all sessions (manager)
-#@app.route('/viewAEManager', methods=['GET', 'POST'])
-#def viewAEManager():
-#    activities = Activity.query.all()
-#    # get all events in order of date and time
-#    events = Calendar.query.order_by(Calendar.activityDate, Calendar.activityTime).all()
-#    # get event info for each event found
-#    eventInfo = []
-#    for i in events:
-#        eventInfo.append(Activity.query.filter_by(id=i.activityId).first())
-#    return render_template('viewAEManager.html', title = '(Manager)', activities = activities, numEvents=len(events), events = events, eventInfo = eventInfo, zip=zip)
+# Add to basket button
+@app.route('/addBasket/<id>', methods=['GET'])
+def addBasket(id):
+    # If basket session doesn't already exist, add to session
+    if 'basket' not in session:
+        session['basket'] = []
+    # Add calendar event id to sessions
+    session['basket'].append(id)
+    # Flash message that event has been added to basket
+    flash("An event has been added to your basket")
+    # Redirect back to calendar
+    return redirect('/calendar')
 
+@app.route('/basket', methods=['GET', 'POST'])
+def basket():
+    # Boolean to store whether anything in basket
+    isItems = False
+    basketItems = []
+    itemNames = []
+    
+    # If anything in basket, set isItems to true and get all the events in basket
+    if 'basket'in session:
+        isItems = True
+        # Create list of events in basket
+        for itemId in session['basket']:
+            item = Calendar.query.get(itemId)
+            basketItems.append(item)
+            itemActivity = Activity.query.get(item.activityId)
+            name = itemActivity.activityType
+            itemNames.append(name)
+    return render_template('basket.html', title='Basket', isItems=isItems, basketItems=basketItems, num=len(basketItems), itemNames=itemNames)
 
 #this is so the manager is able to delete an event - delete button
 @app.route('/deleteEvent/<id>', methods=['GET'])
@@ -500,6 +520,7 @@ def register():
         dob     = form.DateOfBirth.data
         Address = form.Address.data
         Email   = form.Email.data
+
         
         hashedPassword = bcrypt.generate_password_hash(form.Password.data)
 
@@ -512,7 +533,9 @@ def register():
         newUserDetails = models.UserDetails(name=Name,
                                             dateOfBirth=dob,
                                             address=Address,
-                                            loginDetails=newUser.id)
+                                            loginDetails=newUser.id,
+                                            isMember = False,
+                                            membershipEnd=datetime.now())
 
         # Add to the database
         db.session.add(newUser)
@@ -552,3 +575,36 @@ def settings():
                             title='Settings',
                             form=form,
                             user=current_user)
+
+## Renders the memberships page with two options: annual and monthly
+@app.route('/memberships', methods=['GET', 'POST'])
+@login_required
+def memberships():
+    cUserLogin   = models.UserLogin.query.get(current_user.id)
+    return render_template('memberships.html', id=cUserLogin.id)
+ 
+## Adds the membership end to a month in the future
+## Does not update isMember to be true as this is done after payment is completed
+@app.route('/memberships/monthly/<id>', methods=['GET', 'POST'])
+@login_required
+def monthlyMembership(id):
+    cUserDetails = models.UserDetails.query.get(id)
+    today = datetime.now()
+    monthAhead = today + relativedelta(months=1)
+    cUserDetails.membershipEnd = monthAhead
+    db.session.commit()
+    ##Test to see if working correctly
+    return redirect('/settings')
+
+## Adds the membership end to a year in the future
+## Does not update isMember to be true as this is done after payment is completed
+@app.route('/memberships/annual/<id>', methods=['GET', 'POST'])
+@login_required
+def annualMembership(id):
+    cUserDetails = models.UserDetails.query.get(id)
+    today = datetime.now()
+    yearAhead = today + relativedelta(years=1)
+    cUserDetails.membershipEnd = yearAhead
+    db.session.commit()
+    ##Test to see if working correctly
+    return redirect('/admin')

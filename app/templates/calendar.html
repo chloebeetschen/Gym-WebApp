@@ -1,3 +1,4 @@
+<!-- Template for calender frontend -->
 {% extends "base.html" %}
 {% block content %}
 
@@ -6,6 +7,7 @@
         {{i.activityId}} - {{i.aDateTime.weekday()}}//
     {% endfor %}
 </h2>
+
 
 <!--Basic Header-->
 <h1>Calendar</h1>
@@ -126,6 +128,4 @@
         </td>
     </tbody>
 </table>
-
-
 {% endblock %}

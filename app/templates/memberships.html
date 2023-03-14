@@ -4,19 +4,22 @@
 {% block content %}
 <title>Memberships</title>
 <h1>Buy a membership: </h1>
-<form method="post" name="membership">
-    {{ form.hidden_tag() }}
-
-    <p>Start Date:
-        <br>
-        {{ form.MembershipStart(class='form-control')}}
-        <br>
-    </p>
-    <p>End Date:
-        <br>
-        {{ form.MembershipEnd(class='form-control')}}
-        <br>
-    </p>
-<input type="submit" value="Purchase">
-</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Annual: </th>
+            <th>Monthly: </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>    
+                <a href="/memberships/annual/{{id}}"><button type="button" class="btns">Purchase</button></a>
+            </td>
+            <td>    
+                <a href="/memberships/monthly/{{id}}"><button type="button" class="btns">Purchase</button></a>
+            </td>
+        </tr>
+    </tbody>
+</table>
 {% endblock %}

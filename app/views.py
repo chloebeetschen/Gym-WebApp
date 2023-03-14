@@ -4,6 +4,7 @@ from .models import *
 from .forms import *
 from flask_admin.contrib.sqla import ModelView
 from datetime import *
+from dateutil.relativedelta import relativedelta
 
 from flask_login import current_user, login_user, LoginManager, login_required
 from flask_login import logout_user
@@ -14,6 +15,7 @@ bcrypt = Bcrypt(app)
 
 # Register tables with flask admin
 admin.add_view(ModelView(UserLogin, db.session))
+admin.add_view(ModelView(UserDetails, db.session))
 admin.add_view(ModelView(PaymentCard, db.session))
 admin.add_view(ModelView(Calendar, db.session))
 admin.add_view(ModelView(Activity, db.session))
@@ -437,25 +439,35 @@ def settings():
                             form=form,
                             user=current_user)
 
+## Renders the memberships page with two options: annual and monthly
 @app.route('/memberships', methods=['GET', 'POST'])
 @login_required
 def memberships():
-
-    ####### NOT CURRENTLY WORKING #######
-    form = MembershipForm()
-    if form.validate_on_submit():
-        cUserLogin   = models.UserLogin.query.get(current_user.id)
-        cUserDetails = models.UserDetails.query.get(current_user.id)
-        cUserDetails.membershipStart = form.MembershipStart
-        cUserDetails.membershipEnd = form.MembershipEnd
-        return redirect('/paymentForm/memberships')
-    #####################################
-    
-    return render_template('memberships.html', form=form)
+    cUserLogin   = models.UserLogin.query.get(current_user.id)
+    return render_template('memberships.html', id=cUserLogin.id)
  
-    
-#Payment Form for memberships page
-@app.route('/paymentForm/memberships', methods=['GET', 'POST'])
+## Adds the membership end to a month in the future
+## Does not update isMember to be true as this is done after payment is completed
+@app.route('/memberships/monthly/<id>', methods=['GET', 'POST'])
 @login_required
-def paymentMembershipsForm():
+def monthlyMembership(id):
+    cUserDetails = models.UserDetails.query.get(id)
+    today = datetime.now()
+    monthAhead = today + relativedelta(months=1)
+    cUserDetails.membershipEnd = monthAhead
+    db.session.commit()
+    ##Test to see if working correctly
     return redirect('/settings')
+
+## Adds the membership end to a year in the future
+## Does not update isMember to be true as this is done after payment is completed
+@app.route('/memberships/annual/<id>', methods=['GET', 'POST'])
+@login_required
+def annualMembership(id):
+    cUserDetails = models.UserDetails.query.get(id)
+    today = datetime.now()
+    yearAhead = today + relativedelta(years=1)
+    cUserDetails.membershipEnd = yearAhead
+    db.session.commit()
+    ##Test to see if working correctly
+    return redirect('/admin')

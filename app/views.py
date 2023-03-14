@@ -654,15 +654,15 @@ def deleteUser(id):
 @app.route('/memberships', methods=['GET', 'POST'])
 @login_required
 def memberships():
-    cUserLogin   = models.UserLogin.query.get(current_user.id)
-    return render_template('memberships.html', id=cUserLogin.id)
+    return render_template('memberships.html')
  
 ## Adds the membership end to a month in the future
 ## Does not update isMember to be true as this is done after payment is completed
-@app.route('/memberships/monthly/<id>', methods=['GET', 'POST'])
+@app.route('/memberships/monthly', methods=['GET', 'POST'])
 @login_required
-def monthlyMembership(id):
-    cUserDetails = models.UserDetails.query.get(id)
+def monthlyMembership():
+    cUserDetails = models.UserDetails.query.get(current_user.id)
+    cUserDetails.isMember = False
     today = datetime.now()
     monthAhead = today + relativedelta(months=1)
     cUserDetails.membershipEnd = monthAhead
@@ -672,10 +672,11 @@ def monthlyMembership(id):
 
 ## Adds the membership end to a year in the future
 ## Does not update isMember to be true as this is done after payment is completed
-@app.route('/memberships/annual/<id>', methods=['GET', 'POST'])
+@app.route('/memberships/annual', methods=['GET', 'POST'])
 @login_required
-def annualMembership(id):
-    cUserDetails = models.UserDetails.query.get(id)
+def annualMembership():
+    cUserDetails = models.UserDetails.query.get(current_user.id)
+    cUserDetails.isMember = False
     today = datetime.now()
     yearAhead = today + relativedelta(years=1)
     cUserDetails.membershipEnd = yearAhead

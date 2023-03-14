@@ -131,6 +131,7 @@ def index():
 
 #calendar of all sessions
 @app.route('/calendar', methods=['GET', 'POST'])
+@login_required
 def calendarMethod():
     today = datetime.now()
     #week span
@@ -191,12 +192,15 @@ def calendarMethod():
         eventInfo2.append(Activity.query.filter_by(id=i.activityId).first())
 
     ##TO CHANGE ONCE MEMBERSHIP IS DONE
-    member = False
+    #member = False
     #current user
     #if current_user.login_detail.isMember:
     #    member = True
     #else:
     #    member = False
+    user = UserDetails.query.filter_by(id=current_user.id).first()
+
+    print(user)
     
     return render_template('calendar.html',
                             title     = 'Calendar',
@@ -206,7 +210,7 @@ def calendarMethod():
                             eventInfo = eventInfo,
                             events2    = events2,
                             eventInfo2 = eventInfo2,
-                            member    = member,
+                            isMember = user.isMember,   
                             weeks     = weeks)
 
 #calendar of all repeat sessions
@@ -256,6 +260,7 @@ def basket():
     isItems = False
     basketItems = []
     itemNames = []
+    totalPrice=0
     
     # If anything in basket, set isItems to true and get all the events in basket
     if 'basket'in session:
@@ -263,11 +268,22 @@ def basket():
         # Create list of events in basket
         for itemId in session['basket']:
             item = Calendar.query.get(itemId)
-            basketItems.append(item)
+            totalPrice += item.aPrice
             itemActivity = Activity.query.get(item.activityId)
             name = itemActivity.activityType
-            itemNames.append(name)
-    return render_template('basket.html', title='Basket', isItems=isItems, basketItems=basketItems, num=len(basketItems), itemNames=itemNames)
+            nameDate = name + ", " + (item.aDateTime).strftime("%d/%m, %H:%M")
+            basketItems.append((nameDate, item.aPrice ))
+
+    if 'membership' in session:
+        isItems = True
+        if session['membership'] == "monthly":
+            basketItems.append(('Monthly Membership', 35))
+            totalPrice += 35
+        else:
+            basketItems.append(("Annual Membership", 300))
+            totalPrice += 300
+
+    return render_template('basket.html', title='Basket', isItems=isItems, basketItems=basketItems, num=len(basketItems), totalPrice=totalPrice)
 
 #this is so the manager is able to delete an event - delete button
 @app.route('/deleteEvent/<id>', methods=['GET'])
@@ -666,6 +682,7 @@ def monthlyMembership():
     today = datetime.now()
     monthAhead = today + relativedelta(months=1)
     cUserDetails.membershipEnd = monthAhead
+    session['membership'] = "monthly"
     db.session.commit()
     ##Test to see if working correctly
     return redirect('/settings')
@@ -680,6 +697,8 @@ def annualMembership():
     today = datetime.now()
     yearAhead = today + relativedelta(years=1)
     cUserDetails.membershipEnd = yearAhead
+    session['membership'] = "monthly"
+   
     db.session.commit()
     ##Test to see if working correctly
     return redirect('/admin')

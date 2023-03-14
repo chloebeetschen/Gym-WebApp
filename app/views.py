@@ -31,19 +31,18 @@ def create_tables():
     #pre-populating calendar and activity with given data from spec
 """
     db.session.add_all([
-        Activity(activityType="Swimming (Team Events)"),
-        Activity(activityType="Swimming (Lane Swimming)"),
-        Activity(activityType="Swimming (Lessons)"),
-        Activity(activityType="Swimming (General Use)"),
-        Activity(activityType="Gym"),
-        Activity(activityType="Squash 1"),
-        Activity(activityType="Squash 2"),
-        Activity(activityType="Climbing"),
-        Activity(activityType="Pilates"),
-        Activity(activityType="Aerobics"),
-        Activity(activityType="Yoga"),
-        Activity(activityType="Sports Hall (Team Events)"),
-        Activity(activityType="Sports Hall (Session)")
+        Activity(activityType="Swimming (Team Events)"),    #1
+        Activity(activityType="Swimming (Lane Swimming)"),  #2
+        Activity(activityType="Swimming (Lessons)"),        #3 
+        Activity(activityType="Swimming (General Use)"),    #4
+        Activity(activityType="Gym"),                       #5
+        Activity(activityType="Squash 1"),                  #6
+        Activity(activityType="Climbing"),                  #7
+        Activity(activityType="Pilates"),                   #8
+        Activity(activityType="Aerobics"),                  #9
+        Activity(activityType="Yoga"),                      #10
+        Activity(activityType="Sports Hall (Team Events)"), #11
+        Activity(activityType="Sports Hall (Session)")      #12
     ])
 
     #get todays date and iterate for 2 weeks from today as events will appear every day
@@ -67,7 +66,7 @@ def create_tables():
             #climbing wall
             if timeStart > datetime.combine(today, time(10,00)):
                 db.session.add(
-                    Calendar(aDateTime=timeStart, aDuration=2, aStaffName="Instructor", aPrice=0, aLocation="Climbing Wall", aCapacity=22, aSlotsTaken=0, activity=Activity.query.get(8))
+                    Calendar(aDateTime=timeStart, aDuration=2, aStaffName="Instructor", aPrice=0, aLocation="Climbing Wall", aCapacity=22, aSlotsTaken=0, activity=Activity.query.get(7))
                 )
 
             db.session.add_all([
@@ -75,31 +74,33 @@ def create_tables():
                 Calendar(aDateTime=timeStart, aDuration=1, aStaffName="Supervisor", aPrice=0, aLocation="Fitness Room", aCapacity=35, aSlotsTaken=0, activity=Activity.query.get(5)),
                 #squash courts
                 Calendar(aDateTime=timeStart, aDuration=1, aStaffName="None", aPrice=0, aLocation="Court 1", aCapacity=4, aSlotsTaken=0, activity=Activity.query.get(6)),
-                Calendar(aDateTime=timeStart, aDuration=1, aStaffName="None", aPrice=0, aLocation="Court 2", aCapacity=4, aSlotsTaken=0, activity=Activity.query.get(7)),
+                Calendar(aDateTime=timeStart, aDuration=1, aStaffName="None", aPrice=0, aLocation="Court 2", aCapacity=4, aSlotsTaken=0, activity=Activity.query.get(6)),
                 #sports hall
-                Calendar(aDateTime=timeStart, aDuration=1, aStaffName="Sport Organiser", aPrice=0, aLocation="Sports Hall", aCapacity=45, aSlotsTaken=0, activity=Activity.query.get(13))
+                Calendar(aDateTime=timeStart, aDuration=1, aStaffName="Sport Organiser", aPrice=0, aLocation="Sports Hall", aCapacity=45, aSlotsTaken=0, activity=Activity.query.get(12))
             ])
             
             #increment time
             timeStart = timeStart+timedelta(hours=1)
             
-            #individual day activities
-            #0 = monday ... 6 = sunday
-            if today.weekday() == 0:
-                db.session.add(Calendar(aDateTime=datetime.combine(today, time(18,00)), aDuration=1, aStaffName="Trainer", aPrice=0, aLocation="Studio", aCapacity=25, aSlotsTaken=0, activity=Activity.query.get(9)))
-            elif today.weekday() == 1:
-                db.session.add(Calendar(aDateTime=datetime.combine(today, time(10,00)), aDuration=1, aStaffName="Trainer", aPrice=0, aLocation="Studio", aCapacity=25, aSlotsTaken=0, activity=Activity.query.get(10)))
-            elif today.weekday() == 3:
-                db.session.add(Calendar(aDateTime=datetime.combine(today, time(19,00)), aDuration=1, aStaffName="Trainer", aPrice=0, aLocation="Studio", aCapacity=25, aSlotsTaken=0, activity=Activity.query.get(9)))
-                db.session.add(Calendar(aDateTime=datetime.combine(today, time(19,00)), aDuration=2, aStaffName="None", aPrice=0, aLocation="Sports Hall", aCapacity=1, aSlotsTaken=0, activity=Activity.query.get(12)))
-            elif today.weekday() == 4:
-                db.session.add(Calendar(aDateTime=datetime.combine(today, time(19,00)), aDuration=1, aStaffName="Trainer", aPrice=0, aLocation="Studio", aCapacity=25, aSlotsTaken=0, activity=Activity.query.get(11)))
-                db.session.add(Calendar(aDateTime=datetime.combine(today, time(8,00)), aDuration=2, aStaffName="Life Guard", aPrice=0, aLocation="Swimming Pool", aCapacity=1, aSlotsTaken=0, activity=Activity.query.get(1)))
-            elif today.weekday() == 5:
-                db.session.add(Calendar(aDateTime=datetime.combine(today, time(10,00)), aDuration=1, aStaffName="Trainer", aPrice=0, aLocation="Studio", aCapacity=25, aSlotsTaken=0, activity=Activity.query.get(9)))
-                db.session.add(Calendar(aDateTime=datetime.combine(today, time(9,00)), aDuration=2, aStaffName="None", aPrice=0, aLocation="Sports Hall", aCapacity=1, aSlotsTaken=0, activity=Activity.query.get(12)))
-            elif today.weekday() == 6:
-                db.session.add(Calendar(aDateTime=datetime.combine(today, time(8,00)), aDuration=2, aStaffName="Life Guard", aPrice=0, aLocation="Swimming Pool", aCapacity=1, aSlotsTaken=0, activity=Activity.query.get(1)))
+        #individual day activities
+        #0 = monday ... 6 = sunday
+        if today.weekday() == 0:
+            db.session.add(Calendar(aDateTime=datetime.combine(today, time(18,00)), aDuration=1, aStaffName="Trainer", aPrice=0, aLocation="Studio", aCapacity=25, aSlotsTaken=0, activity=Activity.query.get(8)))
+        elif today.weekday() == 1:
+            db.session.add(Calendar(aDateTime=datetime.combine(today, time(10,00)), aDuration=1, aStaffName="Trainer", aPrice=0, aLocation="Studio", aCapacity=25, aSlotsTaken=0, activity=Activity.query.get(9)))
+        elif today.weekday() == 3:
+            db.session.add(Calendar(aDateTime=datetime.combine(today, time(19,00)), aDuration=1, aStaffName="Trainer", aPrice=0, aLocation="Studio", aCapacity=25, aSlotsTaken=0, activity=Activity.query.get(9)))
+            db.session.add(Calendar(aDateTime=datetime.combine(today, time(19,00)), aDuration=2, aStaffName="None", aPrice=0, aLocation="Sports Hall", aCapacity=1, aSlotsTaken=0, activity=Activity.query.get(11)))
+        elif today.weekday() == 4:
+            db.session.add(Calendar(aDateTime=datetime.combine(today, time(19,00)), aDuration=1, aStaffName="Trainer", aPrice=0, aLocation="Studio", aCapacity=25, aSlotsTaken=0, activity=Activity.query.get(10)))
+            db.session.add(Calendar(aDateTime=datetime.combine(today, time(8,00)), aDuration=2, aStaffName="Life Guard", aPrice=0, aLocation="Swimming Pool", aCapacity=1, aSlotsTaken=0, activity=Activity.query.get(1)))
+        elif today.weekday() == 5:
+            db.session.add(Calendar(aDateTime=datetime.combine(today, time(10,00)), aDuration=1, aStaffName="Trainer", aPrice=0, aLocation="Studio", aCapacity=25, aSlotsTaken=0, activity=Activity.query.get(9)))
+            db.session.add(Calendar(aDateTime=datetime.combine(today, time(9,00)), aDuration=2, aStaffName="None", aPrice=0, aLocation="Sports Hall", aCapacity=1, aSlotsTaken=0, activity=Activity.query.get(11)))
+        elif today.weekday() == 6:
+            db.session.add(Calendar(aDateTime=datetime.combine(today, time(8,00)), aDuration=2, aStaffName="Life Guard", aPrice=0, aLocation="Swimming Pool", aCapacity=1, aSlotsTaken=0, activity=Activity.query.get(1)))
+            db.session.add(Calendar(aDateTime=datetime.combine(today, time(9,00)), aDuration=1, aStaffName="Trainer", aPrice=0, aLocation="Studio", aCapacity=25, aSlotsTaken=0, activity=Activity.query.get(10)))
+
 
         #increment day
         today = today+timedelta(days=1)
@@ -133,17 +134,18 @@ def calendarMethod():
     #week span
     weeks = [today, (today + timedelta(days=1)), (today + timedelta(days=2)), (today + timedelta(days=3)), (today + timedelta(days=4)), (today + timedelta(days=5)), (today + timedelta(days=6)), (today + timedelta(days=7)), (today + timedelta(days=8)), (today + timedelta(days=9)), (today + timedelta(days=10)), (today + timedelta(days=11)), (today + timedelta(days=12)), (today + timedelta(days=13))]
     #days of week integers, from today
-    daysInts = [today.weekday(), (today + timedelta(days=1)).weekday(), (today + timedelta(days=2)).weekday(), (today + timedelta(days=3)).weekday(), (today + timedelta(days=4)).weekday(), (today + timedelta(days=5)).weekday(), (today + timedelta(days=6)).weekday()]
     
     #array for constant events
     dailyConstantEvents = ["Swimming (Lane Swimming)", "Swimming (General Use)", "Gym", "Swimming (Lessons)", "Squash 1", "Squash 2", "Sports Hall (Session)", "Climbing"]
     
     #calculation for making sure we only get 2 weeks of data
-    days = datetime.now()+timedelta(days=14)
-    # get all events in order of date and time
-    allEvents = Calendar.query.filter(Calendar.aDateTime >= date.today()).filter(Calendar.aDateTime < days).order_by(Calendar.aDateTime).all()
+    w1 = datetime.now()+timedelta(days=7)
+    w2 = datetime.now()+timedelta(days=14)
+    # get all events in order of date and time w1 and w2
+    allEvents = Calendar.query.filter(Calendar.aDateTime >= date.today()).filter(Calendar.aDateTime < w1).order_by(Calendar.aDateTime).all()
+    allEvents2 = Calendar.query.filter(Calendar.aDateTime >= w1).filter(Calendar.aDateTime < w2).order_by(Calendar.aDateTime).all()
 
-    #get events that aren't team or constant
+    #get events that aren't team or constant 1st Week
     events = []
     for i in allEvents:
         #get actvitiy type of the ith event
@@ -164,8 +166,30 @@ def calendarMethod():
     for i in events:
         eventInfo.append(Activity.query.filter_by(id=i.activityId).first())
 
+    #--------------------------------------------------------------------------------------------------
+    #get events that aren't team or constant 2nd Week
+    events2 = []
+    for i in allEvents2:
+        #get actvitiy type of the ith event
+        aType = Activity.query.filter_by(id=i.activityId).first()
+        counter = 0
+        #loop through constant events
+        for j in dailyConstantEvents:
+            #if the event is the activity type increment counter
+            if aType.activityType == j:
+                counter = 1
+        
+        #check if we add event to shown activities
+        if counter == 0:
+            events2.append(i)
+
+    # get event type for each event found
+    eventInfo2 = []
+    for i in events2:
+        eventInfo2.append(Activity.query.filter_by(id=i.activityId).first())
+
     ##TO CHANGE ONCE MEMBERSHIP IS DONE
-    member = True
+    member = False
     #current user
     #if current_user.login_detail.isMember:
     #    member = True
@@ -175,11 +199,18 @@ def calendarMethod():
     return render_template('calendar.html',
                             title     = 'Calendar',
                             numEvents = len(events),
+                            numEvents2 = len(events2),
                             events    = events,
                             eventInfo = eventInfo,
+                            events2    = events2,
+                            eventInfo2 = eventInfo2,
                             member    = member,
-                            weeks     = weeks,
-                            daysInts  = daysInts)
+                            weeks     = weeks)
+
+#calendar of all repeat sessions
+@app.route('/repeatEvents', methods=['GET', 'POST'])
+def repeatEvents():
+    return render_template('repeatEvents.html')
 
 #this is a book event button for the calendar
 @app.route('/makeBooking/<id>', methods=['GET'])

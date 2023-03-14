@@ -39,6 +39,7 @@ def loadUser(userId):
 def index():
     # check the user type
     # If admin, show them the admin page
+
     return redirect(url_for('home'))
 
 

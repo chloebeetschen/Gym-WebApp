@@ -7,6 +7,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from app import app, db, models 
 from app.models import *
+from flask.testing import FlaskClient 
 
 
 class TestCase(unittest.TestCase):
@@ -37,7 +38,11 @@ class TestCase(unittest.TestCase):
 
     def test_navBarAll_register(self):
         response = self.app.get(('/register'), follow_redirects=True)
-        self.assertEqual(response.status_code, 200)       
+        self.assertEqual(response.status_code, 200)   
+
+    def test_navBarAll_home(self):
+        response = self.app.get(('/home'), follow_redirects = True)
+        self.assertEqual(response.status_code, 200)    
 
 
     #for user type 1  
@@ -58,10 +63,8 @@ class TestCase(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
 
     #TO DO :
-    #basket page 
-
-    #home page 
-
+    #basket / payment page 
+    #pricing list page 
 
     #for user type 3 
     def test_navBarType2_addEvent(self):
@@ -81,13 +84,26 @@ class TestCase(unittest.TestCase):
         self.assertEqual(response.status_code, 200)  
 
 
+    #registering a user and testing if this updates in the database
+    def test_register(self):
+        data = {
+            'Name' : 'Michael Scott',
+            'DateOfBirth' : '1/10/1999',
+            'address' : '7 Uni Road',
+            'Email' : ' michael.scott@gmail.com',
+            'Password' : '12345678',
+            'ReenterPassword' : '12345678'
+        }
+        response = self.app.post(('/register'), data=data)
+        user = UserLogin.query.filter_by(email = 'michael.scott@gmail.com').first()
+        self.assertIsNotNone(user)
 
-    #testing the form fields for log in 
+
+    #testing that a registered user can log in 
     def test_login(self):
-        #populating the database with test data 
         self.user1 = UserLogin(email = 'michael.scott@gmail.com', password = '12345678', userType = '1')
         db.session.add(self.user1)
-        db.session.commit()    
+        db.session.commit()
 
         response = self.app.post('/login', data=dict(
             email = self.user1.email,

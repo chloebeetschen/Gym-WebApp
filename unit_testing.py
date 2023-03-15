@@ -7,6 +7,8 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from app import app, db, models 
 from app.models import *
+from app.views import *
+from app.forms import *
 from flask.testing import FlaskClient 
 
 
@@ -89,14 +91,20 @@ class TestCase(unittest.TestCase):
         data = {
             'Name' : 'Michael Scott',
             'DateOfBirth' : '1/10/1999',
-            'address' : '7 Uni Road',
+            'Address' : '7 Uni Road',
             'Email' : ' michael.scott@gmail.com',
             'Password' : '12345678',
             'ReenterPassword' : '12345678'
         }
-        response = self.app.post(('/register'), data=data)
-        user = UserLogin.query.filter_by(email = 'michael.scott@gmail.com').first()
+
+        form = RegisterForm(data=data)
+        self.assertTrue(form.validate())
+        response = self.app.post('/register', data=data)
+        self.assertEqual(response.status_code, 200)
+
+        user = UserLogin.query.filter_by(name= 'Michael Scott').first()
         self.assertIsNotNone(user)
+
 
 
     #testing that a registered user can log in 

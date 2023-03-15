@@ -75,7 +75,7 @@ class PaymentForm(FlaskForm):
 
 class RegisterForm(FlaskForm):
     Name        = StringField('Name', validators=[DataRequired(message="Please enter a name")], render_kw={"placeholder": "Name"})
-    DateOfBirth = DateField('Date of birth', validators=[DataRequired(message="Please enter a name"), validateAge], render_kw={"placeholder": "Date of Birth"})
+    DateOfBirth = DateField('Date of birth', validators=[DataRequired(message="Please enter your date of birth"), validateAge], render_kw={"placeholder": "Date of Birth"})
     Address     = StringField('Address', validators=[DataRequired(message="Please enter an address")], render_kw={"placeholder": "Address"})
     Email       = EmailField('Email', validators=[DataRequired(message="Please enter an email")], render_kw={"placeholder": "Email"})
     Password    = PasswordField('Password', validators=[DataRequired(message="Please enter a password"), Length(min=8)], render_kw={"placeholder": "Password"})

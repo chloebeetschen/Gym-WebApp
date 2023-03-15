@@ -401,3 +401,8 @@ def settings():
                             title='Settings',
                             form=form,
                             user=current_user)
+
+
+@app.route('/pricingList', methods=['GET', 'POST'])
+def pricingList():
+    return render_template('pricingList.html', title= 'Pricing List')

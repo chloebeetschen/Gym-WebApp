@@ -1,6 +1,7 @@
+<!-- Template for editing events -->
 {% extends "base.html" %}
-{% block content %}
 
+{% block content %}
 <!--Basic Header-->
 <h1>Edit Event (Manager)</h1>
 
@@ -13,30 +14,24 @@
     </p>
 
     <!--Date of activity-->
-    <p>Date
-        <br>
+    <p>
         {{ form.cDate(class='form-control')}}
-        <br>
     </p>
     {% for error in form.cDate.errors %}
         [{{ error }}]
     {% endfor %}
 
     <!--Time of activity-->
-    <p>Time
-        <br>
+    <p>
         {{ form.cTime(class='form-control')}}
-        <br>
     </p>
     {% for error in form.cTime.errors %}
         [{{ error }}]
     {% endfor %}
 
     <!-- Duration of activity-->
-    <p>Activity Duration
-        <br>
+    <p>
         {{ form.cDuration(class='form-control')}}
-        <br>
     </p>
     {% for error in form.cDuration.errors %}
         [{{ error }}]

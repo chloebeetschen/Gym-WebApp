@@ -1,18 +1,15 @@
 <!-- THIS PAGE IS PROGRAMMED BY HOPE & ARCHIE -->
-
+<!-- Template for payment portal frontend -->
 {% extends "base.html" %}
-{% block content %}
 
+{% block content %}
 <h1>Pay: </h1>
 <!-- Form to enter payment details -->
 <form method="post" name="create">
     {{ form.hidden_tag() }}
 
     <!-- Card Name: -->
-    <p>
-      Card Name:
-      {{ form.cName(class_='form-control') }}
-    </p>
+    <p>{{ form.cName(class_='form-control') }}</p>
     {% for error in form.cName.errors %}
       <div class="alert alert-danger" role="alert">
         [{{ error }}]
@@ -20,10 +17,7 @@
     {% endfor %}
 
     <!-- Card number: -->
-    <p>
-      Card Number:
-      {{ form.cNum(class_='form-control') }}
-    </p>
+    <p>{{ form.cNum(class_='form-control') }}</p>
     {% for error in form.cNum.errors %}
       <div class="alert alert-danger" role="alert">
         [{{ error }}]
@@ -31,10 +25,7 @@
     {% endfor %}
 
     <!-- Card expiry: -->
-    <p>
-      CVV:
-      {{ form.cCVV(class_='form-control') }}
-    </p>
+    <p>{{ form.cCVV(class_='form-control') }}</p>
     {% for error in form.cCVV.errors %}
       <div class="alert alert-danger" role="alert">
         [{{ error }}]
@@ -42,10 +33,7 @@
     {% endfor %}
 
     <!-- Card expiry: -->
-    <p>
-      Card Expiry:
-      {{ form.cExpDate(class_='form-control') }}
-    </p>
+    <p>{{ form.cExpDate(class_='form-control') }}</p>
     {% for error in form.cExpDate.errors %}
       <div class="alert alert-danger" role="alert">
       [{{ error }}]
@@ -95,5 +83,4 @@
 	}
 initPayPalButton();
 </script>
-
 {% endblock %}

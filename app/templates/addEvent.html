@@ -1,6 +1,7 @@
+<!-- Template for adding an event -->
 {% extends "base.html" %}
-{% block content %}
 
+{% block content %}
 <!--Basic Header-->
 <h1>Add Event (Manager)</h1>
 
@@ -9,45 +10,62 @@
     {{ form.hidden_tag() }}
 
     <!--Type (Name of Activity)-->
-    <p>Activity Name
-        <br>
-        {{ form.cType(class='form-control')}}
-        <br>
-    </p>
-    {% for error in form.cType.errors %}
-        [{{ error }}]
-    {% endfor %}
+    <label for="activities">Choose Activity</label>
+    {% if activities == none %}
+        <p>There are currently no activites.</p>
+    {% else %}
+        <select name="activity" class="form-control" id="activities">
+        {% for activity in activities %}
+            <option value="{{activity.activityType}}">{{ activity.activityType }}</option>
+        {% endfor %}
+        </select>
+    {% endif %}
 
     <!--Date of activity-->
-    <p>Date
-        <br>
-        {{ form.cDate(class='form-control')}}
-        <br>
+    <p class="mt-4">
+        Date <br>
+        {{ form.aDateTime(class='form-control')}}
+    
     </p>
-    {% for error in form.cDate.errors %}
+    {% for error in form.aDateTime.errors %}
         [{{ error }}]
     {% endfor %}
 
-    <!--Time of activity-->
-    <p>Time
-        <br>
-        {{ form.cTime(class='form-control')}}
-        <br>
-    </p>
-    {% for error in form.cTime.errors %}
-        [{{ error }}]
-    {% endfor %}
 
     <!-- Duration of activity-->
-    <p>Activity Duration
-        <br>
-        {{ form.cDuration(class='form-control')}}
-        <br>
+    <p>
+        Duration <br>
+        {{ form.aDuration(class='form-control')}}
+   
     </p>
-    {% for error in form.cDuration.errors %}
+    {% for error in form.aDuration.errors %}
         [{{ error }}]
     {% endfor %}
 
-    <p><input type="submit" value="Add Event"></p>
+    <!-- Staff member -->
+    <p>
+        Staff Member <br>
+        {{ form.aStaffName(class='form-control')}}
+    </p>
+
+    <!-- Location -->
+    <p>
+        Location <br>
+        {{ form.aLocation(class='form-control')}}
+    </p>
+
+    <!-- Price -->
+    <p>
+        Price <br>
+        {{ form.aPrice(class='form-control')}}
+    </p>
+
+    <!-- Capacity -->
+    <p>
+        Capacity <br>
+        {{ form.aCapacity(class='form-control')}}
+    </p>
+
+    <p><input type="submit" class="btn btn-primary" value="Add Event"></p>
 </form>
 {% endblock %}

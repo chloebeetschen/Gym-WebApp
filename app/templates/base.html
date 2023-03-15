@@ -9,8 +9,7 @@
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
       
       <!-- other css sheet: -->
-      <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" type="text/css">
-      <script type="text/javascript" src="{{ url_for('static', filename='jquery.min.js') }}" ></script>
+      <link rel="stylesheet" href="../static/styles.css" type="text/css">
       
       <!-- Set title: -->
       {% if title %}
@@ -32,22 +31,23 @@
           
           <ul class="navbar-nav mr-auto">
             <li class="nav-item"><a class="nav-link" href="{{ url_for('home') }}">Home<span class="sr-only">(current)</span></a></li>
-            <li class="nav-item"><a class="nav-link" href="/">Book</a></li>
             <li class="nav-item"><a class="nav-link" href="/calendar">Calendar</a></li>
             <li class="nav-item"><a class="nav-link" href="/myBookings">My Bookings</a></li>
+            <li class="nav-item"><a class="nav-link" href="/memberships">Memberships</a></li>
             <!-- Only managers should have access to these pages -->
             {% if current_user.userType == 3 %}
               <li class="nav-item"><a class="nav-link" href="/addEvent">Add Event</a></li>
               <li class="nav-item"><a class="nav-link" href="/addActivity">Add Activity</a></li>
-              <li class="nav-item"><a class="nav-link" href="/viewAEManager">Edit</a></li>
+              <li class="nav-item"><a class="nav-link" href="{{ url_for('editActivity') }}">Edit Activity</a></li>
               <li class="nav-item"><a class="nav-link" href="/manageUsers">Manage Users</a></li>
             {% endif %}
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
-            <li class="nav-item"><a class="nav-link" href="/">Basket</a></li>
+            <li class="nav-item"><a class="nav-link" href="/basket">Basket</a></li>
             <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
             <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('settings') }}">Settings</a></li>
           </ul>
 
         </div>

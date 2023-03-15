@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+        <h1>Edit a user's details</h1>
+        <h3>Amend details.</h3>
+        <form action="" method="post">
+            {{ form.hidden_tag() }}
+
+            <p>{{ form.Name(class_='form-control') }}</p>
+            <p>{{ form.Email(class_='form-control') }}</p>
+            <p>{{ form.NewPassword(class_='form-control') }}</p>
+            <p>{{ form.NewPasswordx2(class_='form-control') }}</p>
+            <p>{{ form.Type(class_='form-control') }}</p>
+
+            
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+{% endblock %}

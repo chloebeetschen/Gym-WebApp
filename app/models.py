@@ -20,8 +20,10 @@ class Calendar(db.Model):
     aCapacity  = db.Column(db.Integer, nullable=False)
     #this is the number of people signed up to the activity, which will need to be incremented
     aSlotsTaken = db.Column(db.Integer, nullable=False)
-    # Relationship with calendar
+    # Relationship with Activity
     activityId = db.Column(db.Integer, db.ForeignKey('activity.id'), nullable=False)
+    # Relationship with user bookings
+    userEvents = db.relationship('UserBookings', backref='calendar')
 
     # Validate that date is in future
     @validates("aDateTime")
@@ -47,14 +49,17 @@ class Calendar(db.Model):
         if Calendar < 0:
             raise ValueError("Capacity must be positive")
         return Calendar
-    
+
 
 class UserBookings(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    userId = db.Column(db.Integer, nullable=False)
-    calendarId = db.Column(db.Integer, nullable=False)
-    # userId = db.Column(db.Integer, db.ForeignKey('UserLogin.id'))
-    # calendarId = db.Column(db.Integer, db.ForeignKey('calendar.id'))
+    
+    #userId = db.Column(db.Integer, nullable=False)
+    #calendarId = db.Column(db.Integer, nullable=False)
+
+    userId = db.Column(db.Integer, db.ForeignKey('user_login.id'))
+    calendarId = db.Column(db.Integer, db.ForeignKey('calendar.id'))
+
 
 
 
@@ -74,6 +79,8 @@ class UserLogin(db.Model, UserMixin):
     #Customer is userType 1, Employee is userType 2, and Manager is useType3
     userType = db.Column(db.Integer, nullable=False) 
     userDetails = db.relationship('UserDetails', backref='loginDetails', uselist=False)
+    #relationship with userbookings
+    userbookings = db.relationship('UserBookings', backref='loginDetails')
 
     # Validate that email contains @
     @validates("email")
@@ -88,14 +95,14 @@ class UserLogin(db.Model, UserMixin):
             raise ValueError("Invalid User Type")
         return UserLogin
 
-    
-
 # User info (Sensitive info -> encryption)
 class UserDetails(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)  # userDetailId
     name = db.Column(db.String(150), nullable=False)
     dateOfBirth = db.Column(db.Date, nullable=False)
     address = db.Column(db.String(150))
+    isMember = db.Column(db.Boolean)
+    membershipEnd = db.Column(db.DateTime)
     parentId = db.Column(db.Integer, db.ForeignKey('user_login.id'))
 
     # Validate that age is over 16

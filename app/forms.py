@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import PasswordField, EmailField, TextAreaField, SubmitField, SelectField, SelectMultipleField, DateField
+from wtforms import PasswordField, EmailField, TextAreaField, SubmitField, SelectField, SelectMultipleField, DateField, DateTimeLocalField
 from wtforms import StringField, BooleanField, IntegerField, FloatField, TimeField
 from wtforms.validators import DataRequired, Length, EqualTo, NumberRange, ValidationError
 from luhn import *
@@ -45,8 +45,8 @@ class ActivityForm(FlaskForm):
 # Form to add an activity to the calendar
 # Can be used for editing and adding calendar events
 class EventForm(FlaskForm):
-    aDateTime    = DateField('Date of activity', validators=[DataRequired(), validateFutureDate], render_kw={"placeholder": "Date of activity"})
-    aDuration    = IntegerField('Duration of activity', validators=[DataRequired(), NumberRange(min=0, message="Please enter a positive duration")],
+    aDateTime    = DateTimeLocalField('Date & Time of activity', format='%Y-%m-%dT%H:%M', validators=[DataRequired()], render_kw={"placeholder": "Date and Time of activity"})
+    aDuration    = IntegerField('Duration of activity', validators=[DataRequired(), NumberRange(min=0, message="Please enter a positive duration")]
                                 render_kw={"placeholder": "Duration of activity"})
     aStaffName   = StringField("Staff Name", validators=[DataRequired()], render_kw={"placeholder": "Staff Member"}) 
     aLocation    = StringField("Location", validators=[DataRequired()], render_kw={"placeholder": "Location"}) 
@@ -74,7 +74,7 @@ class PaymentForm(FlaskForm):
 
 class RegisterForm(FlaskForm):
     Name        = StringField('Name', validators=[DataRequired(message="Please enter a name")], render_kw={"placeholder": "Name"})
-    DateOfBirth = DateField('Date of birth', validators=[DataRequired(message="Please enter a name"), validateAge], render_kw={"placeholder": "Date of Birth"})
+    DateOfBirth = DateField('Date of birth', validators=[DataRequired(message="Please enter your date of birth"), validateAge], render_kw={"placeholder": "Date of Birth"})
     Address     = StringField('Address', validators=[DataRequired(message="Please enter an address")], render_kw={"placeholder": "Address"})
     Email       = EmailField('Email', validators=[DataRequired(message="Please enter an email")], render_kw={"placeholder": "Email"})
     Password    = PasswordField('Password', validators=[DataRequired(message="Please enter a password"), Length(min=8)], render_kw={"placeholder": "Password"})
@@ -90,9 +90,16 @@ class LoginForm(FlaskForm):
 
 
 class SettingsForm(FlaskForm):
-    Name        = StringField('Name', render_kw={"placeholder": "Name"})
-    Address     = StringField('Address', render_kw={"placeholder": "Address"})
-    Password    = PasswordField('Old Password', validators=[DataRequired(message="Please enter your current password")], render_kw={"placeholder": "Password"})
-    NewPassword = PasswordField('New Password', validators=[DataRequired(message="Please enter a new password")], render_kw={"placeholder": "New Password"})
+    Name          = StringField('Name', validators=[DataRequired()], render_kw={"placeholder": "Name"})
+    Address       = StringField('Address', validators=[DataRequired()], render_kw={"placeholder": "Address"})
+    Password      = PasswordField('Password', validators=[DataRequired()], render_kw={"placeholder": "Password"})
+    NewPassword   = PasswordField('Password', validators=[DataRequired()], render_kw={"placeholder": "New Password"})
     NewPasswordx2 = PasswordField('Reenter New Password', validators=[DataRequired(message="Please reenter your new password"), EqualTo('NewPassword', message="Passwords must match")], render_kw={"placeholder": "Reenter New Password"})
+
+class ManagerForm(FlaskForm):
+    Name          = StringField('Name', render_kw={"placeholder": "Name"})
+    Email         = EmailField('email', validators=[DataRequired(message="Please enter a your email")], render_kw={"placeholder": "Email"})
+    NewPassword   = PasswordField('New Password', validators=[DataRequired(message="Please enter a new password")], render_kw={"placeholder": "New Password"})
+    NewPasswordx2 = PasswordField('Reenter New Password', validators=[DataRequired(message="Please reenter your new password"), EqualTo('NewPassword', message="Passwords must match")], render_kw={"placeholder": "Reenter New Password"})
+    Type        = IntegerField('Type', validators=[DataRequired(), NumberRange(min=1, max=3)], render_kw={"placeholder": "Type"})
 

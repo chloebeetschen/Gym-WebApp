@@ -25,6 +25,10 @@ loginManager = LoginManager()
 loginManager.init_app(app)
 loginManager.login_view = "login"
 
+@app.before_first_request
+def delete_sessions():
+    for key in list(session.keys()):
+        session.pop(key)
 
 @app.before_first_request
 def create_tables():

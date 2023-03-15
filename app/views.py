@@ -697,8 +697,8 @@ def annualMembership():
     today = datetime.now()
     yearAhead = today + relativedelta(years=1)
     cUserDetails.membershipEnd = yearAhead
-    session['membership'] = "monthly"
+    session['membership'] = "annual"
    
     db.session.commit()
     ##Test to see if working correctly
-    return redirect('/admin')
+    return redirect('/basket')

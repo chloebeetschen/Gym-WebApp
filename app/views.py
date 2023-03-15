@@ -25,6 +25,10 @@ loginManager = LoginManager()
 loginManager.init_app(app)
 loginManager.login_view = "login"
 
+@app.before_first_request
+def delete_sessions():
+    for key in list(session.keys()):
+        session.pop(key)
 
 @app.before_first_request
 def create_tables():
@@ -264,7 +268,8 @@ def basket():
     totalPrice=0
     
     # If anything in basket, set isItems to true and get all the events in basket
-    if 'basket'in session:
+    if 'basket' in session:
+        print(session['basket'])
         isItems = True
         # Create list of events in basket
         for itemId in session['basket']:

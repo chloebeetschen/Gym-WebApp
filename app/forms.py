@@ -46,7 +46,7 @@ class ActivityForm(FlaskForm):
 # Can be used for editing and adding calendar events
 class EventForm(FlaskForm):
     aDateTime    = DateTimeLocalField('Date & Time of activity', format='%Y-%m-%dT%H:%M', validators=[DataRequired()], render_kw={"placeholder": "Date and Time of activity"})
-    aDuration    = IntegerField('Duration of activity', validators=[DataRequired(), NumberRange(min=0, message="Please enter a positive duration")]
+    aDuration    = IntegerField('Duration of activity', validators=[DataRequired(), NumberRange(min=0, message="Please enter a positive duration")],
                                 render_kw={"placeholder": "Duration of activity"})
     aStaffName   = StringField("Staff Name", validators=[DataRequired()], render_kw={"placeholder": "Staff Member"}) 
     aLocation    = StringField("Location", validators=[DataRequired()], render_kw={"placeholder": "Location"}) 

@@ -39,7 +39,11 @@ class TestCase(unittest.TestCase):
 
     def test_navBarAll_home(self):
         response = self.app.get(('/home'), follow_redirects = True)
-        self.assertEqual(response.status_code, 200)    
+        self.assertEqual(response.status_code, 200)   
+
+    def test_navBarAll_login(self):
+        response = self.app.get(('/login'), follow_redirects = True)
+        self.assertEqual(response.status_code, 200) 
 
 
     #for user type 1  
@@ -62,8 +66,12 @@ class TestCase(unittest.TestCase):
     def test_navBarType1_basket(self):
         response = self.app.get(('/basket'), follow_redirects = True)
         self.assertEqual(response.status_code, 200)
+    
+    def test_navBarType1_memberships(self):
+        response = self.app.get(('/memberships'), follow_redirects = True)
+        self.assertEqual(response.status_code, 200)   
+            
     #TO DO :
-    #basket / payment page 
     #pricing list page 
 
     #for user type 3 

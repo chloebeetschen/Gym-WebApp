@@ -57,7 +57,6 @@ class UserBookings(db.Model):
     # calendarId = db.Column(db.Integer, db.ForeignKey('calendar.id'))
 
 
-
 # table to store payment cards
 class PaymentCard(db.Model):
     id = db.Column(db.Integer, primary_key=True)

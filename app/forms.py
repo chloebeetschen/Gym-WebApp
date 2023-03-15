@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import PasswordField, EmailField, TextAreaField, SubmitField, SelectField, SelectMultipleField, DateField
+from wtforms import PasswordField, EmailField, TextAreaField, SubmitField, DateTimeLocalField, SelectField, SelectMultipleField, DateField
 from wtforms import StringField, BooleanField, IntegerField, FloatField, TimeField
 from wtforms.validators import DataRequired, Length, EqualTo, NumberRange, ValidationError
 from luhn import *
@@ -45,7 +45,7 @@ class ActivityForm(FlaskForm):
 # Form to add an activity to the calendar
 # Can be used for editing and adding calendar events
 class EventForm(FlaskForm):
-    aDateTime    = DateField('Date of activity', validators=[DataRequired(), validateFutureDate], render_kw={"placeholder": "Date of activity"})
+    aDateTime    = DateTimeLocalField('Date & Time of activity', format='%Y-%m-%dT%H:%M', alidators=[DataRequired(), validateFutureDate], render_kw={"placeholder": "Date of activity"})
     aDuration    = IntegerField('Duration of activity', validators=[DataRequired(), NumberRange(min=0, message="Please enter a positive duration")],
                                 render_kw={"placeholder": "Duration of activity"})
     aStaffName   = StringField("Staff Name", validators=[DataRequired()], render_kw={"placeholder": "Staff Member"}) 

@@ -116,9 +116,34 @@ class TestCase(unittest.TestCase):
                 #user = models.UserLogin.query.filter_by(email= 'michael.scott@gmail.com').first()
                 self.assertIsNotNone(user)
 
+    #testing to see if we can register a user with missing details - should not be able to
+    #missing email field 
+    def test_registerMissing(self):
+        response = self.app.get(('/register'), follow_redirects = True)
+        self.assertEqual(response.status_code, 200)
+
+        with app.test_request_context():
+            with app.app_context():
+                data = {
+                'Name' : 'Pam Halpert',
+                'DateOfBirth' : datetime.strptime('2002-03-15', '%Y-%m-%d').date(),
+                'Address' : '89 Uni Road',
+                'Email' : ' ',
+                'Password' : '12345678',
+                'ReenterPassword' : '12345678',
+                'Type' : 1
+                }
+
+                form = RegisterForm(data=data)
+                #form should not be valid since there is missing data
+                self.assertFalse(form.validate())
+                error_dict = form.errors
+                #check if error message for missing email is displayed
+                self.assertIn('Please enter an email', error_dict.get('Email', []))
 
 
-    #testing that a registered user can log in 
+
+    #testing that an exisiting user can log in 
     def test_login(self):
         self.user1 = UserLogin(email = 'jim.scott@gmail.com', password = '12345678', userType = 1)
         db.session.add(self.user1)

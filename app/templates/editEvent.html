@@ -5,38 +5,76 @@
 <!--Basic Header-->
 <h1>Edit Event (Manager)</h1>
 
+<h3>
+    Selected Event: <br> {{eventType}} @ {{event.aDateTime}} for {{event.aDuration}}hours
+</h3>
+<h4>
+    {{event.aStaffName}} - {{event.aLocation}} - £{{event.aPrice}} - Capacity = {{event.aSlotsTaken}}/{{event.aCapacity}}
+</h4>
+
 <!--Form for manager to create a new event for their chosen activity to be insterted into the calendar-->
-<form method="post" name="addEvent">
+<h4 class="">
+    Fill in any fields that you would like to alter.
+</h4>
+<form action="" method="post" name="editEvent">
     {{ form.hidden_tag() }}
-   
+
     <!--Type (Name of Activity)-->
-    <p>Activity: {{eventName}}
-    </p>
+    <label for="activities">{{eventType}}</label>
 
     <!--Date of activity-->
-    <p>
-        {{ form.cDate(class='form-control')}}
+    <p class="mt-4">
+        Date and Time<br>
+        {{ form.aDateTime(class='form-control')}}
+    
     </p>
-    {% for error in form.cDate.errors %}
+    {% for error in form.aDateTime.errors %}
         [{{ error }}]
     {% endfor %}
 
-    <!--Time of activity-->
-    <p>
-        {{ form.cTime(class='form-control')}}
-    </p>
-    {% for error in form.cTime.errors %}
-        [{{ error }}]
-    {% endfor %}
 
     <!-- Duration of activity-->
     <p>
-        {{ form.cDuration(class='form-control')}}
+        Duration <br>
+        {{ form.aDuration(class='form-control')}}
+    
     </p>
-    {% for error in form.cDuration.errors %}
+    {% for error in form.aDuration.errors %}
         [{{ error }}]
     {% endfor %}
 
-    <p><input type="submit" value="Edit Event"></p>
+    <!-- Staff member -->
+    <p>
+        Staff Member <br>
+        {{ form.aStaffName(class='form-control')}}
+    </p>
+
+    <!-- Location -->
+    <p>
+        Location <br>
+        {{ form.aLocation(class='form-control')}}
+    </p>
+
+    <!-- Price -->
+    <p>
+        Price <br>
+        {{ form.aPrice(class='form-control')}}
+    </p>
+    
+    <!-- Capacity -->
+    <p>
+        Capacity <br>
+        {{ form.aCapacity(class='form-control')}}
+    </p>
+
+    <p><input type="submit" class="btn btn-primary" value="Edit Event"></p>
 </form>
+
+<h1>Delete Event</h1>
+<h4 class="">
+    Delete the chosen event and <em> all
+    associated user bookings. </em>
+</h4>
+<a href="/deleteEvent/{{event.id}}"><button type="button" lass="btn btn-primary">Delete</button>
+
 {% endblock %}

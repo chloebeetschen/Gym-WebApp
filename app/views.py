@@ -42,7 +42,7 @@ def create_tables():
         Activity(activityType="Swimming (Lessons)"),        #3 
         Activity(activityType="Swimming (General Use)"),    #4
         Activity(activityType="Gym"),                       #5
-        Activity(activityType="Squash 1"),                  #6
+        Activity(activityType="Squash"),                    #6
         Activity(activityType="Climbing"),                  #7
         Activity(activityType="Pilates"),                   #8
         Activity(activityType="Aerobics"),                  #9
@@ -219,9 +219,32 @@ def calendarMethod():
                             weeks     = weeks)
 
 #calendar of all repeat sessions
-@app.route('/repeatEvents', methods=['GET', 'POST'])
-def repeatEvents():
-    return render_template('repeatEvents.html')
+@app.route('/repeatEvents/<id>', methods=['GET', 'POST'])
+def repeatEvents(id):
+
+    week = datetime.now()+timedelta(days=7)
+    events = Calendar.query.filter(Calendar.aDateTime >= date.today()).filter(Calendar.aDateTime < week).filter_by(activityId = id).all()
+    eventType = (Activity.query.get(id)).activityType
+    
+    today = datetime.now()
+    weeks = [today, (today + timedelta(days=1)), (today + timedelta(days=2)), (today + timedelta(days=3)), (today + timedelta(days=4)), (today + timedelta(days=5)), (today + timedelta(days=6)), (today + timedelta(days=7)), (today + timedelta(days=8)), (today + timedelta(days=9)), (today + timedelta(days=10)), (today + timedelta(days=11)), (today + timedelta(days=12)), (today + timedelta(days=13))]
+
+
+    ##TO CHANGE ONCE MEMBERSHIP IS DONE
+    member = False
+    #current user
+    #if current_user.login_detail.isMember:
+    #    member = True
+    #else:
+    #    member = False
+
+    return render_template('repeatEvents.html',
+                            title     = 'Calendar of Constant Events',
+                            numEvents = len(events),
+                            events    = events,
+                            eventType = eventType,
+                            member    = member,
+                            weeks     = weeks)
 
 #this is a book event button for the calendar
 @app.route('/makeBooking/<id>', methods=['GET'])
@@ -291,7 +314,8 @@ def basket():
     return render_template('basket.html', title='Basket', isItems=isItems, basketItems=basketItems, num=len(basketItems), totalPrice=totalPrice)
 
 #this is so the manager is able to delete an event - delete button
-@app.route('/deleteEvent/<id>', methods=['GET'])
+@app.route('/deleteEvent/<id>', methods=['GET', 'POST'])
+@login_required
 def deleteEvent(id): #id passed in will be  the id of the calendar
     # get the booking that matches the id of the parameter given and that of the userId (which is 0 for now)
     # get the event in the calendar
@@ -391,9 +415,7 @@ def addActivity():
 
 #go to event edit page
 
-##DONE
 #manager edit activity
-#for now just redirects to viewAEManager
 @app.route('/editActivity', methods=['POST', 'GET'])
 @login_required
 def editActivity():
@@ -458,28 +480,38 @@ def addEvent():
 #manager edit event
 #for now just redirects to viewAEManager
 @app.route('/editEvent/<id>', methods=['POST', 'GET'])
+@login_required
 def editEvent(id):
-    eventName = (Activity.query.get((Calendar.query.get(id)).activityId)).activityType
-    form = editEventForm()
+    event = Calendar.query.get(id)
+    eventType = (Activity.query.get(event.activityId)).activityType
+    form = EventForm()
     #validate on submission
     if form.validate_on_submit(): 
-        edit = Calendar.query.get(id) 
-        if form.cDate.data is not None:
-            edit.activityData = form.cDate.data
+        if form.aDateTime.data is not None:
+            event.aDateTime = form.aDateTime.data
 
-        if form.cTime.data is not None:
-            edit.activityTime = form.cTime.data
+        if form.aDuration.data is not None:
+            event.aDuration = form.aDuration.data
 
-        if form.cDuration.data is not None:
-            edit.activityDuration = form.cDuration.data
+        if form.aStaffName.data is not None:
+            event.aStaffName = form.aStaffName.data
+
+        if form.aLocation.data is not None:
+            event.aLocation = form.aLocation.data
+        
+        if form.aPrice.data is not None:
+            event.aPrice = form.aPrice.data
+
+        if form.aCapacity.data is not None:
+            event.aCapacity = form.aCapacity.data
 
         db.session.commit()
         flash('Event edited succesfully!')
-        #return to same page for now
-        return redirect('/viewAEManager')
+        #return to previous page for now
+        return redirect('/calendar')
 
     #if validation failed  return to add event
-    return render_template('editEvent.html', title = 'Add Event', form = form, eventName=eventName)
+    return render_template('editEvent.html', title = 'Edit Event', form = form, eventType=eventType, event=event)
 
 #Payment Form page
 @app.route('/paymentForm', methods=['GET', 'POST'])
@@ -596,6 +628,11 @@ def settings():
                             title='Settings',
                             form=form,
                             user=current_user)
+
+
+@app.route('/pricingList', methods=['GET', 'POST'])
+def pricingList():
+    return render_template('pricingList.html', title= 'Pricing List')
 
 @app.route('/manageUsers', methods=['POST', 'GET'])
 @login_required

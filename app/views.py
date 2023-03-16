@@ -25,6 +25,10 @@ loginManager = LoginManager()
 loginManager.init_app(app)
 loginManager.login_view = "login"
 
+@app.before_first_request
+def delete_sessions():
+    for key in list(session.keys()):
+        session.pop(key)
 
 @app.before_first_request
 def create_tables():
@@ -120,6 +124,7 @@ def loadUser(userId):
 def index():
     # check the user type
     # If admin, show them the admin page
+
     return redirect(url_for('home'))
 
 
@@ -131,6 +136,7 @@ def index():
 
 #calendar of all sessions
 @app.route('/calendar', methods=['GET', 'POST'])
+@login_required
 def calendarMethod():
     today = datetime.now()
     #week span
@@ -191,12 +197,15 @@ def calendarMethod():
         eventInfo2.append(Activity.query.filter_by(id=i.activityId).first())
 
     ##TO CHANGE ONCE MEMBERSHIP IS DONE
-    member = False
+    #member = False
     #current user
     #if current_user.login_detail.isMember:
     #    member = True
     #else:
     #    member = False
+    user = UserDetails.query.filter_by(id=current_user.id).first()
+
+    print(user)
     
     return render_template('calendar.html',
                             title     = 'Calendar',
@@ -206,7 +215,7 @@ def calendarMethod():
                             eventInfo = eventInfo,
                             events2    = events2,
                             eventInfo2 = eventInfo2,
-                            member    = member,
+                            isMember = user.isMember,   
                             weeks     = weeks)
 
 #calendar of all repeat sessions
@@ -279,6 +288,7 @@ def basket():
     isItems = False
     basketItems = []
     itemNames = []
+    totalPrice=0
     
     # If anything in basket, set isItems to true and get all the events in basket
     if 'basket'in session:
@@ -286,11 +296,22 @@ def basket():
         # Create list of events in basket
         for itemId in session['basket']:
             item = Calendar.query.get(itemId)
-            basketItems.append(item)
+            totalPrice += item.aPrice
             itemActivity = Activity.query.get(item.activityId)
             name = itemActivity.activityType
-            itemNames.append(name)
-    return render_template('basket.html', title='Basket', isItems=isItems, basketItems=basketItems, num=len(basketItems), itemNames=itemNames)
+            nameDate = name + ", " + (item.aDateTime).strftime("%d/%m, %H:%M")
+            basketItems.append((nameDate, item.aPrice ))
+
+    if 'membership' in session:
+        isItems = True
+        if session['membership'] == "monthly":
+            basketItems.append(('Monthly Membership', 35))
+            totalPrice += 35
+        else:
+            basketItems.append(("Annual Membership", 300))
+            totalPrice += 300
+
+    return render_template('basket.html', title='Basket', isItems=isItems, basketItems=basketItems, num=len(basketItems), totalPrice=totalPrice)
 
 #this is so the manager is able to delete an event - delete button
 @app.route('/deleteEvent/<id>', methods=['GET', 'POST'])
@@ -608,35 +629,113 @@ def settings():
                             form=form,
                             user=current_user)
 
+@app.route('/manageUsers', methods=['POST', 'GET'])
+@login_required
+def manageUsers():
+
+    ## Normal users
+    userTypeLogin1 = UserLogin.query.filter_by(userType=1).all()
+
+    ## Employees
+    userTypeLogin2 = UserLogin.query.filter_by(userType=2).all() 
+
+    ## Managers
+    userTypeLogin3 = UserLogin.query.filter_by(userType=3).all()
+
+   
+    ## Will not render unless users of every type exist in the database
+    return render_template('manageUsers.html', title = 'Manage Users', 
+                            userTypeNum1   = len(userTypeLogin1),
+                            userTypeNum2   = len(userTypeLogin2),
+                            userTypeNum3   = len(userTypeLogin3),
+                            userTypeLogin1 = userTypeLogin1, 
+                            userTypeLogin2 = userTypeLogin2,
+                            userTypeLogin3 = userTypeLogin3 )  
+
+## Edits a users details (name, email, password and type)
+@app.route('/editUser/<id>', methods=['GET', 'POST'])
+@login_required
+def editUser(id):
+
+    form = ManagerForm()
+    if form.validate_on_submit():
+        # Update the user's details
+        cUserLogin   = models.UserLogin.query.get(id)
+        cUserDetails = models.UserDetails.query.get(id)
+
+        cUserDetails.name    = form.Name.data
+        cUserLogin.email     = form.Email.data
+        cUserLogin.password  = bcrypt.generate_password_hash(form.NewPasswordx2.data)
+        cUserLogin.userType      = form.Type.data
+
+        db.session.commit()
+        flash('User Details updated')
+        
+    return render_template('editUser.html',
+                            title='Edit User',
+                            form=form,
+                            user=id)
+
+## Deletes a user's userlogin, userdetails, userbookings and decreases the slots taken for the calender events
+@app.route('/deleteUser/<id>', methods=['GET', 'POST'])
+@login_required
+def deleteUser(id): 
+    cUserLogin   = models.UserLogin.query.get(id)
+
+    ## Slightly problematic - should be getting parentId, but works as there shouldn't be a situation where 
+    ## userdetails.id is different from parentid
+    cUserDetails = models.UserDetails.query.get(id)
+    
+    cUserBookings = models.UserBookings.query.filter_by(userId = id).all()
+
+    for item in cUserBookings:
+        event = Calendar.query.get(item.calendarId)
+        event.aSlotsTaken -= 1
+        db.session.delete(item)
+
+
+    db.session.delete(cUserLogin)
+    db.session.delete(cUserDetails)
+
+    db.session.commit()
+    flash('User deleted')
+        
+    return render_template('home.html',
+                            title='Home')
+
 ## Renders the memberships page with two options: annual and monthly
 @app.route('/memberships', methods=['GET', 'POST'])
 @login_required
 def memberships():
-    cUserLogin   = models.UserLogin.query.get(current_user.id)
-    return render_template('memberships.html', id=cUserLogin.id)
+    return render_template('memberships.html')
  
 ## Adds the membership end to a month in the future
 ## Does not update isMember to be true as this is done after payment is completed
-@app.route('/memberships/monthly/<id>', methods=['GET', 'POST'])
+@app.route('/memberships/monthly', methods=['GET', 'POST'])
 @login_required
-def monthlyMembership(id):
-    cUserDetails = models.UserDetails.query.get(id)
+def monthlyMembership():
+    cUserDetails = models.UserDetails.query.get(current_user.id)
+    cUserDetails.isMember = False
     today = datetime.now()
     monthAhead = today + relativedelta(months=1)
     cUserDetails.membershipEnd = monthAhead
+    session['membership'] = "monthly"
     db.session.commit()
     ##Test to see if working correctly
-    return redirect('/settings')
+    return redirect('/basket')
 
 ## Adds the membership end to a year in the future
 ## Does not update isMember to be true as this is done after payment is completed
-@app.route('/memberships/annual/<id>', methods=['GET', 'POST'])
+@app.route('/memberships/annual', methods=['GET', 'POST'])
 @login_required
-def annualMembership(id):
-    cUserDetails = models.UserDetails.query.get(id)
+def annualMembership():
+    cUserDetails = models.UserDetails.query.get(current_user.id)
+    cUserDetails.isMember = False
     today = datetime.now()
     yearAhead = today + relativedelta(years=1)
     cUserDetails.membershipEnd = yearAhead
+    session['membership'] = "annual"
+   
     db.session.commit()
     ##Test to see if working correctly
-    return redirect('/admin')
+    return redirect('/basket')

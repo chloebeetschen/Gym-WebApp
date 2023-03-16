@@ -38,7 +38,7 @@
                                 <a href=""></a><button type="button" class="btns">Full</button></a>
                             {% else %}
                                 {% if member == False %}
-                                    <a href="/"><button type="button" class="btns">Add to Basket</button>
+                                    <a href="/addBasket/{{events[i].id}}"><button type="button" class="btns">Add to Basket</button>
                                 {% else %}    
                                     <a href="/makeBooking/{{events[i].id}}"><button type="button" class="btns">Book</button>
                                 {% endif %}

@@ -196,13 +196,6 @@ def calendarMethod():
     for i in events2:
         eventInfo2.append(Activity.query.filter_by(id=i.activityId).first())
 
-    ##TO CHANGE ONCE MEMBERSHIP IS DONE
-    #member = False
-    #current user
-    #if current_user.login_detail.isMember:
-    #    member = True
-    #else:
-    #    member = False
     user = UserDetails.query.filter_by(id=current_user.id).first()
 
     print(user)
@@ -229,21 +222,17 @@ def repeatEvents(id):
     today = datetime.now()
     weeks = [today, (today + timedelta(days=1)), (today + timedelta(days=2)), (today + timedelta(days=3)), (today + timedelta(days=4)), (today + timedelta(days=5)), (today + timedelta(days=6)), (today + timedelta(days=7)), (today + timedelta(days=8)), (today + timedelta(days=9)), (today + timedelta(days=10)), (today + timedelta(days=11)), (today + timedelta(days=12)), (today + timedelta(days=13))]
 
+    user = UserDetails.query.filter_by(id=current_user.id).first()
 
-    ##TO CHANGE ONCE MEMBERSHIP IS DONE
-    member = False
-    #current user
-    #if current_user.login_detail.isMember:
-    #    member = True
-    #else:
-    #    member = False
+
+
 
     return render_template('repeatEvents.html',
                             title     = 'Calendar of Constant Events',
                             numEvents = len(events),
                             events    = events,
                             eventType = eventType,
-                            member    = member,
+                            member    = user.isMember,
                             weeks     = weeks)
 
 #this is a book event button for the calendar
@@ -335,6 +324,7 @@ def deleteEvent(id): #id passed in will be  the id of the calendar
 @login_required
 def deleteActivity(): 
     # Should delete the activity(today + timedelta(days=1)), (today + timedelta(days=2)), (today + timedelta(days=3)), (today + timedelta(days=4)), (today + timedelta(days=5)), ((today + timedelta(days=6))
+    sActivity = models.Activity.query.filter_by(activityType=request.form['activity']).first()  # The activity selected
 
     #get all calendar events containing the activity
     allEvents = Calendar.query.filter_by(activityId = sActivity.id).all()
@@ -356,7 +346,7 @@ def deleteActivity():
 @app.route('/myBookings', methods=['GET', 'POST'])
 @login_required
 def myBookings():
-    today = date.today()
+    today = datetime.now()
     #need a parameter id for the user that is logged in (can be done once cookies is enabled)
     bookings = UserBookings.query.filter_by(userId=current_user.id).all()
 
@@ -549,11 +539,13 @@ def login():
 
     return render_template('login.html', form=form)
 
-
 @app.route('/logout', methods=['GET', 'POST'])
 @login_required
 def logout():
     logout_user()
+    # Clear sessions
+    for key in list(session.keys()):
+        session.pop(key)
     return redirect(url_for('login'))
 
 

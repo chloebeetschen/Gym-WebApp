@@ -629,6 +629,11 @@ def settings():
                             form=form,
                             user=current_user)
 
+
+@app.route('/pricingList', methods=['GET', 'POST'])
+def pricingList():
+    return render_template('pricingList.html', title= 'Pricing List')
+
 @app.route('/manageUsers', methods=['POST', 'GET'])
 @login_required
 def manageUsers():

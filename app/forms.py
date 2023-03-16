@@ -25,7 +25,7 @@ def validateLuhn(form, field):
 
 # Function to check that a date is in the future
 def validateFutureDate(form, field):
-    if field.data < datetime.date.today():
+    if field.data < datetime.now():
         raise ValidationError('You must enter a date in the future')
 
 

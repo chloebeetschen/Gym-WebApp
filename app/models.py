@@ -90,7 +90,7 @@ class UserLogin(db.Model, UserMixin):
     # Validate that user type is 1, 2 or 3
     @validates("userType")
     def validate_userType(self, key, UserLogin):
-        if ((UserLogin != 1) or (UserLogin != 2) or (UserLogin != 3)):
+        if ((UserLogin != 1) and (UserLogin != 2) and (UserLogin != 3)):
             raise ValueError("Invalid User Type")
         return UserLogin
 

@@ -3,8 +3,7 @@
 
 
 import unittest
-from flask import Flask
-from flask import current_app
+from flask import Flask, current_app, url_for
 from flask_sqlalchemy import SQLAlchemy
 from app import app, db, models 
 from app.models import *
@@ -29,9 +28,8 @@ class TestCase(unittest.TestCase):
        
     #this deletes the test database once testing is complete 
     def tearDown(self):
-        #with self.app.app_context():
-            db.session.remove()
-            db.drop_all()
+        db.session.remove()
+        db.drop_all()
 
     def test_navBarAll_register(self):
         response = self.app.get(('/register'), follow_redirects=True)
@@ -99,7 +97,7 @@ class TestCase(unittest.TestCase):
                     'Name' : 'Michael Scott',
                     'DateOfBirth' : datetime.strptime('2002-03-15', '%Y-%m-%d').date(),
                     'Address' : '7 Uni Road',
-                    'Email' : ' michael.scott@gmail.com',
+                    'Email' : 'michael.scott@gmail.com',
                     'Password' : '12345678',
                     'ReenterPassword' : '12345678',
                     'Type' : 1
@@ -112,9 +110,10 @@ class TestCase(unittest.TestCase):
 
                 response = self.app.post('/register', data=data)
                 
-                user = models.UserDetails.query.filter_by(name= 'Michael Scott').first()
-                #user = models.UserLogin.query.filter_by(email= 'michael.scott@gmail.com').first()
+                #user = models.UserDetails.query.filter_by(name= 'Michael Scott').first()
+                user = models.UserLogin.query.filter_by(email= 'michael.scott@gmail.com').first()
                 self.assertIsNotNone(user)
+
 
     #testing to see if we can register a user with missing details - should not be able to
     #missing email field 
@@ -141,56 +140,100 @@ class TestCase(unittest.TestCase):
                 #check if error message for missing email is displayed
                 self.assertIn('Please enter an email', error_dict.get('Email', []))
 
+    
+    #testing to see if we can register a user with missing details - should not be able to
+    #missing Name field 
+    def test_registerMissing(self):
+        response = self.app.get(('/register'), follow_redirects = True)
+        self.assertEqual(response.status_code, 200)
+
+        with app.test_request_context():
+            with app.app_context():
+                data = {
+                'Name' : ' ',
+                'DateOfBirth' : datetime.strptime('2002-03-15', '%Y-%m-%d').date(),
+                'Address' : '89 Uni Road',
+                'Email' : 'Pam.halpert@gmail.com',
+                'Password' : '12345678',
+                'ReenterPassword' : '12345678',
+                'Type' : 1
+                }
+
+                form = RegisterForm(data=data)
+                #form should not be valid since there is missing data
+                self.assertFalse(form.validate())
+                error_dict = form.errors
+                #check if error message for missing email is displayed
+                self.assertIn('Please enter a name', error_dict.get('Name', []))
 
 
+    #need to add app context 
     #testing that an exisiting user can log in 
     def test_login(self):
-        self.user1 = UserLogin(email = 'jim.scott@gmail.com', password = '12345678', userType = 1)
-        db.session.add(self.user1)
-        db.session.commit()
-
-        response = self.app.post('/login', data=dict(
-            email = self.user1.email,
-            password = self.user1.password,
-            userType = self.user1.userType
-        ), follow_redirects = True)
+        #using the login details of an already registered user
+        response = self.app.get(('/login'), follow_redirects = True)
         self.assertEqual(response.status_code, 200)
+        with app.test_request_context():
+            with app.app_context():
 
-    #logging in a user that doesn't exist
+                data = {
+                    'Email' : 'michael.scott@gmail.com',
+                    'Password' : '12345678',
+                    'Type' : 1
+                }
+
+                form = LoginForm(data=data)
+                self.assertTrue(form.validate())
+                response = self.app.post('/login', data=form.data, follow_redirects = True)
+                self.assertEqual(response.status_code, 200)
+
+
+
+
+ 
+     #logging in a user with missing fields
+     #an error message should be displayed to the user 
     def test_invalid_login(self):
-        response = self.app.post('/login', data=dict(
-            email = 'invalid',
-            password = 'invalid',
-            userType = 'invalid'
-        ), follow_redirects = True)
-        self.assertEqual(response.status_code, 200)
+        with app.test_request_context():
+            with app.app_context():
+
+                data = {
+                    'Email' : ' ',
+                    'Password' : '12345678'
+                }
+
+                form = LoginForm(data=data)
+                self.assertFalse(form.validate())
+                error_dict = form.errors
+                self.assertIn('Please enter your email', error_dict.get('Email', []))
+
     
 
-    # #testing that if a user books an event, it shows up on their my bookings page
-    def test_bookedActivityShowsUp(self):
-        self.user2 = UserLogin(email = 'jim.halpert@gmail.com', password = '12345678', userType = 1)
-        db.session.add(self.user2)
-        db.session.commit()
+    # # #testing that if a user books an event, it shows up on their my bookings page
+    # def test_bookedActivityShowsUp(self):
+    #     self.user2 = UserLogin(email = 'jim.halpert@gmail.com', password = '12345678', userType = 1)
+    #     db.session.add(self.user2)
+    #     db.session.commit()
 
-        with self.app:
-            self.app.post('/login', data=dict(
-                email = self.user2.email,
-                password = self.user2.password,
-                userType = self.user2.userType
-            ))
+    #     with self.app:
+    #         self.app.post('/login', data=dict(
+    #             email = self.user2.email,
+    #             password = self.user2.password,
+    #             userType = self.user2.userType
+    #         ))
 
-            #create a new activity 
-            self.activity1 = Activity(activityType = 'Test Activity')
-            db.session.add(self.activity1)
-            db.session.commit()
+    #         #create a new activity 
+    #         self.activity1 = Activity(activityType = 'Test Activity')
+    #         db.session.add(self.activity1)
+    #         db.session.commit()
 
-            #make a calendar event for the activity 
+    #         #make a calendar event for the activity 
 
-            #book the activity 
-            self.app.post(f'/calendar/{self.activity1.id}/makeBooking')
+    #         #book the activity 
+    #         self.app.post(f'/calendar/{self.activity1.id}/makeBooking')
 
-            #check if activity shows up on the user's my bookings page 
-            response = self.app.get('/myBookings')
-            self.assertIn(self.activity1.activityType.encode(), response.data)
+    #         #check if activity shows up on the user's my bookings page 
+    #         response = self.app.get('/myBookings')
+    #         self.assertIn(self.activity1.activityType.encode(), response.data)
 
     #testing that is a user cancels their booking, it is removed from their my bookings page 

@@ -35,7 +35,7 @@ def create_tables():
     db.create_all()
     
     #pre-populating calendar and activity with given data from spec
-"""
+'''
     db.session.add_all([
         Activity(activityType="Swimming (Team Events)"),    #1
         Activity(activityType="Swimming (Lane Swimming)"),  #2
@@ -52,7 +52,7 @@ def create_tables():
     ])
 
     #get todays date and iterate for 2 weeks from today as events will appear every day
-    today = date.today()
+    today = date.today() + timedelta(days=1)
     twoWeeks = today+timedelta(days=14)
 
     while today < twoWeeks:
@@ -112,7 +112,7 @@ def create_tables():
         today = today+timedelta(days=1)
 
     db.session.commit()
-"""
+'''
 
 @loginManager.user_loader
 def loadUser(userId):
@@ -278,6 +278,7 @@ def basket():
     basketItems = []
     itemNames = []
     totalPrice=0
+    session['basketIds'] = []
     
     # If anything in basket, set isItems to true and get all the events in basket
     if 'basket'in session:
@@ -286,6 +287,7 @@ def basket():
         for itemId in session['basket']:
             item = Calendar.query.get(itemId)
             totalPrice += item.aPrice
+            session['basketIds'].append(itemId)
             itemActivity = Activity.query.get(item.activityId)
             name = itemActivity.activityType
             nameDate = name + ", " + (item.aDateTime).strftime("%d/%m, %H:%M")
@@ -293,6 +295,7 @@ def basket():
 
     if 'membership' in session:
         isItems = True
+        session['basketIds'].append('m')
         if session['membership'] == "monthly":
             basketItems.append(('Monthly Membership', 35))
             totalPrice += 35
@@ -365,6 +368,20 @@ def myBookings():
                             today=today, numEvents=len(bookings),
                             events = events, eventInfo = eventInfo)
 
+@app.route('/deleteBasket/<i>', methods=['GET'])
+def deleteBasket(i): # 'i' is the index of the item deleted from the basket
+    if session['basketIds'][int(i)] == 'm':
+        session.pop('membership')
+    else:
+        eventId = session['basketIds'][int(i)]
+        print(eventId)
+        print(session['basket'])
+        session['basket'].remove(eventId)
+        print(session['basket'])
+        # Check if basket empty
+        if not session['basket']:
+            session.pop('basket')
+    return redirect('/basket')
 
 #this is so the user is able to delete the booking - delete button
 @app.route('/deleteBooking/<id>', methods=['GET'])

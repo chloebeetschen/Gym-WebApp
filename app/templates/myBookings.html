@@ -19,7 +19,7 @@
         </tr>
     </thead>
     <tbody>
-        {% for i in range (0 , numEvents-1) %}
+        {% for i in range (0 , numEvents) %}
             <tr>
                 <!--display event and event info in the tables-->
                 <td>{{eventInfo[i].activityType}}</td>
@@ -31,7 +31,7 @@
 
                 <!--Delete activity button-->
                 <td>
-                    {% if events[i].activityDate > today %}
+                    {% if events[i].aDateTime > today %}
                         <a href="/deleteBooking/{{events[i].id}}"><button type="button" class="btn">Cancel</button></a>
                     {% endif %}
                 </td>

@@ -2,15 +2,26 @@
 {% block content %}
 
 <h1>Basket</h1>
-
+<br>
 <!-- If stuff in basket, display it -->
 {% if isItems %}
-    
-    {% for item in basketItems %}
-        <p> {{ item[0] }}, {{ item[1] }} </p>
+    <table class="table">
+        {% for i in range (0, num) %}
+        <tr> 
+            <td>
+                {{ basketItems[i][0] }},
+            </td> 
+            <td>
+                £{{ basketItems[i][1] }} 
+            </td>
+            <td>
+                <a href="/deleteBasket/{{i}}"><button class="btn btn-primary" class="btn">Delete</button></a>
+            </td>
 
     {% endfor %}
-    Subtotal: £ {{ totalPrice }}
+   
+    </table>
+     <h2>Subtotal: £ {{ totalPrice }}</h2>
 
     
 <div iv id="smart-button-container">

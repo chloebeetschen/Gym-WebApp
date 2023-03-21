@@ -76,7 +76,6 @@ class PaymentForm(FlaskForm):
 class RegisterForm(FlaskForm):
     Name        = StringField('Name', validators=[DataRequired(message="Please enter a name")], render_kw={"placeholder": "Name"})
     DateOfBirth = DateField('Date of birth', validators=[DataRequired(message="Please enter your date of birth"), validateAge], render_kw={"placeholder": "Date of Birth"})
-    Address     = StringField('Address', validators=[DataRequired(message="Please enter an address")], render_kw={"placeholder": "Address"})
     Email       = EmailField('Email', validators=[DataRequired(message="Please enter an email")], render_kw={"placeholder": "Email"})
     Password    = PasswordField('Password', validators=[DataRequired(message="Please enter a password"), Length(min=8, message="Password must be 8 characters or more")], render_kw={"placeholder": "Password"})
     ReenterPassword = PasswordField('Reenter Password', validators=[DataRequired(message="Please reenter your password"), 
@@ -92,7 +91,6 @@ class LoginForm(FlaskForm):
 
 class SettingsForm(FlaskForm):
     Name          = StringField('Name', validators=[DataRequired(message="Please enter your name")], render_kw={"placeholder": "Name"})
-    Address       = StringField('Address', validators=[DataRequired(message="Please enter your address")], render_kw={"placeholder": "Address"})
     Password      = PasswordField('Old Password', validators=[DataRequired(message="Please enter your old password")], render_kw={"placeholder": "Password"})
     NewPassword   = PasswordField('New Password', validators=[DataRequired(message="Please enter a new password"), Length(min=8, message="Password must be 8 characters or more")], render_kw={"placeholder": "New Password"})
     NewPasswordx2 = PasswordField('Reenter New Password', validators=[DataRequired(message="Please re-enter your new password"), EqualTo('NewPassword', message="Passwords must match")], render_kw={"placeholder": "Reenter New Password"})

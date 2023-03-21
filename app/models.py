@@ -99,7 +99,6 @@ class UserDetails(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)  # userDetailId
     name = db.Column(db.String(150), nullable=False)
     dateOfBirth = db.Column(db.Date, nullable=False)
-    address = db.Column(db.String(150))
     isMember = db.Column(db.Boolean)
     membershipEnd = db.Column(db.DateTime)
     parentId = db.Column(db.Integer, db.ForeignKey('user_login.id'))

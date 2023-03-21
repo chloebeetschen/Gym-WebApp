@@ -9,6 +9,11 @@ class Activity(db.Model):
     # foreign key for activity table
     calendarEvents = db.relationship('Calendar', backref='activity')
 
+    @staticmethod
+    def create(activityType): 
+        db.session.add(Activity(activityType))
+        db.session.commit()
+
 
 class Calendar(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -24,6 +29,11 @@ class Calendar(db.Model):
     activityId = db.Column(db.Integer, db.ForeignKey('activity.id'), nullable=False)
     # Relationship with user bookings
     userEvents = db.relationship('UserBookings', backref='calendar')
+
+    @staticmethod
+    def create(aDateTime, aDuration, aStaffName, aLocation, aPrice, aCapacity, aSlotsTaken, activityId): 
+        db.session.add(Calendar(aDateTime, aDuration, aStaffName, aLocation, aPrice, aCapacity, aSlotsTaken, activityId))
+        db.session.commit()
 
     # Validate that date is in future
     @validates("aDateTime")

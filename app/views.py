@@ -30,12 +30,13 @@ def delete_sessions():
     for key in list(session.keys()):
         session.pop(key)
 
+'''
 @app.before_first_request
 def create_tables():
     db.create_all()
     
     #pre-populating calendar and activity with given data from spec
-'''
+
     db.session.add_all([
         Activity(activityType="Swimming (Team Events)"),    #1
         Activity(activityType="Swimming (Lane Swimming)"),  #2

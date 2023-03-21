@@ -638,6 +638,17 @@ def settings():
                             form=form,
                             user=current_user)
 
+@app.route('/cancelMembership', methods=['GET', 'POST'])
+@login_required
+def cancelMembership():
+    # Change user to not a member
+    usersDetails = UserDetails.query.get(current_user.id)
+    usersDetails.isMember = False
+    usersDetails.membershipEnd = datetime.now()
+    db.session.commit()
+    # Redirect back to memberships page
+    return redirect('/memberships')
+
 
 @app.route('/pricingList', methods=['GET', 'POST'])
 def pricingList():
@@ -721,7 +732,11 @@ def deleteUser(id):
 @app.route('/memberships', methods=['GET', 'POST'])
 @login_required
 def memberships():
-    return render_template('memberships.html')
+    # Check if user is a member
+    cUserDetails = models.UserDetails.query.get(current_user.id)
+    isMember = cUserDetails.isMember
+
+    return render_template('memberships.html', isMember=isMember)
  
 ## Adds the membership end to a month in the future
 ## Does not update isMember to be true as this is done after payment is completed

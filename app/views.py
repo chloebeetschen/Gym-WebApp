@@ -603,7 +603,6 @@ def register():
         # Get data from the form
         Name    = form.Name.data
         dob     = form.DateOfBirth.data
-        Address = form.Address.data
         Email   = form.Email.data
 
         
@@ -617,7 +616,6 @@ def register():
 
         newUserDetails = models.UserDetails(name=Name,
                                             dateOfBirth=dob,
-                                            address=Address,
                                             loginDetails=newUser.id,
                                             isMember = False,
                                             membershipEnd=datetime.now())
@@ -650,7 +648,6 @@ def settings():
         cUserDetails = models.UserDetails.query.get(current_user.id)
 
         cUserDetails.name    = form.Name.data
-        cUserDetails.address = form.Address.data
         cUserLogin.password  = bcrypt.generate_password_hash(form.NewPassword.data)
 
         db.session.commit()

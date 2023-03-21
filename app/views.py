@@ -122,19 +122,10 @@ def loadUser(userId):
 @app.route('/')
 @login_required
 def index():
-    # check the user type
-    # If admin, show them the admin page
-
     return redirect(url_for('home'))
 
 
-# we want 4 pages
-# calendar of all sessions - and pop up for the info button
-# my bookings page for the user
-# manager add activity 
-# manger add event 
-
-#calendar of all sessions
+# Calendar of all sessions
 @app.route('/calendar', methods=['GET', 'POST'])
 @login_required
 def calendarMethod():
@@ -309,10 +300,15 @@ def basket():
 @app.route('/deleteEvent/<id>', methods=['GET', 'POST'])
 @login_required
 def deleteEvent(id): #id passed in will be  the id of the calendar
+
+    # First check the user is a manager
+    if current_user.userType != 3:
+        return redirect('/home')
+
+        
     # get the booking that matches the id of the parameter given and that of the userId (which is 0 for now)
     # get the event in the calendar
-    
-    userBs = UserBookings.query.filter(userId=current_user.id).filter(calendarId=id).all()
+    userBs = UserBookings.query.filter_by(userId=current_user.id).filter_by(calendarId=id).all()
     
     for i in userBs:
         db.session.delete(i)
@@ -320,12 +316,17 @@ def deleteEvent(id): #id passed in will be  the id of the calendar
     db.session.delete(Calendar.query.get(id))
     db.session.commit()
 
-    return redirect('/editEvent')
+    return redirect('/calendar')
 
 #needs fully checking but up to date
 @app.route('/deleteActivity', methods=['GET', 'POST'])
 @login_required
 def deleteActivity(): 
+
+    # First check the user is a manager
+    if current_user.userType != 3:
+        return redirect('/home')
+
     # Should delete the activity(today + timedelta(days=1)), (today + timedelta(days=2)), (today + timedelta(days=3)), (today + timedelta(days=4)), (today + timedelta(days=5)), ((today + timedelta(days=6))
     sActivity = models.Activity.query.filter_by(activityType=request.form['activity']).first()  # The activity selected
 
@@ -382,8 +383,10 @@ def deleteBasket(i): # 'i' is the index of the item deleted from the basket
         if not session['basket']:
             session.pop('basket')
     return redirect('/basket')
+    # First check the user is a manager
+    if current_user.userType != 3:
+        return redirect('/home')
 
-#this is so the user is able to delete the booking - delete button
 @app.route('/deleteBooking/<id>', methods=['GET'])
 def deleteBooking(id): #id passed in will be  the id of the calendar
     # get the booking that matches the id of the parameter given and that of the userId 
@@ -401,6 +404,11 @@ def deleteBooking(id): #id passed in will be  the id of the calendar
 #manager add activity 
 @app.route('/addActivity', methods=['POST', 'GET'])
 def addActivity():
+
+    # First check the user is a manager
+    if current_user.userType != 3:
+        return redirect('/home')
+
     form = ActivityForm()
     #validate on submission
     if form.validate_on_submit():
@@ -426,6 +434,11 @@ def addActivity():
 @app.route('/editActivity', methods=['POST', 'GET'])
 @login_required
 def editActivity():
+
+    # First check the user is a manager
+    if current_user.userType != 3:
+        return redirect('/home')
+
     form = ActivityForm()
     activities = Activity.query.all()  # Get all activities
     if form.validate_on_submit():
@@ -450,6 +463,11 @@ def editActivity():
 @app.route('/addEvent', methods=['POST', 'GET'])
 @login_required
 def addEvent():
+
+    # First check the user is a manager
+    if current_user.userType != 3:
+        return redirect('/home')
+
     form = EventForm()
     activities = Activity.query.all()
 
@@ -489,6 +507,11 @@ def addEvent():
 @app.route('/editEvent/<id>', methods=['POST', 'GET'])
 @login_required
 def editEvent(id):
+
+    # First check the user is a manager
+    if current_user.userType != 3:
+        return redirect('/home')
+
     event = Calendar.query.get(id)
     eventType = (Activity.query.get(event.activityId)).activityType
     form = EventForm()
@@ -658,6 +681,10 @@ def pricingList():
 @login_required
 def manageUsers():
 
+    # First check the user is a manager
+    if current_user.userType != 3:
+        return redirect('/home')
+
     ## Normal users
     userTypeLogin1 = UserLogin.query.filter_by(userType=1).all()
 
@@ -682,6 +709,10 @@ def manageUsers():
 @login_required
 def editUser(id):
 
+    # First check the user is a manager
+    if current_user.userType != 3:
+        return redirect('/home')
+
     form = ManagerForm()
     if form.validate_on_submit():
         # Update the user's details
@@ -705,6 +736,11 @@ def editUser(id):
 @app.route('/deleteUser/<id>', methods=['GET', 'POST'])
 @login_required
 def deleteUser(id): 
+
+    # First check the user is a manager
+    if current_user.userType != 3:
+        return redirect('/home')
+
     cUserLogin   = models.UserLogin.query.get(id)
 
     ## Slightly problematic - should be getting parentId, but works as there shouldn't be a situation where 

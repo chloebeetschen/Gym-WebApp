@@ -85,6 +85,7 @@ class TestCase(unittest.TestCase):
         response = self.app.get(('/manageUsers'), follow_redirects=True)
         self.assertEqual(response.status_code, 200)  
 
+# NEED TO GET RID OF ADDRESS FIELDS IN ALL TESTS SINCE IT HAS BEEN TAKE OUT OF ALL FORMS AS IT IS REDUNDANT 
 
     #registering a user and testing if this updates in the database
     def test_register(self):
@@ -187,10 +188,6 @@ class TestCase(unittest.TestCase):
                 response = self.app.post('/login', data=form.data, follow_redirects = True)
                 self.assertEqual(response.status_code, 200)
 
-
-
-
- 
      #logging in a user with missing fields
      #an error message should be displayed to the user 
     def test_invalid_login(self):
@@ -207,33 +204,3 @@ class TestCase(unittest.TestCase):
                 error_dict = form.errors
                 self.assertIn('Please enter your email', error_dict.get('Email', []))
 
-    
-
-    # # #testing that if a user books an event, it shows up on their my bookings page
-    # def test_bookedActivityShowsUp(self):
-    #     self.user2 = UserLogin(email = 'jim.halpert@gmail.com', password = '12345678', userType = 1)
-    #     db.session.add(self.user2)
-    #     db.session.commit()
-
-    #     with self.app:
-    #         self.app.post('/login', data=dict(
-    #             email = self.user2.email,
-    #             password = self.user2.password,
-    #             userType = self.user2.userType
-    #         ))
-
-    #         #create a new activity 
-    #         self.activity1 = Activity(activityType = 'Test Activity')
-    #         db.session.add(self.activity1)
-    #         db.session.commit()
-
-    #         #make a calendar event for the activity 
-
-    #         #book the activity 
-    #         self.app.post(f'/calendar/{self.activity1.id}/makeBooking')
-
-    #         #check if activity shows up on the user's my bookings page 
-    #         response = self.app.get('/myBookings')
-    #         self.assertIn(self.activity1.activityType.encode(), response.data)
-
-    #testing that is a user cancels their booking, it is removed from their my bookings page 

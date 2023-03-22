@@ -675,13 +675,25 @@ def pricingList():
     return render_template('pricingList.html', title= 'Pricing List')
 
 @app.route('/analysis', methods=['GET', 'POST'])
+@login_required
 def analysis():
-    
     # First check the user is a manager
     if current_user.userType != 3:
         return redirect('/home')
-    
-    return render_template('analysis.html', title = 'Analysis')    
+
+    form = AnalysisForm()
+    if form.validate_on_submit():
+        print("form validated")
+        # Check if manager has entered facility:
+        if form.Facility.data is not None:
+            print('facility')
+        elif form.ActivityType.data is not None:
+            print('activity')
+        else:
+            flash("Please enter either a facility or an activity")
+
+    return render_template('analysis.html', title = 'Analysis', form=form)   
+
 
 @app.route('/manageUsers', methods=['POST', 'GET'])
 @login_required

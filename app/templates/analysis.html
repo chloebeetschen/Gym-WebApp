@@ -5,57 +5,64 @@
 <!--Basic Header-->
 <h1>Analysis</h1>
 
-<!-- Buttons for manager to choose if they want to look at facility or activity
-once the button has been clicked, they manager will then fill out the relevant form -->
-
-<button onclick="toggleform()"> Facility </button>
-<button onclick="toggleform()"> Activity </button>
-
-<form method="get" name="facility">
+<form method="post" name="analysis" >
     {{ form.hidden_tag() }}
 
-    
+    <input type = "hidden" name="form_id" value="form1">
     <!--Date of activity-->
-
     <p class="mt-4">
         Date <br>
-        {{ form.aDateTime(class='form-control')}}
+        {{ form.DateTime(class='form-control')}}
         
     </p>
-    {% for error in form.aDateTime.errors %}
+    {% for error in form.DateTime.errors %}
         [{{ error }}]
     {% endfor %}
 
+    <p class="mt-4">
+        Facility <br>
+        {{ form.Facility(class='form-control')}}
+        
+    </p>
+    {% for error in form.Facility.errors %}
+        [{{ error }}]
+    {% endfor %}
+    
+    <p class="mt-4">
+        Activity <br>
+        {{ form.ActivityType(class='form-control')}}
+        
+    </p>
+    {% for error in form.ActivityType.errors %}
+        [{{ error }}]
+    {% endfor %}
+    
+
+    <input type="submit" value="Submit">
+    
 </form>
 
 
-<!-- Script to show the form depending on what button the managger clicks on-->
 <script>
-    function toggleform() 
-    {
-        var facilityForm = document.getElementById("facilityForm");
-        if (facilityForm.style.display === "none") 
-        {
-            facilityForm.style.display = "block";
-        } 
-        else 
-        {
-            facilityForm.style.display = "none";
+    var facility = document.querySelector('#{{ form.Facility.id }}')
+    var activity = document.querySelector('#{{ form.ActivityType.id }}')
+
+    facility.addEventListener('input', ()=> {
+        if(facility.value !== ''){
+            activity.setAttribute('disabled', 'disabled');
+        } else {
+            activity.removeAttribute('disabled');
         }
+    });
 
-        var activityForm = document.getElementById("activityForm");
-        if (activityForm.style.display === "none") 
-        {
-            activityForm.style.display = "block";
-        } 
-        else 
-        {
-            activityForm.style.display = "none";
+    activity.addEventListener('input', ()=> {
+        if(activity.value !== ''){
+            facility.setAttribute('disabled', 'disabled');
+        } else {
+            facility.removeAttribute('disabled');
         }
+    });
 
-
-
-    }
 </script>
 
 

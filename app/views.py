@@ -674,6 +674,15 @@ def cancelMembership():
 def pricingList():
     return render_template('pricingList.html', title= 'Pricing List')
 
+@app.route('/analysis', methods=['GET', 'POST'])
+def analysis():
+    
+    # First check the user is a manager
+    if current_user.userType != 3:
+        return redirect('/home')
+    
+    return render_template('analysis.html', title = 'Analysis')    
+
 @app.route('/manageUsers', methods=['POST', 'GET'])
 @login_required
 def manageUsers():

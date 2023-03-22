@@ -1,0 +1,62 @@
+<!-- Template for manager analysis -->
+{% extends "base.html" %}
+
+{% block content %}
+<!--Basic Header-->
+<h1>Analysis</h1>
+
+<!-- Buttons for manager to choose if they want to look at facility or activity
+once the button has been clicked, they manager will then fill out the relevant form -->
+
+<button onclick="toggleform()"> Facility </button>
+<button onclick="toggleform()"> Activity </button>
+
+<form method="get" name="facility">
+    {{ form.hidden_tag() }}
+
+    
+    <!--Date of activity-->
+
+    <p class="mt-4">
+        Date <br>
+        {{ form.aDateTime(class='form-control')}}
+        
+    </p>
+    {% for error in form.aDateTime.errors %}
+        [{{ error }}]
+    {% endfor %}
+
+</form>
+
+
+<!-- Script to show the form depending on what button the managger clicks on-->
+<script>
+    function toggleform() 
+    {
+        var facilityForm = document.getElementById("facilityForm");
+        if (facilityForm.style.display === "none") 
+        {
+            facilityForm.style.display = "block";
+        } 
+        else 
+        {
+            facilityForm.style.display = "none";
+        }
+
+        var activityForm = document.getElementById("activityForm");
+        if (activityForm.style.display === "none") 
+        {
+            activityForm.style.display = "block";
+        } 
+        else 
+        {
+            activityForm.style.display = "none";
+        }
+
+
+
+    }
+</script>
+
+
+{% endblock %}

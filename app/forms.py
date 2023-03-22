@@ -102,3 +102,11 @@ class ManagerForm(FlaskForm):
     NewPasswordx2 = PasswordField('Reenter New Password', validators=[DataRequired(message="Please reenter the new password"), EqualTo('NewPassword', message="Passwords must match")], render_kw={"placeholder": "Reenter New Password"})
     Type        = IntegerField('Type', validators=[DataRequired(message="Please enter a type"), NumberRange(min=1, max=3, message="Type must be 1, 2 or 3")], render_kw={"placeholder": "Type"})
 
+
+class FacilityForm(FlaskForm):
+    #named facility or activity 
+    Name          = StringField('Name', validators=[DataRequired(message="Please enter your name")], render_kw={"placeholder": "Name"})
+
+    #need to add some type of validation here: latest date chosen can be 7 days prior to todays date
+    fDateTime    = DateTimeLocalField('Date & Time of activity', format='%Y-%m-%dT%H:%M', validators=[DataRequired(message="Please enter a Date & Time"), validateFutureDate], render_kw={"placeholder": "Date of activity"})
+    fLocation    = StringField("Location", validators=[DataRequired(message="Please enter a location")], render_kw={"placeholder": "Location"}) 

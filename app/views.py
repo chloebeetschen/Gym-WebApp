@@ -676,6 +676,10 @@ def manageUsers():
     if current_user.userType != 3:
         return redirect('/home')
 
+    form = SearchForm()
+    if form.validate_on_submit():        
+        return redirect(((url_for('searchResults'), search=form.search.data)))
+
     ## Normal users
     userTypeLogin1 = UserLogin.query.filter_by(userType=1).all()
 
@@ -688,6 +692,7 @@ def manageUsers():
    
     ## Will not render unless users of every type exist in the database
     return render_template('manageUsers.html', title = 'Manage Users', 
+                            form = form,
                             userTypeNum1   = len(userTypeLogin1),
                             userTypeNum2   = len(userTypeLogin2),
                             userTypeNum3   = len(userTypeLogin3),
@@ -795,3 +800,33 @@ def annualMembership():
     db.session.commit()
     ##Test to see if working correctly
     return redirect('/basket')
+
+
+## search for a user
+# https://stackoverflow.com/questions/39960942/flask-app-search-bar
+
+@app.route('/searchResults/<search>', methods=['GET', 'POST'])
+@login_required
+def searchResults(search):
+
+    # First check the user is a manager
+    if current_user.userType != 3:
+        return redirect('/home')
+
+    form = SearchForm()
+    if form.validate_on_submit():
+        return redirect(((url_for('searchResults'), search=form.search.data)))
+
+    users = UserLogin.query.all()
+    users2 = UserDetails.query.all()
+
+    results = []
+    for i in users:
+        if search.lower() in (i.email).lower():
+            results.append(i)
+    
+    for j in users2:
+        if search.lower() in (j.name).lower():
+            results.append(UserLogin.query.filter_by(id = j.parentId).first())
+
+    return render_template('searches.html', title='Search Results', form = form, results = results, numUsers = len(results))

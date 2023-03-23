@@ -4,6 +4,16 @@
 <!--Basic Header-->
 <h1>Manage Users</h1>
 
+<div>
+    <h2>Search by email or name...</h2>
+    <form method="post" name="search">
+        {{ form.hidden_tag() }}
+        <input type="submit" class="btn btn-primary" value="Search">
+        {{ form.search(class='form-control')}}
+    </form>
+
+</div>
+
 <h2>Customers</h2>
 <!--Basic table to hold booking information of a user-->
 <table class="table">

@@ -33,6 +33,11 @@ class ActivityForm(FlaskForm):
     aType       = StringField('Type', validators=[DataRequired(message="Please enter an activity type")])
 
 
+#Search for a user
+class SearchForm(FlaskForm):
+    search       = StringField('Search')
+
+
 # Form to add an activity to the calendar
 # Can be used for editing and adding calendar events
 class EventForm(FlaskForm):

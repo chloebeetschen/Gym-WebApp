@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import PasswordField, EmailField, TextAreaField, SubmitField, SelectField, SelectMultipleField, DateField, DateTimeLocalField, BooleanField
+from wtforms import PasswordField, EmailField, TextAreaField, SubmitField, SelectField, SelectMultipleField, DateField, DateTimeLocalField
 from wtforms import StringField, BooleanField, IntegerField, FloatField, TimeField
 from wtforms.validators import DataRequired, Length, EqualTo, NumberRange, ValidationError
 from luhn import *
@@ -45,8 +45,6 @@ class EventForm(FlaskForm):
     aPrice       = FloatField("Price", validators=[DataRequired(message="Please enter a price"), NumberRange(min=0.0, message="Please enter a positive price")], render_kw={"placeholder": "Price of activity"}) 
     aCapacity    = IntegerField('Capacity of activity', validators=[DataRequired(message="Please enter a capacity"), NumberRange(min=0, message="Please enter a postive capacity")],
                                render_kw={"placeholder": "Capacity of activity"})
-    aIsRepeat    = BooleanField("Is the event repeated daily?")
-
 
 # Form to create account:
 class PaymentForm(FlaskForm):

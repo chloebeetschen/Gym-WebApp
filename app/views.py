@@ -30,7 +30,7 @@ def delete_sessions():
     for key in list(session.keys()):
         session.pop(key)
 
-
+'''
 @app.before_first_request
 def create_tables():
     db.create_all()
@@ -113,7 +113,7 @@ def create_tables():
         today = today+timedelta(days=1)
 
     db.session.commit()
-
+'''
 
 @loginManager.user_loader
 def loadUser(userId):
@@ -472,7 +472,7 @@ def addEvent():
         location = form.aLocation.data
         price    = form.aPrice.data
         capacity = form.aCapacity.data
-        isRepeat = form.aIsRepeat.data
+        isRepeat = False
 
         # y, m, d = form.aDate.data.split('-')
         # date = datetime.datetime(int(y), int(m), int(d))
@@ -492,6 +492,8 @@ def addEvent():
     #if validation failed  return to add event
     return render_template('addEvent.html', title='Add Event',
                            form=form, activities=activities)
+
+
 
 #Can this be removed it isnt being used?
 #manager edit event

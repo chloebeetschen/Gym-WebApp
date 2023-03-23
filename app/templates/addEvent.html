@@ -66,6 +66,12 @@
         {{ form.aCapacity(class='form-control')}}
     </p>
 
+    <!--Is Repeat-->
+    <p>
+        Is the event repeated daily? <br>
+        {{ form_field_checkbox(form.aIsRepeat, form.aIsRepeat.label.text) }}
+    </p>
+
     <p><input type="submit" class="btn btn-primary" value="Add Event"></p>
 </form>
 {% endblock %}

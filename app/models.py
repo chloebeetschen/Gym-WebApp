@@ -25,15 +25,12 @@ class Calendar(db.Model):
     aCapacity  = db.Column(db.Integer, nullable=False)
     #this is the number of people signed up to the activity, which will need to be incremented
     aSlotsTaken = db.Column(db.Integer, nullable=False)
+    #is it a daily repeated event?
+    aIsRepeat  = db.Column(db.Boolean, nullable=False)
     # Relationship with Activity
     activityId = db.Column(db.Integer, db.ForeignKey('activity.id'), nullable=False)
     # Relationship with user bookings
     userEvents = db.relationship('UserBookings', backref='calendar')
-
-    @staticmethod
-    def create(aDateTime, aDuration, aStaffName, aLocation, aPrice, aCapacity, aSlotsTaken, activityId): 
-        db.session.add(Calendar(aDateTime, aDuration, aStaffName, aLocation, aPrice, aCapacity, aSlotsTaken, activityId))
-        db.session.commit()
 
     # Validate that date is in future
     @validates("aDateTime")
@@ -59,6 +56,7 @@ class Calendar(db.Model):
         if Calendar < 0:
             raise ValueError("Capacity must be positive")
         return Calendar
+
 
 
 class UserBookings(db.Model):

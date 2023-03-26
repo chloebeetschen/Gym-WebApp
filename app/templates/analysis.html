@@ -19,14 +19,18 @@
         [{{ error }}]
     {% endfor %}
 
-    <p class="mt-4">
-        Facility <br>
-        {{ form.Facility(class='form-control')}}
-        
-    </p>
-    {% for error in form.Facility.errors %}
-        [{{ error }}]
-    {% endfor %}
+    <!-- Facility -->
+    <label for="facilities">Choose Facility</label>
+    {% if facilities == none %}
+        <p>There are currently no facilities.</p>
+    {% else %}
+        <select name="facility" class="form-control" id="facilities">
+        <option label=" "></option>
+        {% for facility in facilities %}
+            <option value="{{facility[0]}}">{{ facility[0] }}</option>
+        {% endfor %}
+        </select>
+    {% endif %}
     
 
     <!--Type (Name of Activity)-->
@@ -49,7 +53,7 @@
 
 
 <script>
-    var facility = document.querySelector('#{{ form.Facility.id }}')
+    var facility = document.getElementById('facilities')
     var activity = document.getElementById('activities')
 
     facility.addEventListener('input', ()=> {

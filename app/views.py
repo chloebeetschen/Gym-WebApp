@@ -683,22 +683,21 @@ def analysis():
 
     form = AnalysisForm()
     activities = Activity.query.all()
-    #facilities = Calendar.query.options(load_only('aLocation')).distinct().all()
+    facilities = Calendar.query.with_entities(Calendar.aLocation).distinct()
 
     if form.validate_on_submit():
         # Check if manager has entered facility:
-        if form.Facility.data is not None:
-        #if request.form['facility'] is not None:
+        if request.form.get('facility') is not None:
             # First check that the facility exists
-            facility = Calendar.query.filter_by(aLocation = form.Facility.data).first()
+            facility = Calendar.query.filter_by(aLocation = request.form['facility']).first()
             if facility is None:
                 flash("That is not a valid facility/location")
                 return redirect('/analysis')
-            activityFacility = form.Facility.data
+            activityFacility = request.form['facility']
             # Get all calendar events for that location
-            events = Calendar.query.filter_by(aLocation = form.Facility.data).all()
+            events = Calendar.query.filter_by(aLocation = request.form['facility']).all()
 
-        elif request.form['activity'] is not None:
+        elif request.form.get('activity') is not None:
             # First check that the activity exists
             activity = Activity.query.filter_by(activityType = request.form['activity']).first()
             if activity is None:
@@ -757,7 +756,7 @@ def analysis():
         session['dates'] = dates
         session['sales'] = sales
         return redirect('/analysisGraphs')
-    return render_template('analysis.html', title = 'Analysis', form=form, activities=activities)   
+    return render_template('analysis.html', title = 'Analysis', form=form, activities=activities, facilities=facilities)   
 
 @app.route('/analysisGraphs', methods=['GET', 'POST'])
 @login_required

@@ -28,16 +28,21 @@
         [{{ error }}]
     {% endfor %}
     
-    <p class="mt-4">
-        Activity <br>
-        {{ form.ActivityType(class='form-control')}}
-        
-    </p>
-    {% for error in form.ActivityType.errors %}
-        [{{ error }}]
-    {% endfor %}
-    
 
+    <!--Type (Name of Activity)-->
+    <label for="activities">Choose Activity</label>
+    {% if activities == none %}
+        <p>There are currently no activites.</p>
+    {% else %}
+        <select name="activity" class="form-control" id="activities">
+        <option label=" "></option>
+        {% for activity in activities %}
+            <option value="{{activity.activityType}}">{{ activity.activityType }}</option>
+        {% endfor %}
+        </select>
+    {% endif %}
+    
+<br>
     <input type="submit" value="Submit">
     
 </form>
@@ -45,7 +50,7 @@
 
 <script>
     var facility = document.querySelector('#{{ form.Facility.id }}')
-    var activity = document.querySelector('#{{ form.ActivityType.id }}')
+    var activity = document.getElementById('activities')
 
     facility.addEventListener('input', ()=> {
         if(facility.value !== ''){

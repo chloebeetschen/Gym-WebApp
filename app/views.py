@@ -682,9 +682,13 @@ def analysis():
         return redirect('/home')
 
     form = AnalysisForm()
+    activities = Activity.query.all()
+    #facilities = Calendar.query.options(load_only('aLocation')).distinct().all()
+
     if form.validate_on_submit():
         # Check if manager has entered facility:
         if form.Facility.data is not None:
+        #if request.form['facility'] is not None:
             # First check that the facility exists
             facility = Calendar.query.filter_by(aLocation = form.Facility.data).first()
             if facility is None:
@@ -694,13 +698,13 @@ def analysis():
             # Get all calendar events for that location
             events = Calendar.query.filter_by(aLocation = form.Facility.data).all()
 
-        elif form.ActivityType.data is not None:
+        elif request.form['activity'] is not None:
             # First check that the activity exists
-            activity = Activity.query.filter_by(activityType = form.ActivityType.data).first()
+            activity = Activity.query.filter_by(activityType = request.form['activity']).first()
             if activity is None:
                 flash("That is not a valid activity")
                 return redirect('/analysis')
-            activityFacility = form.ActivityType.data
+            activityFacility = request.form['activity']
             # Get all calendar events for that activity
             events = Calendar.query.filter_by(activityId = activity.id).all()
 
@@ -753,7 +757,7 @@ def analysis():
         session['dates'] = dates
         session['sales'] = sales
         return redirect('/analysisGraphs')
-    return render_template('analysis.html', title = 'Analysis', form=form)   
+    return render_template('analysis.html', title = 'Analysis', form=form, activities=activities)   
 
 @app.route('/analysisGraphs', methods=['GET', 'POST'])
 @login_required

@@ -1,6 +1,6 @@
 from app import db
 from flask_login import UserMixin
-from sqlalchemy.orm import validates
+from sqlalchemy.orm import validates, load_only
 from datetime import *
 
 

@@ -683,7 +683,6 @@ def analysis():
 
     form = AnalysisForm()
     if form.validate_on_submit():
-    
         # Check if manager has entered facility:
         if form.Facility.data is not None:
             # First check that the facility exists
@@ -691,6 +690,7 @@ def analysis():
             if facility is None:
                 flash("That is not a valid facility/location")
                 return redirect('/analysis')
+            activityFacility = form.Facility.data
             # Get all calendar events for that location
             events = Calendar.query.filter_by(aLocation = form.Facility.data).all()
 
@@ -700,6 +700,7 @@ def analysis():
             if activity is None:
                 flash("That is not a valid activity")
                 return redirect('/analysis')
+            activityFacility = form.ActivityType.data
             # Get all calendar events for that activity
             events = Calendar.query.filter_by(activityId = activity.id).all()
 
@@ -711,9 +712,12 @@ def analysis():
         dateEntered = form.DateOf.data
         memberWeek = [0,0,0,0,0,0,0]
         nonMemberWeek = [0,0,0,0,0,0,0]
+        dates = []
+        sales = [0,0,0,0,0,0,0]
 
         # Loop through 7 days
-        for day in range(0, 6):
+        for day in range(0, 7):
+            dates.append( dateEntered+timedelta(days=day))
             bookings = []
             # Get each individual booking for every event on that day
             for event in events:
@@ -737,21 +741,35 @@ def analysis():
                 if userMember:
                     memberWeek[day] += 1
                 else:
+                    # If not a member then add price to sales array
+                    calendarEvent = Calendar.query.get(booking.calendarID)
+                    sales[i] += calendarEvent.aPrice
                     nonMemberWeek[day] += 1
 
-        flash(str(memberWeek) + " members, " + str(nonMemberWeek) + " non members.")
+        # Set session user data
+        session['activityFacility'] = activityFacility
+        session['memberWeek'] = memberWeek
+        session['nonMemberWeek'] = nonMemberWeek
+        session['dates'] = dates
+        session['sales'] = sales
+        return redirect('/analysisGraphs')
     return render_template('analysis.html', title = 'Analysis', form=form)   
 
-# @app.route('/usageStats', methods=['GET', 'POST'])
-# @login_required
-# def usageStats():
+@app.route('/analysisGraphs', methods=['GET', 'POST'])
+@login_required
+def analysisGraphs():
+    # First check the user is a manager
+    if current_user.userType != 3:
+        return redirect('/home')
+    
+    return render_template('analysisGraphs.html', title='Analysis')
+
 
 
 
 @app.route('/manageUsers', methods=['POST', 'GET'])
 @login_required
 def manageUsers():
-
     # First check the user is a manager
     if current_user.userType != 3:
         return redirect('/home')

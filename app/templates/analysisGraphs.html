@@ -1,0 +1,24 @@
+<!-- Template for manager analysis graphs -->
+{% extends "base.html" %}
+{% block content %}
+
+<!-- USAGE -->
+<h1>Usage Analysis for {{ session['activityFacility'] }}</h1>
+<h2> Week of: {{ session['dates'][0] }} - {{ session['dates'][6]}}</h2>
+
+{% for i in range(0, 6) %}
+<p>Date: {{ session['dates'][i] }}, Members: {{ session['memberWeek'][i] }}, NonMembers: {{ session['nonMemberWeek'][i] }}</p>
+{% endfor %}
+
+
+<!-- SALES -->
+<h1>Sales Analysis for {{ session['activityFacility'] }}</h1>
+<h3> Week of: {{ session['dates'][0] }} - {{ session['dates'][6]}}</h3>
+
+{% for i in range(0, 6) %}
+<p>Date: {{ session['dates'][i] }}, NonMembers: {{ session['nonMemberWeek'][i] }}, £{{ session['sales'][i] }}</p>
+{% endfor %}
+
+
+
+{% endblock %}

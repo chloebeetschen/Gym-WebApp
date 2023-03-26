@@ -262,6 +262,7 @@ def addBasket(id):
     # Redirect back to calendar
     return redirect('/calendar')
 
+
 @app.route('/basket', methods=['GET', 'POST'])
 def basket():
     # Boolean to store whether anything in basket

@@ -683,16 +683,69 @@ def analysis():
 
     form = AnalysisForm()
     if form.validate_on_submit():
-        print("form validated")
+    
         # Check if manager has entered facility:
         if form.Facility.data is not None:
-            print('facility')
+            # First check that the facility exists
+            facility = Calendar.query.filter_by(aLocation = form.Facility.data).first()
+            if facility is None:
+                flash("That is not a valid facility/location")
+                return redirect('/analysis')
+            # Get all calendar events for that location
+            events = Calendar.query.filter_by(aLocation = form.Facility.data).all()
+
         elif form.ActivityType.data is not None:
-            print('activity')
+            # First check that the activity exists
+            activity = Activity.query.filter_by(activityType = form.ActivityType.data).first()
+            if activity is None:
+                flash("That is not a valid activity")
+                return redirect('/analysis')
+            # Get all calendar events for that activity
+            events = Calendar.query.filter_by(activityId = activity.id).all()
+
         else:
             flash("Please enter either a facility or an activity")
+            return redirect('/analysis')
 
+        # Get date entered
+        dateEntered = form.DateOf.data
+        memberWeek = [0,0,0,0,0,0,0]
+        nonMemberWeek = [0,0,0,0,0,0,0]
+
+        # Loop through 7 days
+        for day in range(0, 6):
+            bookings = []
+            # Get each individual booking for every event on that day
+            for event in events:
+                # Check for right date
+                if event.aDateTime.date() == dateEntered+timedelta(days=day):
+                    # Go through every user booking of events
+                    for booking in event.userEvents:
+                        # Add to booking
+                        bookings.append(booking)
+                    # Once all bookings for events have been found,
+                    # it can be removed from the list of events to make future searches quicker
+                    events.remove(event)
+
+            # Now we have all user bookings for that location/activity on the right day
+            # we can split them into members and non members
+            for booking in bookings:
+                # Check user details for each booking
+                user = UserDetails.query.filter_by(id=UserBookings.userId).first()
+                userMember = user.isMember
+                # Incrememnt either member or non member count
+                if userMember:
+                    memberWeek[day] += 1
+                else:
+                    nonMemberWeek[day] += 1
+
+        flash(str(memberWeek) + " members, " + str(nonMemberWeek) + " non members.")
     return render_template('analysis.html', title = 'Analysis', form=form)   
+
+# @app.route('/usageStats', methods=['GET', 'POST'])
+# @login_required
+# def usageStats():
+
 
 
 @app.route('/manageUsers', methods=['POST', 'GET'])

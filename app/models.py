@@ -3,6 +3,7 @@ from flask_login import UserMixin
 from sqlalchemy.orm import validates
 from datetime import *
 
+
 class Activity(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     activityType = db.Column(db.String(250), unique=True, nullable=False)

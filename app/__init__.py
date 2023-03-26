@@ -1,6 +1,7 @@
 # This runs when the package loads
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import func
 from flask_migrate import Migrate
 from flask_admin import Admin
 import logging

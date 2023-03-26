@@ -105,7 +105,7 @@ class ManagerForm(FlaskForm):
 
 class AnalysisForm(FlaskForm):
     #need to add some type of validation here: latest date chosen can be 7 days prior to todays date
-    DateTime    = DateField('Date & Time of activity', format='%Y-%m-%d', validators=[DataRequired(message="Please enter a Date")], render_kw={"placeholder": "Date of activity"})
+    DateOf    = DateField('Date', format='%Y-%m-%d', validators=[DataRequired(message="Please enter a Date")], render_kw={"placeholder": "Date of activity"})
     Facility    = StringField("Facility", render_kw={"placeholder": "Facility"}) 
     ActivityType    = StringField("Activity", render_kw={"placeholder": "Activity"}) 
 

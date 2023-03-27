@@ -4,6 +4,16 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_admin import Admin
 import logging
+import os
+import stripe
+
+
+stripe_keys = {
+    'secretKey' : os.environ['TEST_SECRET_KEY'],
+    'publicKey' : os.environ['TEST_PUBLISH_KEY']
+}
+
+stripe.api_key = stripe_keys['secretKey']
 
 
 app = Flask(__name__)

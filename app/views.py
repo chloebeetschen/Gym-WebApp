@@ -1,10 +1,11 @@
-from app import app, db, models, admin
-from flask import Flask, render_template, flash, request, redirect, session, url_for, g
+from app import app, db, models, admin, stripe_keys
+from flask import Flask, render_template, flash, request, redirect, session, url_for, g, jsonify
 from .models import *
 from .forms import *
 from flask_admin.contrib.sqla import ModelView
 from datetime import *
 from dateutil.relativedelta import relativedelta
+import stripe
 
 from flask_login import current_user, login_user, LoginManager, login_required
 from flask_login import logout_user
@@ -264,6 +265,7 @@ def addBasket(id):
 
 
 @app.route('/basket', methods=['GET', 'POST'])
+@login_required
 def basket():
     # Boolean to store whether anything in basket
     isItems = False
@@ -295,7 +297,30 @@ def basket():
             basketItems.append(("Annual Membership", 300))
             totalPrice += 300
 
-    return render_template('basket.html', title='Basket', isItems=isItems, basketItems=basketItems, num=len(basketItems), totalPrice=totalPrice)
+    session['basketTotal'] = totalPrice
+
+    return render_template('basket.html', title='Basket', isItems=isItems,
+                            basketItems=basketItems, num=len(basketItems),
+                            totalPrice=totalPrice, key=stripe_keys['publicKey'])
+
+@app.route('/checkout', methods=['POST'])
+@login_required
+def checkout():
+
+    customer = stripe.Customer.create(
+        email='sample@customer.com',
+        source=request.form['stripeToken']
+    )
+
+    stripe.Charge.create(
+        customer=customer.id,
+        amount=int(session['basketTotal']) * 100,
+        currency='GBP',
+        description='Flask Charge'
+    )
+
+    flash('Payment Successful')
+    return redirect(url_for('basket'))
 
 #this is so the manager is able to delete an event - delete button
 @app.route('/deleteEvent/<id>', methods=['GET', 'POST'])
@@ -562,7 +587,8 @@ def paymentForm():
         db.session.commit()
 
         flash('Payment details registered')
-    return render_template('paymentForm.html', title='Payment Form', form=form)
+    return render_template( 'paymentForm.html', title='Payment Form',
+                            form=form, key=stripe_keys['publicKey'] )
 
 
 @app.route('/login', methods=['GET', 'POST'])

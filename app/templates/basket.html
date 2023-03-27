@@ -24,7 +24,7 @@
      <h2>Subtotal: £ {{ totalPrice }}</h2>
 
     
-<div iv id="smart-button-container">
+<!-- <div iv id="smart-button-container">
     <div style="text-align: center;">
           <div id="paypal-button-container"></div>
       </div>
@@ -62,7 +62,18 @@
           }).render('#paypal-button-container');
       }
   initPayPalButton();
-  </script>
+  </script> -->
+
+  <form action="/checkout" method="post">
+    <script 
+        src="https://checkout.stripe.com/checkout.js"
+        class="stripe-button"
+        data-key="{{ key }}"
+        data-description="A Flask Charge"
+        data-amount="{{ totalPrice * 100 }}"
+        data-locale="auto">
+    </script>
+  </form>
 
 
 {% else %}

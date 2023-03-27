@@ -720,7 +720,7 @@ def analysis():
 
         # Loop through 7 days
         for day in range(0, 7):
-            dates.append( dateEntered+timedelta(days=day))
+            dates.append( (dateEntered+timedelta(days=day)).strftime("%d/%m"))
             bookings = []
             # Get each individual booking for every event on that day
             for event in events:
@@ -765,7 +765,9 @@ def analysisGraphs():
     if current_user.userType != 3:
         return redirect('/home')
     
-    return render_template('analysisGraphs.html', title='Analysis')
+    return render_template('analysisGraphs.html', title='Analysis',     activityFacility = session['activityFacility'],
+                            memberWeek = session['memberWeek'], nonMemberWeek = session['nonMemberWeek'], 
+                            dates = session['dates'], sales = session['sales'])
 
 
 

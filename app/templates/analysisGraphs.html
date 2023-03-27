@@ -1,24 +1,78 @@
 <!-- Template for manager analysis graphs -->
 {% extends "base.html" %}
 {% block content %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+</script>
 
-<!-- USAGE -->
-<h1>Usage Analysis for {{ session['activityFacility'] }}</h1>
-<h2> Week of: {{ session['dates'][0] }} - {{ session['dates'][6]}}</h2>
+<h2>{{ activityFacility }}, Week of {{ dates[0] }} - {{ dates[6]}}</h2>
 
-{% for i in range(0, 6) %}
-<p>Date: {{ session['dates'][i] }}, Members: {{ session['memberWeek'][i] }}, NonMembers: {{ session['nonMemberWeek'][i] }}</p>
-{% endfor %}
+<hr>
 
+<h3>Usage </h3>
+<canvas id="usageChart" style="width:10%;max-width:700px"> Graph of usage data </canvas>
 
-<!-- SALES -->
-<h1>Sales Analysis for {{ session['activityFacility'] }}</h1>
-<h3> Week of: {{ session['dates'][0] }} - {{ session['dates'][6]}}</h3>
+<hr>
 
-{% for i in range(0, 6) %}
-<p>Date: {{ session['dates'][i] }}, NonMembers: {{ session['nonMemberWeek'][i] }}, £{{ session['sales'][i] }}</p>
-{% endfor %}
+<h3>Sales</h3>
+<canvas id="salesChart" style="width:10%;max-width:700px"> Graph of usage data </canvas>
 
+<!-- The below code is adapted from W3 schools -->
+<script>
+var xValues = ["{{dates[0]}}", "{{dates[1]}}","{{dates[2]}}","{{dates[3]}}","{{dates[4]}}","{{dates[5]}}","{{dates[6]}}"];
+var maxUsage = 0;
+
+new Chart("usageChart", {
+  type: "bar",
+  data: {
+    labels: xValues,
+    datasets: [
+    {
+      label: "Members",
+      backgroundColor: "#a8d5e5",
+      data: {{memberWeek}}
+    },
+    {
+      label: "Non-Members",
+      backgroundColor: "#93adcf",
+      data: {{nonMemberWeek}}
+    }]
+  },
+  options: {
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }],
+    }
+  }
+});
+
+new Chart("salesChart", {
+  type: "bar",
+  data: {
+    labels: xValues,
+    datasets: [
+    {
+      backgroundColor: "#a8d5e5",
+      data: {{sales}}
+    }]
+  },
+  options: {
+    legend: {display: false},
+    layout: {
+        padding: 20
+    },
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }],
+    }
+  }
+});
+</script>
 
 
 {% endblock %}

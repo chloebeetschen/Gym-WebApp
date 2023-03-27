@@ -9,12 +9,12 @@
 <hr>
 
 <h3>Usage </h3>
-<canvas id="usageChart" style="width:10%;max-width:700px"> Graph of usage data </canvas>
+<canvas id="usageChart"> Graph of usage data </canvas>
 
 <hr>
 
 <h3>Sales</h3>
-<canvas id="salesChart" style="width:10%;max-width:700px"> Graph of usage data </canvas>
+<canvas id="salesChart"> Graph of usage data </canvas>
 
 <!-- The below code is adapted from W3 schools -->
 <script>
@@ -40,6 +40,10 @@ new Chart("usageChart", {
   options: {
     scales: {
       yAxes: [{
+        scaleLabel: {
+            display: true,
+            labelString: 'Bookings'
+        },
         ticks: {
           beginAtZero: true
         }
@@ -65,6 +69,10 @@ new Chart("salesChart", {
     },
     scales: {
       yAxes: [{
+        scaleLabel: {
+            display: true,
+            labelString: 'Sales (£)'
+        },
         ticks: {
           beginAtZero: true
         }

@@ -2,6 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import PasswordField, EmailField, TextAreaField, SubmitField, SelectField, SelectMultipleField, DateField, DateTimeLocalField
 from wtforms import StringField, BooleanField, IntegerField, FloatField, TimeField
 from wtforms.validators import DataRequired, Length, EqualTo, NumberRange, ValidationError, Optional
+
 from luhn import *
 from datetime import *
 # from .models import Activity
@@ -102,3 +103,8 @@ class ManagerForm(FlaskForm):
     NewPasswordx2 = PasswordField('Reenter New Password', validators=[EqualTo('NewPassword', message="Passwords must match")], render_kw={"placeholder": "Reenter New Password"})
     Type        = IntegerField('Type', validators=[Optional(), NumberRange(min=1, max=3, message="Type must be 1, 2 or 3")], render_kw={"placeholder": "Type"})
 
+
+class AnalysisForm(FlaskForm):
+    #need to add some type of validation here: latest date chosen can be 7 days prior to todays date
+    DateOf    = DateField('Date', format='%Y-%m-%d', validators=[DataRequired(message="Please enter a Date")], render_kw={"placeholder": "Date of activity"})
+    Facility    = StringField("Facility", render_kw={"placeholder": "Facility"}) 

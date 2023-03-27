@@ -686,10 +686,109 @@ def pricingList():
     logging.debug("Pricing route request")
     return render_template('pricingList.html', title= 'Pricing List')
 
+@app.route('/analysis', methods=['GET', 'POST'])
+@login_required
+def analysis():
+    # First check the user is a manager
+    if current_user.userType != 3:
+        return redirect('/home')
+
+    form = AnalysisForm()
+    activities = Activity.query.all()
+    facilities = Calendar.query.with_entities(Calendar.aLocation).distinct()
+
+    if form.validate_on_submit():
+        # Check if manager has entered facility:
+        if request.form.get('facility') is not None:
+            # First check that the facility exists
+            facility = Calendar.query.filter_by(aLocation = request.form['facility']).first()
+            if facility is None:
+                flash("That is not a valid facility/location")
+                return redirect('/analysis')
+            activityFacility = request.form['facility']
+            # Get all calendar events for that location
+            events = Calendar.query.filter_by(aLocation = request.form['facility']).all()
+
+        elif request.form.get('activity') is not None:
+            # First check that the activity exists
+            activity = Activity.query.filter_by(activityType = request.form['activity']).first()
+            if activity is None:
+                flash("That is not a valid activity")
+                return redirect('/analysis')
+            activityFacility = request.form['activity']
+            # Get all calendar events for that activity
+            events = Calendar.query.filter_by(activityId = activity.id).all()
+
+        else:
+            flash("Please enter either a facility or an activity")
+            return redirect('/analysis')
+
+        # Get date entered
+        dateEntered = form.DateOf.data
+        memberWeek = [0,0,0,0,0,0,0]
+        nonMemberWeek = [0,0,0,0,0,0,0]
+        dates = []
+        sales = [0,0,0,0,0,0,0]
+
+        # Loop through 7 days
+        for day in range(0, 7):
+            dates.append( (dateEntered+timedelta(days=day)).strftime("%d/%m"))
+            bookings = []
+            # Get each individual booking for every event on that day
+            for event in events:
+                # Check for right date
+                if event.aDateTime.date() == dateEntered+timedelta(days=day):
+                    # Go through every user booking of events
+                    for booking in event.userEvents:
+                        # Add to booking
+                        bookings.append(booking)
+                    # Once all bookings for events have been found,
+                    # it can be removed from the list of events to make future searches quicker
+                    events.remove(event)
+
+            # Now we have all user bookings for that location/activity on the right day
+            # we can split them into members and non members
+            for booking in bookings:
+                # Check user details for each booking
+                user = UserDetails.query.filter_by(id=UserBookings.userId).first()
+                userMember = user.isMember
+                # Incrememnt either member or non member count
+                if userMember:
+                    memberWeek[day] += 1
+                else:
+                    # If not a member then add price to sales array
+                    calendarEvent = Calendar.query.get(booking.calendarID)
+                    sales[i] += calendarEvent.aPrice
+                    nonMemberWeek[day] += 1
+
+        # Set session user data
+        session['activityFacility'] = activityFacility
+        session['memberWeek'] = memberWeek
+        session['nonMemberWeek'] = nonMemberWeek
+        session['dates'] = dates
+        session['sales'] = sales
+        return redirect('/analysisGraphs')
+    return render_template('analysis.html', title = 'Analysis', form=form, activities=activities, facilities=facilities)   
+
+@app.route('/analysisGraphs', methods=['GET', 'POST'])
+@login_required
+def analysisGraphs():
+    # First check the user is a manager
+    if current_user.userType != 3:
+        return redirect('/home')
+    
+    return render_template('analysisGraphs.html', title='Analysis',     activityFacility = session['activityFacility'],
+                            memberWeek = session['memberWeek'], nonMemberWeek = session['nonMemberWeek'], 
+                            dates = session['dates'], sales = session['sales'])
+
+
+
+
 @app.route('/manageUsers', methods=['POST', 'GET'])
 @login_required
 def manageUsers():
     logging.debug("Manage users route request")
+
     # First check the user is a manager
     if current_user.userType != 3:
         return redirect('/home')

@@ -24,8 +24,9 @@
     {{ form.aType(id="newType", class="form-control") }}
 
     {% for error in form.aType.errors %}
-
+    <div class="alert alert-danger" role="alert">
         [{{ error }}]
+      </div>
     {% endfor %}
     <p><input type="submit" class="btn btn-primary mt-2" value="Edit Activity"></p>
 </form>

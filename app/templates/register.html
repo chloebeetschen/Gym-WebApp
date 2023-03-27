@@ -9,6 +9,11 @@
     {{ form.hidden_tag() }}
 
     <p>{{ form.Name(class_='form-control') }}</p>
+    {% for error in form.Name.errors %}
+    <div class="alert alert-danger" role="alert">
+      {{ error }}
+    </div>
+    {% endfor %}
     <p>{{ form.DateOfBirth(class_='form-control') }}</p>
 
     <!-- Check if registree is old enough -->
@@ -18,10 +23,29 @@
     </div>
     {% endfor %}
     <p>{{ form.Email(class_='form-control') }}</p>
+    {% for error in form.Email.errors %}
+    <div class="alert alert-danger" role="alert">
+      {{ error }}
+    </div>
+    {% endfor %}
     <p>{{ form.Password(class_='form-control') }}</p>
+    {% for error in form.Password.errors %}
+    <div class="alert alert-danger" role="alert">
+      {{ error }}
+    </div>
+    {% endfor %}
     <p>{{ form.ReenterPassword(class_='form-control') }}</p>
-
+    {% for error in form.ReenterPassword.errors %}
+    <div class="alert alert-danger" role="alert">
+      {{ error }}
+    </div>
+    {% endfor %}
     <p>{{ form.Type(class_='form-control') }} </p>
+    {% for error in form.Type.errors %}
+    <div class="alert alert-danger" role="alert">
+      {{ error }}
+    </div>
+    {% endfor %}
     <p><input type="submit" class="btn btn-primary" value="Submit"></p>
 
 </form>

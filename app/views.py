@@ -577,6 +577,8 @@ def login():
             if bcrypt.check_password_hash(user.password, form.Password.data):
                 login_user(user)
                 return redirect(url_for('home'))
+            else:
+                flash("Incorrect username/password. Please try again.")
 
     return render_template('login.html', form=form)
 
@@ -648,12 +650,15 @@ def settings():
         if not bcrypt.check_password_hash(current_user.password, form.Password.data):
             flash('Incorrect password')
             return redirect(url_for('settings'))
-        # Update the user's details
+
         cUserLogin   = models.UserLogin.query.get(current_user.id)
         cUserDetails = models.UserDetails.query.get(current_user.id)
 
-        cUserDetails.name    = form.Name.data
-        cUserLogin.password  = bcrypt.generate_password_hash(form.NewPassword.data)
+        # Only update the user's details that they have changed
+        if form.Name.data:
+            cUserDetails.name    = form.Name.data
+        if form.NewPasswordx2.data:
+            cUserLogin.password  = bcrypt.generate_password_hash(form.NewPassword.data)
 
         db.session.commit()
         flash('User Details updated')
@@ -723,10 +728,15 @@ def editUser(id):
         cUserLogin   = models.UserLogin.query.get(id)
         cUserDetails = models.UserDetails.query.get(id)
 
-        cUserDetails.name    = form.Name.data
-        cUserLogin.email     = form.Email.data
-        cUserLogin.password  = bcrypt.generate_password_hash(form.NewPasswordx2.data)
-        cUserLogin.userType      = form.Type.data
+        # Only update anything that has changed
+        if form.Name.data:
+            cUserDetails.name    = form.Name.data
+        if form.Email.data:
+            cUserLogin.email     = form.Email.data
+        if form.NewPasswordx2.data:
+            cUserLogin.password  = bcrypt.generate_password_hash(form.NewPasswordx2.data)
+        if form.Type.data:
+            cUserLogin.userType      = form.Type.data
 
         db.session.commit()
         flash('User Details updated')

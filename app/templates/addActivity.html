@@ -14,7 +14,9 @@
         {{ form.aType(class='form-control')}}
     </p>
     {% for error in form.aType.errors %}
+    <div class="alert alert-danger" role="alert">
         [{{ error }}]
+    </div>
     {% endfor %}
 
     <p><input type="submit" class="btn btn-primary" value="Add Activity"></p>

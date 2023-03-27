@@ -33,7 +33,7 @@
             <li class="nav-item"><a class="nav-link" href="{{ url_for('home') }}"> <img src="{{url_for('static', filename='images/home.png')}}" width="30" height="30" /><span class="sr-only">(current)</span></a></li>
             <li class="nav-item"><a class="nav-link" href="/calendar"><img src="{{url_for('static', filename='images/calendar.png')}}" width="30" height="30" /></a></li>
             <li class="nav-item"><a class="nav-link" href="/myBookings"><img src="{{url_for('static', filename='images/list-check.png')}}" width="30" height="30" /></a></li>
-            <li class="nav-item"><a class="nav-link" href="/memberships"><img src="{{url_for('static', filename='images/add.png')}}" width="30" height="30" /></a></li>
+            <li class="nav-item"><a class="nav-link" href="/memberships"><img src="{{url_for('static', filename='images/membership.png')}}" width="30" height="30" /></a></li>
             <!-- Only managers should have access to these pages -->
             {% if current_user.userType == 3 %}
               <li class="nav-item"><a class="nav-link" href="/addEvent">Add Event</a></li>

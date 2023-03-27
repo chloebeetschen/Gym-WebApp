@@ -678,7 +678,8 @@ def manageUsers():
 
     form = SearchForm()
     if form.validate_on_submit():        
-        return redirect(((url_for('searchResults'), search=form.search.data)))
+        search = form.search.data
+        return redirect(url_for('searchResults', search = search))
 
     ## Normal users
     userTypeLogin1 = UserLogin.query.filter_by(userType=1).all()
@@ -815,7 +816,8 @@ def searchResults(search):
 
     form = SearchForm()
     if form.validate_on_submit():
-        return redirect(((url_for('searchResults'), search=form.search.data)))
+        search = form.search.data
+        return redirect(url_for('searchResults', search = search))
 
     users = UserLogin.query.all()
     users2 = UserDetails.query.all()
@@ -827,6 +829,9 @@ def searchResults(search):
     
     for j in users2:
         if search.lower() in (j.name).lower():
-            results.append(UserLogin.query.filter_by(id = j.parentId).first())
+            results.append(UserLogin.query.filter_by(id = j.id).first())
+
+    results = list(dict.fromkeys(results))
+
 
     return render_template('searches.html', title='Search Results', form = form, results = results, numUsers = len(results))

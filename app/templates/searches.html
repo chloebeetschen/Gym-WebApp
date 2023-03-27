@@ -34,13 +34,13 @@
                 <td>{{results[i].userType}}</td>
 
                 <td>    
-                    <a href="/userBookings/{{userTypeLogin1[i].id}}"><button type="button" class="btns">Bookings</button></a>
+                    <a href="/userBookings/{{results[i].id}}"><button type="button" class="btns">Bookings</button></a>
                 </td>
                 <td>    
-                    <a href="/editUser/{{userTypeLogin1[i].id}}"><button type="button" class="btns">Edit</button></a>
+                    <a href="/editUser/{{results[i].id}}"><button type="button" class="btns">Edit</button></a>
                 </td>
                 <td>    
-                    <a href="/deleteUser/{{userTypeLogin1[i].id}}"><button type="button" class="btns">Delete</button></a>
+                    <a href="/deleteUser/{{results[i].id}}"><button type="button" class="btns">Delete</button></a>
                 </td>
             </tr>
         {% endfor %}

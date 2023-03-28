@@ -772,13 +772,13 @@ def analysis():
                 # Check user details for each booking
                 user = UserDetails.query.filter_by(id=UserBookings.userId).first()
                 userMember = user.isMember
-                # Incrememnt either member or non member count
+                # Increment either member or non member count
                 if userMember:
                     memberWeek[day] += 1
                 else:
                     # If not a member then add price to sales array
-                    calendarEvent = Calendar.query.get(booking.calendarID)
-                    sales[i] += calendarEvent.aPrice
+                    calendarEvent = Calendar.query.get(booking.calendarId)
+                    sales[day] += calendarEvent.aPrice
                     nonMemberWeek[day] += 1
 
         # Set session user data

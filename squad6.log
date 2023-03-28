@@ -1,0 +1,1247 @@
+INFO | 28/03/2023 13:27:52 |  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO | 28/03/2023 13:27:52 |  * Restarting with stat
+INFO | 28/03/2023 13:28:36 |  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO | 28/03/2023 13:28:36 |  * Restarting with stat
+INFO | 28/03/2023 13:28:59 | 127.0.0.1 - - [28/Mar/2023 13:28:59] "[32mGET / HTTP/1.1[0m" 302 -
+DEBUG | 28/03/2023 13:28:59 | Login route request
+INFO | 28/03/2023 13:28:59 | 127.0.0.1 - - [28/Mar/2023 13:28:59] "GET /login?next=%2F HTTP/1.1" 200 -
+INFO | 28/03/2023 13:28:59 | 127.0.0.1 - - [28/Mar/2023 13:28:59] "GET /static/styles.css HTTP/1.1" 200 -
+INFO | 28/03/2023 13:28:59 | 127.0.0.1 - - [28/Mar/2023 13:28:59] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+DEBUG | 28/03/2023 13:29:10 | Login route request
+INFO | 28/03/2023 13:29:10 | 127.0.0.1 - - [28/Mar/2023 13:29:10] "POST /login?next=%2F HTTP/1.1" 200 -
+INFO | 28/03/2023 13:29:10 | 127.0.0.1 - - [28/Mar/2023 13:29:10] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:29:11 | Login route request
+INFO | 28/03/2023 13:29:11 | 127.0.0.1 - - [28/Mar/2023 13:29:11] "POST /login?next=%2F HTTP/1.1" 200 -
+INFO | 28/03/2023 13:29:11 | 127.0.0.1 - - [28/Mar/2023 13:29:11] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:29:13 | Register route request
+INFO | 28/03/2023 13:29:13 | 127.0.0.1 - - [28/Mar/2023 13:29:13] "GET /register HTTP/1.1" 200 -
+INFO | 28/03/2023 13:29:13 | 127.0.0.1 - - [28/Mar/2023 13:29:13] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:17 | 127.0.0.1 - - [28/Mar/2023 13:29:17] "GET /admin/ HTTP/1.1" 200 -
+INFO | 28/03/2023 13:29:17 | 127.0.0.1 - - [28/Mar/2023 13:29:17] "GET /admin/static/vendor/jquery.min.js?v=3.5.1 HTTP/1.1" 200 -
+INFO | 28/03/2023 13:29:17 | 127.0.0.1 - - [28/Mar/2023 13:29:17] "GET /admin/static/bootstrap/bootstrap4/js/bootstrap.min.js?v=4.2.1 HTTP/1.1" 200 -
+INFO | 28/03/2023 13:29:17 | 127.0.0.1 - - [28/Mar/2023 13:29:17] "GET /admin/static/bootstrap/bootstrap4/swatch/default/bootstrap.min.css?v=4.2.1 HTTP/1.1" 200 -
+INFO | 28/03/2023 13:29:17 | 127.0.0.1 - - [28/Mar/2023 13:29:17] "GET /admin/static/bootstrap/bootstrap4/css/bootstrap.min.css?v=4.2.1 HTTP/1.1" 200 -
+INFO | 28/03/2023 13:29:17 | 127.0.0.1 - - [28/Mar/2023 13:29:17] "GET /admin/static/bootstrap/bootstrap4/js/popper.min.js HTTP/1.1" 200 -
+INFO | 28/03/2023 13:29:17 | 127.0.0.1 - - [28/Mar/2023 13:29:17] "GET /admin/static/bootstrap/bootstrap4/css/font-awesome.min.css?v=4.7.0 HTTP/1.1" 200 -
+INFO | 28/03/2023 13:29:18 | 127.0.0.1 - - [28/Mar/2023 13:29:18] "GET /admin/static/vendor/moment.min.js?v=2.9.0 HTTP/1.1" 200 -
+INFO | 28/03/2023 13:29:18 | 127.0.0.1 - - [28/Mar/2023 13:29:18] "GET /admin/static/vendor/bootstrap4/dropdown.js?v=4.3.1 HTTP/1.1" 200 -
+INFO | 28/03/2023 13:29:18 | 127.0.0.1 - - [28/Mar/2023 13:29:18] "GET /admin/static/vendor/select2/select2.min.js?v=4.2.1 HTTP/1.1" 200 -
+INFO | 28/03/2023 13:29:18 | 127.0.0.1 - - [28/Mar/2023 13:29:18] "[36mGET /admin/static/vendor/bootstrap4/util.js?v=4.3.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:18 | 127.0.0.1 - - [28/Mar/2023 13:29:18] "[36mGET /admin/static/vendor/multi-level-dropdowns-bootstrap/bootstrap4-dropdown-ml-hack.js HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:18 | 127.0.0.1 - - [28/Mar/2023 13:29:18] "[36mGET /admin/static/admin/js/helpers.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:18 | 127.0.0.1 - - [28/Mar/2023 13:29:18] "[36mGET /admin/static/admin/css/bootstrap4/admin.css?v=1.1.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:19 | 127.0.0.1 - - [28/Mar/2023 13:29:19] "GET /admin/userlogin/ HTTP/1.1" 200 -
+INFO | 28/03/2023 13:29:19 | 127.0.0.1 - - [28/Mar/2023 13:29:19] "GET /admin/static/vendor/select2/select2.css?v=4.2.1 HTTP/1.1" 200 -
+INFO | 28/03/2023 13:29:19 | 127.0.0.1 - - [28/Mar/2023 13:29:19] "GET /admin/static/vendor/bootstrap-daterangepicker/daterangepicker.js?v=1.3.22 HTTP/1.1" 200 -
+INFO | 28/03/2023 13:29:19 | 127.0.0.1 - - [28/Mar/2023 13:29:19] "GET /admin/static/admin/js/form.js?v=1.0.1 HTTP/1.1" 200 -
+INFO | 28/03/2023 13:29:19 | 127.0.0.1 - - [28/Mar/2023 13:29:19] "[36mGET /admin/static/admin/css/bootstrap4/admin.css?v=1.1.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:19 | 127.0.0.1 - - [28/Mar/2023 13:29:19] "[36mGET /admin/static/vendor/bootstrap4/util.js?v=4.3.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:19 | 127.0.0.1 - - [28/Mar/2023 13:29:19] "[36mGET /admin/static/vendor/multi-level-dropdowns-bootstrap/bootstrap4-dropdown-ml-hack.js HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:19 | 127.0.0.1 - - [28/Mar/2023 13:29:19] "[36mGET /admin/static/admin/js/helpers.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:19 | 127.0.0.1 - - [28/Mar/2023 13:29:19] "[36mGET /admin/static/bootstrap/bootstrap4/swatch/default/bootstrap.min.css?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:19 | 127.0.0.1 - - [28/Mar/2023 13:29:19] "[36mGET /admin/static/bootstrap/bootstrap4/css/bootstrap.min.css?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:19 | 127.0.0.1 - - [28/Mar/2023 13:29:19] "[36mGET /admin/static/bootstrap/bootstrap4/css/font-awesome.min.css?v=4.7.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:19 | 127.0.0.1 - - [28/Mar/2023 13:29:19] "[36mGET /admin/static/vendor/jquery.min.js?v=3.5.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:19 | 127.0.0.1 - - [28/Mar/2023 13:29:19] "[36mGET /admin/static/bootstrap/bootstrap4/js/bootstrap.min.js?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:19 | 127.0.0.1 - - [28/Mar/2023 13:29:19] "[36mGET /admin/static/vendor/select2/select2-bootstrap4.css?v=1.4.6 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:19 | 127.0.0.1 - - [28/Mar/2023 13:29:19] "[36mGET /admin/static/admin/js/bs4_modal.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:19 | 127.0.0.1 - - [28/Mar/2023 13:29:19] "[36mGET /admin/static/vendor/select2/select2.min.js?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:19 | 127.0.0.1 - - [28/Mar/2023 13:29:19] "[36mGET /admin/static/vendor/bootstrap-daterangepicker/daterangepicker-bs4.css?v=1.3.22 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:19 | 127.0.0.1 - - [28/Mar/2023 13:29:19] "[36mGET /admin/static/bootstrap/bootstrap4/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:19 | 127.0.0.1 - - [28/Mar/2023 13:29:19] "[36mGET /admin/static/vendor/bootstrap4/dropdown.js?v=4.3.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:19 | 127.0.0.1 - - [28/Mar/2023 13:29:19] "[36mGET /admin/static/vendor/moment.min.js?v=2.9.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:19 | 127.0.0.1 - - [28/Mar/2023 13:29:19] "[36mGET /admin/static/admin/js/actions.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:19 | 127.0.0.1 - - [28/Mar/2023 13:29:19] "[36mGET /admin/static/admin/js/bs4_filters.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:20 | 127.0.0.1 - - [28/Mar/2023 13:29:20] "GET /admin/userdetails/ HTTP/1.1" 200 -
+INFO | 28/03/2023 13:29:20 | 127.0.0.1 - - [28/Mar/2023 13:29:20] "[36mGET /admin/static/bootstrap/bootstrap4/swatch/default/bootstrap.min.css?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:20 | 127.0.0.1 - - [28/Mar/2023 13:29:20] "[36mGET /admin/static/bootstrap/bootstrap4/css/bootstrap.min.css?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:20 | 127.0.0.1 - - [28/Mar/2023 13:29:20] "[36mGET /admin/static/admin/css/bootstrap4/admin.css?v=1.1.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:20 | 127.0.0.1 - - [28/Mar/2023 13:29:20] "[36mGET /admin/static/bootstrap/bootstrap4/css/font-awesome.min.css?v=4.7.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:20 | 127.0.0.1 - - [28/Mar/2023 13:29:20] "[36mGET /admin/static/vendor/select2/select2-bootstrap4.css?v=1.4.6 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:20 | 127.0.0.1 - - [28/Mar/2023 13:29:20] "[36mGET /admin/static/vendor/bootstrap-daterangepicker/daterangepicker-bs4.css?v=1.3.22 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:20 | 127.0.0.1 - - [28/Mar/2023 13:29:20] "[36mGET /admin/static/vendor/select2/select2.css?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:20 | 127.0.0.1 - - [28/Mar/2023 13:29:20] "[36mGET /admin/static/vendor/jquery.min.js?v=3.5.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:20 | 127.0.0.1 - - [28/Mar/2023 13:29:20] "[36mGET /admin/static/bootstrap/bootstrap4/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:20 | 127.0.0.1 - - [28/Mar/2023 13:29:20] "[36mGET /admin/static/bootstrap/bootstrap4/js/bootstrap.min.js?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:20 | 127.0.0.1 - - [28/Mar/2023 13:29:20] "[36mGET /admin/static/vendor/moment.min.js?v=2.9.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:20 | 127.0.0.1 - - [28/Mar/2023 13:29:20] "[36mGET /admin/static/vendor/bootstrap4/util.js?v=4.3.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:20 | 127.0.0.1 - - [28/Mar/2023 13:29:20] "[36mGET /admin/static/vendor/bootstrap4/dropdown.js?v=4.3.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:20 | 127.0.0.1 - - [28/Mar/2023 13:29:20] "[36mGET /admin/static/vendor/select2/select2.min.js?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:20 | 127.0.0.1 - - [28/Mar/2023 13:29:20] "[36mGET /admin/static/vendor/multi-level-dropdowns-bootstrap/bootstrap4-dropdown-ml-hack.js HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:20 | 127.0.0.1 - - [28/Mar/2023 13:29:20] "[36mGET /admin/static/admin/js/helpers.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:20 | 127.0.0.1 - - [28/Mar/2023 13:29:20] "[36mGET /admin/static/admin/js/bs4_modal.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:20 | 127.0.0.1 - - [28/Mar/2023 13:29:20] "[36mGET /admin/static/admin/js/bs4_filters.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:20 | 127.0.0.1 - - [28/Mar/2023 13:29:20] "[36mGET /admin/static/admin/js/actions.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:20 | 127.0.0.1 - - [28/Mar/2023 13:29:20] "[36mGET /admin/static/vendor/bootstrap-daterangepicker/daterangepicker.js?v=1.3.22 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:20 | 127.0.0.1 - - [28/Mar/2023 13:29:20] "[36mGET /admin/static/admin/js/form.js?v=1.0.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "GET /admin/paymentcard/ HTTP/1.1" 200 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/bootstrap/bootstrap4/swatch/default/bootstrap.min.css?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/bootstrap/bootstrap4/css/bootstrap.min.css?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/admin/css/bootstrap4/admin.css?v=1.1.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/bootstrap/bootstrap4/css/font-awesome.min.css?v=4.7.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/vendor/select2/select2.css?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/vendor/select2/select2-bootstrap4.css?v=1.4.6 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/vendor/bootstrap-daterangepicker/daterangepicker-bs4.css?v=1.3.22 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/vendor/jquery.min.js?v=3.5.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/bootstrap/bootstrap4/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/bootstrap/bootstrap4/js/bootstrap.min.js?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/vendor/bootstrap4/util.js?v=4.3.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/vendor/moment.min.js?v=2.9.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/vendor/bootstrap4/dropdown.js?v=4.3.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/vendor/select2/select2.min.js?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/vendor/multi-level-dropdowns-bootstrap/bootstrap4-dropdown-ml-hack.js HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/admin/js/helpers.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/vendor/bootstrap-daterangepicker/daterangepicker.js?v=1.3.22 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/admin/js/form.js?v=1.0.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/admin/js/bs4_modal.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/admin/js/bs4_filters.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/admin/js/actions.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "GET /admin/calendar/ HTTP/1.1" 200 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/bootstrap/bootstrap4/swatch/default/bootstrap.min.css?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/bootstrap/bootstrap4/css/bootstrap.min.css?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/admin/css/bootstrap4/admin.css?v=1.1.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/bootstrap/bootstrap4/css/font-awesome.min.css?v=4.7.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/vendor/select2/select2.css?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/vendor/select2/select2-bootstrap4.css?v=1.4.6 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/vendor/bootstrap-daterangepicker/daterangepicker-bs4.css?v=1.3.22 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/vendor/jquery.min.js?v=3.5.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/bootstrap/bootstrap4/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/vendor/moment.min.js?v=2.9.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/vendor/bootstrap4/util.js?v=4.3.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/bootstrap/bootstrap4/js/bootstrap.min.js?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/vendor/bootstrap4/dropdown.js?v=4.3.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/vendor/select2/select2.min.js?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/vendor/multi-level-dropdowns-bootstrap/bootstrap4-dropdown-ml-hack.js HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/admin/js/helpers.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/vendor/bootstrap-daterangepicker/daterangepicker.js?v=1.3.22 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/admin/js/form.js?v=1.0.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/admin/js/bs4_modal.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/admin/js/bs4_filters.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/admin/js/actions.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "GET /admin/activity/ HTTP/1.1" 200 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/bootstrap/bootstrap4/swatch/default/bootstrap.min.css?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/bootstrap/bootstrap4/css/bootstrap.min.css?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/bootstrap/bootstrap4/css/font-awesome.min.css?v=4.7.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/admin/css/bootstrap4/admin.css?v=1.1.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/vendor/select2/select2.css?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/vendor/select2/select2-bootstrap4.css?v=1.4.6 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/bootstrap/bootstrap4/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/vendor/jquery.min.js?v=3.5.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/vendor/bootstrap-daterangepicker/daterangepicker-bs4.css?v=1.3.22 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/bootstrap/bootstrap4/js/bootstrap.min.js?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/vendor/bootstrap4/util.js?v=4.3.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/vendor/moment.min.js?v=2.9.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/vendor/bootstrap4/dropdown.js?v=4.3.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/vendor/select2/select2.min.js?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/vendor/multi-level-dropdowns-bootstrap/bootstrap4-dropdown-ml-hack.js HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/admin/js/helpers.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/vendor/bootstrap-daterangepicker/daterangepicker.js?v=1.3.22 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/admin/js/bs4_modal.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/admin/js/form.js?v=1.0.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/admin/js/bs4_filters.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:21 | 127.0.0.1 - - [28/Mar/2023 13:29:21] "[36mGET /admin/static/admin/js/actions.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:22 | 127.0.0.1 - - [28/Mar/2023 13:29:22] "GET /admin/userbookings/ HTTP/1.1" 200 -
+INFO | 28/03/2023 13:29:22 | 127.0.0.1 - - [28/Mar/2023 13:29:22] "[36mGET /admin/static/bootstrap/bootstrap4/swatch/default/bootstrap.min.css?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:22 | 127.0.0.1 - - [28/Mar/2023 13:29:22] "[36mGET /admin/static/bootstrap/bootstrap4/css/bootstrap.min.css?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:22 | 127.0.0.1 - - [28/Mar/2023 13:29:22] "[36mGET /admin/static/admin/css/bootstrap4/admin.css?v=1.1.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:22 | 127.0.0.1 - - [28/Mar/2023 13:29:22] "[36mGET /admin/static/bootstrap/bootstrap4/css/font-awesome.min.css?v=4.7.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:22 | 127.0.0.1 - - [28/Mar/2023 13:29:22] "[36mGET /admin/static/vendor/select2/select2.css?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:22 | 127.0.0.1 - - [28/Mar/2023 13:29:22] "[36mGET /admin/static/vendor/select2/select2-bootstrap4.css?v=1.4.6 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:22 | 127.0.0.1 - - [28/Mar/2023 13:29:22] "[36mGET /admin/static/vendor/bootstrap-daterangepicker/daterangepicker-bs4.css?v=1.3.22 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:22 | 127.0.0.1 - - [28/Mar/2023 13:29:22] "[36mGET /admin/static/bootstrap/bootstrap4/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:22 | 127.0.0.1 - - [28/Mar/2023 13:29:22] "[36mGET /admin/static/vendor/jquery.min.js?v=3.5.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:22 | 127.0.0.1 - - [28/Mar/2023 13:29:22] "[36mGET /admin/static/vendor/moment.min.js?v=2.9.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:22 | 127.0.0.1 - - [28/Mar/2023 13:29:22] "[36mGET /admin/static/bootstrap/bootstrap4/js/bootstrap.min.js?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:22 | 127.0.0.1 - - [28/Mar/2023 13:29:22] "[36mGET /admin/static/vendor/bootstrap4/util.js?v=4.3.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:22 | 127.0.0.1 - - [28/Mar/2023 13:29:22] "[36mGET /admin/static/vendor/bootstrap4/dropdown.js?v=4.3.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:22 | 127.0.0.1 - - [28/Mar/2023 13:29:22] "[36mGET /admin/static/vendor/select2/select2.min.js?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:22 | 127.0.0.1 - - [28/Mar/2023 13:29:22] "[36mGET /admin/static/vendor/multi-level-dropdowns-bootstrap/bootstrap4-dropdown-ml-hack.js HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:22 | 127.0.0.1 - - [28/Mar/2023 13:29:22] "[36mGET /admin/static/admin/js/helpers.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:22 | 127.0.0.1 - - [28/Mar/2023 13:29:22] "[36mGET /admin/static/vendor/bootstrap-daterangepicker/daterangepicker.js?v=1.3.22 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:22 | 127.0.0.1 - - [28/Mar/2023 13:29:22] "[36mGET /admin/static/admin/js/form.js?v=1.0.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:22 | 127.0.0.1 - - [28/Mar/2023 13:29:22] "[36mGET /admin/static/admin/js/bs4_modal.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:22 | 127.0.0.1 - - [28/Mar/2023 13:29:22] "[36mGET /admin/static/admin/js/bs4_filters.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:22 | 127.0.0.1 - - [28/Mar/2023 13:29:22] "[36mGET /admin/static/admin/js/actions.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:22 | 127.0.0.1 - - [28/Mar/2023 13:29:22] "GET /admin/calendar/ HTTP/1.1" 200 -
+INFO | 28/03/2023 13:29:22 | 127.0.0.1 - - [28/Mar/2023 13:29:22] "[36mGET /admin/static/bootstrap/bootstrap4/swatch/default/bootstrap.min.css?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:22 | 127.0.0.1 - - [28/Mar/2023 13:29:22] "[36mGET /admin/static/bootstrap/bootstrap4/css/bootstrap.min.css?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:22 | 127.0.0.1 - - [28/Mar/2023 13:29:22] "[36mGET /admin/static/admin/css/bootstrap4/admin.css?v=1.1.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:22 | 127.0.0.1 - - [28/Mar/2023 13:29:22] "[36mGET /admin/static/bootstrap/bootstrap4/css/font-awesome.min.css?v=4.7.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:22 | 127.0.0.1 - - [28/Mar/2023 13:29:22] "[36mGET /admin/static/vendor/select2/select2.css?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:22 | 127.0.0.1 - - [28/Mar/2023 13:29:22] "[36mGET /admin/static/vendor/select2/select2-bootstrap4.css?v=1.4.6 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:22 | 127.0.0.1 - - [28/Mar/2023 13:29:22] "[36mGET /admin/static/vendor/bootstrap-daterangepicker/daterangepicker-bs4.css?v=1.3.22 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:22 | 127.0.0.1 - - [28/Mar/2023 13:29:22] "[36mGET /admin/static/vendor/jquery.min.js?v=3.5.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:22 | 127.0.0.1 - - [28/Mar/2023 13:29:22] "[36mGET /admin/static/bootstrap/bootstrap4/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:22 | 127.0.0.1 - - [28/Mar/2023 13:29:22] "[36mGET /admin/static/bootstrap/bootstrap4/js/bootstrap.min.js?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:22 | 127.0.0.1 - - [28/Mar/2023 13:29:22] "[36mGET /admin/static/vendor/moment.min.js?v=2.9.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:22 | 127.0.0.1 - - [28/Mar/2023 13:29:22] "[36mGET /admin/static/vendor/bootstrap4/dropdown.js?v=4.3.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:22 | 127.0.0.1 - - [28/Mar/2023 13:29:22] "[36mGET /admin/static/vendor/bootstrap4/util.js?v=4.3.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:22 | 127.0.0.1 - - [28/Mar/2023 13:29:22] "[36mGET /admin/static/vendor/select2/select2.min.js?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:22 | 127.0.0.1 - - [28/Mar/2023 13:29:22] "[36mGET /admin/static/vendor/multi-level-dropdowns-bootstrap/bootstrap4-dropdown-ml-hack.js HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:22 | 127.0.0.1 - - [28/Mar/2023 13:29:22] "[36mGET /admin/static/vendor/bootstrap-daterangepicker/daterangepicker.js?v=1.3.22 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:22 | 127.0.0.1 - - [28/Mar/2023 13:29:22] "[36mGET /admin/static/admin/js/helpers.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:22 | 127.0.0.1 - - [28/Mar/2023 13:29:22] "[36mGET /admin/static/admin/js/form.js?v=1.0.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:22 | 127.0.0.1 - - [28/Mar/2023 13:29:22] "[36mGET /admin/static/admin/js/bs4_modal.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:22 | 127.0.0.1 - - [28/Mar/2023 13:29:22] "[36mGET /admin/static/admin/js/bs4_filters.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:22 | 127.0.0.1 - - [28/Mar/2023 13:29:22] "[36mGET /admin/static/admin/js/actions.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:23 | 127.0.0.1 - - [28/Mar/2023 13:29:23] "GET /admin/userlogin/ HTTP/1.1" 200 -
+INFO | 28/03/2023 13:29:23 | 127.0.0.1 - - [28/Mar/2023 13:29:23] "[36mGET /admin/static/bootstrap/bootstrap4/swatch/default/bootstrap.min.css?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:23 | 127.0.0.1 - - [28/Mar/2023 13:29:23] "[36mGET /admin/static/bootstrap/bootstrap4/css/bootstrap.min.css?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:23 | 127.0.0.1 - - [28/Mar/2023 13:29:23] "[36mGET /admin/static/admin/css/bootstrap4/admin.css?v=1.1.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:23 | 127.0.0.1 - - [28/Mar/2023 13:29:23] "[36mGET /admin/static/bootstrap/bootstrap4/css/font-awesome.min.css?v=4.7.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:23 | 127.0.0.1 - - [28/Mar/2023 13:29:23] "[36mGET /admin/static/vendor/select2/select2.css?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:23 | 127.0.0.1 - - [28/Mar/2023 13:29:23] "[36mGET /admin/static/vendor/select2/select2-bootstrap4.css?v=1.4.6 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:23 | 127.0.0.1 - - [28/Mar/2023 13:29:23] "[36mGET /admin/static/vendor/bootstrap-daterangepicker/daterangepicker-bs4.css?v=1.3.22 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:23 | 127.0.0.1 - - [28/Mar/2023 13:29:23] "[36mGET /admin/static/bootstrap/bootstrap4/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:23 | 127.0.0.1 - - [28/Mar/2023 13:29:23] "[36mGET /admin/static/bootstrap/bootstrap4/js/bootstrap.min.js?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:23 | 127.0.0.1 - - [28/Mar/2023 13:29:23] "[36mGET /admin/static/vendor/jquery.min.js?v=3.5.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:23 | 127.0.0.1 - - [28/Mar/2023 13:29:23] "[36mGET /admin/static/vendor/moment.min.js?v=2.9.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:23 | 127.0.0.1 - - [28/Mar/2023 13:29:23] "[36mGET /admin/static/vendor/bootstrap4/util.js?v=4.3.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:23 | 127.0.0.1 - - [28/Mar/2023 13:29:23] "[36mGET /admin/static/vendor/bootstrap4/dropdown.js?v=4.3.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:23 | 127.0.0.1 - - [28/Mar/2023 13:29:23] "[36mGET /admin/static/vendor/select2/select2.min.js?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:23 | 127.0.0.1 - - [28/Mar/2023 13:29:23] "[36mGET /admin/static/vendor/multi-level-dropdowns-bootstrap/bootstrap4-dropdown-ml-hack.js HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:23 | 127.0.0.1 - - [28/Mar/2023 13:29:23] "[36mGET /admin/static/admin/js/helpers.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:23 | 127.0.0.1 - - [28/Mar/2023 13:29:23] "[36mGET /admin/static/vendor/bootstrap-daterangepicker/daterangepicker.js?v=1.3.22 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:23 | 127.0.0.1 - - [28/Mar/2023 13:29:23] "[36mGET /admin/static/admin/js/bs4_modal.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:23 | 127.0.0.1 - - [28/Mar/2023 13:29:23] "[36mGET /admin/static/admin/js/form.js?v=1.0.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:23 | 127.0.0.1 - - [28/Mar/2023 13:29:23] "[36mGET /admin/static/admin/js/bs4_filters.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:23 | 127.0.0.1 - - [28/Mar/2023 13:29:23] "[36mGET /admin/static/admin/js/actions.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:23 | 127.0.0.1 - - [28/Mar/2023 13:29:23] "GET /admin/ HTTP/1.1" 200 -
+INFO | 28/03/2023 13:29:23 | 127.0.0.1 - - [28/Mar/2023 13:29:23] "[36mGET /admin/static/bootstrap/bootstrap4/css/bootstrap.min.css?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:23 | 127.0.0.1 - - [28/Mar/2023 13:29:23] "[36mGET /admin/static/bootstrap/bootstrap4/swatch/default/bootstrap.min.css?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:23 | 127.0.0.1 - - [28/Mar/2023 13:29:23] "[36mGET /admin/static/admin/css/bootstrap4/admin.css?v=1.1.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:23 | 127.0.0.1 - - [28/Mar/2023 13:29:23] "[36mGET /admin/static/bootstrap/bootstrap4/css/font-awesome.min.css?v=4.7.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:23 | 127.0.0.1 - - [28/Mar/2023 13:29:23] "[36mGET /admin/static/vendor/jquery.min.js?v=3.5.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:23 | 127.0.0.1 - - [28/Mar/2023 13:29:23] "[36mGET /admin/static/bootstrap/bootstrap4/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:23 | 127.0.0.1 - - [28/Mar/2023 13:29:23] "[36mGET /admin/static/vendor/moment.min.js?v=2.9.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:23 | 127.0.0.1 - - [28/Mar/2023 13:29:23] "[36mGET /admin/static/bootstrap/bootstrap4/js/bootstrap.min.js?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:23 | 127.0.0.1 - - [28/Mar/2023 13:29:23] "[36mGET /admin/static/vendor/bootstrap4/util.js?v=4.3.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:23 | 127.0.0.1 - - [28/Mar/2023 13:29:23] "[36mGET /admin/static/vendor/bootstrap4/dropdown.js?v=4.3.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:23 | 127.0.0.1 - - [28/Mar/2023 13:29:23] "[36mGET /admin/static/vendor/select2/select2.min.js?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:23 | 127.0.0.1 - - [28/Mar/2023 13:29:23] "[36mGET /admin/static/vendor/multi-level-dropdowns-bootstrap/bootstrap4-dropdown-ml-hack.js HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:23 | 127.0.0.1 - - [28/Mar/2023 13:29:23] "[36mGET /admin/static/admin/js/helpers.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:25 | 127.0.0.1 - - [28/Mar/2023 13:29:25] "GET /admin/userdetails/ HTTP/1.1" 200 -
+INFO | 28/03/2023 13:29:26 | 127.0.0.1 - - [28/Mar/2023 13:29:26] "GET /admin/userlogin/ HTTP/1.1" 200 -
+INFO | 28/03/2023 13:29:26 | 127.0.0.1 - - [28/Mar/2023 13:29:26] "GET /admin/ HTTP/1.1" 200 -
+DEBUG | 28/03/2023 13:29:27 | Register route request
+INFO | 28/03/2023 13:29:27 | 127.0.0.1 - - [28/Mar/2023 13:29:27] "GET /register HTTP/1.1" 200 -
+DEBUG | 28/03/2023 13:29:28 | Home route request
+INFO | 28/03/2023 13:29:28 | 127.0.0.1 - - [28/Mar/2023 13:29:28] "GET /home HTTP/1.1" 200 -
+INFO | 28/03/2023 13:29:28 | 127.0.0.1 - - [28/Mar/2023 13:29:28] "GET /static/GYM.png HTTP/1.1" 200 -
+INFO | 28/03/2023 13:29:28 | 127.0.0.1 - - [28/Mar/2023 13:29:28] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:29 | 127.0.0.1 - - [28/Mar/2023 13:29:29] "[32mGET /calendar HTTP/1.1[0m" 302 -
+DEBUG | 28/03/2023 13:29:29 | Login route request
+INFO | 28/03/2023 13:29:29 | 127.0.0.1 - - [28/Mar/2023 13:29:29] "GET /login?next=%2Fcalendar HTTP/1.1" 200 -
+INFO | 28/03/2023 13:29:29 | 127.0.0.1 - - [28/Mar/2023 13:29:29] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:29 | 127.0.0.1 - - [28/Mar/2023 13:29:29] "[32mGET /myBookings HTTP/1.1[0m" 302 -
+DEBUG | 28/03/2023 13:29:29 | Login route request
+INFO | 28/03/2023 13:29:29 | 127.0.0.1 - - [28/Mar/2023 13:29:29] "GET /login?next=%2FmyBookings HTTP/1.1" 200 -
+INFO | 28/03/2023 13:29:29 | 127.0.0.1 - - [28/Mar/2023 13:29:29] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:29:31 | Register route request
+INFO | 28/03/2023 13:29:31 | 127.0.0.1 - - [28/Mar/2023 13:29:31] "GET /register HTTP/1.1" 200 -
+INFO | 28/03/2023 13:29:31 | 127.0.0.1 - - [28/Mar/2023 13:29:31] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:29:47 | Register route request
+INFO | 28/03/2023 13:29:48 | 127.0.0.1 - - [28/Mar/2023 13:29:48] "[32mPOST /register HTTP/1.1[0m" 302 -
+DEBUG | 28/03/2023 13:29:48 | Login route request
+INFO | 28/03/2023 13:29:48 | 127.0.0.1 - - [28/Mar/2023 13:29:48] "GET /login HTTP/1.1" 200 -
+INFO | 28/03/2023 13:29:48 | 127.0.0.1 - - [28/Mar/2023 13:29:48] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:29:51 | Login route request
+INFO | 28/03/2023 13:29:52 | 127.0.0.1 - - [28/Mar/2023 13:29:52] "[32mPOST /login HTTP/1.1[0m" 302 -
+DEBUG | 28/03/2023 13:29:52 | Home route request
+INFO | 28/03/2023 13:29:52 | 127.0.0.1 - - [28/Mar/2023 13:29:52] "GET /home HTTP/1.1" 200 -
+INFO | 28/03/2023 13:29:52 | 127.0.0.1 - - [28/Mar/2023 13:29:52] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:52 | 127.0.0.1 - - [28/Mar/2023 13:29:52] "[36mGET /static/GYM.png HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:29:53 | Memberships route request
+INFO | 28/03/2023 13:29:53 | 127.0.0.1 - - [28/Mar/2023 13:29:53] "GET /memberships HTTP/1.1" 200 -
+INFO | 28/03/2023 13:29:53 | 127.0.0.1 - - [28/Mar/2023 13:29:53] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:29:54 | 127.0.0.1 - - [28/Mar/2023 13:29:54] "GET /analysis HTTP/1.1" 200 -
+INFO | 28/03/2023 13:29:54 | 127.0.0.1 - - [28/Mar/2023 13:29:54] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:29:56 | Manage users route request
+INFO | 28/03/2023 13:29:56 | 127.0.0.1 - - [28/Mar/2023 13:29:56] "GET /manageUsers HTTP/1.1" 200 -
+INFO | 28/03/2023 13:29:56 | 127.0.0.1 - - [28/Mar/2023 13:29:56] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:29:57 | Edit activity route request
+INFO | 28/03/2023 13:29:57 | 127.0.0.1 - - [28/Mar/2023 13:29:57] "GET /editActivity HTTP/1.1" 200 -
+INFO | 28/03/2023 13:29:57 | 127.0.0.1 - - [28/Mar/2023 13:29:57] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:29:58 | Add activity route request
+INFO | 28/03/2023 13:29:58 | 127.0.0.1 - - [28/Mar/2023 13:29:58] "GET /addActivity HTTP/1.1" 200 -
+INFO | 28/03/2023 13:29:58 | 127.0.0.1 - - [28/Mar/2023 13:29:58] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:29:58 | Edit activity route request
+INFO | 28/03/2023 13:29:58 | 127.0.0.1 - - [28/Mar/2023 13:29:58] "GET /editActivity HTTP/1.1" 200 -
+INFO | 28/03/2023 13:29:58 | 127.0.0.1 - - [28/Mar/2023 13:29:58] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:30:00 | Add event route request
+INFO | 28/03/2023 13:30:00 | 127.0.0.1 - - [28/Mar/2023 13:30:00] "GET /addEvent HTTP/1.1" 200 -
+INFO | 28/03/2023 13:30:00 | 127.0.0.1 - - [28/Mar/2023 13:30:00] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:30:01 | Memberships route request
+INFO | 28/03/2023 13:30:01 | 127.0.0.1 - - [28/Mar/2023 13:30:01] "GET /memberships HTTP/1.1" 200 -
+INFO | 28/03/2023 13:30:01 | 127.0.0.1 - - [28/Mar/2023 13:30:01] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:30:02 | Memberships route request
+INFO | 28/03/2023 13:30:02 | 127.0.0.1 - - [28/Mar/2023 13:30:02] "GET /memberships HTTP/1.1" 200 -
+INFO | 28/03/2023 13:30:02 | 127.0.0.1 - - [28/Mar/2023 13:30:02] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:30:02 | My bookings route request
+INFO | 28/03/2023 13:30:02 | 127.0.0.1 - - [28/Mar/2023 13:30:02] "GET /myBookings HTTP/1.1" 200 -
+INFO | 28/03/2023 13:30:02 | 127.0.0.1 - - [28/Mar/2023 13:30:02] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:30:03 | Memberships route request
+INFO | 28/03/2023 13:30:03 | 127.0.0.1 - - [28/Mar/2023 13:30:03] "GET /memberships HTTP/1.1" 200 -
+INFO | 28/03/2023 13:30:03 | 127.0.0.1 - - [28/Mar/2023 13:30:03] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:30:04 | Annual membership route request
+INFO | 28/03/2023 13:30:04 | 127.0.0.1 - - [28/Mar/2023 13:30:04] "[32mGET /memberships/annual HTTP/1.1[0m" 302 -
+DEBUG | 28/03/2023 13:30:04 | Basket route request
+INFO | 28/03/2023 13:30:04 | 127.0.0.1 - - [28/Mar/2023 13:30:04] "GET /basket HTTP/1.1" 200 -
+INFO | 28/03/2023 13:30:04 | 127.0.0.1 - - [28/Mar/2023 13:30:04] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:30:08 | Delete basket item (with index: 0) route request
+INFO | 28/03/2023 13:30:08 | 127.0.0.1 - - [28/Mar/2023 13:30:08] "[32mGET /deleteBasket/0 HTTP/1.1[0m" 302 -
+DEBUG | 28/03/2023 13:30:08 | Basket route request
+INFO | 28/03/2023 13:30:08 | 127.0.0.1 - - [28/Mar/2023 13:30:08] "GET /basket HTTP/1.1" 200 -
+INFO | 28/03/2023 13:30:08 | 127.0.0.1 - - [28/Mar/2023 13:30:08] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:35:38 |  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO | 28/03/2023 13:35:38 |  * Restarting with stat
+INFO | 28/03/2023 13:35:40 | 127.0.0.1 - - [28/Mar/2023 13:35:40] "[32mGET /basket HTTP/1.1[0m" 302 -
+DEBUG | 28/03/2023 13:35:40 | Login route request
+INFO | 28/03/2023 13:35:40 | 127.0.0.1 - - [28/Mar/2023 13:35:40] "GET /login?next=%2Fbasket HTTP/1.1" 200 -
+INFO | 28/03/2023 13:35:40 | 127.0.0.1 - - [28/Mar/2023 13:35:40] "GET /static/images/home.png HTTP/1.1" 200 -
+INFO | 28/03/2023 13:35:40 | 127.0.0.1 - - [28/Mar/2023 13:35:40] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:35:40 | 127.0.0.1 - - [28/Mar/2023 13:35:40] "GET /static/images/calendar.png HTTP/1.1" 200 -
+INFO | 28/03/2023 13:35:40 | 127.0.0.1 - - [28/Mar/2023 13:35:40] "GET /static/images/list-check.png HTTP/1.1" 200 -
+INFO | 28/03/2023 13:35:40 | 127.0.0.1 - - [28/Mar/2023 13:35:40] "GET /static/images/membership.png HTTP/1.1" 200 -
+INFO | 28/03/2023 13:35:40 | 127.0.0.1 - - [28/Mar/2023 13:35:40] "GET /static/images/list.png HTTP/1.1" 200 -
+INFO | 28/03/2023 13:35:40 | 127.0.0.1 - - [28/Mar/2023 13:35:40] "GET /static/images/user.png HTTP/1.1" 200 -
+INFO | 28/03/2023 13:35:40 | 127.0.0.1 - - [28/Mar/2023 13:35:40] "GET /static/images/user-add.png HTTP/1.1" 200 -
+DEBUG | 28/03/2023 13:35:49 | Login route request
+INFO | 28/03/2023 13:35:49 | 127.0.0.1 - - [28/Mar/2023 13:35:49] "POST /login?next=%2Fbasket HTTP/1.1" 200 -
+INFO | 28/03/2023 13:35:49 | 127.0.0.1 - - [28/Mar/2023 13:35:49] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:35:49 | 127.0.0.1 - - [28/Mar/2023 13:35:49] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:35:49 | 127.0.0.1 - - [28/Mar/2023 13:35:49] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:35:49 | 127.0.0.1 - - [28/Mar/2023 13:35:49] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:35:49 | 127.0.0.1 - - [28/Mar/2023 13:35:49] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:35:49 | 127.0.0.1 - - [28/Mar/2023 13:35:49] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:35:49 | 127.0.0.1 - - [28/Mar/2023 13:35:49] "[36mGET /static/images/user.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:35:49 | 127.0.0.1 - - [28/Mar/2023 13:35:49] "[36mGET /static/images/user-add.png HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:35:50 | Login route request
+INFO | 28/03/2023 13:35:50 | 127.0.0.1 - - [28/Mar/2023 13:35:50] "POST /login?next=%2Fbasket HTTP/1.1" 200 -
+INFO | 28/03/2023 13:35:50 | 127.0.0.1 - - [28/Mar/2023 13:35:50] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:35:50 | 127.0.0.1 - - [28/Mar/2023 13:35:50] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:35:50 | 127.0.0.1 - - [28/Mar/2023 13:35:50] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:35:50 | 127.0.0.1 - - [28/Mar/2023 13:35:50] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:35:50 | 127.0.0.1 - - [28/Mar/2023 13:35:50] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:35:50 | 127.0.0.1 - - [28/Mar/2023 13:35:50] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:35:50 | 127.0.0.1 - - [28/Mar/2023 13:35:50] "[36mGET /static/images/user.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:35:50 | 127.0.0.1 - - [28/Mar/2023 13:35:50] "[36mGET /static/images/user-add.png HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:35:54 | Register route request
+INFO | 28/03/2023 13:35:54 | 127.0.0.1 - - [28/Mar/2023 13:35:54] "GET /register HTTP/1.1" 200 -
+INFO | 28/03/2023 13:35:54 | 127.0.0.1 - - [28/Mar/2023 13:35:54] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:35:54 | 127.0.0.1 - - [28/Mar/2023 13:35:54] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:35:54 | 127.0.0.1 - - [28/Mar/2023 13:35:54] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:35:54 | 127.0.0.1 - - [28/Mar/2023 13:35:54] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:35:54 | 127.0.0.1 - - [28/Mar/2023 13:35:54] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:35:54 | 127.0.0.1 - - [28/Mar/2023 13:35:54] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:35:54 | 127.0.0.1 - - [28/Mar/2023 13:35:54] "[36mGET /static/images/user.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:35:54 | 127.0.0.1 - - [28/Mar/2023 13:35:54] "[36mGET /static/images/user-add.png HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:36:04 | Register route request
+INFO | 28/03/2023 13:36:04 | 127.0.0.1 - - [28/Mar/2023 13:36:04] "[32mPOST /register HTTP/1.1[0m" 302 -
+DEBUG | 28/03/2023 13:36:04 | Login route request
+INFO | 28/03/2023 13:36:04 | 127.0.0.1 - - [28/Mar/2023 13:36:04] "GET /login HTTP/1.1" 200 -
+INFO | 28/03/2023 13:36:04 | 127.0.0.1 - - [28/Mar/2023 13:36:04] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:04 | 127.0.0.1 - - [28/Mar/2023 13:36:04] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:04 | 127.0.0.1 - - [28/Mar/2023 13:36:04] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:04 | 127.0.0.1 - - [28/Mar/2023 13:36:04] "[36mGET /static/images/user-add.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:04 | 127.0.0.1 - - [28/Mar/2023 13:36:04] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:04 | 127.0.0.1 - - [28/Mar/2023 13:36:04] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:04 | 127.0.0.1 - - [28/Mar/2023 13:36:04] "[36mGET /static/images/user.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:04 | 127.0.0.1 - - [28/Mar/2023 13:36:04] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:36:05 | Login route request
+INFO | 28/03/2023 13:36:05 | 127.0.0.1 - - [28/Mar/2023 13:36:05] "[32mPOST /login HTTP/1.1[0m" 302 -
+DEBUG | 28/03/2023 13:36:05 | Home route request
+INFO | 28/03/2023 13:36:05 | 127.0.0.1 - - [28/Mar/2023 13:36:05] "GET /home HTTP/1.1" 200 -
+INFO | 28/03/2023 13:36:05 | 127.0.0.1 - - [28/Mar/2023 13:36:05] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:05 | 127.0.0.1 - - [28/Mar/2023 13:36:05] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:05 | 127.0.0.1 - - [28/Mar/2023 13:36:05] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:05 | 127.0.0.1 - - [28/Mar/2023 13:36:05] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:05 | 127.0.0.1 - - [28/Mar/2023 13:36:05] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:05 | 127.0.0.1 - - [28/Mar/2023 13:36:05] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:05 | 127.0.0.1 - - [28/Mar/2023 13:36:05] "GET /static/images/shopping-cart.png HTTP/1.1" 200 -
+INFO | 28/03/2023 13:36:05 | 127.0.0.1 - - [28/Mar/2023 13:36:05] "GET /static/images/settings.png HTTP/1.1" 200 -
+INFO | 28/03/2023 13:36:05 | 127.0.0.1 - - [28/Mar/2023 13:36:05] "GET /static/images/cross.png HTTP/1.1" 200 -
+INFO | 28/03/2023 13:36:05 | 127.0.0.1 - - [28/Mar/2023 13:36:05] "GET /static/images/GYM.png HTTP/1.1" 200 -
+DEBUG | 28/03/2023 13:36:14 | Settings route request
+INFO | 28/03/2023 13:36:14 | 127.0.0.1 - - [28/Mar/2023 13:36:14] "GET /settings HTTP/1.1" 200 -
+INFO | 28/03/2023 13:36:14 | 127.0.0.1 - - [28/Mar/2023 13:36:14] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:14 | 127.0.0.1 - - [28/Mar/2023 13:36:14] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:14 | 127.0.0.1 - - [28/Mar/2023 13:36:14] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:14 | 127.0.0.1 - - [28/Mar/2023 13:36:14] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:14 | 127.0.0.1 - - [28/Mar/2023 13:36:14] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:14 | 127.0.0.1 - - [28/Mar/2023 13:36:14] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:14 | 127.0.0.1 - - [28/Mar/2023 13:36:14] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:14 | 127.0.0.1 - - [28/Mar/2023 13:36:14] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:14 | 127.0.0.1 - - [28/Mar/2023 13:36:14] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:36:15 | Basket route request
+INFO | 28/03/2023 13:36:15 | 127.0.0.1 - - [28/Mar/2023 13:36:15] "GET /basket HTTP/1.1" 200 -
+INFO | 28/03/2023 13:36:15 | 127.0.0.1 - - [28/Mar/2023 13:36:15] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:15 | 127.0.0.1 - - [28/Mar/2023 13:36:15] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:15 | 127.0.0.1 - - [28/Mar/2023 13:36:15] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:15 | 127.0.0.1 - - [28/Mar/2023 13:36:15] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:15 | 127.0.0.1 - - [28/Mar/2023 13:36:15] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:15 | 127.0.0.1 - - [28/Mar/2023 13:36:15] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:15 | 127.0.0.1 - - [28/Mar/2023 13:36:15] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:15 | 127.0.0.1 - - [28/Mar/2023 13:36:15] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:15 | 127.0.0.1 - - [28/Mar/2023 13:36:15] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:36:16 | Pricing route request
+INFO | 28/03/2023 13:36:16 | 127.0.0.1 - - [28/Mar/2023 13:36:16] "GET /pricingList HTTP/1.1" 200 -
+INFO | 28/03/2023 13:36:16 | 127.0.0.1 - - [28/Mar/2023 13:36:16] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:16 | 127.0.0.1 - - [28/Mar/2023 13:36:16] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:16 | 127.0.0.1 - - [28/Mar/2023 13:36:16] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:16 | 127.0.0.1 - - [28/Mar/2023 13:36:16] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:16 | 127.0.0.1 - - [28/Mar/2023 13:36:16] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:16 | 127.0.0.1 - - [28/Mar/2023 13:36:16] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:16 | 127.0.0.1 - - [28/Mar/2023 13:36:16] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:16 | 127.0.0.1 - - [28/Mar/2023 13:36:16] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:16 | 127.0.0.1 - - [28/Mar/2023 13:36:16] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:18 | 127.0.0.1 - - [28/Mar/2023 13:36:18] "GET /analysis HTTP/1.1" 200 -
+INFO | 28/03/2023 13:36:18 | 127.0.0.1 - - [28/Mar/2023 13:36:18] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:18 | 127.0.0.1 - - [28/Mar/2023 13:36:18] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:18 | 127.0.0.1 - - [28/Mar/2023 13:36:18] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:18 | 127.0.0.1 - - [28/Mar/2023 13:36:18] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:18 | 127.0.0.1 - - [28/Mar/2023 13:36:18] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:18 | 127.0.0.1 - - [28/Mar/2023 13:36:18] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:18 | 127.0.0.1 - - [28/Mar/2023 13:36:18] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:18 | 127.0.0.1 - - [28/Mar/2023 13:36:18] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:18 | 127.0.0.1 - - [28/Mar/2023 13:36:18] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:36:19 | Manage users route request
+INFO | 28/03/2023 13:36:19 | 127.0.0.1 - - [28/Mar/2023 13:36:19] "GET /manageUsers HTTP/1.1" 200 -
+INFO | 28/03/2023 13:36:19 | 127.0.0.1 - - [28/Mar/2023 13:36:19] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:19 | 127.0.0.1 - - [28/Mar/2023 13:36:19] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:19 | 127.0.0.1 - - [28/Mar/2023 13:36:19] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:19 | 127.0.0.1 - - [28/Mar/2023 13:36:19] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:19 | 127.0.0.1 - - [28/Mar/2023 13:36:19] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:19 | 127.0.0.1 - - [28/Mar/2023 13:36:19] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:19 | 127.0.0.1 - - [28/Mar/2023 13:36:19] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:19 | 127.0.0.1 - - [28/Mar/2023 13:36:19] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:19 | 127.0.0.1 - - [28/Mar/2023 13:36:19] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:36:20 | Edit activity route request
+INFO | 28/03/2023 13:36:20 | 127.0.0.1 - - [28/Mar/2023 13:36:20] "GET /editActivity HTTP/1.1" 200 -
+INFO | 28/03/2023 13:36:20 | 127.0.0.1 - - [28/Mar/2023 13:36:20] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:20 | 127.0.0.1 - - [28/Mar/2023 13:36:20] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:20 | 127.0.0.1 - - [28/Mar/2023 13:36:20] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:20 | 127.0.0.1 - - [28/Mar/2023 13:36:20] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:20 | 127.0.0.1 - - [28/Mar/2023 13:36:20] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:20 | 127.0.0.1 - - [28/Mar/2023 13:36:20] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:20 | 127.0.0.1 - - [28/Mar/2023 13:36:20] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:20 | 127.0.0.1 - - [28/Mar/2023 13:36:20] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:20 | 127.0.0.1 - - [28/Mar/2023 13:36:20] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:36:22 | Add event route request
+INFO | 28/03/2023 13:36:22 | 127.0.0.1 - - [28/Mar/2023 13:36:22] "GET /addEvent HTTP/1.1" 200 -
+INFO | 28/03/2023 13:36:22 | 127.0.0.1 - - [28/Mar/2023 13:36:22] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:22 | 127.0.0.1 - - [28/Mar/2023 13:36:22] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:22 | 127.0.0.1 - - [28/Mar/2023 13:36:22] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:22 | 127.0.0.1 - - [28/Mar/2023 13:36:22] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:22 | 127.0.0.1 - - [28/Mar/2023 13:36:22] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:22 | 127.0.0.1 - - [28/Mar/2023 13:36:22] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:22 | 127.0.0.1 - - [28/Mar/2023 13:36:22] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:22 | 127.0.0.1 - - [28/Mar/2023 13:36:22] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:22 | 127.0.0.1 - - [28/Mar/2023 13:36:22] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:36:23 | Add activity route request
+INFO | 28/03/2023 13:36:23 | 127.0.0.1 - - [28/Mar/2023 13:36:23] "GET /addActivity HTTP/1.1" 200 -
+INFO | 28/03/2023 13:36:23 | 127.0.0.1 - - [28/Mar/2023 13:36:23] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:23 | 127.0.0.1 - - [28/Mar/2023 13:36:23] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:23 | 127.0.0.1 - - [28/Mar/2023 13:36:23] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:23 | 127.0.0.1 - - [28/Mar/2023 13:36:23] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:23 | 127.0.0.1 - - [28/Mar/2023 13:36:23] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:23 | 127.0.0.1 - - [28/Mar/2023 13:36:23] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:23 | 127.0.0.1 - - [28/Mar/2023 13:36:23] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:23 | 127.0.0.1 - - [28/Mar/2023 13:36:23] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:23 | 127.0.0.1 - - [28/Mar/2023 13:36:23] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:36:24 | Memberships route request
+INFO | 28/03/2023 13:36:24 | 127.0.0.1 - - [28/Mar/2023 13:36:24] "GET /memberships HTTP/1.1" 200 -
+INFO | 28/03/2023 13:36:24 | 127.0.0.1 - - [28/Mar/2023 13:36:24] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:24 | 127.0.0.1 - - [28/Mar/2023 13:36:24] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:24 | 127.0.0.1 - - [28/Mar/2023 13:36:24] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:24 | 127.0.0.1 - - [28/Mar/2023 13:36:24] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:24 | 127.0.0.1 - - [28/Mar/2023 13:36:24] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:24 | 127.0.0.1 - - [28/Mar/2023 13:36:24] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:24 | 127.0.0.1 - - [28/Mar/2023 13:36:24] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:24 | 127.0.0.1 - - [28/Mar/2023 13:36:24] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:24 | 127.0.0.1 - - [28/Mar/2023 13:36:24] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:36:25 | My bookings route request
+INFO | 28/03/2023 13:36:25 | 127.0.0.1 - - [28/Mar/2023 13:36:25] "GET /myBookings HTTP/1.1" 200 -
+INFO | 28/03/2023 13:36:25 | 127.0.0.1 - - [28/Mar/2023 13:36:25] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:25 | 127.0.0.1 - - [28/Mar/2023 13:36:25] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:25 | 127.0.0.1 - - [28/Mar/2023 13:36:25] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:25 | 127.0.0.1 - - [28/Mar/2023 13:36:25] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:25 | 127.0.0.1 - - [28/Mar/2023 13:36:25] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:25 | 127.0.0.1 - - [28/Mar/2023 13:36:25] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:25 | 127.0.0.1 - - [28/Mar/2023 13:36:25] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:25 | 127.0.0.1 - - [28/Mar/2023 13:36:25] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:25 | 127.0.0.1 - - [28/Mar/2023 13:36:25] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:36:27 | My bookings route request
+INFO | 28/03/2023 13:36:27 | 127.0.0.1 - - [28/Mar/2023 13:36:27] "GET /myBookings HTTP/1.1" 200 -
+INFO | 28/03/2023 13:36:27 | 127.0.0.1 - - [28/Mar/2023 13:36:27] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:27 | 127.0.0.1 - - [28/Mar/2023 13:36:27] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:27 | 127.0.0.1 - - [28/Mar/2023 13:36:27] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:27 | 127.0.0.1 - - [28/Mar/2023 13:36:27] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:27 | 127.0.0.1 - - [28/Mar/2023 13:36:27] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:27 | 127.0.0.1 - - [28/Mar/2023 13:36:27] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:27 | 127.0.0.1 - - [28/Mar/2023 13:36:27] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:27 | 127.0.0.1 - - [28/Mar/2023 13:36:27] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:27 | 127.0.0.1 - - [28/Mar/2023 13:36:27] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:36:27 | Calendar route request
+INFO | 28/03/2023 13:36:27 | 127.0.0.1 - - [28/Mar/2023 13:36:27] "GET /calendar HTTP/1.1" 200 -
+INFO | 28/03/2023 13:36:27 | 127.0.0.1 - - [28/Mar/2023 13:36:27] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:27 | 127.0.0.1 - - [28/Mar/2023 13:36:27] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:27 | 127.0.0.1 - - [28/Mar/2023 13:36:27] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:27 | 127.0.0.1 - - [28/Mar/2023 13:36:27] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:27 | 127.0.0.1 - - [28/Mar/2023 13:36:27] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:27 | 127.0.0.1 - - [28/Mar/2023 13:36:27] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:27 | 127.0.0.1 - - [28/Mar/2023 13:36:27] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:27 | 127.0.0.1 - - [28/Mar/2023 13:36:27] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:27 | 127.0.0.1 - - [28/Mar/2023 13:36:27] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:36:40 | Home route request
+INFO | 28/03/2023 13:36:40 | 127.0.0.1 - - [28/Mar/2023 13:36:40] "GET /home HTTP/1.1" 200 -
+INFO | 28/03/2023 13:36:40 | 127.0.0.1 - - [28/Mar/2023 13:36:40] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:40 | 127.0.0.1 - - [28/Mar/2023 13:36:40] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:40 | 127.0.0.1 - - [28/Mar/2023 13:36:40] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:40 | 127.0.0.1 - - [28/Mar/2023 13:36:40] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:40 | 127.0.0.1 - - [28/Mar/2023 13:36:40] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:40 | 127.0.0.1 - - [28/Mar/2023 13:36:40] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:40 | 127.0.0.1 - - [28/Mar/2023 13:36:40] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:40 | 127.0.0.1 - - [28/Mar/2023 13:36:40] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:40 | 127.0.0.1 - - [28/Mar/2023 13:36:40] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:40 | 127.0.0.1 - - [28/Mar/2023 13:36:40] "[36mGET /static/images/GYM.png HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:36:43 | Memberships route request
+INFO | 28/03/2023 13:36:43 | 127.0.0.1 - - [28/Mar/2023 13:36:43] "GET /memberships HTTP/1.1" 200 -
+INFO | 28/03/2023 13:36:43 | 127.0.0.1 - - [28/Mar/2023 13:36:43] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:43 | 127.0.0.1 - - [28/Mar/2023 13:36:43] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:43 | 127.0.0.1 - - [28/Mar/2023 13:36:43] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:43 | 127.0.0.1 - - [28/Mar/2023 13:36:43] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:43 | 127.0.0.1 - - [28/Mar/2023 13:36:43] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:43 | 127.0.0.1 - - [28/Mar/2023 13:36:43] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:43 | 127.0.0.1 - - [28/Mar/2023 13:36:43] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:43 | 127.0.0.1 - - [28/Mar/2023 13:36:43] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:43 | 127.0.0.1 - - [28/Mar/2023 13:36:43] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:36:46 | Annual membership route request
+INFO | 28/03/2023 13:36:46 | 127.0.0.1 - - [28/Mar/2023 13:36:46] "[32mGET /memberships/annual HTTP/1.1[0m" 302 -
+DEBUG | 28/03/2023 13:36:46 | Basket route request
+INFO | 28/03/2023 13:36:46 | 127.0.0.1 - - [28/Mar/2023 13:36:46] "GET /basket HTTP/1.1" 200 -
+INFO | 28/03/2023 13:36:46 | 127.0.0.1 - - [28/Mar/2023 13:36:46] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:46 | 127.0.0.1 - - [28/Mar/2023 13:36:46] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:46 | 127.0.0.1 - - [28/Mar/2023 13:36:46] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:46 | 127.0.0.1 - - [28/Mar/2023 13:36:46] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:46 | 127.0.0.1 - - [28/Mar/2023 13:36:46] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:46 | 127.0.0.1 - - [28/Mar/2023 13:36:46] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:46 | 127.0.0.1 - - [28/Mar/2023 13:36:46] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:46 | 127.0.0.1 - - [28/Mar/2023 13:36:46] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:36:46 | 127.0.0.1 - - [28/Mar/2023 13:36:46] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:25 | message='Request to Stripe api' method=post path=https://api.stripe.com/v1/customers
+DEBUG | 28/03/2023 13:37:25 | api_version=None message='Post details' post_data=email=sample%40customer.com&source=tok_1MqbmALpcMacjDf9N0gtk5Od
+DEBUG | 28/03/2023 13:37:25 | Starting new HTTPS connection (1): api.stripe.com:443
+DEBUG | 28/03/2023 13:37:25 | https://api.stripe.com:443 "POST /v1/customers HTTP/1.1" 200 628
+INFO | 28/03/2023 13:37:25 | message='Stripe API response' path=https://api.stripe.com/v1/customers response_code=200
+DEBUG | 28/03/2023 13:37:25 | body='{\n  "id": "cus_NbpRLMZfjP7v1x",\n  "object": "customer",\n  "address": null,\n  "balance": 0,\n  "created": 1680007045,\n  "currency": null,\n  "default_source": "card_1MqbmALpcMacjDf9W3ixjPTk",\n  "delinquent": false,\n  "description": null,\n  "discount": null,\n  "email": "sample@customer.com",\n  "invoice_prefix": "37461209",\n  "invoice_settings": {\n    "custom_fields": null,\n    "default_payment_method": null,\n    "footer": null,\n    "rendering_options": null\n  },\n  "livemode": false,\n  "metadata": {},\n  "name": null,\n  "phone": null,\n  "preferred_locales": [],\n  "shipping": null,\n  "tax_exempt": "none",\n  "test_clock": null\n}' message='API response body'
+DEBUG | 28/03/2023 13:37:25 | link=https://dashboard.stripe.com/test/logs/req_e3p5KlTBYlSvlz message='Dashboard link for request'
+INFO | 28/03/2023 13:37:25 | message='Request to Stripe api' method=post path=https://api.stripe.com/v1/charges
+DEBUG | 28/03/2023 13:37:25 | api_version=None message='Post details' post_data=customer=cus_NbpRLMZfjP7v1x&amount=30000&currency=GBP&description=Flask+Charge
+DEBUG | 28/03/2023 13:37:26 | https://api.stripe.com:443 "POST /v1/charges HTTP/1.1" 200 2905
+INFO | 28/03/2023 13:37:26 | message='Stripe API response' path=https://api.stripe.com/v1/charges response_code=200
+DEBUG | 28/03/2023 13:37:26 | body='{\n  "id": "ch_3MqbmELpcMacjDf9009rW7Xo",\n  "object": "charge",\n  "amount": 30000,\n  "amount_captured": 30000,\n  "amount_refunded": 0,\n  "application": null,\n  "application_fee": null,\n  "application_fee_amount": null,\n  "balance_transaction": "txn_3MqbmELpcMacjDf90JAAUVOf",\n  "billing_details": {\n    "address": {\n      "city": null,\n      "country": null,\n      "line1": null,\n      "line2": null,\n      "postal_code": null,\n      "state": null\n    },\n    "email": null,\n    "name": "a@a.com",\n    "phone": null\n  },\n  "calculated_statement_descriptor": "PROJECT SQUAD 6",\n  "captured": true,\n  "created": 1680007046,\n  "currency": "gbp",\n  "customer": "cus_NbpRLMZfjP7v1x",\n  "description": "Flask Charge",\n  "destination": null,\n  "dispute": null,\n  "disputed": false,\n  "failure_balance_transaction": null,\n  "failure_code": null,\n  "failure_message": null,\n  "fraud_details": {},\n  "invoice": null,\n  "livemode": false,\n  "metadata": {},\n  "on_behalf_of": null,\n  "order": null,\n  "outcome": {\n    "network_status": "approved_by_network",\n    "reason": null,\n    "risk_level": "normal",\n    "risk_score": 48,\n    "seller_message": "Payment complete.",\n    "type": "authorized"\n  },\n  "paid": true,\n  "payment_intent": null,\n  "payment_method": "card_1MqbmALpcMacjDf9W3ixjPTk",\n  "payment_method_details": {\n    "card": {\n      "brand": "visa",\n      "checks": {\n        "address_line1_check": null,\n        "address_postal_code_check": null,\n        "cvc_check": "pass"\n      },\n      "country": "US",\n      "exp_month": 1,\n      "exp_year": 2025,\n      "fingerprint": "RTEy2rdZfbCmssje",\n      "funding": "debit",\n      "installments": null,\n      "last4": "5556",\n      "mandate": null,\n      "network": "visa",\n      "three_d_secure": null,\n      "wallet": null\n    },\n    "type": "card"\n  },\n  "receipt_email": null,\n  "receipt_number": null,\n  "receipt_url": "https://pay.stripe.com/receipts/payment/CAcaFwoVYWNjdF8xTXFGWTJMcGNNYWNqRGY5KIa_i6EGMgZdiE2UZfU6LBYl8pmx6b_qOJKP09_0eKMxtYUzLDFqMKjVk9yFHH4ZoaqYri-vMTbcoqy6",\n  "refunded": false,\n  "review": null,\n  "shipping": null,\n  "source": {\n    "id": "card_1MqbmALpcMacjDf9W3ixjPTk",\n    "object": "card",\n    "address_city": null,\n    "address_country": null,\n    "address_line1": null,\n    "address_line1_check": null,\n    "address_line2": null,\n    "address_state": null,\n    "address_zip": null,\n    "address_zip_check": null,\n    "brand": "Visa",\n    "country": "US",\n    "customer": "cus_NbpRLMZfjP7v1x",\n    "cvc_check": "pass",\n    "dynamic_last4": null,\n    "exp_month": 1,\n    "exp_year": 2025,\n    "fingerprint": "RTEy2rdZfbCmssje",\n    "funding": "debit",\n    "last4": "5556",\n    "metadata": {},\n    "name": "a@a.com",\n    "tokenization_method": null\n  },\n  "source_transfer": null,\n  "statement_descriptor": null,\n  "statement_descriptor_suffix": null,\n  "status": "succeeded",\n  "transfer_data": null,\n  "transfer_group": null\n}' message='API response body'
+DEBUG | 28/03/2023 13:37:26 | link=https://dashboard.stripe.com/test/logs/req_0nsuozxH6Z3kLA message='Dashboard link for request'
+INFO | 28/03/2023 13:37:26 | 127.0.0.1 - - [28/Mar/2023 13:37:26] "[32mPOST /checkout HTTP/1.1[0m" 302 -
+DEBUG | 28/03/2023 13:37:26 | Home route request
+INFO | 28/03/2023 13:37:26 | 127.0.0.1 - - [28/Mar/2023 13:37:26] "GET /home HTTP/1.1" 200 -
+INFO | 28/03/2023 13:37:26 | 127.0.0.1 - - [28/Mar/2023 13:37:26] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:26 | 127.0.0.1 - - [28/Mar/2023 13:37:26] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:26 | 127.0.0.1 - - [28/Mar/2023 13:37:26] "[36mGET /static/images/GYM.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:26 | 127.0.0.1 - - [28/Mar/2023 13:37:26] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:26 | 127.0.0.1 - - [28/Mar/2023 13:37:26] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:26 | 127.0.0.1 - - [28/Mar/2023 13:37:26] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:26 | 127.0.0.1 - - [28/Mar/2023 13:37:26] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:26 | 127.0.0.1 - - [28/Mar/2023 13:37:26] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:26 | 127.0.0.1 - - [28/Mar/2023 13:37:26] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:26 | 127.0.0.1 - - [28/Mar/2023 13:37:26] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:37:31 | Basket route request
+INFO | 28/03/2023 13:37:31 | 127.0.0.1 - - [28/Mar/2023 13:37:31] "GET /basket HTTP/1.1" 200 -
+INFO | 28/03/2023 13:37:31 | 127.0.0.1 - - [28/Mar/2023 13:37:31] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:31 | 127.0.0.1 - - [28/Mar/2023 13:37:31] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:31 | 127.0.0.1 - - [28/Mar/2023 13:37:31] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:31 | 127.0.0.1 - - [28/Mar/2023 13:37:31] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:31 | 127.0.0.1 - - [28/Mar/2023 13:37:31] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:31 | 127.0.0.1 - - [28/Mar/2023 13:37:31] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:31 | 127.0.0.1 - - [28/Mar/2023 13:37:31] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:31 | 127.0.0.1 - - [28/Mar/2023 13:37:31] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:31 | 127.0.0.1 - - [28/Mar/2023 13:37:31] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:37:33 | Memberships route request
+INFO | 28/03/2023 13:37:33 | 127.0.0.1 - - [28/Mar/2023 13:37:33] "GET /memberships HTTP/1.1" 200 -
+INFO | 28/03/2023 13:37:33 | 127.0.0.1 - - [28/Mar/2023 13:37:33] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:33 | 127.0.0.1 - - [28/Mar/2023 13:37:33] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:33 | 127.0.0.1 - - [28/Mar/2023 13:37:33] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:33 | 127.0.0.1 - - [28/Mar/2023 13:37:33] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:33 | 127.0.0.1 - - [28/Mar/2023 13:37:33] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:33 | 127.0.0.1 - - [28/Mar/2023 13:37:33] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:33 | 127.0.0.1 - - [28/Mar/2023 13:37:33] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:33 | 127.0.0.1 - - [28/Mar/2023 13:37:33] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:33 | 127.0.0.1 - - [28/Mar/2023 13:37:33] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:37:34 | Calendar route request
+INFO | 28/03/2023 13:37:34 | 127.0.0.1 - - [28/Mar/2023 13:37:34] "GET /calendar HTTP/1.1" 200 -
+INFO | 28/03/2023 13:37:34 | 127.0.0.1 - - [28/Mar/2023 13:37:34] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:34 | 127.0.0.1 - - [28/Mar/2023 13:37:34] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:34 | 127.0.0.1 - - [28/Mar/2023 13:37:34] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:34 | 127.0.0.1 - - [28/Mar/2023 13:37:34] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:34 | 127.0.0.1 - - [28/Mar/2023 13:37:34] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:34 | 127.0.0.1 - - [28/Mar/2023 13:37:34] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:34 | 127.0.0.1 - - [28/Mar/2023 13:37:34] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:34 | 127.0.0.1 - - [28/Mar/2023 13:37:34] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:34 | 127.0.0.1 - - [28/Mar/2023 13:37:34] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:37:37 | Add activity route request
+INFO | 28/03/2023 13:37:37 | 127.0.0.1 - - [28/Mar/2023 13:37:37] "GET /addActivity HTTP/1.1" 200 -
+INFO | 28/03/2023 13:37:37 | 127.0.0.1 - - [28/Mar/2023 13:37:37] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:37 | 127.0.0.1 - - [28/Mar/2023 13:37:37] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:37 | 127.0.0.1 - - [28/Mar/2023 13:37:37] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:37 | 127.0.0.1 - - [28/Mar/2023 13:37:37] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:37 | 127.0.0.1 - - [28/Mar/2023 13:37:37] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:37 | 127.0.0.1 - - [28/Mar/2023 13:37:37] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:37 | 127.0.0.1 - - [28/Mar/2023 13:37:37] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:37 | 127.0.0.1 - - [28/Mar/2023 13:37:37] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:37 | 127.0.0.1 - - [28/Mar/2023 13:37:37] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:37:42 | Add activity route request
+INFO | 28/03/2023 13:37:42 | 127.0.0.1 - - [28/Mar/2023 13:37:42] "POST /addActivity HTTP/1.1" 200 -
+INFO | 28/03/2023 13:37:42 | 127.0.0.1 - - [28/Mar/2023 13:37:42] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:42 | 127.0.0.1 - - [28/Mar/2023 13:37:42] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:42 | 127.0.0.1 - - [28/Mar/2023 13:37:42] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:42 | 127.0.0.1 - - [28/Mar/2023 13:37:42] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:42 | 127.0.0.1 - - [28/Mar/2023 13:37:42] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:42 | 127.0.0.1 - - [28/Mar/2023 13:37:42] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:42 | 127.0.0.1 - - [28/Mar/2023 13:37:42] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:42 | 127.0.0.1 - - [28/Mar/2023 13:37:42] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:42 | 127.0.0.1 - - [28/Mar/2023 13:37:42] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:37:45 | Add event route request
+INFO | 28/03/2023 13:37:45 | 127.0.0.1 - - [28/Mar/2023 13:37:45] "GET /addEvent HTTP/1.1" 200 -
+INFO | 28/03/2023 13:37:45 | 127.0.0.1 - - [28/Mar/2023 13:37:45] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:45 | 127.0.0.1 - - [28/Mar/2023 13:37:45] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:45 | 127.0.0.1 - - [28/Mar/2023 13:37:45] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:45 | 127.0.0.1 - - [28/Mar/2023 13:37:45] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:45 | 127.0.0.1 - - [28/Mar/2023 13:37:45] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:45 | 127.0.0.1 - - [28/Mar/2023 13:37:45] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:45 | 127.0.0.1 - - [28/Mar/2023 13:37:45] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:45 | 127.0.0.1 - - [28/Mar/2023 13:37:45] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:37:45 | 127.0.0.1 - - [28/Mar/2023 13:37:45] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:38:02 | Add event route request
+INFO | 28/03/2023 13:38:02 | 127.0.0.1 - - [28/Mar/2023 13:38:02] "POST /addEvent HTTP/1.1" 200 -
+INFO | 28/03/2023 13:38:02 | 127.0.0.1 - - [28/Mar/2023 13:38:02] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:02 | 127.0.0.1 - - [28/Mar/2023 13:38:02] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:02 | 127.0.0.1 - - [28/Mar/2023 13:38:02] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:02 | 127.0.0.1 - - [28/Mar/2023 13:38:02] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:02 | 127.0.0.1 - - [28/Mar/2023 13:38:02] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:02 | 127.0.0.1 - - [28/Mar/2023 13:38:02] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:02 | 127.0.0.1 - - [28/Mar/2023 13:38:02] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:02 | 127.0.0.1 - - [28/Mar/2023 13:38:02] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:02 | 127.0.0.1 - - [28/Mar/2023 13:38:02] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:38:08 | Add event route request
+INFO | 28/03/2023 13:38:08 | 127.0.0.1 - - [28/Mar/2023 13:38:08] "POST /addEvent HTTP/1.1" 200 -
+INFO | 28/03/2023 13:38:08 | 127.0.0.1 - - [28/Mar/2023 13:38:08] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:08 | 127.0.0.1 - - [28/Mar/2023 13:38:08] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:08 | 127.0.0.1 - - [28/Mar/2023 13:38:08] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:08 | 127.0.0.1 - - [28/Mar/2023 13:38:08] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:08 | 127.0.0.1 - - [28/Mar/2023 13:38:08] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:08 | 127.0.0.1 - - [28/Mar/2023 13:38:08] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:08 | 127.0.0.1 - - [28/Mar/2023 13:38:08] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:08 | 127.0.0.1 - - [28/Mar/2023 13:38:08] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:08 | 127.0.0.1 - - [28/Mar/2023 13:38:08] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:38:11 | Calendar route request
+INFO | 28/03/2023 13:38:11 | 127.0.0.1 - - [28/Mar/2023 13:38:11] "GET /calendar HTTP/1.1" 200 -
+INFO | 28/03/2023 13:38:11 | 127.0.0.1 - - [28/Mar/2023 13:38:11] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:11 | 127.0.0.1 - - [28/Mar/2023 13:38:11] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:11 | 127.0.0.1 - - [28/Mar/2023 13:38:11] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:11 | 127.0.0.1 - - [28/Mar/2023 13:38:11] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:11 | 127.0.0.1 - - [28/Mar/2023 13:38:11] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:11 | 127.0.0.1 - - [28/Mar/2023 13:38:11] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:11 | 127.0.0.1 - - [28/Mar/2023 13:38:11] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:11 | 127.0.0.1 - - [28/Mar/2023 13:38:11] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:11 | 127.0.0.1 - - [28/Mar/2023 13:38:11] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:38:15 | Make booking (with id: 1) route request
+INFO | 28/03/2023 13:38:15 | 127.0.0.1 - - [28/Mar/2023 13:38:15] "[32mGET /makeBooking/1 HTTP/1.1[0m" 302 -
+DEBUG | 28/03/2023 13:38:15 | My bookings route request
+INFO | 28/03/2023 13:38:15 | 127.0.0.1 - - [28/Mar/2023 13:38:15] "GET /myBookings HTTP/1.1" 200 -
+INFO | 28/03/2023 13:38:15 | 127.0.0.1 - - [28/Mar/2023 13:38:15] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:15 | 127.0.0.1 - - [28/Mar/2023 13:38:15] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:15 | 127.0.0.1 - - [28/Mar/2023 13:38:15] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:15 | 127.0.0.1 - - [28/Mar/2023 13:38:15] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:15 | 127.0.0.1 - - [28/Mar/2023 13:38:15] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:15 | 127.0.0.1 - - [28/Mar/2023 13:38:15] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:15 | 127.0.0.1 - - [28/Mar/2023 13:38:15] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:15 | 127.0.0.1 - - [28/Mar/2023 13:38:15] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:15 | 127.0.0.1 - - [28/Mar/2023 13:38:15] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:38:22 | Delete booking (with id: 1) route request
+INFO | 28/03/2023 13:38:22 | 127.0.0.1 - - [28/Mar/2023 13:38:22] "[32mGET /deleteBooking/1 HTTP/1.1[0m" 302 -
+DEBUG | 28/03/2023 13:38:22 | My bookings route request
+INFO | 28/03/2023 13:38:22 | 127.0.0.1 - - [28/Mar/2023 13:38:22] "GET /myBookings HTTP/1.1" 200 -
+INFO | 28/03/2023 13:38:22 | 127.0.0.1 - - [28/Mar/2023 13:38:22] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:22 | 127.0.0.1 - - [28/Mar/2023 13:38:22] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:22 | 127.0.0.1 - - [28/Mar/2023 13:38:22] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:22 | 127.0.0.1 - - [28/Mar/2023 13:38:22] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:22 | 127.0.0.1 - - [28/Mar/2023 13:38:22] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:22 | 127.0.0.1 - - [28/Mar/2023 13:38:22] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:22 | 127.0.0.1 - - [28/Mar/2023 13:38:22] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:22 | 127.0.0.1 - - [28/Mar/2023 13:38:22] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:22 | 127.0.0.1 - - [28/Mar/2023 13:38:22] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:38:28 | Calendar route request
+INFO | 28/03/2023 13:38:28 | 127.0.0.1 - - [28/Mar/2023 13:38:28] "GET /calendar HTTP/1.1" 200 -
+INFO | 28/03/2023 13:38:28 | 127.0.0.1 - - [28/Mar/2023 13:38:28] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:28 | 127.0.0.1 - - [28/Mar/2023 13:38:28] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:28 | 127.0.0.1 - - [28/Mar/2023 13:38:28] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:28 | 127.0.0.1 - - [28/Mar/2023 13:38:28] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:28 | 127.0.0.1 - - [28/Mar/2023 13:38:28] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:28 | 127.0.0.1 - - [28/Mar/2023 13:38:28] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:28 | 127.0.0.1 - - [28/Mar/2023 13:38:28] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:28 | 127.0.0.1 - - [28/Mar/2023 13:38:28] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:28 | 127.0.0.1 - - [28/Mar/2023 13:38:28] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:38:34 | Memberships route request
+INFO | 28/03/2023 13:38:34 | 127.0.0.1 - - [28/Mar/2023 13:38:34] "GET /memberships HTTP/1.1" 200 -
+INFO | 28/03/2023 13:38:34 | 127.0.0.1 - - [28/Mar/2023 13:38:34] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:34 | 127.0.0.1 - - [28/Mar/2023 13:38:34] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:34 | 127.0.0.1 - - [28/Mar/2023 13:38:34] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:34 | 127.0.0.1 - - [28/Mar/2023 13:38:34] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:34 | 127.0.0.1 - - [28/Mar/2023 13:38:34] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:34 | 127.0.0.1 - - [28/Mar/2023 13:38:34] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:34 | 127.0.0.1 - - [28/Mar/2023 13:38:34] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:34 | 127.0.0.1 - - [28/Mar/2023 13:38:34] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:34 | 127.0.0.1 - - [28/Mar/2023 13:38:34] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:38:35 | Cancel membership route request
+INFO | 28/03/2023 13:38:35 | 127.0.0.1 - - [28/Mar/2023 13:38:35] "[32mGET /cancelMembership HTTP/1.1[0m" 302 -
+DEBUG | 28/03/2023 13:38:35 | Memberships route request
+INFO | 28/03/2023 13:38:35 | 127.0.0.1 - - [28/Mar/2023 13:38:35] "GET /memberships HTTP/1.1" 200 -
+INFO | 28/03/2023 13:38:35 | 127.0.0.1 - - [28/Mar/2023 13:38:35] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:35 | 127.0.0.1 - - [28/Mar/2023 13:38:35] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:35 | 127.0.0.1 - - [28/Mar/2023 13:38:35] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:35 | 127.0.0.1 - - [28/Mar/2023 13:38:35] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:35 | 127.0.0.1 - - [28/Mar/2023 13:38:35] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:35 | 127.0.0.1 - - [28/Mar/2023 13:38:35] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:35 | 127.0.0.1 - - [28/Mar/2023 13:38:35] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:35 | 127.0.0.1 - - [28/Mar/2023 13:38:35] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:35 | 127.0.0.1 - - [28/Mar/2023 13:38:35] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:38:36 | Calendar route request
+INFO | 28/03/2023 13:38:36 | 127.0.0.1 - - [28/Mar/2023 13:38:36] "GET /calendar HTTP/1.1" 200 -
+INFO | 28/03/2023 13:38:36 | 127.0.0.1 - - [28/Mar/2023 13:38:36] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:36 | 127.0.0.1 - - [28/Mar/2023 13:38:36] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:36 | 127.0.0.1 - - [28/Mar/2023 13:38:36] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:36 | 127.0.0.1 - - [28/Mar/2023 13:38:36] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:36 | 127.0.0.1 - - [28/Mar/2023 13:38:36] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:36 | 127.0.0.1 - - [28/Mar/2023 13:38:36] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:36 | 127.0.0.1 - - [28/Mar/2023 13:38:36] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:36 | 127.0.0.1 - - [28/Mar/2023 13:38:36] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:36 | 127.0.0.1 - - [28/Mar/2023 13:38:36] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:38:39 | Add basket (with id: 1) route request
+INFO | 28/03/2023 13:38:39 | 127.0.0.1 - - [28/Mar/2023 13:38:39] "[32mGET /addBasket/1 HTTP/1.1[0m" 302 -
+DEBUG | 28/03/2023 13:38:39 | Calendar route request
+INFO | 28/03/2023 13:38:39 | 127.0.0.1 - - [28/Mar/2023 13:38:39] "GET /calendar HTTP/1.1" 200 -
+INFO | 28/03/2023 13:38:39 | 127.0.0.1 - - [28/Mar/2023 13:38:39] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:39 | 127.0.0.1 - - [28/Mar/2023 13:38:39] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:39 | 127.0.0.1 - - [28/Mar/2023 13:38:39] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:39 | 127.0.0.1 - - [28/Mar/2023 13:38:39] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:39 | 127.0.0.1 - - [28/Mar/2023 13:38:39] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:39 | 127.0.0.1 - - [28/Mar/2023 13:38:39] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:39 | 127.0.0.1 - - [28/Mar/2023 13:38:39] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:39 | 127.0.0.1 - - [28/Mar/2023 13:38:39] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:39 | 127.0.0.1 - - [28/Mar/2023 13:38:39] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:38:41 | Add basket (with id: 2) route request
+INFO | 28/03/2023 13:38:41 | 127.0.0.1 - - [28/Mar/2023 13:38:41] "[32mGET /addBasket/2 HTTP/1.1[0m" 302 -
+DEBUG | 28/03/2023 13:38:41 | Calendar route request
+INFO | 28/03/2023 13:38:41 | 127.0.0.1 - - [28/Mar/2023 13:38:41] "GET /calendar HTTP/1.1" 200 -
+INFO | 28/03/2023 13:38:41 | 127.0.0.1 - - [28/Mar/2023 13:38:41] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:41 | 127.0.0.1 - - [28/Mar/2023 13:38:41] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:41 | 127.0.0.1 - - [28/Mar/2023 13:38:41] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:41 | 127.0.0.1 - - [28/Mar/2023 13:38:41] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:41 | 127.0.0.1 - - [28/Mar/2023 13:38:41] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:41 | 127.0.0.1 - - [28/Mar/2023 13:38:41] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:41 | 127.0.0.1 - - [28/Mar/2023 13:38:41] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:41 | 127.0.0.1 - - [28/Mar/2023 13:38:41] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:41 | 127.0.0.1 - - [28/Mar/2023 13:38:41] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:38:44 | Basket route request
+INFO | 28/03/2023 13:38:44 | 127.0.0.1 - - [28/Mar/2023 13:38:44] "GET /basket HTTP/1.1" 200 -
+INFO | 28/03/2023 13:38:44 | 127.0.0.1 - - [28/Mar/2023 13:38:44] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:44 | 127.0.0.1 - - [28/Mar/2023 13:38:44] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:44 | 127.0.0.1 - - [28/Mar/2023 13:38:44] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:44 | 127.0.0.1 - - [28/Mar/2023 13:38:44] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:44 | 127.0.0.1 - - [28/Mar/2023 13:38:44] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:44 | 127.0.0.1 - - [28/Mar/2023 13:38:44] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:44 | 127.0.0.1 - - [28/Mar/2023 13:38:44] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:44 | 127.0.0.1 - - [28/Mar/2023 13:38:44] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:44 | 127.0.0.1 - - [28/Mar/2023 13:38:44] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:58 | message='Request to Stripe api' method=post path=https://api.stripe.com/v1/customers
+DEBUG | 28/03/2023 13:38:58 | api_version=None message='Post details' post_data=email=sample%40customer.com&source=tok_1MqbnfLpcMacjDf9gFZ4qImI
+DEBUG | 28/03/2023 13:38:58 | Starting new HTTPS connection (1): api.stripe.com:443
+DEBUG | 28/03/2023 13:38:58 | https://api.stripe.com:443 "POST /v1/customers HTTP/1.1" 200 628
+INFO | 28/03/2023 13:38:58 | message='Stripe API response' path=https://api.stripe.com/v1/customers response_code=200
+DEBUG | 28/03/2023 13:38:58 | body='{\n  "id": "cus_NbpSxeQBO0w66I",\n  "object": "customer",\n  "address": null,\n  "balance": 0,\n  "created": 1680007138,\n  "currency": null,\n  "default_source": "card_1MqbnfLpcMacjDf9moZyvM6c",\n  "delinquent": false,\n  "description": null,\n  "discount": null,\n  "email": "sample@customer.com",\n  "invoice_prefix": "29C53565",\n  "invoice_settings": {\n    "custom_fields": null,\n    "default_payment_method": null,\n    "footer": null,\n    "rendering_options": null\n  },\n  "livemode": false,\n  "metadata": {},\n  "name": null,\n  "phone": null,\n  "preferred_locales": [],\n  "shipping": null,\n  "tax_exempt": "none",\n  "test_clock": null\n}' message='API response body'
+DEBUG | 28/03/2023 13:38:58 | link=https://dashboard.stripe.com/test/logs/req_vSSJsSLAeedz9i message='Dashboard link for request'
+INFO | 28/03/2023 13:38:58 | message='Request to Stripe api' method=post path=https://api.stripe.com/v1/charges
+DEBUG | 28/03/2023 13:38:58 | api_version=None message='Post details' post_data=customer=cus_NbpSxeQBO0w66I&amount=2000&currency=GBP&description=Flask+Charge
+DEBUG | 28/03/2023 13:38:59 | https://api.stripe.com:443 "POST /v1/charges HTTP/1.1" 200 2903
+INFO | 28/03/2023 13:38:59 | message='Stripe API response' path=https://api.stripe.com/v1/charges response_code=200
+DEBUG | 28/03/2023 13:38:59 | body='{\n  "id": "ch_3MqbniLpcMacjDf91l6H7VC6",\n  "object": "charge",\n  "amount": 2000,\n  "amount_captured": 2000,\n  "amount_refunded": 0,\n  "application": null,\n  "application_fee": null,\n  "application_fee_amount": null,\n  "balance_transaction": "txn_3MqbniLpcMacjDf91tDAAkEU",\n  "billing_details": {\n    "address": {\n      "city": null,\n      "country": null,\n      "line1": null,\n      "line2": null,\n      "postal_code": null,\n      "state": null\n    },\n    "email": null,\n    "name": "a@a.com",\n    "phone": null\n  },\n  "calculated_statement_descriptor": "PROJECT SQUAD 6",\n  "captured": true,\n  "created": 1680007138,\n  "currency": "gbp",\n  "customer": "cus_NbpSxeQBO0w66I",\n  "description": "Flask Charge",\n  "destination": null,\n  "dispute": null,\n  "disputed": false,\n  "failure_balance_transaction": null,\n  "failure_code": null,\n  "failure_message": null,\n  "fraud_details": {},\n  "invoice": null,\n  "livemode": false,\n  "metadata": {},\n  "on_behalf_of": null,\n  "order": null,\n  "outcome": {\n    "network_status": "approved_by_network",\n    "reason": null,\n    "risk_level": "normal",\n    "risk_score": 55,\n    "seller_message": "Payment complete.",\n    "type": "authorized"\n  },\n  "paid": true,\n  "payment_intent": null,\n  "payment_method": "card_1MqbnfLpcMacjDf9moZyvM6c",\n  "payment_method_details": {\n    "card": {\n      "brand": "visa",\n      "checks": {\n        "address_line1_check": null,\n        "address_postal_code_check": null,\n        "cvc_check": "pass"\n      },\n      "country": "US",\n      "exp_month": 1,\n      "exp_year": 2026,\n      "fingerprint": "RTEy2rdZfbCmssje",\n      "funding": "debit",\n      "installments": null,\n      "last4": "5556",\n      "mandate": null,\n      "network": "visa",\n      "three_d_secure": null,\n      "wallet": null\n    },\n    "type": "card"\n  },\n  "receipt_email": null,\n  "receipt_number": null,\n  "receipt_url": "https://pay.stripe.com/receipts/payment/CAcaFwoVYWNjdF8xTXFGWTJMcGNNYWNqRGY5KOO_i6EGMgaBa_HTK9M6LBbMbkdyjc4qK79FVi0hybDmDXSGIDYLEhA-6QNUMLL6fRpKqhKaf8TjZc7-",\n  "refunded": false,\n  "review": null,\n  "shipping": null,\n  "source": {\n    "id": "card_1MqbnfLpcMacjDf9moZyvM6c",\n    "object": "card",\n    "address_city": null,\n    "address_country": null,\n    "address_line1": null,\n    "address_line1_check": null,\n    "address_line2": null,\n    "address_state": null,\n    "address_zip": null,\n    "address_zip_check": null,\n    "brand": "Visa",\n    "country": "US",\n    "customer": "cus_NbpSxeQBO0w66I",\n    "cvc_check": "pass",\n    "dynamic_last4": null,\n    "exp_month": 1,\n    "exp_year": 2026,\n    "fingerprint": "RTEy2rdZfbCmssje",\n    "funding": "debit",\n    "last4": "5556",\n    "metadata": {},\n    "name": "a@a.com",\n    "tokenization_method": null\n  },\n  "source_transfer": null,\n  "statement_descriptor": null,\n  "statement_descriptor_suffix": null,\n  "status": "succeeded",\n  "transfer_data": null,\n  "transfer_group": null\n}' message='API response body'
+DEBUG | 28/03/2023 13:38:59 | link=https://dashboard.stripe.com/test/logs/req_95FZAO9VEAExzK message='Dashboard link for request'
+INFO | 28/03/2023 13:38:59 | 127.0.0.1 - - [28/Mar/2023 13:38:59] "[32mPOST /checkout HTTP/1.1[0m" 302 -
+DEBUG | 28/03/2023 13:38:59 | Home route request
+INFO | 28/03/2023 13:38:59 | 127.0.0.1 - - [28/Mar/2023 13:38:59] "GET /home HTTP/1.1" 200 -
+INFO | 28/03/2023 13:38:59 | 127.0.0.1 - - [28/Mar/2023 13:38:59] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:59 | 127.0.0.1 - - [28/Mar/2023 13:38:59] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:59 | 127.0.0.1 - - [28/Mar/2023 13:38:59] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:59 | 127.0.0.1 - - [28/Mar/2023 13:38:59] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:59 | 127.0.0.1 - - [28/Mar/2023 13:38:59] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:59 | 127.0.0.1 - - [28/Mar/2023 13:38:59] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:59 | 127.0.0.1 - - [28/Mar/2023 13:38:59] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:59 | 127.0.0.1 - - [28/Mar/2023 13:38:59] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:59 | 127.0.0.1 - - [28/Mar/2023 13:38:59] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:38:59 | 127.0.0.1 - - [28/Mar/2023 13:38:59] "[36mGET /static/images/GYM.png HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:39:01 | Calendar route request
+INFO | 28/03/2023 13:39:01 | 127.0.0.1 - - [28/Mar/2023 13:39:01] "GET /calendar HTTP/1.1" 200 -
+INFO | 28/03/2023 13:39:01 | 127.0.0.1 - - [28/Mar/2023 13:39:01] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:39:01 | 127.0.0.1 - - [28/Mar/2023 13:39:01] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:39:01 | 127.0.0.1 - - [28/Mar/2023 13:39:01] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:39:01 | 127.0.0.1 - - [28/Mar/2023 13:39:01] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:39:01 | 127.0.0.1 - - [28/Mar/2023 13:39:01] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:39:01 | 127.0.0.1 - - [28/Mar/2023 13:39:01] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:39:01 | 127.0.0.1 - - [28/Mar/2023 13:39:01] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:39:01 | 127.0.0.1 - - [28/Mar/2023 13:39:01] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:39:01 | 127.0.0.1 - - [28/Mar/2023 13:39:01] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:39:04 | My bookings route request
+INFO | 28/03/2023 13:39:04 | 127.0.0.1 - - [28/Mar/2023 13:39:04] "GET /myBookings HTTP/1.1" 200 -
+INFO | 28/03/2023 13:39:04 | 127.0.0.1 - - [28/Mar/2023 13:39:04] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:39:04 | 127.0.0.1 - - [28/Mar/2023 13:39:04] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:39:04 | 127.0.0.1 - - [28/Mar/2023 13:39:04] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:39:04 | 127.0.0.1 - - [28/Mar/2023 13:39:04] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:39:04 | 127.0.0.1 - - [28/Mar/2023 13:39:04] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:39:04 | 127.0.0.1 - - [28/Mar/2023 13:39:04] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:39:04 | 127.0.0.1 - - [28/Mar/2023 13:39:04] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:39:04 | 127.0.0.1 - - [28/Mar/2023 13:39:04] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:39:04 | 127.0.0.1 - - [28/Mar/2023 13:39:04] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:39:05 | Delete booking (with id: 1) route request
+INFO | 28/03/2023 13:39:05 | 127.0.0.1 - - [28/Mar/2023 13:39:05] "[32mGET /deleteBooking/1 HTTP/1.1[0m" 302 -
+DEBUG | 28/03/2023 13:39:05 | My bookings route request
+INFO | 28/03/2023 13:39:05 | 127.0.0.1 - - [28/Mar/2023 13:39:05] "GET /myBookings HTTP/1.1" 200 -
+INFO | 28/03/2023 13:39:05 | 127.0.0.1 - - [28/Mar/2023 13:39:05] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:39:05 | 127.0.0.1 - - [28/Mar/2023 13:39:05] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:39:05 | 127.0.0.1 - - [28/Mar/2023 13:39:05] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:39:05 | 127.0.0.1 - - [28/Mar/2023 13:39:05] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:39:05 | 127.0.0.1 - - [28/Mar/2023 13:39:05] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:39:05 | 127.0.0.1 - - [28/Mar/2023 13:39:05] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:39:05 | 127.0.0.1 - - [28/Mar/2023 13:39:05] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:39:05 | 127.0.0.1 - - [28/Mar/2023 13:39:05] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:39:05 | 127.0.0.1 - - [28/Mar/2023 13:39:05] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:39:07 | Delete booking (with id: 2) route request
+INFO | 28/03/2023 13:39:07 | 127.0.0.1 - - [28/Mar/2023 13:39:07] "[32mGET /deleteBooking/2 HTTP/1.1[0m" 302 -
+DEBUG | 28/03/2023 13:39:07 | My bookings route request
+INFO | 28/03/2023 13:39:07 | 127.0.0.1 - - [28/Mar/2023 13:39:07] "GET /myBookings HTTP/1.1" 200 -
+INFO | 28/03/2023 13:39:07 | 127.0.0.1 - - [28/Mar/2023 13:39:07] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:39:07 | 127.0.0.1 - - [28/Mar/2023 13:39:07] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:39:07 | 127.0.0.1 - - [28/Mar/2023 13:39:07] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:39:07 | 127.0.0.1 - - [28/Mar/2023 13:39:07] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:39:07 | 127.0.0.1 - - [28/Mar/2023 13:39:07] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:39:07 | 127.0.0.1 - - [28/Mar/2023 13:39:07] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:39:07 | 127.0.0.1 - - [28/Mar/2023 13:39:07] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:39:07 | 127.0.0.1 - - [28/Mar/2023 13:39:07] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:39:07 | 127.0.0.1 - - [28/Mar/2023 13:39:07] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:39:10 | Calendar route request
+INFO | 28/03/2023 13:39:10 | 127.0.0.1 - - [28/Mar/2023 13:39:10] "GET /calendar HTTP/1.1" 200 -
+INFO | 28/03/2023 13:39:10 | 127.0.0.1 - - [28/Mar/2023 13:39:10] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:39:10 | 127.0.0.1 - - [28/Mar/2023 13:39:10] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:39:10 | 127.0.0.1 - - [28/Mar/2023 13:39:10] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:39:10 | 127.0.0.1 - - [28/Mar/2023 13:39:10] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:39:10 | 127.0.0.1 - - [28/Mar/2023 13:39:10] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:39:10 | 127.0.0.1 - - [28/Mar/2023 13:39:10] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:39:10 | 127.0.0.1 - - [28/Mar/2023 13:39:10] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:39:10 | 127.0.0.1 - - [28/Mar/2023 13:39:10] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:39:10 | 127.0.0.1 - - [28/Mar/2023 13:39:10] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:41:24 | Edit event (with id: 1) route request
+INFO | 28/03/2023 13:41:24 | 127.0.0.1 - - [28/Mar/2023 13:41:24] "GET /editEvent/1 HTTP/1.1" 200 -
+INFO | 28/03/2023 13:41:24 | 127.0.0.1 - - [28/Mar/2023 13:41:24] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:41:24 | 127.0.0.1 - - [28/Mar/2023 13:41:24] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:41:24 | 127.0.0.1 - - [28/Mar/2023 13:41:24] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:41:24 | 127.0.0.1 - - [28/Mar/2023 13:41:24] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:41:24 | 127.0.0.1 - - [28/Mar/2023 13:41:24] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:41:24 | 127.0.0.1 - - [28/Mar/2023 13:41:24] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:41:24 | 127.0.0.1 - - [28/Mar/2023 13:41:24] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:41:24 | 127.0.0.1 - - [28/Mar/2023 13:41:24] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:41:24 | 127.0.0.1 - - [28/Mar/2023 13:41:24] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:41:30 | 127.0.0.1 - - [28/Mar/2023 13:41:30] "GET /analysis HTTP/1.1" 200 -
+INFO | 28/03/2023 13:41:30 | 127.0.0.1 - - [28/Mar/2023 13:41:30] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:41:30 | 127.0.0.1 - - [28/Mar/2023 13:41:30] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:41:30 | 127.0.0.1 - - [28/Mar/2023 13:41:30] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:41:30 | 127.0.0.1 - - [28/Mar/2023 13:41:30] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:41:30 | 127.0.0.1 - - [28/Mar/2023 13:41:30] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:41:30 | 127.0.0.1 - - [28/Mar/2023 13:41:30] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:41:30 | 127.0.0.1 - - [28/Mar/2023 13:41:30] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:41:30 | 127.0.0.1 - - [28/Mar/2023 13:41:30] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:41:30 | 127.0.0.1 - - [28/Mar/2023 13:41:30] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:41:41 | 127.0.0.1 - - [28/Mar/2023 13:41:41] "[32mPOST /analysis HTTP/1.1[0m" 302 -
+INFO | 28/03/2023 13:41:41 | 127.0.0.1 - - [28/Mar/2023 13:41:41] "GET /analysisGraphs HTTP/1.1" 200 -
+INFO | 28/03/2023 13:41:41 | 127.0.0.1 - - [28/Mar/2023 13:41:41] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:41:41 | 127.0.0.1 - - [28/Mar/2023 13:41:41] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:41:41 | 127.0.0.1 - - [28/Mar/2023 13:41:41] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:41:41 | 127.0.0.1 - - [28/Mar/2023 13:41:41] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:41:41 | 127.0.0.1 - - [28/Mar/2023 13:41:41] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:41:41 | 127.0.0.1 - - [28/Mar/2023 13:41:41] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:41:41 | 127.0.0.1 - - [28/Mar/2023 13:41:41] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:41:41 | 127.0.0.1 - - [28/Mar/2023 13:41:41] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:41:41 | 127.0.0.1 - - [28/Mar/2023 13:41:41] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:41:44 | Calendar route request
+INFO | 28/03/2023 13:41:44 | 127.0.0.1 - - [28/Mar/2023 13:41:44] "GET /calendar HTTP/1.1" 200 -
+INFO | 28/03/2023 13:41:44 | 127.0.0.1 - - [28/Mar/2023 13:41:44] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:41:44 | 127.0.0.1 - - [28/Mar/2023 13:41:44] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:41:44 | 127.0.0.1 - - [28/Mar/2023 13:41:44] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:41:44 | 127.0.0.1 - - [28/Mar/2023 13:41:44] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:41:44 | 127.0.0.1 - - [28/Mar/2023 13:41:44] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:41:44 | 127.0.0.1 - - [28/Mar/2023 13:41:44] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:41:44 | 127.0.0.1 - - [28/Mar/2023 13:41:44] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:41:44 | 127.0.0.1 - - [28/Mar/2023 13:41:44] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:41:44 | 127.0.0.1 - - [28/Mar/2023 13:41:44] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:41:47 | Add basket (with id: 1) route request
+INFO | 28/03/2023 13:41:47 | 127.0.0.1 - - [28/Mar/2023 13:41:47] "[32mGET /addBasket/1 HTTP/1.1[0m" 302 -
+DEBUG | 28/03/2023 13:41:47 | Calendar route request
+INFO | 28/03/2023 13:41:47 | 127.0.0.1 - - [28/Mar/2023 13:41:47] "GET /calendar HTTP/1.1" 200 -
+INFO | 28/03/2023 13:41:47 | 127.0.0.1 - - [28/Mar/2023 13:41:47] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:41:47 | 127.0.0.1 - - [28/Mar/2023 13:41:47] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:41:47 | 127.0.0.1 - - [28/Mar/2023 13:41:47] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:41:47 | 127.0.0.1 - - [28/Mar/2023 13:41:47] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:41:47 | 127.0.0.1 - - [28/Mar/2023 13:41:47] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:41:47 | 127.0.0.1 - - [28/Mar/2023 13:41:47] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:41:47 | 127.0.0.1 - - [28/Mar/2023 13:41:47] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:41:47 | 127.0.0.1 - - [28/Mar/2023 13:41:47] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:41:47 | 127.0.0.1 - - [28/Mar/2023 13:41:47] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:41:49 | Basket route request
+INFO | 28/03/2023 13:41:49 | 127.0.0.1 - - [28/Mar/2023 13:41:49] "GET /basket HTTP/1.1" 200 -
+INFO | 28/03/2023 13:41:49 | 127.0.0.1 - - [28/Mar/2023 13:41:49] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:41:49 | 127.0.0.1 - - [28/Mar/2023 13:41:49] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:41:49 | 127.0.0.1 - - [28/Mar/2023 13:41:49] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:41:49 | 127.0.0.1 - - [28/Mar/2023 13:41:49] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:41:49 | 127.0.0.1 - - [28/Mar/2023 13:41:49] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:41:49 | 127.0.0.1 - - [28/Mar/2023 13:41:49] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:41:49 | 127.0.0.1 - - [28/Mar/2023 13:41:49] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:41:49 | 127.0.0.1 - - [28/Mar/2023 13:41:49] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:41:49 | 127.0.0.1 - - [28/Mar/2023 13:41:49] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:42:00 | message='Request to Stripe api' method=post path=https://api.stripe.com/v1/customers
+DEBUG | 28/03/2023 13:42:00 | api_version=None message='Post details' post_data=email=sample%40customer.com&source=tok_1MqbqbLpcMacjDf9oMNmyWt8
+DEBUG | 28/03/2023 13:42:00 | Starting new HTTPS connection (1): api.stripe.com:443
+DEBUG | 28/03/2023 13:42:01 | https://api.stripe.com:443 "POST /v1/customers HTTP/1.1" 200 628
+INFO | 28/03/2023 13:42:01 | message='Stripe API response' path=https://api.stripe.com/v1/customers response_code=200
+DEBUG | 28/03/2023 13:42:01 | body='{\n  "id": "cus_NbpV4amXQeKA2T",\n  "object": "customer",\n  "address": null,\n  "balance": 0,\n  "created": 1680007320,\n  "currency": null,\n  "default_source": "card_1MqbqbLpcMacjDf9xzTokAWw",\n  "delinquent": false,\n  "description": null,\n  "discount": null,\n  "email": "sample@customer.com",\n  "invoice_prefix": "1F6A58E0",\n  "invoice_settings": {\n    "custom_fields": null,\n    "default_payment_method": null,\n    "footer": null,\n    "rendering_options": null\n  },\n  "livemode": false,\n  "metadata": {},\n  "name": null,\n  "phone": null,\n  "preferred_locales": [],\n  "shipping": null,\n  "tax_exempt": "none",\n  "test_clock": null\n}' message='API response body'
+DEBUG | 28/03/2023 13:42:01 | link=https://dashboard.stripe.com/test/logs/req_fO2AnyAD0q9wcb message='Dashboard link for request'
+INFO | 28/03/2023 13:42:01 | message='Request to Stripe api' method=post path=https://api.stripe.com/v1/charges
+DEBUG | 28/03/2023 13:42:01 | api_version=None message='Post details' post_data=customer=cus_NbpV4amXQeKA2T&amount=1000&currency=GBP&description=Flask+Charge
+DEBUG | 28/03/2023 13:42:02 | https://api.stripe.com:443 "POST /v1/charges HTTP/1.1" 200 2903
+INFO | 28/03/2023 13:42:02 | message='Stripe API response' path=https://api.stripe.com/v1/charges response_code=200
+DEBUG | 28/03/2023 13:42:02 | body='{\n  "id": "ch_3MqbqfLpcMacjDf90XY6Zc4W",\n  "object": "charge",\n  "amount": 1000,\n  "amount_captured": 1000,\n  "amount_refunded": 0,\n  "application": null,\n  "application_fee": null,\n  "application_fee_amount": null,\n  "balance_transaction": "txn_3MqbqfLpcMacjDf90pUQNHeN",\n  "billing_details": {\n    "address": {\n      "city": null,\n      "country": null,\n      "line1": null,\n      "line2": null,\n      "postal_code": null,\n      "state": null\n    },\n    "email": null,\n    "name": "a@a.com",\n    "phone": null\n  },\n  "calculated_statement_descriptor": "PROJECT SQUAD 6",\n  "captured": true,\n  "created": 1680007321,\n  "currency": "gbp",\n  "customer": "cus_NbpV4amXQeKA2T",\n  "description": "Flask Charge",\n  "destination": null,\n  "dispute": null,\n  "disputed": false,\n  "failure_balance_transaction": null,\n  "failure_code": null,\n  "failure_message": null,\n  "fraud_details": {},\n  "invoice": null,\n  "livemode": false,\n  "metadata": {},\n  "on_behalf_of": null,\n  "order": null,\n  "outcome": {\n    "network_status": "approved_by_network",\n    "reason": null,\n    "risk_level": "normal",\n    "risk_score": 55,\n    "seller_message": "Payment complete.",\n    "type": "authorized"\n  },\n  "paid": true,\n  "payment_intent": null,\n  "payment_method": "card_1MqbqbLpcMacjDf9xzTokAWw",\n  "payment_method_details": {\n    "card": {\n      "brand": "visa",\n      "checks": {\n        "address_line1_check": null,\n        "address_postal_code_check": null,\n        "cvc_check": "pass"\n      },\n      "country": "US",\n      "exp_month": 1,\n      "exp_year": 2026,\n      "fingerprint": "RTEy2rdZfbCmssje",\n      "funding": "debit",\n      "installments": null,\n      "last4": "5556",\n      "mandate": null,\n      "network": "visa",\n      "three_d_secure": null,\n      "wallet": null\n    },\n    "type": "card"\n  },\n  "receipt_email": null,\n  "receipt_number": null,\n  "receipt_url": "https://pay.stripe.com/receipts/payment/CAcaFwoVYWNjdF8xTXFGWTJMcGNNYWNqRGY5KJnBi6EGMgY8jDPJGdY6LBaPM4MHuTdjm19BiaQj8HvAG5L8LIH5MUglECaqRA8U-A5Vjz7nDvT7ukgn",\n  "refunded": false,\n  "review": null,\n  "shipping": null,\n  "source": {\n    "id": "card_1MqbqbLpcMacjDf9xzTokAWw",\n    "object": "card",\n    "address_city": null,\n    "address_country": null,\n    "address_line1": null,\n    "address_line1_check": null,\n    "address_line2": null,\n    "address_state": null,\n    "address_zip": null,\n    "address_zip_check": null,\n    "brand": "Visa",\n    "country": "US",\n    "customer": "cus_NbpV4amXQeKA2T",\n    "cvc_check": "pass",\n    "dynamic_last4": null,\n    "exp_month": 1,\n    "exp_year": 2026,\n    "fingerprint": "RTEy2rdZfbCmssje",\n    "funding": "debit",\n    "last4": "5556",\n    "metadata": {},\n    "name": "a@a.com",\n    "tokenization_method": null\n  },\n  "source_transfer": null,\n  "statement_descriptor": null,\n  "statement_descriptor_suffix": null,\n  "status": "succeeded",\n  "transfer_data": null,\n  "transfer_group": null\n}' message='API response body'
+DEBUG | 28/03/2023 13:42:02 | link=https://dashboard.stripe.com/test/logs/req_1qZrhWNp9mfBce message='Dashboard link for request'
+INFO | 28/03/2023 13:42:02 | 127.0.0.1 - - [28/Mar/2023 13:42:02] "[32mPOST /checkout HTTP/1.1[0m" 302 -
+DEBUG | 28/03/2023 13:42:02 | Home route request
+INFO | 28/03/2023 13:42:02 | 127.0.0.1 - - [28/Mar/2023 13:42:02] "GET /home HTTP/1.1" 200 -
+INFO | 28/03/2023 13:42:02 | 127.0.0.1 - - [28/Mar/2023 13:42:02] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:42:02 | 127.0.0.1 - - [28/Mar/2023 13:42:02] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:42:02 | 127.0.0.1 - - [28/Mar/2023 13:42:02] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:42:02 | 127.0.0.1 - - [28/Mar/2023 13:42:02] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:42:02 | 127.0.0.1 - - [28/Mar/2023 13:42:02] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:42:02 | 127.0.0.1 - - [28/Mar/2023 13:42:02] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:42:02 | 127.0.0.1 - - [28/Mar/2023 13:42:02] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:42:02 | 127.0.0.1 - - [28/Mar/2023 13:42:02] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:42:02 | 127.0.0.1 - - [28/Mar/2023 13:42:02] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:42:02 | 127.0.0.1 - - [28/Mar/2023 13:42:02] "[36mGET /static/images/GYM.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:42:02 | 127.0.0.1 - - [28/Mar/2023 13:42:02] "GET /analysis HTTP/1.1" 200 -
+INFO | 28/03/2023 13:42:02 | 127.0.0.1 - - [28/Mar/2023 13:42:02] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:42:02 | 127.0.0.1 - - [28/Mar/2023 13:42:02] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:42:02 | 127.0.0.1 - - [28/Mar/2023 13:42:02] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:42:02 | 127.0.0.1 - - [28/Mar/2023 13:42:02] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:42:02 | 127.0.0.1 - - [28/Mar/2023 13:42:02] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:42:02 | 127.0.0.1 - - [28/Mar/2023 13:42:02] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:42:02 | 127.0.0.1 - - [28/Mar/2023 13:42:02] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:42:02 | 127.0.0.1 - - [28/Mar/2023 13:42:02] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:42:02 | 127.0.0.1 - - [28/Mar/2023 13:42:02] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:42:07 | 127.0.0.1 - - [28/Mar/2023 13:42:07] "[35m[1mPOST /analysis HTTP/1.1[0m" 500 -
+INFO | 28/03/2023 13:42:07 | 127.0.0.1 - - [28/Mar/2023 13:42:07] "GET /analysis?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+INFO | 28/03/2023 13:42:07 | 127.0.0.1 - - [28/Mar/2023 13:42:07] "GET /analysis?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+INFO | 28/03/2023 13:42:07 | 127.0.0.1 - - [28/Mar/2023 13:42:07] "GET /analysis?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+INFO | 28/03/2023 13:42:07 | 127.0.0.1 - - [28/Mar/2023 13:42:07] "GET /analysis?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+INFO | 28/03/2023 13:42:07 | 127.0.0.1 - - [28/Mar/2023 13:42:07] "GET /analysis?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+INFO | 28/03/2023 13:43:26 | 127.0.0.1 - - [28/Mar/2023 13:43:26] "GET /admin/ HTTP/1.1" 200 -
+INFO | 28/03/2023 13:43:26 | 127.0.0.1 - - [28/Mar/2023 13:43:26] "[36mGET /admin/static/bootstrap/bootstrap4/swatch/default/bootstrap.min.css?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:26 | 127.0.0.1 - - [28/Mar/2023 13:43:26] "[36mGET /admin/static/bootstrap/bootstrap4/css/bootstrap.min.css?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:26 | 127.0.0.1 - - [28/Mar/2023 13:43:26] "[36mGET /admin/static/bootstrap/bootstrap4/css/font-awesome.min.css?v=4.7.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:26 | 127.0.0.1 - - [28/Mar/2023 13:43:26] "[36mGET /admin/static/admin/css/bootstrap4/admin.css?v=1.1.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:26 | 127.0.0.1 - - [28/Mar/2023 13:43:26] "[36mGET /admin/static/vendor/jquery.min.js?v=3.5.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:26 | 127.0.0.1 - - [28/Mar/2023 13:43:26] "[36mGET /admin/static/bootstrap/bootstrap4/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:26 | 127.0.0.1 - - [28/Mar/2023 13:43:26] "[36mGET /admin/static/bootstrap/bootstrap4/js/bootstrap.min.js?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:26 | 127.0.0.1 - - [28/Mar/2023 13:43:26] "[36mGET /admin/static/vendor/moment.min.js?v=2.9.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:26 | 127.0.0.1 - - [28/Mar/2023 13:43:26] "[36mGET /admin/static/vendor/bootstrap4/util.js?v=4.3.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:26 | 127.0.0.1 - - [28/Mar/2023 13:43:26] "[36mGET /admin/static/vendor/bootstrap4/dropdown.js?v=4.3.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:26 | 127.0.0.1 - - [28/Mar/2023 13:43:26] "[36mGET /admin/static/vendor/multi-level-dropdowns-bootstrap/bootstrap4-dropdown-ml-hack.js HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:26 | 127.0.0.1 - - [28/Mar/2023 13:43:26] "[36mGET /admin/static/vendor/select2/select2.min.js?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:26 | 127.0.0.1 - - [28/Mar/2023 13:43:26] "[36mGET /admin/static/admin/js/helpers.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:27 | 127.0.0.1 - - [28/Mar/2023 13:43:27] "GET /admin/userbookings/ HTTP/1.1" 200 -
+INFO | 28/03/2023 13:43:27 | 127.0.0.1 - - [28/Mar/2023 13:43:27] "[36mGET /admin/static/bootstrap/bootstrap4/swatch/default/bootstrap.min.css?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:27 | 127.0.0.1 - - [28/Mar/2023 13:43:27] "[36mGET /admin/static/bootstrap/bootstrap4/css/bootstrap.min.css?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:27 | 127.0.0.1 - - [28/Mar/2023 13:43:27] "[36mGET /admin/static/admin/css/bootstrap4/admin.css?v=1.1.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:27 | 127.0.0.1 - - [28/Mar/2023 13:43:27] "[36mGET /admin/static/bootstrap/bootstrap4/css/font-awesome.min.css?v=4.7.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:27 | 127.0.0.1 - - [28/Mar/2023 13:43:27] "[36mGET /admin/static/vendor/jquery.min.js?v=3.5.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:27 | 127.0.0.1 - - [28/Mar/2023 13:43:27] "[36mGET /admin/static/bootstrap/bootstrap4/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:27 | 127.0.0.1 - - [28/Mar/2023 13:43:27] "[36mGET /admin/static/bootstrap/bootstrap4/js/bootstrap.min.js?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:27 | 127.0.0.1 - - [28/Mar/2023 13:43:27] "[36mGET /admin/static/vendor/moment.min.js?v=2.9.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:27 | 127.0.0.1 - - [28/Mar/2023 13:43:27] "[36mGET /admin/static/vendor/bootstrap4/util.js?v=4.3.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:27 | 127.0.0.1 - - [28/Mar/2023 13:43:27] "[36mGET /admin/static/vendor/bootstrap4/dropdown.js?v=4.3.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:27 | 127.0.0.1 - - [28/Mar/2023 13:43:27] "[36mGET /admin/static/vendor/select2/select2.min.js?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:27 | 127.0.0.1 - - [28/Mar/2023 13:43:27] "[36mGET /admin/static/vendor/select2/select2.css?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:27 | 127.0.0.1 - - [28/Mar/2023 13:43:27] "[36mGET /admin/static/vendor/select2/select2-bootstrap4.css?v=1.4.6 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:27 | 127.0.0.1 - - [28/Mar/2023 13:43:27] "[36mGET /admin/static/vendor/bootstrap-daterangepicker/daterangepicker-bs4.css?v=1.3.22 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:27 | 127.0.0.1 - - [28/Mar/2023 13:43:27] "[36mGET /admin/static/vendor/multi-level-dropdowns-bootstrap/bootstrap4-dropdown-ml-hack.js HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:27 | 127.0.0.1 - - [28/Mar/2023 13:43:27] "[36mGET /admin/static/admin/js/helpers.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:27 | 127.0.0.1 - - [28/Mar/2023 13:43:27] "[36mGET /admin/static/vendor/bootstrap-daterangepicker/daterangepicker.js?v=1.3.22 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:27 | 127.0.0.1 - - [28/Mar/2023 13:43:27] "[36mGET /admin/static/admin/js/bs4_modal.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:27 | 127.0.0.1 - - [28/Mar/2023 13:43:27] "[36mGET /admin/static/admin/js/form.js?v=1.0.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:27 | 127.0.0.1 - - [28/Mar/2023 13:43:27] "[36mGET /admin/static/admin/js/bs4_filters.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:27 | 127.0.0.1 - - [28/Mar/2023 13:43:27] "[36mGET /admin/static/admin/js/actions.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:27 | 127.0.0.1 - - [28/Mar/2023 13:43:27] "GET /admin/static/bootstrap/bootstrap4/fonts/fontawesome-webfont.woff2?v=4.7.0 HTTP/1.1" 200 -
+INFO | 28/03/2023 13:43:36 | 127.0.0.1 - - [28/Mar/2023 13:43:36] "GET /admin/calendar/ HTTP/1.1" 200 -
+INFO | 28/03/2023 13:43:36 | 127.0.0.1 - - [28/Mar/2023 13:43:36] "[36mGET /admin/static/bootstrap/bootstrap4/swatch/default/bootstrap.min.css?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:36 | 127.0.0.1 - - [28/Mar/2023 13:43:36] "[36mGET /admin/static/bootstrap/bootstrap4/css/bootstrap.min.css?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:36 | 127.0.0.1 - - [28/Mar/2023 13:43:36] "[36mGET /admin/static/admin/css/bootstrap4/admin.css?v=1.1.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:36 | 127.0.0.1 - - [28/Mar/2023 13:43:36] "[36mGET /admin/static/bootstrap/bootstrap4/css/font-awesome.min.css?v=4.7.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:36 | 127.0.0.1 - - [28/Mar/2023 13:43:36] "[36mGET /admin/static/vendor/select2/select2.css?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:36 | 127.0.0.1 - - [28/Mar/2023 13:43:36] "[36mGET /admin/static/vendor/select2/select2-bootstrap4.css?v=1.4.6 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:36 | 127.0.0.1 - - [28/Mar/2023 13:43:36] "[36mGET /admin/static/vendor/bootstrap-daterangepicker/daterangepicker-bs4.css?v=1.3.22 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:36 | 127.0.0.1 - - [28/Mar/2023 13:43:36] "[36mGET /admin/static/vendor/jquery.min.js?v=3.5.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:36 | 127.0.0.1 - - [28/Mar/2023 13:43:36] "[36mGET /admin/static/bootstrap/bootstrap4/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:36 | 127.0.0.1 - - [28/Mar/2023 13:43:36] "[36mGET /admin/static/bootstrap/bootstrap4/js/bootstrap.min.js?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:36 | 127.0.0.1 - - [28/Mar/2023 13:43:36] "[36mGET /admin/static/vendor/moment.min.js?v=2.9.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:36 | 127.0.0.1 - - [28/Mar/2023 13:43:36] "[36mGET /admin/static/vendor/bootstrap4/util.js?v=4.3.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:36 | 127.0.0.1 - - [28/Mar/2023 13:43:36] "[36mGET /admin/static/vendor/bootstrap4/dropdown.js?v=4.3.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:36 | 127.0.0.1 - - [28/Mar/2023 13:43:36] "[36mGET /admin/static/vendor/select2/select2.min.js?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:36 | 127.0.0.1 - - [28/Mar/2023 13:43:36] "[36mGET /admin/static/vendor/multi-level-dropdowns-bootstrap/bootstrap4-dropdown-ml-hack.js HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:36 | 127.0.0.1 - - [28/Mar/2023 13:43:36] "[36mGET /admin/static/admin/js/helpers.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:36 | 127.0.0.1 - - [28/Mar/2023 13:43:36] "[36mGET /admin/static/vendor/bootstrap-daterangepicker/daterangepicker.js?v=1.3.22 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:36 | 127.0.0.1 - - [28/Mar/2023 13:43:36] "[36mGET /admin/static/admin/js/bs4_modal.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:36 | 127.0.0.1 - - [28/Mar/2023 13:43:36] "[36mGET /admin/static/admin/js/form.js?v=1.0.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:36 | 127.0.0.1 - - [28/Mar/2023 13:43:36] "[36mGET /admin/static/admin/js/bs4_filters.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:43:36 | 127.0.0.1 - - [28/Mar/2023 13:43:36] "[36mGET /admin/static/admin/js/actions.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:02 | 127.0.0.1 - - [28/Mar/2023 13:44:02] "GET /admin/userlogin/ HTTP/1.1" 200 -
+INFO | 28/03/2023 13:44:02 | 127.0.0.1 - - [28/Mar/2023 13:44:02] "[36mGET /admin/static/bootstrap/bootstrap4/swatch/default/bootstrap.min.css?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:02 | 127.0.0.1 - - [28/Mar/2023 13:44:02] "[36mGET /admin/static/bootstrap/bootstrap4/css/bootstrap.min.css?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:02 | 127.0.0.1 - - [28/Mar/2023 13:44:02] "[36mGET /admin/static/admin/css/bootstrap4/admin.css?v=1.1.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:02 | 127.0.0.1 - - [28/Mar/2023 13:44:02] "[36mGET /admin/static/bootstrap/bootstrap4/css/font-awesome.min.css?v=4.7.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:02 | 127.0.0.1 - - [28/Mar/2023 13:44:02] "[36mGET /admin/static/vendor/select2/select2-bootstrap4.css?v=1.4.6 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:02 | 127.0.0.1 - - [28/Mar/2023 13:44:02] "[36mGET /admin/static/vendor/select2/select2.css?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:02 | 127.0.0.1 - - [28/Mar/2023 13:44:02] "[36mGET /admin/static/vendor/bootstrap-daterangepicker/daterangepicker-bs4.css?v=1.3.22 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:02 | 127.0.0.1 - - [28/Mar/2023 13:44:02] "[36mGET /admin/static/vendor/jquery.min.js?v=3.5.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:02 | 127.0.0.1 - - [28/Mar/2023 13:44:02] "[36mGET /admin/static/bootstrap/bootstrap4/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:02 | 127.0.0.1 - - [28/Mar/2023 13:44:02] "[36mGET /admin/static/bootstrap/bootstrap4/js/bootstrap.min.js?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:02 | 127.0.0.1 - - [28/Mar/2023 13:44:02] "[36mGET /admin/static/vendor/moment.min.js?v=2.9.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:02 | 127.0.0.1 - - [28/Mar/2023 13:44:02] "[36mGET /admin/static/vendor/bootstrap4/util.js?v=4.3.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:02 | 127.0.0.1 - - [28/Mar/2023 13:44:02] "[36mGET /admin/static/vendor/bootstrap4/dropdown.js?v=4.3.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:02 | 127.0.0.1 - - [28/Mar/2023 13:44:02] "[36mGET /admin/static/vendor/select2/select2.min.js?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:02 | 127.0.0.1 - - [28/Mar/2023 13:44:02] "[36mGET /admin/static/vendor/multi-level-dropdowns-bootstrap/bootstrap4-dropdown-ml-hack.js HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:02 | 127.0.0.1 - - [28/Mar/2023 13:44:02] "[36mGET /admin/static/admin/js/helpers.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:02 | 127.0.0.1 - - [28/Mar/2023 13:44:02] "[36mGET /admin/static/vendor/bootstrap-daterangepicker/daterangepicker.js?v=1.3.22 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:02 | 127.0.0.1 - - [28/Mar/2023 13:44:02] "[36mGET /admin/static/admin/js/bs4_modal.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:02 | 127.0.0.1 - - [28/Mar/2023 13:44:02] "[36mGET /admin/static/admin/js/form.js?v=1.0.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:02 | 127.0.0.1 - - [28/Mar/2023 13:44:02] "[36mGET /admin/static/admin/js/bs4_filters.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:02 | 127.0.0.1 - - [28/Mar/2023 13:44:02] "[36mGET /admin/static/admin/js/actions.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:07 | 127.0.0.1 - - [28/Mar/2023 13:44:07] "GET /admin/userdetails/ HTTP/1.1" 200 -
+INFO | 28/03/2023 13:44:07 | 127.0.0.1 - - [28/Mar/2023 13:44:07] "[36mGET /admin/static/bootstrap/bootstrap4/swatch/default/bootstrap.min.css?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:07 | 127.0.0.1 - - [28/Mar/2023 13:44:07] "[36mGET /admin/static/bootstrap/bootstrap4/css/bootstrap.min.css?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:07 | 127.0.0.1 - - [28/Mar/2023 13:44:07] "[36mGET /admin/static/admin/css/bootstrap4/admin.css?v=1.1.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:07 | 127.0.0.1 - - [28/Mar/2023 13:44:07] "[36mGET /admin/static/bootstrap/bootstrap4/css/font-awesome.min.css?v=4.7.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:07 | 127.0.0.1 - - [28/Mar/2023 13:44:07] "[36mGET /admin/static/vendor/select2/select2.css?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:07 | 127.0.0.1 - - [28/Mar/2023 13:44:07] "[36mGET /admin/static/vendor/select2/select2-bootstrap4.css?v=1.4.6 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:07 | 127.0.0.1 - - [28/Mar/2023 13:44:07] "[36mGET /admin/static/vendor/bootstrap-daterangepicker/daterangepicker-bs4.css?v=1.3.22 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:07 | 127.0.0.1 - - [28/Mar/2023 13:44:07] "[36mGET /admin/static/vendor/jquery.min.js?v=3.5.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:07 | 127.0.0.1 - - [28/Mar/2023 13:44:07] "[36mGET /admin/static/bootstrap/bootstrap4/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:07 | 127.0.0.1 - - [28/Mar/2023 13:44:07] "[36mGET /admin/static/bootstrap/bootstrap4/js/bootstrap.min.js?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:07 | 127.0.0.1 - - [28/Mar/2023 13:44:07] "[36mGET /admin/static/vendor/moment.min.js?v=2.9.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:07 | 127.0.0.1 - - [28/Mar/2023 13:44:07] "[36mGET /admin/static/vendor/bootstrap4/util.js?v=4.3.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:07 | 127.0.0.1 - - [28/Mar/2023 13:44:07] "[36mGET /admin/static/vendor/bootstrap4/dropdown.js?v=4.3.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:07 | 127.0.0.1 - - [28/Mar/2023 13:44:07] "[36mGET /admin/static/vendor/select2/select2.min.js?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:07 | 127.0.0.1 - - [28/Mar/2023 13:44:07] "[36mGET /admin/static/vendor/bootstrap-daterangepicker/daterangepicker.js?v=1.3.22 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:07 | 127.0.0.1 - - [28/Mar/2023 13:44:07] "[36mGET /admin/static/admin/js/helpers.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:07 | 127.0.0.1 - - [28/Mar/2023 13:44:07] "[36mGET /admin/static/vendor/multi-level-dropdowns-bootstrap/bootstrap4-dropdown-ml-hack.js HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:07 | 127.0.0.1 - - [28/Mar/2023 13:44:07] "[36mGET /admin/static/admin/js/form.js?v=1.0.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:07 | 127.0.0.1 - - [28/Mar/2023 13:44:07] "[36mGET /admin/static/admin/js/bs4_modal.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:07 | 127.0.0.1 - - [28/Mar/2023 13:44:07] "[36mGET /admin/static/admin/js/bs4_filters.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:07 | 127.0.0.1 - - [28/Mar/2023 13:44:07] "[36mGET /admin/static/admin/js/actions.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:13 | 127.0.0.1 - - [28/Mar/2023 13:44:13] "GET /admin/paymentcard/ HTTP/1.1" 200 -
+INFO | 28/03/2023 13:44:13 | 127.0.0.1 - - [28/Mar/2023 13:44:13] "[36mGET /admin/static/bootstrap/bootstrap4/css/font-awesome.min.css?v=4.7.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:13 | 127.0.0.1 - - [28/Mar/2023 13:44:13] "[36mGET /admin/static/bootstrap/bootstrap4/swatch/default/bootstrap.min.css?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:13 | 127.0.0.1 - - [28/Mar/2023 13:44:13] "[36mGET /admin/static/bootstrap/bootstrap4/css/bootstrap.min.css?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:13 | 127.0.0.1 - - [28/Mar/2023 13:44:13] "[36mGET /admin/static/admin/css/bootstrap4/admin.css?v=1.1.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:13 | 127.0.0.1 - - [28/Mar/2023 13:44:13] "[36mGET /admin/static/vendor/select2/select2.css?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:13 | 127.0.0.1 - - [28/Mar/2023 13:44:13] "[36mGET /admin/static/vendor/select2/select2-bootstrap4.css?v=1.4.6 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:13 | 127.0.0.1 - - [28/Mar/2023 13:44:13] "[36mGET /admin/static/vendor/bootstrap-daterangepicker/daterangepicker-bs4.css?v=1.3.22 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:13 | 127.0.0.1 - - [28/Mar/2023 13:44:13] "[36mGET /admin/static/bootstrap/bootstrap4/js/popper.min.js HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:13 | 127.0.0.1 - - [28/Mar/2023 13:44:13] "[36mGET /admin/static/bootstrap/bootstrap4/js/bootstrap.min.js?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:13 | 127.0.0.1 - - [28/Mar/2023 13:44:13] "[36mGET /admin/static/vendor/jquery.min.js?v=3.5.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:13 | 127.0.0.1 - - [28/Mar/2023 13:44:13] "[36mGET /admin/static/vendor/moment.min.js?v=2.9.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:13 | 127.0.0.1 - - [28/Mar/2023 13:44:13] "[36mGET /admin/static/vendor/bootstrap4/util.js?v=4.3.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:13 | 127.0.0.1 - - [28/Mar/2023 13:44:13] "[36mGET /admin/static/vendor/bootstrap4/dropdown.js?v=4.3.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:13 | 127.0.0.1 - - [28/Mar/2023 13:44:13] "[36mGET /admin/static/vendor/select2/select2.min.js?v=4.2.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:13 | 127.0.0.1 - - [28/Mar/2023 13:44:13] "[36mGET /admin/static/vendor/multi-level-dropdowns-bootstrap/bootstrap4-dropdown-ml-hack.js HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:13 | 127.0.0.1 - - [28/Mar/2023 13:44:13] "[36mGET /admin/static/admin/js/helpers.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:13 | 127.0.0.1 - - [28/Mar/2023 13:44:13] "[36mGET /admin/static/vendor/bootstrap-daterangepicker/daterangepicker.js?v=1.3.22 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:13 | 127.0.0.1 - - [28/Mar/2023 13:44:13] "[36mGET /admin/static/admin/js/bs4_modal.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:13 | 127.0.0.1 - - [28/Mar/2023 13:44:13] "[36mGET /admin/static/admin/js/bs4_filters.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:13 | 127.0.0.1 - - [28/Mar/2023 13:44:13] "[36mGET /admin/static/admin/js/form.js?v=1.0.1 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:13 | 127.0.0.1 - - [28/Mar/2023 13:44:13] "[36mGET /admin/static/admin/js/actions.js?v=1.0.0 HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:44:31 | 127.0.0.1 - - [28/Mar/2023 13:44:31] "[35m[1mPOST /analysis HTTP/1.1[0m" 500 -
+INFO | 28/03/2023 13:44:31 | 127.0.0.1 - - [28/Mar/2023 13:44:31] "GET /analysis?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+INFO | 28/03/2023 13:44:31 | 127.0.0.1 - - [28/Mar/2023 13:44:31] "GET /analysis?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+INFO | 28/03/2023 13:44:31 | 127.0.0.1 - - [28/Mar/2023 13:44:31] "GET /analysis?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+INFO | 28/03/2023 13:44:31 | 127.0.0.1 - - [28/Mar/2023 13:44:31] "GET /analysis?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+INFO | 28/03/2023 13:44:31 | 127.0.0.1 - - [28/Mar/2023 13:44:31] "GET /analysis?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+INFO | 28/03/2023 13:45:17 |  * Detected change in '/home/cserv1_a/soc_ug/sc21ag/project-squad6/app/views.py', reloading
+INFO | 28/03/2023 13:45:17 |  * Restarting with stat
+INFO | 28/03/2023 13:46:03 |  * Detected change in '/home/cserv1_a/soc_ug/sc21ag/project-squad6/app/views.py', reloading
+INFO | 28/03/2023 13:46:03 |  * Restarting with stat
+INFO | 28/03/2023 13:49:01 | 127.0.0.1 - - [28/Mar/2023 13:49:01] "[32mGET /analysis HTTP/1.1[0m" 302 -
+DEBUG | 28/03/2023 13:49:01 | Login route request
+INFO | 28/03/2023 13:49:01 | 127.0.0.1 - - [28/Mar/2023 13:49:01] "GET /login?next=%2Fanalysis HTTP/1.1" 200 -
+INFO | 28/03/2023 13:49:01 | 127.0.0.1 - - [28/Mar/2023 13:49:01] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:49:01 | 127.0.0.1 - - [28/Mar/2023 13:49:01] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:49:01 | 127.0.0.1 - - [28/Mar/2023 13:49:01] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:49:01 | 127.0.0.1 - - [28/Mar/2023 13:49:01] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:49:01 | 127.0.0.1 - - [28/Mar/2023 13:49:01] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:49:01 | 127.0.0.1 - - [28/Mar/2023 13:49:01] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:49:01 | 127.0.0.1 - - [28/Mar/2023 13:49:01] "[36mGET /static/images/user.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:49:01 | 127.0.0.1 - - [28/Mar/2023 13:49:01] "[36mGET /static/images/user-add.png HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:49:02 | Login route request
+INFO | 28/03/2023 13:49:02 | 127.0.0.1 - - [28/Mar/2023 13:49:02] "[32mPOST /login?next=%2Fanalysis HTTP/1.1[0m" 302 -
+DEBUG | 28/03/2023 13:49:02 | Home route request
+INFO | 28/03/2023 13:49:02 | 127.0.0.1 - - [28/Mar/2023 13:49:02] "GET /home HTTP/1.1" 200 -
+INFO | 28/03/2023 13:49:02 | 127.0.0.1 - - [28/Mar/2023 13:49:02] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:49:02 | 127.0.0.1 - - [28/Mar/2023 13:49:02] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:49:02 | 127.0.0.1 - - [28/Mar/2023 13:49:02] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:49:02 | 127.0.0.1 - - [28/Mar/2023 13:49:02] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:49:02 | 127.0.0.1 - - [28/Mar/2023 13:49:02] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:49:02 | 127.0.0.1 - - [28/Mar/2023 13:49:02] "[36mGET /static/images/GYM.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:49:02 | 127.0.0.1 - - [28/Mar/2023 13:49:02] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:49:02 | 127.0.0.1 - - [28/Mar/2023 13:49:02] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:49:02 | 127.0.0.1 - - [28/Mar/2023 13:49:02] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:49:02 | 127.0.0.1 - - [28/Mar/2023 13:49:02] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:49:03 | 127.0.0.1 - - [28/Mar/2023 13:49:03] "GET /analysis HTTP/1.1" 200 -
+INFO | 28/03/2023 13:49:03 | 127.0.0.1 - - [28/Mar/2023 13:49:03] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:49:03 | 127.0.0.1 - - [28/Mar/2023 13:49:03] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:49:03 | 127.0.0.1 - - [28/Mar/2023 13:49:03] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:49:03 | 127.0.0.1 - - [28/Mar/2023 13:49:03] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:49:03 | 127.0.0.1 - - [28/Mar/2023 13:49:03] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:49:03 | 127.0.0.1 - - [28/Mar/2023 13:49:03] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:49:03 | 127.0.0.1 - - [28/Mar/2023 13:49:03] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:49:03 | 127.0.0.1 - - [28/Mar/2023 13:49:03] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:49:03 | 127.0.0.1 - - [28/Mar/2023 13:49:03] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:49:14 | 127.0.0.1 - - [28/Mar/2023 13:49:14] "[32mPOST /analysis HTTP/1.1[0m" 302 -
+INFO | 28/03/2023 13:49:14 | 127.0.0.1 - - [28/Mar/2023 13:49:14] "GET /analysisGraphs HTTP/1.1" 200 -
+INFO | 28/03/2023 13:49:14 | 127.0.0.1 - - [28/Mar/2023 13:49:14] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:49:14 | 127.0.0.1 - - [28/Mar/2023 13:49:14] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:49:14 | 127.0.0.1 - - [28/Mar/2023 13:49:14] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:49:14 | 127.0.0.1 - - [28/Mar/2023 13:49:14] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:49:14 | 127.0.0.1 - - [28/Mar/2023 13:49:14] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:49:14 | 127.0.0.1 - - [28/Mar/2023 13:49:14] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:49:14 | 127.0.0.1 - - [28/Mar/2023 13:49:14] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:49:14 | 127.0.0.1 - - [28/Mar/2023 13:49:14] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:49:14 | 127.0.0.1 - - [28/Mar/2023 13:49:14] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:49:16 | 127.0.0.1 - - [28/Mar/2023 13:49:16] "GET /analysis HTTP/1.1" 200 -
+INFO | 28/03/2023 13:49:16 | 127.0.0.1 - - [28/Mar/2023 13:49:16] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:49:16 | 127.0.0.1 - - [28/Mar/2023 13:49:16] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:49:16 | 127.0.0.1 - - [28/Mar/2023 13:49:16] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:49:16 | 127.0.0.1 - - [28/Mar/2023 13:49:16] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:49:16 | 127.0.0.1 - - [28/Mar/2023 13:49:16] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:49:16 | 127.0.0.1 - - [28/Mar/2023 13:49:16] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:49:16 | 127.0.0.1 - - [28/Mar/2023 13:49:16] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:49:16 | 127.0.0.1 - - [28/Mar/2023 13:49:16] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:49:16 | 127.0.0.1 - - [28/Mar/2023 13:49:16] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:49:23 | 127.0.0.1 - - [28/Mar/2023 13:49:23] "[35m[1mPOST /analysis HTTP/1.1[0m" 500 -
+INFO | 28/03/2023 13:49:23 | 127.0.0.1 - - [28/Mar/2023 13:49:23] "GET /analysis?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+INFO | 28/03/2023 13:49:23 | 127.0.0.1 - - [28/Mar/2023 13:49:23] "GET /analysis?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+INFO | 28/03/2023 13:49:23 | 127.0.0.1 - - [28/Mar/2023 13:49:23] "GET /analysis?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+INFO | 28/03/2023 13:49:23 | 127.0.0.1 - - [28/Mar/2023 13:49:23] "GET /analysis?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+INFO | 28/03/2023 13:49:23 | 127.0.0.1 - - [28/Mar/2023 13:49:23] "GET /analysis?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+INFO | 28/03/2023 13:51:03 |  * Detected change in '/home/cserv1_a/soc_ug/sc21ag/project-squad6/app/views.py', reloading
+INFO | 28/03/2023 13:51:03 |  * Restarting with stat
+INFO | 28/03/2023 13:51:09 | 127.0.0.1 - - [28/Mar/2023 13:51:09] "[32mPOST /analysis HTTP/1.1[0m" 302 -
+DEBUG | 28/03/2023 13:51:09 | Login route request
+INFO | 28/03/2023 13:51:09 | 127.0.0.1 - - [28/Mar/2023 13:51:09] "GET /login?next=%2Fanalysis HTTP/1.1" 200 -
+INFO | 28/03/2023 13:51:09 | 127.0.0.1 - - [28/Mar/2023 13:51:09] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:51:09 | 127.0.0.1 - - [28/Mar/2023 13:51:09] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:51:09 | 127.0.0.1 - - [28/Mar/2023 13:51:09] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:51:09 | 127.0.0.1 - - [28/Mar/2023 13:51:09] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:51:09 | 127.0.0.1 - - [28/Mar/2023 13:51:09] "[36mGET /static/images/user-add.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:51:09 | 127.0.0.1 - - [28/Mar/2023 13:51:09] "[36mGET /static/images/user.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:51:09 | 127.0.0.1 - - [28/Mar/2023 13:51:09] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:51:09 | 127.0.0.1 - - [28/Mar/2023 13:51:09] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:51:10 | Login route request
+INFO | 28/03/2023 13:51:10 | 127.0.0.1 - - [28/Mar/2023 13:51:10] "[32mPOST /login?next=%2Fanalysis HTTP/1.1[0m" 302 -
+DEBUG | 28/03/2023 13:51:10 | Home route request
+INFO | 28/03/2023 13:51:10 | 127.0.0.1 - - [28/Mar/2023 13:51:10] "GET /home HTTP/1.1" 200 -
+INFO | 28/03/2023 13:51:10 | 127.0.0.1 - - [28/Mar/2023 13:51:10] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:51:10 | 127.0.0.1 - - [28/Mar/2023 13:51:10] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:51:10 | 127.0.0.1 - - [28/Mar/2023 13:51:10] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:51:10 | 127.0.0.1 - - [28/Mar/2023 13:51:10] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:51:10 | 127.0.0.1 - - [28/Mar/2023 13:51:10] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:51:10 | 127.0.0.1 - - [28/Mar/2023 13:51:10] "[36mGET /static/images/GYM.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:51:10 | 127.0.0.1 - - [28/Mar/2023 13:51:10] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:51:10 | 127.0.0.1 - - [28/Mar/2023 13:51:10] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:51:10 | 127.0.0.1 - - [28/Mar/2023 13:51:10] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:51:10 | 127.0.0.1 - - [28/Mar/2023 13:51:10] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:51:11 | 127.0.0.1 - - [28/Mar/2023 13:51:11] "GET /analysis HTTP/1.1" 200 -
+INFO | 28/03/2023 13:51:11 | 127.0.0.1 - - [28/Mar/2023 13:51:11] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:51:11 | 127.0.0.1 - - [28/Mar/2023 13:51:11] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:51:11 | 127.0.0.1 - - [28/Mar/2023 13:51:11] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:51:11 | 127.0.0.1 - - [28/Mar/2023 13:51:11] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:51:11 | 127.0.0.1 - - [28/Mar/2023 13:51:11] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:51:11 | 127.0.0.1 - - [28/Mar/2023 13:51:11] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:51:11 | 127.0.0.1 - - [28/Mar/2023 13:51:11] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:51:11 | 127.0.0.1 - - [28/Mar/2023 13:51:11] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:51:11 | 127.0.0.1 - - [28/Mar/2023 13:51:11] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:51:15 | 127.0.0.1 - - [28/Mar/2023 13:51:15] "[35m[1mPOST /analysis HTTP/1.1[0m" 500 -
+INFO | 28/03/2023 13:51:15 | 127.0.0.1 - - [28/Mar/2023 13:51:15] "GET /analysis?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+INFO | 28/03/2023 13:51:15 | 127.0.0.1 - - [28/Mar/2023 13:51:15] "GET /analysis?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+INFO | 28/03/2023 13:51:15 | 127.0.0.1 - - [28/Mar/2023 13:51:15] "GET /analysis?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+INFO | 28/03/2023 13:51:15 | 127.0.0.1 - - [28/Mar/2023 13:51:15] "GET /analysis?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+INFO | 28/03/2023 13:51:15 | 127.0.0.1 - - [28/Mar/2023 13:51:15] "GET /analysis?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+INFO | 28/03/2023 13:51:56 |  * Detected change in '/home/cserv1_a/soc_ug/sc21ag/project-squad6/app/views.py', reloading
+INFO | 28/03/2023 13:51:56 |  * Restarting with stat
+INFO | 28/03/2023 13:52:03 | 127.0.0.1 - - [28/Mar/2023 13:52:03] "[32mPOST /analysis HTTP/1.1[0m" 302 -
+DEBUG | 28/03/2023 13:52:03 | Login route request
+INFO | 28/03/2023 13:52:03 | 127.0.0.1 - - [28/Mar/2023 13:52:03] "GET /login?next=%2Fanalysis HTTP/1.1" 200 -
+INFO | 28/03/2023 13:52:03 | 127.0.0.1 - - [28/Mar/2023 13:52:03] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:52:03 | 127.0.0.1 - - [28/Mar/2023 13:52:03] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:52:03 | 127.0.0.1 - - [28/Mar/2023 13:52:03] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:52:03 | 127.0.0.1 - - [28/Mar/2023 13:52:03] "[36mGET /static/images/user-add.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:52:03 | 127.0.0.1 - - [28/Mar/2023 13:52:03] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:52:03 | 127.0.0.1 - - [28/Mar/2023 13:52:03] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:52:03 | 127.0.0.1 - - [28/Mar/2023 13:52:03] "[36mGET /static/images/user.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:52:03 | 127.0.0.1 - - [28/Mar/2023 13:52:03] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+DEBUG | 28/03/2023 13:52:04 | Login route request
+INFO | 28/03/2023 13:52:04 | 127.0.0.1 - - [28/Mar/2023 13:52:04] "[32mPOST /login?next=%2Fanalysis HTTP/1.1[0m" 302 -
+DEBUG | 28/03/2023 13:52:04 | Home route request
+INFO | 28/03/2023 13:52:04 | 127.0.0.1 - - [28/Mar/2023 13:52:04] "GET /home HTTP/1.1" 200 -
+INFO | 28/03/2023 13:52:04 | 127.0.0.1 - - [28/Mar/2023 13:52:04] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:52:04 | 127.0.0.1 - - [28/Mar/2023 13:52:04] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:52:04 | 127.0.0.1 - - [28/Mar/2023 13:52:04] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:52:04 | 127.0.0.1 - - [28/Mar/2023 13:52:04] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:52:04 | 127.0.0.1 - - [28/Mar/2023 13:52:04] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:52:04 | 127.0.0.1 - - [28/Mar/2023 13:52:04] "[36mGET /static/images/GYM.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:52:04 | 127.0.0.1 - - [28/Mar/2023 13:52:04] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:52:04 | 127.0.0.1 - - [28/Mar/2023 13:52:04] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:52:04 | 127.0.0.1 - - [28/Mar/2023 13:52:04] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:52:04 | 127.0.0.1 - - [28/Mar/2023 13:52:04] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:52:05 | 127.0.0.1 - - [28/Mar/2023 13:52:05] "GET /analysis HTTP/1.1" 200 -
+INFO | 28/03/2023 13:52:05 | 127.0.0.1 - - [28/Mar/2023 13:52:05] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:52:05 | 127.0.0.1 - - [28/Mar/2023 13:52:05] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:52:05 | 127.0.0.1 - - [28/Mar/2023 13:52:05] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:52:05 | 127.0.0.1 - - [28/Mar/2023 13:52:05] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:52:05 | 127.0.0.1 - - [28/Mar/2023 13:52:05] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:52:05 | 127.0.0.1 - - [28/Mar/2023 13:52:05] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:52:05 | 127.0.0.1 - - [28/Mar/2023 13:52:05] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:52:05 | 127.0.0.1 - - [28/Mar/2023 13:52:05] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:52:05 | 127.0.0.1 - - [28/Mar/2023 13:52:05] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:52:09 | 127.0.0.1 - - [28/Mar/2023 13:52:09] "[32mPOST /analysis HTTP/1.1[0m" 302 -
+INFO | 28/03/2023 13:52:09 | 127.0.0.1 - - [28/Mar/2023 13:52:09] "GET /analysisGraphs HTTP/1.1" 200 -
+INFO | 28/03/2023 13:52:09 | 127.0.0.1 - - [28/Mar/2023 13:52:09] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:52:09 | 127.0.0.1 - - [28/Mar/2023 13:52:09] "[36mGET /static/images/home.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:52:09 | 127.0.0.1 - - [28/Mar/2023 13:52:09] "[36mGET /static/images/settings.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:52:09 | 127.0.0.1 - - [28/Mar/2023 13:52:09] "[36mGET /static/images/membership.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:52:09 | 127.0.0.1 - - [28/Mar/2023 13:52:09] "[36mGET /static/images/cross.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:52:09 | 127.0.0.1 - - [28/Mar/2023 13:52:09] "[36mGET /static/images/shopping-cart.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:52:09 | 127.0.0.1 - - [28/Mar/2023 13:52:09] "[36mGET /static/images/list.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:52:09 | 127.0.0.1 - - [28/Mar/2023 13:52:09] "[36mGET /static/images/list-check.png HTTP/1.1[0m" 304 -
+INFO | 28/03/2023 13:52:09 | 127.0.0.1 - - [28/Mar/2023 13:52:09] "[36mGET /static/images/calendar.png HTTP/1.1[0m" 304 -

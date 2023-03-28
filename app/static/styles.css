@@ -5,6 +5,7 @@
     --btn-color: #368cad;
     --btn-hover: #799aa7;
     --background-medium: #39355c;
+    --background-dark: #051e46;
 }
 
 * {
@@ -76,11 +77,11 @@ html, body {
 }
 
 .bi-arrow-down {
-    font-size: 6rem;
+    font-size: 5rem;
 }
 
 #facilities {
-    font-size: 3.5rem;
+    font-size: 3.2rem;
     font-weight: bold;
 }
 
@@ -144,9 +145,24 @@ img {
 
 .header {
     text-align: center;
-    font-size: 2.3vw;
+    font-size: 2.2vw !important;
+    font-weight: bold;
 }
 
 .login-reg-container {
     position: absolute;
+}
+
+.times-container {
+    background-color: var(--background-dark);
+    padding: 3rem 1rem 8rem 1rem;
+}
+
+.time-header {
+    text-decoration: underline;
+}
+
+.time-info {
+    text-align: center;
+    font-size: 1.5rem;
 }

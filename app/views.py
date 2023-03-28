@@ -390,7 +390,17 @@ def myBookings():
     logging.debug("My bookings route request")
     today = datetime.now()
     #need a parameter id for the user that is logged in (can be done once cookies is enabled)
+    
+    # Deletes a user's booking if the time has elapsed
     bookings = UserBookings.query.filter_by(userId=current_user.id).all()
+    for booking in bookings:
+        calendarEvent = booking.calendarId
+        event = Calendar.query.filter_by(id=calendarEvent).first()
+        eventTime = event.aDateTime
+        if (eventTime <= today):
+            logging.debug("Deleted booking that has completed")
+            db.session.delete(booking)
+            db.session.commit()    
 
     # get all events in order of date and time
     events = []

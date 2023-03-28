@@ -1,8 +1,29 @@
 /* Any hard coded styles */
 
+* {
+    font-family: 'Open Sans', sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
 html, body {
     width: 100%;
     height: 100%;
+}
+
+.title-text-container {
+    text-align: end;
+    padding-right: 10px;
+    color: white;
+    position: absolute;
+    width: 50%;
+    left: 100%;
+    top: 40%;
+    transform: translate(-100%, 0);
+}
+
+.push-pull {
+    
 }
 
 .box-shadow {
@@ -12,4 +33,16 @@ html, body {
 .form-container {
     width: 100% !important;
     max-width: 750px !important;
+}
+
+.landing-page {
+    width: 100%;
+    height: 100%;
+    background: url('../static/homepageImg.jpg');
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -900;
 }

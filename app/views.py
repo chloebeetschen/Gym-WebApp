@@ -634,8 +634,8 @@ def register():
 
 @app.route('/home', methods=['GET', 'POST'])
 def home():
-    logging.debug("Home route request")
-    return render_template('home.html', title='home')
+    return render_template('home.html', title='Home',
+                            logged=current_user.is_authenticated)
 
 
 @app.route('/settings', methods=['GET', 'POST'])

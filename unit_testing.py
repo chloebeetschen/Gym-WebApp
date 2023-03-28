@@ -91,7 +91,6 @@ class TestCase(unittest.TestCase):
         data = {
             'Name' : 'Michael Scott',
             'DateOfBirth' : '1/10/1999',
-            'Address' : '7 Uni Road',
             'Email' : ' michael.scott@gmail.com',
             'Password' : '12345678',
             'ReenterPassword' : '12345678'

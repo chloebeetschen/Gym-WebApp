@@ -30,30 +30,31 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item"><a class="nav-link" href="{{ url_for('home') }}">Home<span class="sr-only">(current)</span></a></li>
-            <li class="nav-item"><a class="nav-link" href="/calendar">Calendar</a></li>
-            <li class="nav-item"><a class="nav-link" href="/myBookings">My Bookings</a></li>
-            <li class="nav-item"><a class="nav-link" href="/memberships">Memberships</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('home') }}"> <img src="{{url_for('static', filename='images/home.png')}}" width="30" height="30" /><span class="sr-only">(current)</span></a></li>
+            <li class="nav-item"><a class="nav-link" href="/calendar"><img src="{{url_for('static', filename='images/calendar.png')}}" width="30" height="30" /></a></li>
+            <li class="nav-item"><a class="nav-link" href="/myBookings"><img src="{{url_for('static', filename='images/list-check.png')}}" width="30" height="30" /></a></li>
+            <li class="nav-item"><a class="nav-link" href="/memberships"><img src="{{url_for('static', filename='images/membership.png')}}" width="30" height="30" /></a></li>
             <!-- Only managers should have access to these pages -->
             {% if current_user.userType == 3 %}
               <li class="nav-item"><a class="nav-link" href="/addEvent">Add Event</a></li>
               <li class="nav-item"><a class="nav-link" href="/addActivity">Add Activity</a></li>
               <li class="nav-item"><a class="nav-link" href="{{ url_for('editActivity') }}">Edit Activity</a></li>
               <li class="nav-item"><a class="nav-link" href="/manageUsers">Manage Users</a></li>
+              <li class="nav-item"><a class="nav-link" href="/analysis">Analysis</a></li>
             {% endif %}
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
-            <li class="nav-item"><a class="nav-link" href="/pricingList">Pricing List</a></li>
+            <li class="nav-item"><a class="nav-link" href="/pricingList"><img src="{{url_for('static', filename='images/list.png')}}" width="30" height="30" /></a></li>
               
             {% if (current_user.is_authenticated) %}
-              <li class="nav-item"><a class="nav-link" href="/basket">Basket</a></li>
-              <li class="nav-item"><a class="nav-link" href="{{ url_for('settings') }}">Settings</a></li>
-              <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+              <li class="nav-item"><a class="nav-link" href="/basket"><img src="{{url_for('static', filename='images/shopping-cart.png')}}" width="30" height="30"/></a></li>
+              <li class="nav-item"><a class="nav-link" href="{{ url_for('settings') }}"><img src="{{url_for('static', filename='images/settings.png')}}" width="30" height="30" /></a></li>
+              <li class="nav-item"><a class="nav-link" href="/logout"><img src="{{url_for('static', filename='images/cross.png')}}" width="30" height="30" /></a></li>
               
             {% else  %}  
-              <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
-              <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+              <li class="nav-item"><a class="nav-link" href="/login"><img src="{{url_for('static', filename='images/user.png')}}" width="30" height="30" /></a></li>
+              <li class="nav-item"><a class="nav-link" href="/register"><img src="{{url_for('static', filename='images/user-add.png')}}" width="30" height="30" /></a></li>
             {% endif %} 
           </ul>
 

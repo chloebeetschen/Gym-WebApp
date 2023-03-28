@@ -843,8 +843,10 @@ def analysisGraphs():
 def manageUsers():
     logging.debug("Manage users route request")
 
-    # First check the user is a manager
-    if current_user.userType != 3:
+    userType = current_user.userType
+
+    # First check the user is a employee / manager
+    if userType == 1:
         return redirect('/home')
 
     form = SearchForm()
@@ -870,7 +872,8 @@ def manageUsers():
                             userTypeNum3   = len(userTypeLogin3),
                             userTypeLogin1 = userTypeLogin1, 
                             userTypeLogin2 = userTypeLogin2,
-                            userTypeLogin3 = userTypeLogin3 )  
+                            userTypeLogin3 = userTypeLogin3,
+                            userType = userType )  
 
 ## Edits a users details (name, email, password and type)
 @app.route('/editUser/<id>', methods=['GET', 'POST'])
@@ -878,7 +881,7 @@ def manageUsers():
 def editUser(id):
     logging.debug("Edit user (with id: %s) route request", id)
     # First check the user is a manager
-    if current_user.userType != 3:
+    if current_user.userType == 1:
         return redirect('/home')
 
     form = ManagerForm()

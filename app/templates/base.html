@@ -35,6 +35,10 @@
             <li class="nav-item"><a class="nav-link" href="/myBookings"><img src="{{url_for('static', filename='images/list-check.png')}}" width="30" height="30" /></a></li>
             <li class="nav-item"><a class="nav-link" href="/memberships"><img src="{{url_for('static', filename='images/membership.png')}}" width="30" height="30" /></a></li>
             <!-- Only managers should have access to these pages -->
+            {% if current_user.userType == 2 %}
+            <li class="nav-item"><a class="nav-link" href="/manageUsers">Manage Users</a></li>
+            {% endif %}
+
             {% if current_user.userType == 3 %}
               <li class="nav-item"><a class="nav-link" href="/addEvent">Add Event</a></li>
               <li class="nav-item"><a class="nav-link" href="/addActivity">Add Activity</a></li>

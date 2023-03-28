@@ -4,12 +4,14 @@
 :root {
     --btn-color: #368cad;
     --btn-hover: #799aa7;
+    --background-medium: #39355c;
 }
 
 * {
     font-family: 'Open Sans', sans-serif;
     padding: 0;
     margin: 0;
+    color: white;
 }
 
 html, body {
@@ -23,7 +25,7 @@ html, body {
     color: white;
     position: absolute;
     width: 100%;
-    top: 30%;
+    top: 28%;
     flex-wrap: wrap;
 }
 
@@ -33,12 +35,12 @@ html, body {
 
 .push-pull {
     font-family: 'Oswald', sans-serif;
-    font-size:10rem;
+    font-size: 9rem;
     background-color: #ff0099;
     width: auto;
     height: auto;
     opacity: 75%;
-    padding: 0 8rem 0 3rem;
+    padding: 0 15rem 0 3rem;
     color: #ffa9dc;
     margin-bottom: 1rem;
 }
@@ -50,9 +52,38 @@ html, body {
     font-size: 4rem;
     opacity: 75%;
     font-family: 'Montserrat', sans-serif;
-    padding: 0 8rem 0 3rem;
+    padding: 0 11rem 0 3rem;
         
 }
+
+@keyframes icon-bob {
+    0% { transform: translate(-50%, -112%); }
+  100% { transform: translate(-50%, -108%); }
+    
+}
+
+.down-arrow {
+    animation-name: icon-bob;
+    animation-duration: 2s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    color: white;
+    text-align: center;
+}
+
+.bi-arrow-down {
+    font-size: 6rem;
+}
+
+#facilities {
+    font-size: 3.5rem;
+    font-weight: bold;
+}
+
 
 .box-shadow {
     box-shadow: 0px 0px 20px 1px rgb(200, 200, 200);    
@@ -85,9 +116,37 @@ html, body {
     background: url('../static/homepageImg.jpg');
     background-size: cover;
     background-position: center;
-    position: absolute;
-    top: 0;
-    left: 0;
     z-index: -900;
     padding: 0;
+}
+
+.facilities-container {
+    background-color: var(--background-medium);
+    padding: 10rem;
+    margin: 0 !important;
+}
+
+.facility-text {
+    padding: 0;
+    margin-right: 2rem;
+    font-size: 1.3vw;
+    width: 30%;
+    text-align: justify;
+}
+
+.carousel-inner > .item > img, .carousel-inner > .item > a > img {
+    width: 100%;
+}
+
+img {
+    width: 10% !important;
+}
+
+.header {
+    text-align: center;
+    font-size: 2.3vw;
+}
+
+.login-reg-container {
+    position: absolute;
 }

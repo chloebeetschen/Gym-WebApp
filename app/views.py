@@ -148,17 +148,34 @@ def calendarMethod():
     events = Calendar.query.filter(Calendar.aDateTime >= date.today()).filter(Calendar.aDateTime < w1).filter_by(aIsRepeat = False).order_by(Calendar.aDateTime).all()
     events2 = Calendar.query.filter(Calendar.aDateTime >= w1).filter(Calendar.aDateTime < w2).filter_by(aIsRepeat = False).order_by(Calendar.aDateTime).all()
 
+    userBooked1 = []
+    userBooked2= []
+
     # get event type for each event found
     eventInfo = []
     for i in events:
         eventInfo.append(Activity.query.filter_by(id=i.activityId).first())
+        # For every event check if user has booked it
+        booked = UserBookings.query.filter_by(userId=current_user.id, calendarId=i.id).first()
+        if booked is not None:   
+            userBooked1.append(True)
+        else:
+            userBooked1.append(False)
+        
 
     # get event type for each event found
     eventInfo2 = []
     for i in events2:
         eventInfo2.append(Activity.query.filter_by(id=i.activityId).first())
+        # For every event check if user has booked it
+        booked = UserBookings.query.filter_by(userId=current_user.id, calendarId=i.id).first()
+        if booked is not None:
+            userBooked2.append(True)
+        else:
+            userBooked2.append(False)
 
     user = UserDetails.query.filter_by(id=current_user.id).first()
+
     
     return render_template('calendar.html',
                             title     = 'Calendar',
@@ -169,7 +186,10 @@ def calendarMethod():
                             events2    = events2,
                             eventInfo2 = eventInfo2,
                             isMember = user.isMember,   
-                            weeks     = weeks)
+                            weeks     = weeks,
+                            userBooked1 = userBooked1,
+                            userBooked2 = userBooked2
+                            )
 
 #calendar of all repeat sessions
 @app.route('/repeatEvents/<id>', methods=['GET', 'POST'])

@@ -89,7 +89,9 @@ class TestCase(unittest.TestCase):
 
     #registering a user and testing if this updates in the database
     def test_register(self):
+    
         response = self.app.get(('/register'), follow_redirects = True)
+
         self.assertEqual(response.status_code, 200)
 
         with app.test_request_context():

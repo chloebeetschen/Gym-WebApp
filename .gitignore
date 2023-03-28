@@ -4,3 +4,4 @@ __pycache__/
 app/__pycache__/
 migrations/
 .vim/
+squad6.log

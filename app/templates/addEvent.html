@@ -28,7 +28,9 @@
     
     </p>
     {% for error in form.aDateTime.errors %}
+    <div class="alert alert-danger" role="alert">
         [{{ error }}]
+    </div>
     {% endfor %}
 
 
@@ -39,7 +41,9 @@
    
     </p>
     {% for error in form.aDuration.errors %}
+    <div class="alert alert-danger" role="alert">
         [{{ error }}]
+    </div>
     {% endfor %}
 
     <!-- Staff member -->
@@ -47,24 +51,44 @@
         Staff Member <br>
         {{ form.aStaffName(class='form-control')}}
     </p>
+    {% for error in form.aStaffName.errors %}
+    <div class="alert alert-danger" role="alert">
+        [{{ error }}]
+      </div>
+    {% endfor %}
 
     <!-- Location -->
     <p>
         Location <br>
         {{ form.aLocation(class='form-control')}}
     </p>
+    {% for error in form.aLocation.errors %}
+    <div class="alert alert-danger" role="alert">
+        [{{ error }}]
+      </div>
+    {% endfor %}
 
     <!-- Price -->
     <p>
         Price <br>
         {{ form.aPrice(class='form-control')}}
     </p>
+    {% for error in form.aPrice.errors %}
+    <div class="alert alert-danger" role="alert">
+        [{{ error }}]
+      </div>
+    {% endfor %}
 
     <!-- Capacity -->
     <p>
         Capacity <br>
         {{ form.aCapacity(class='form-control')}}
     </p>
+    {% for error in form.aCapacity.errors %}
+    <div class="alert alert-danger" role="alert">
+        [{{ error }}]
+      </div>
+    {% endfor %}
 
     <p><input type="submit" class="btn btn-primary" value="Add Event"></p>
 </form>

@@ -8,7 +8,17 @@
     <!-- it is the unique identification generated for this request -->
     {{ form.hidden_tag() }}
     <p>{{ form.Email(class_='form-control') }}</p>
+    {% for error in form.Email.errors %}
+    <div class="alert alert-danger" role="alert">
+        [{{ error }}]
+      </div>
+    {% endfor %}
     <p>{{ form.Password(class_='form-control') }}</p>
+    {% for error in form.Password.errors %}
+    <div class="alert alert-danger" role="alert">
+        [{{ error }}]
+      </div>
+    {% endfor %}
     <p><input type="submit" value="Submit"></p>
 </form>
 {% endblock %}

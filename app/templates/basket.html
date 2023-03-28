@@ -12,6 +12,9 @@
                 {{ basketItems[i][0] }},
             </td> 
             <td>
+                {% if itemDiscount[i] %}
+                DISCOUNTED
+                {% endif %}
                 £{{ basketItems[i][1] }} 
             </td>
             <td>

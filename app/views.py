@@ -276,18 +276,17 @@ def basket():
         dayDifference = (date.today()-(bookingEvent.aDateTime).date()).days
         if (dayDifference < 7) and (dayDifference > -14):
             datesOfBookings[6-dayDifference] += 1
-        
-    if 'basket' in session:
-        # Go through basket items doing the same
+
+    # If anything in basket, set isItems to true and get all the events in basket
+    if 'basket'in session:
+        isItems = True
+        # Go through basket adding to corresponding dates
         for id in session['basket']:
             basketEvent = Calendar.query.get(id)
             dayDifference = (date.today()-(basketEvent.aDateTime).date()).days
             if (dayDifference < 7) and (dayDifference > -14):
                 datesOfBookings[6-dayDifference] += 1
 
-    # If anything in basket, set isItems to true and get all the events in basket
-    if 'basket'in session:
-        isItems = True
         # Create list of events in basket
         for itemId in session['basket']:
             # Get item
@@ -324,7 +323,6 @@ def basket():
             name = itemActivity.activityType
             nameDate = name + ", " + (item.aDateTime).strftime("%d/%m, %H:%M")
             basketItems.append((nameDate, itemPrice ))
-
             itemDiscount.append(discount)
 
     if 'membership' in session:
@@ -491,15 +489,17 @@ def deleteBasket(i): # 'i' is the index of the item deleted from the basket
         # Check if basket empty
         if not session['basket']:
             session.pop('basket')
+        session.modified = True
     return redirect('/basket')
-    # First check the user is a manager
-    if current_user.userType != 3:
-        return redirect('/home')
+
 
 @app.route('/deleteBooking/<id>', methods=['GET'])
 @login_required
 def deleteBooking(id): #id passed in will be  the id of the calendar
     logging.debug("Delete booking (with id: %s) route request", id)
+    # First check the user is a manager
+    if current_user.userType != 3:
+        return redirect('/home')
     # get the booking that matches the id of the parameter given and that of the userId 
     booking = UserBookings.query.filter_by(calendarId = id, userId = current_user.id).first()
     # get the event in the calendar

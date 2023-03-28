@@ -25,6 +25,7 @@ loginManager = LoginManager()
 loginManager.init_app(app)
 loginManager.login_view = "login"
 
+
 @app.before_first_request
 def delete_sessions():
     for key in list(session.keys()):
@@ -277,7 +278,8 @@ def basket():
             datesOfBookings[6-dayDifference] += 1
 
     # If anything in basket, set isItems to true and get all the events in basket
-    if 'basket'in session:
+    if 'basket' in session:
+        print(session['basket'])
         isItems = True
         # Go through basket adding to corresponding dates
         for id in session['basket']:

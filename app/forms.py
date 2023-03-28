@@ -31,7 +31,6 @@ class SearchForm(FlaskForm):
 # Form to add an activity to the calendar
 # Can be used for editing and adding calendar events
 class EventForm(FlaskForm):
-
     aDateTime    = DateTimeLocalField('Date & Time of activity', format='%Y-%m-%dT%H:%M', validators=[DataRequired(), validateFutureDate], render_kw={"placeholder": "Date of activity"})
     aDuration    = IntegerField('Duration of activity', validators=[DataRequired(), NumberRange(min=0)],
                              render_kw={"placeholder": "Duration of activity"})

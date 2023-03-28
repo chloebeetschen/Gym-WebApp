@@ -2,18 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import PasswordField, EmailField, TextAreaField, SubmitField, SelectField, SelectMultipleField, DateField, DateTimeLocalField
 from wtforms import StringField, BooleanField, IntegerField, FloatField, TimeField
 from wtforms.validators import DataRequired, Length, EqualTo, NumberRange, ValidationError, Optional
-
-from luhn import *
 from datetime import *
-# from .models import Activity
-
-
-
-# Function to check that card number is a Luhn number
-def validateLuhn(form, field):
-     if verify(str(field.data)) == False:
-         raise ValidationError('Card Number is not valid')
-
 
 # Function to check that a date is in the future
 def validateFutureDate(form, field):
@@ -51,22 +40,6 @@ class EventForm(FlaskForm):
     aPrice       = FloatField("Price", validators=[NumberRange(min=0.0), DataRequired()], render_kw={"placeholder": "Price of activity"}) 
     aCapacity    = IntegerField('Capacity of activity', validators=[ NumberRange(min=0), DataRequired()],
                                render_kw={"placeholder": "Capacity of activity"})
-
-# Form to create account:
-class PaymentForm(FlaskForm):
-    cName       = StringField('Name', validators=[DataRequired()], render_kw={"placeholder": "Cardholder Name"})
-    cNum        = IntegerField('Card number',
-                        validators=[DataRequired(), 
-                        NumberRange(min=1000000000000000, max=9999999999999999, message='Card number needs to be 16 digits'),
-                        validateLuhn], render_kw={"placeholder": "Card Number"})
-    cExpDate    = DateField('Expiry',
-                         validators=[DataRequired(),
-                         validateFutureDate], render_kw={"placeholder": "Expiry Date"})
-    cCVV        = IntegerField('CVV', 
-                         validators=[DataRequired(),
-                         NumberRange(min=100, 
-                         max=999,
-                         message='CVV needs to be 3 digits')], render_kw={"placeholder": "CVV"})
 
 
 class RegisterForm(FlaskForm):

@@ -17,7 +17,6 @@ bcrypt = Bcrypt(app)
 # Register tables with flask admin
 admin.add_view(ModelView(UserLogin, db.session))
 admin.add_view(ModelView(UserDetails, db.session))
-admin.add_view(ModelView(PaymentCard, db.session))
 admin.add_view(ModelView(Calendar, db.session))
 admin.add_view(ModelView(Activity, db.session))
 admin.add_view(ModelView(UserBookings, db.session))

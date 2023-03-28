@@ -69,15 +69,6 @@ class UserBookings(db.Model):
     userId = db.Column(db.Integer, db.ForeignKey('user_login.id'))
     calendarId = db.Column(db.Integer, db.ForeignKey('calendar.id'))
 
-
-
-# table to store payment cards
-class PaymentCard(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    cardName = db.Column(db.String(100))
-    cardNum = db.Column(db.Integer)
-    cardCVV = db.Column(db.Integer)
-    cardExpDate = db.Column(db.Date)
  
 # Login details
 class UserLogin(db.Model, UserMixin):

@@ -4,6 +4,16 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_admin import Admin
 import logging
+import os
+import stripe
+
+
+stripe_keys = {
+    'secretKey' : os.environ['TEST_SECRET_KEY'],
+    'publicKey' : os.environ['TEST_PUBLISH_KEY']
+}
+
+stripe.api_key = stripe_keys['secretKey']
 
 logging.basicConfig(filename='squad6.log', format='%(levelname)s | %(asctime)s | %(message)s', datefmt='%d/%m/%Y %H:%M:%S', level=logging.DEBUG)
 

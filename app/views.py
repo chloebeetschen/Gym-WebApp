@@ -1,15 +1,16 @@
-from app import app, db, models, admin
-from flask import Flask, render_template, flash, request, redirect, session, url_for, g
+from app import app, db, models, admin, stripe_keys
+from flask import Flask, render_template, flash, request, redirect, session, url_for, g, jsonify
 from .models import *
 from .forms import *
 from flask_admin.contrib.sqla import ModelView
 from datetime import *
 from dateutil.relativedelta import relativedelta
-import logging
 from flask_login import current_user, login_user, LoginManager, login_required
 from flask_login import logout_user
-
 from flask_bcrypt import Bcrypt
+
+import stripe
+import logging
 
 bcrypt = Bcrypt(app)
 
@@ -228,6 +229,7 @@ def addBasket(id):
     # Redirect back to calendar
     return redirect('/calendar')
 
+
 @app.route('/basket', methods=['GET', 'POST'])
 @login_required
 def basket():
@@ -262,7 +264,54 @@ def basket():
             basketItems.append(("Annual Membership", 300))
             totalPrice += 300
 
-    return render_template('basket.html', title='Basket', isItems=isItems, basketItems=basketItems, num=len(basketItems), totalPrice=totalPrice)
+    session['basketTotal'] = totalPrice
+
+    return render_template('basket.html', title='Basket', isItems=isItems,
+                            basketItems=basketItems, num=len(basketItems),
+                            totalPrice=totalPrice, key=stripe_keys['publicKey'])
+
+@app.route('/checkout', methods=['POST'])
+@login_required
+def checkout():
+    customer = stripe.Customer.create(
+        email='sample@customer.com',
+        source=request.form['stripeToken']
+    )
+
+    stripe.Charge.create(
+        customer=customer.id,
+        amount=int(session['basketTotal']) * 100,
+        currency='GBP',
+        description='Flask Charge'
+    )
+
+    if 'membership' in session:
+        usersDetails = UserDetails.query.get(current_user.id)
+        usersDetails.isMember = True
+        db.session.commit()
+            
+    if 'basket' in session:
+        usersDetails = UserDetails.query.get(current_user.id)
+        for itemId in session['basket']:
+            event = Calendar.query.get(itemId)
+            event.aSlotsTaken += 1
+            newBooking = UserBookings(userId = current_user.id, calendarId = itemId)
+            db.session.add(newBooking)
+        db.session.commit()
+
+    # Deletes all sessions after payment is completed
+    for key in list(session.keys()):
+        if key == 'basket':
+            session.pop(key)
+        if key == 'basketIds':
+            session.pop(key)
+        if key == 'basketTotal':
+            session.pop(key)
+        if key == 'membership':
+            session.pop(key)
+
+    flash('Payment Successful')
+    return redirect(url_for('home'))
 
 #this is so the manager is able to delete an event - delete button
 @app.route('/deleteEvent/<id>', methods=['GET', 'POST'])
@@ -534,29 +583,6 @@ def editEvent(id):
 
     #if validation failed  return to add event
     return render_template('editEvent.html', title = 'Edit Event', form = form, eventType=eventType, event=event)
-
-#Payment Form page
-@app.route('/paymentForm', methods=['GET', 'POST'])
-@login_required
-def paymentForm():
-    logging.debug("Payment form route request")
-    form = PaymentForm()
-    
-    # Add data to database on submit:
-    if form.validate_on_submit():
-        # Create Payment Card field with entered details
-        newCard = models.PaymentCard( cardName    = form.cName.data,
-                                      cardNum     = form.cNum.data,
-                                      cardExpDate = form.cExpDate.data,
-                                      cardCVV     = form.cCVV.data )
-
-        # Add new card entry to database and commit
-        db.session.add(newCard)
-        db.session.commit()
-
-        flash('Payment details registered')
-    return render_template('paymentForm.html', title='Payment Form', form=form)
-
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

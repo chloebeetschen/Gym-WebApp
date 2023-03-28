@@ -46,6 +46,8 @@
     </tbody>
 </table>
 
+<!-- Only managers should be able to alter Employee or User accounts -->
+{% if userType == 3 %}
 
 <h2>Employees</h2>
 <!--Basic table to hold booking information of a user-->
@@ -109,4 +111,5 @@
     </tbody>
 </table>
 
+{% endif %}
 {% endblock %}

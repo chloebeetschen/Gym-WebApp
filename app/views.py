@@ -263,21 +263,69 @@ def basket():
     isItems = False
     basketItems = []
     itemNames = []
+    itemDiscount = []
     totalPrice=0
     session['basketIds'] = []
-    
+
+    # This is an array representing a 3 week period, 1 week before today, 2 weeks after
+    datesOfBookings = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    # Go through all user bookings, and if they are within one week before, or 2 weeks after, add 1 to correspoinding day count
+    bookings = UserBookings.query.filter_by(userId = current_user.id)
+    for booking in bookings:
+        bookingEvent = Calendar.query.get(booking.calendarId)
+        dayDifference = (date.today()-(bookingEvent.aDateTime).date()).days
+        if (dayDifference < 7) and (dayDifference > -14):
+            datesOfBookings[6-dayDifference] += 1
+        
+    if 'basket' in session:
+        # Go through basket items doing the same
+        for id in session['basket']:
+            basketEvent = Calendar.query.get(id)
+            dayDifference = (date.today()-(basketEvent.aDateTime).date()).days
+            if (dayDifference < 7) and (dayDifference > -14):
+                datesOfBookings[6-dayDifference] += 1
+
     # If anything in basket, set isItems to true and get all the events in basket
     if 'basket'in session:
         isItems = True
         # Create list of events in basket
         for itemId in session['basket']:
+            # Get item
             item = Calendar.query.get(itemId)
-            totalPrice += item.aPrice
+
+            # Check for discount
+            discount = False
+            # Go through basket items and find 7 days before
+            for id in session['basket']:
+                basketEvent = Calendar.query.get(id)
+                dayDifference = (date.today()-(basketEvent.aDateTime).date()).days
+                indexDate = 6-dayDifference
+                # Count 7 days before
+                count = 0
+                for i in range (0, 6):
+                    count += datesOfBookings[indexDate-i]
+                if count > 2:
+                    discount = True
+                # Count 7 days after
+                count = 0
+                for i in range (0, 6):
+                    count += datesOfBookings[indexDate+i]
+                if count > 2:
+                    discount = True
+            # Change item price depending on discocunt
+            if discount == True:
+                itemPrice = item.aPrice * 0.85
+            else:
+                itemPrice = item.aPrice
+            totalPrice += itemPrice
+
             session['basketIds'].append(itemId)
             itemActivity = Activity.query.get(item.activityId)
             name = itemActivity.activityType
             nameDate = name + ", " + (item.aDateTime).strftime("%d/%m, %H:%M")
-            basketItems.append((nameDate, item.aPrice ))
+            basketItems.append((nameDate, itemPrice ))
+
+            itemDiscount.append(discount)
 
     if 'membership' in session:
         isItems = True
@@ -293,7 +341,7 @@ def basket():
 
     return render_template('basket.html', title='Basket', isItems=isItems,
                             basketItems=basketItems, num=len(basketItems),
-                            totalPrice=totalPrice, key=stripe_keys['publicKey'])
+                            totalPrice=totalPrice, itemDiscount=itemDiscount, key=stripe_keys['publicKey'])
 
 @app.route('/checkout', methods=['POST'])
 @login_required

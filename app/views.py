@@ -30,11 +30,11 @@ def delete_sessions():
     for key in list(session.keys()):
         session.pop(key)
 
-'''
-@app.before_first_request
-def create_tables():
+db.create_all()
+aExists = Activity.query.filter_by(activityType="Swimming (Team Events)").first()
+
+if (aExists == None):
     logging.debug("Creating database tables")
-    db.create_all()
     
     #pre-populating calendar and activity with given data from spec
 
@@ -114,7 +114,6 @@ def create_tables():
         today = today+timedelta(days=1)
 
     db.session.commit()
-'''
 
 @loginManager.user_loader
 def loadUser(userId):

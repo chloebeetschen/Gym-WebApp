@@ -6,7 +6,7 @@ from datetime import *
 
 class Activity(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    activityType = db.Column(db.String(250), unique=True, nullable=False)
+    activityType = db.Column(db.String(250), nullable=False)
     # foreign key for activity table
     calendarEvents = db.relationship('Calendar', backref='activity')
 

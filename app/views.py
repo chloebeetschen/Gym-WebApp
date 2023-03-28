@@ -242,6 +242,12 @@ def addBasket(id):
     # If basket session doesn't already exist, add to session
     if 'basket' not in session:
         session['basket'] = []
+    
+    #First check if event is already in basket
+    if id in session['basket']:
+        flash("This event is already in your basket.")
+        return redirect('/calendar')
+
     # Add calendar event id to sessions
     session['basket'].append(id)
     # Flash message that event has been added to basket

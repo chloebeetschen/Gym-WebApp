@@ -1,5 +1,11 @@
 /* Any hard coded styles */
 
+/* Global variables */
+:root {
+    --btn-color: #368cad;
+    --btn-hover: #799aa7;
+}
+
 * {
     font-family: 'Open Sans', sans-serif;
     padding: 0;
@@ -12,18 +18,40 @@ html, body {
 }
 
 .title-text-container {
-    text-align: end;
-    padding-right: 10px;
+    display: flex;
+    justify-content: end;
     color: white;
     position: absolute;
-    width: 50%;
-    left: 100%;
-    top: 40%;
-    transform: translate(-100%, 0);
+    width: 100%;
+    top: 30%;
+    flex-wrap: wrap;
+}
+
+.line-break {
+    width: 100%;
 }
 
 .push-pull {
-    
+    font-family: 'Oswald', sans-serif;
+    font-size:10rem;
+    background-color: #ff0099;
+    width: auto;
+    height: auto;
+    opacity: 75%;
+    padding: 0 8rem 0 3rem;
+    color: #ffa9dc;
+    margin-bottom: 1rem;
+}
+
+.gym-corp {
+    background-color: #498fb8;
+    width: auto;
+    height: auto;
+    font-size: 4rem;
+    opacity: 75%;
+    font-family: 'Montserrat', sans-serif;
+    padding: 0 8rem 0 3rem;
+        
 }
 
 .box-shadow {
@@ -33,6 +61,22 @@ html, body {
 .form-container {
     width: 100% !important;
     max-width: 750px !important;
+}
+
+.btn-primary {
+    font-weight: bold;
+    background-color: var(--btn-color) !important;
+    border-color: var(--btn-color) !important;
+    border-radius: 40px !important;
+    padding: 15px;
+    width: 150px;
+
+}
+
+.btn-primary:hover {
+    background-color: var(--btn-hover) !important;
+    border-color: var(--btn-hover) !important;
+
 }
 
 .landing-page {
@@ -45,4 +89,5 @@ html, body {
     top: 0;
     left: 0;
     z-index: -900;
+    padding: 0;
 }

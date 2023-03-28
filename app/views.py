@@ -5,12 +5,12 @@ from .forms import *
 from flask_admin.contrib.sqla import ModelView
 from datetime import *
 from dateutil.relativedelta import relativedelta
-import stripe
-
 from flask_login import current_user, login_user, LoginManager, login_required
 from flask_login import logout_user
-
 from flask_bcrypt import Bcrypt
+
+import stripe
+import logging
 
 bcrypt = Bcrypt(app)
 
@@ -31,12 +31,14 @@ def delete_sessions():
     for key in list(session.keys()):
         session.pop(key)
 
+'''
 @app.before_first_request
 def create_tables():
+    logging.debug("Creating database tables")
     db.create_all()
     
     #pre-populating calendar and activity with given data from spec
-'''
+
     db.session.add_all([
         Activity(activityType="Swimming (Team Events)"),    #1
         Activity(activityType="Swimming (Lane Swimming)"),  #2
@@ -64,26 +66,26 @@ def create_tables():
             if timeStart < datetime.combine(today, time(20,00)):
                 db.session.add_all([
                     #swimming (lane)
-                    Calendar(aDateTime=timeStart, aDuration=1, aStaffName="Life Guard", aPrice=0, aLocation="Swimming Pool", aCapacity=30, aSlotsTaken=0, activity=Activity.query.get(2)),
+                    Calendar(aDateTime=timeStart, aDuration=1, aStaffName="Life Guard", aPrice=0, aLocation="Swimming Pool", aCapacity=30, aSlotsTaken=0, aIsRepeat = True, activity=Activity.query.get(2)),
                     #swimming (lessons)
-                    Calendar(aDateTime=timeStart, aDuration=1, aStaffName="Life Guard", aPrice=0, aLocation="Swimming Pool", aCapacity=30, aSlotsTaken=0, activity=Activity.query.get(3)),
+                    Calendar(aDateTime=timeStart, aDuration=1, aStaffName="Life Guard", aPrice=0, aLocation="Swimming Pool", aCapacity=30, aSlotsTaken=0, aIsRepeat = True, activity=Activity.query.get(3)),
                     #swimming (general)
-                    Calendar(aDateTime=timeStart, aDuration=1, aStaffName="Life Guard", aPrice=0, aLocation="Swimming Pool", aCapacity=30, aSlotsTaken=0, activity=Activity.query.get(4)),  
+                    Calendar(aDateTime=timeStart, aDuration=1, aStaffName="Life Guard", aPrice=0, aLocation="Swimming Pool", aCapacity=30, aSlotsTaken=0, aIsRepeat = True, activity=Activity.query.get(4)),  
                 ])
             #climbing wall
             if timeStart > datetime.combine(today, time(10,00)):
                 db.session.add(
-                    Calendar(aDateTime=timeStart, aDuration=2, aStaffName="Instructor", aPrice=0, aLocation="Climbing Wall", aCapacity=22, aSlotsTaken=0, activity=Activity.query.get(7))
+                    Calendar(aDateTime=timeStart, aDuration=2, aStaffName="Instructor", aPrice=0, aLocation="Climbing Wall", aCapacity=22, aSlotsTaken=0, aIsRepeat = True, activity=Activity.query.get(7))
                 )
 
             db.session.add_all([
                 #gym
-                Calendar(aDateTime=timeStart, aDuration=1, aStaffName="Supervisor", aPrice=0, aLocation="Fitness Room", aCapacity=35, aSlotsTaken=0, activity=Activity.query.get(5)),
+                Calendar(aDateTime=timeStart, aDuration=1, aStaffName="Supervisor", aPrice=0, aLocation="Fitness Room", aCapacity=35, aSlotsTaken=0, aIsRepeat = True, activity=Activity.query.get(5)),
                 #squash courts
-                Calendar(aDateTime=timeStart, aDuration=1, aStaffName="None", aPrice=0, aLocation="Court 1", aCapacity=4, aSlotsTaken=0, activity=Activity.query.get(6)),
-                Calendar(aDateTime=timeStart, aDuration=1, aStaffName="None", aPrice=0, aLocation="Court 2", aCapacity=4, aSlotsTaken=0, activity=Activity.query.get(6)),
+                Calendar(aDateTime=timeStart, aDuration=1, aStaffName="None", aPrice=0, aLocation="Court 1", aCapacity=4, aSlotsTaken=0, aIsRepeat = True, activity=Activity.query.get(6)),
+                Calendar(aDateTime=timeStart, aDuration=1, aStaffName="None", aPrice=0, aLocation="Court 2", aCapacity=4, aSlotsTaken=0, aIsRepeat = True, activity=Activity.query.get(6)),
                 #sports hall
-                Calendar(aDateTime=timeStart, aDuration=1, aStaffName="Sport Organiser", aPrice=0, aLocation="Sports Hall", aCapacity=45, aSlotsTaken=0, activity=Activity.query.get(12))
+                Calendar(aDateTime=timeStart, aDuration=1, aStaffName="Sport Organiser", aPrice=0, aLocation="Sports Hall", aCapacity=45, aIsRepeat = True, aSlotsTaken=0, activity=Activity.query.get(12))
             ])
             
             #increment time
@@ -92,21 +94,21 @@ def create_tables():
         #individual day activities
         #0 = monday ... 6 = sunday
         if today.weekday() == 0:
-            db.session.add(Calendar(aDateTime=datetime.combine(today, time(18,00)), aDuration=1, aStaffName="Trainer", aPrice=0, aLocation="Studio", aCapacity=25, aSlotsTaken=0, activity=Activity.query.get(8)))
+            db.session.add(Calendar(aDateTime=datetime.combine(today, time(18,00)), aDuration=1, aStaffName="Trainer", aPrice=0, aLocation="Studio", aCapacity=25, aSlotsTaken=0, aIsRepeat = False, activity=Activity.query.get(8)))
         elif today.weekday() == 1:
-            db.session.add(Calendar(aDateTime=datetime.combine(today, time(10,00)), aDuration=1, aStaffName="Trainer", aPrice=0, aLocation="Studio", aCapacity=25, aSlotsTaken=0, activity=Activity.query.get(9)))
+            db.session.add(Calendar(aDateTime=datetime.combine(today, time(10,00)), aDuration=1, aStaffName="Trainer", aPrice=0, aLocation="Studio", aCapacity=25, aSlotsTaken=0, aIsRepeat = False, activity=Activity.query.get(9)))
         elif today.weekday() == 3:
-            db.session.add(Calendar(aDateTime=datetime.combine(today, time(19,00)), aDuration=1, aStaffName="Trainer", aPrice=0, aLocation="Studio", aCapacity=25, aSlotsTaken=0, activity=Activity.query.get(9)))
-            db.session.add(Calendar(aDateTime=datetime.combine(today, time(19,00)), aDuration=2, aStaffName="None", aPrice=0, aLocation="Sports Hall", aCapacity=1, aSlotsTaken=0, activity=Activity.query.get(11)))
+            db.session.add(Calendar(aDateTime=datetime.combine(today, time(19,00)), aDuration=1, aStaffName="Trainer", aPrice=0, aLocation="Studio", aCapacity=25, aSlotsTaken=0, aIsRepeat = False, activity=Activity.query.get(9)))
+            db.session.add(Calendar(aDateTime=datetime.combine(today, time(19,00)), aDuration=2, aStaffName="None", aPrice=0, aLocation="Sports Hall", aCapacity=1, aSlotsTaken=0, aIsRepeat = False, activity=Activity.query.get(11)))
         elif today.weekday() == 4:
-            db.session.add(Calendar(aDateTime=datetime.combine(today, time(19,00)), aDuration=1, aStaffName="Trainer", aPrice=0, aLocation="Studio", aCapacity=25, aSlotsTaken=0, activity=Activity.query.get(10)))
-            db.session.add(Calendar(aDateTime=datetime.combine(today, time(8,00)), aDuration=2, aStaffName="Life Guard", aPrice=0, aLocation="Swimming Pool", aCapacity=1, aSlotsTaken=0, activity=Activity.query.get(1)))
+            db.session.add(Calendar(aDateTime=datetime.combine(today, time(19,00)), aDuration=1, aStaffName="Trainer", aPrice=0, aLocation="Studio", aCapacity=25, aSlotsTaken=0, aIsRepeat = False, activity=Activity.query.get(10)))
+            db.session.add(Calendar(aDateTime=datetime.combine(today, time(8,00)), aDuration=2, aStaffName="Life Guard", aPrice=0, aLocation="Swimming Pool", aCapacity=1, aIsRepeat = False, aSlotsTaken=0, activity=Activity.query.get(1)))
         elif today.weekday() == 5:
-            db.session.add(Calendar(aDateTime=datetime.combine(today, time(10,00)), aDuration=1, aStaffName="Trainer", aPrice=0, aLocation="Studio", aCapacity=25, aSlotsTaken=0, activity=Activity.query.get(9)))
-            db.session.add(Calendar(aDateTime=datetime.combine(today, time(9,00)), aDuration=2, aStaffName="None", aPrice=0, aLocation="Sports Hall", aCapacity=1, aSlotsTaken=0, activity=Activity.query.get(11)))
+            db.session.add(Calendar(aDateTime=datetime.combine(today, time(10,00)), aDuration=1, aStaffName="Trainer", aPrice=0, aLocation="Studio", aCapacity=25, aSlotsTaken=0, aIsRepeat = False, activity=Activity.query.get(9)))
+            db.session.add(Calendar(aDateTime=datetime.combine(today, time(9,00)), aDuration=2, aStaffName="None", aPrice=0, aLocation="Sports Hall", aCapacity=1, aSlotsTaken=0, aIsRepeat = False, activity=Activity.query.get(11)))
         elif today.weekday() == 6:
-            db.session.add(Calendar(aDateTime=datetime.combine(today, time(8,00)), aDuration=2, aStaffName="Life Guard", aPrice=0, aLocation="Swimming Pool", aCapacity=1, aSlotsTaken=0, activity=Activity.query.get(1)))
-            db.session.add(Calendar(aDateTime=datetime.combine(today, time(9,00)), aDuration=1, aStaffName="Trainer", aPrice=0, aLocation="Studio", aCapacity=25, aSlotsTaken=0, activity=Activity.query.get(10)))
+            db.session.add(Calendar(aDateTime=datetime.combine(today, time(8,00)), aDuration=2, aStaffName="Life Guard", aPrice=0, aLocation="Swimming Pool", aCapacity=1, aSlotsTaken=0, aIsRepeat = False, activity=Activity.query.get(1)))
+            db.session.add(Calendar(aDateTime=datetime.combine(today, time(9,00)), aDuration=1, aStaffName="Trainer", aPrice=0, aLocation="Studio", aCapacity=25, aSlotsTaken=0, aIsRepeat = False, activity=Activity.query.get(10)))
 
 
         #increment day
@@ -130,58 +132,26 @@ def index():
 @app.route('/calendar', methods=['GET', 'POST'])
 @login_required
 def calendarMethod():
+    logging.debug("Calendar route request")
     today = datetime.now()
     #week span
     weeks = [today, (today + timedelta(days=1)), (today + timedelta(days=2)), (today + timedelta(days=3)), (today + timedelta(days=4)), (today + timedelta(days=5)), (today + timedelta(days=6)), (today + timedelta(days=7)), (today + timedelta(days=8)), (today + timedelta(days=9)), (today + timedelta(days=10)), (today + timedelta(days=11)), (today + timedelta(days=12)), (today + timedelta(days=13))]
     #days of week integers, from today
     
     #array for constant events
-    dailyConstantEvents = ["Swimming (Lane Swimming)", "Swimming (General Use)", "Gym", "Swimming (Lessons)", "Squash 1", "Squash 2", "Sports Hall (Session)", "Climbing"]
+    #dailyConstantEvents = ["Swimming (Lane Swimming)", "Swimming (General Use)", "Gym", "Swimming (Lessons)", "Squash", "Sports Hall (Session)", "Climbing"]
     
     #calculation for making sure we only get 2 weeks of data
     w1 = datetime.now()+timedelta(days=7)
     w2 = datetime.now()+timedelta(days=14)
     # get all events in order of date and time w1 and w2
-    allEvents = Calendar.query.filter(Calendar.aDateTime >= date.today()).filter(Calendar.aDateTime < w1).order_by(Calendar.aDateTime).all()
-    allEvents2 = Calendar.query.filter(Calendar.aDateTime >= w1).filter(Calendar.aDateTime < w2).order_by(Calendar.aDateTime).all()
-
-    #get events that aren't team or constant 1st Week
-    events = []
-    for i in allEvents:
-        #get actvitiy type of the ith event
-        aType = Activity.query.filter_by(id=i.activityId).first()
-        counter = 0
-        #loop through constant events
-        for j in dailyConstantEvents:
-            #if the event is the activity type increment counter
-            if aType.activityType == j:
-                counter = 1
-        
-        #check if we add event to shown activities
-        if counter == 0:
-            events.append(i)
+    events = Calendar.query.filter(Calendar.aDateTime >= date.today()).filter(Calendar.aDateTime < w1).filter_by(aIsRepeat = False).order_by(Calendar.aDateTime).all()
+    events2 = Calendar.query.filter(Calendar.aDateTime >= w1).filter(Calendar.aDateTime < w2).filter_by(aIsRepeat = False).order_by(Calendar.aDateTime).all()
 
     # get event type for each event found
     eventInfo = []
     for i in events:
         eventInfo.append(Activity.query.filter_by(id=i.activityId).first())
-
-    #--------------------------------------------------------------------------------------------------
-    #get events that aren't team or constant 2nd Week
-    events2 = []
-    for i in allEvents2:
-        #get actvitiy type of the ith event
-        aType = Activity.query.filter_by(id=i.activityId).first()
-        counter = 0
-        #loop through constant events
-        for j in dailyConstantEvents:
-            #if the event is the activity type increment counter
-            if aType.activityType == j:
-                counter = 1
-        
-        #check if we add event to shown activities
-        if counter == 0:
-            events2.append(i)
 
     # get event type for each event found
     eventInfo2 = []
@@ -189,8 +159,6 @@ def calendarMethod():
         eventInfo2.append(Activity.query.filter_by(id=i.activityId).first())
 
     user = UserDetails.query.filter_by(id=current_user.id).first()
-
-    print(user)
     
     return render_template('calendar.html',
                             title     = 'Calendar',
@@ -205,19 +173,16 @@ def calendarMethod():
 
 #calendar of all repeat sessions
 @app.route('/repeatEvents/<id>', methods=['GET', 'POST'])
+@login_required
 def repeatEvents(id):
-
+    logging.debug("Repeat events (with id: %s) route request", id)
     week = datetime.now()+timedelta(days=7)
     events = Calendar.query.filter(Calendar.aDateTime >= date.today()).filter(Calendar.aDateTime < week).filter_by(activityId = id).all()
     eventType = (Activity.query.get(id)).activityType
-    
     today = datetime.now()
     weeks = [today, (today + timedelta(days=1)), (today + timedelta(days=2)), (today + timedelta(days=3)), (today + timedelta(days=4)), (today + timedelta(days=5)), (today + timedelta(days=6)), (today + timedelta(days=7)), (today + timedelta(days=8)), (today + timedelta(days=9)), (today + timedelta(days=10)), (today + timedelta(days=11)), (today + timedelta(days=12)), (today + timedelta(days=13))]
 
     user = UserDetails.query.filter_by(id=current_user.id).first()
-
-
-
 
     return render_template('repeatEvents.html',
                             title     = 'Calendar of Constant Events',
@@ -229,10 +194,10 @@ def repeatEvents(id):
 
 #this is a book event button for the calendar
 @app.route('/makeBooking/<id>', methods=['GET'])
+@login_required
 def makeBooking(id): # << id passed here is the calendar id (not user)    
-    
+    logging.debug("Make booking (with id: %s) route request", id)    
     #update userBookings (make one), update calendar event (increment no. of ppl and check if its full)
-
     #updating calendar event
     #get calendar event of id
     event = Calendar.query.get(id)
@@ -243,7 +208,6 @@ def makeBooking(id): # << id passed here is the calendar id (not user)
     
     #to update user bookings we need the user Id to be able to update for a specific user
     newBooking = UserBookings(userId = current_user.id, calendarId = id)
-
     #add and update db
     db.session.add(newBooking)
     db.session.commit()
@@ -252,7 +216,9 @@ def makeBooking(id): # << id passed here is the calendar id (not user)
 
 # Add to basket button
 @app.route('/addBasket/<id>', methods=['GET'])
+@login_required
 def addBasket(id):
+    logging.debug("Add basket (with id: %s) route request", id)
     # If basket session doesn't already exist, add to session
     if 'basket' not in session:
         session['basket'] = []
@@ -267,6 +233,7 @@ def addBasket(id):
 @app.route('/basket', methods=['GET', 'POST'])
 @login_required
 def basket():
+    logging.debug("Basket route request")
     # Boolean to store whether anything in basket
     isItems = False
     basketItems = []
@@ -350,19 +317,16 @@ def checkout():
 @app.route('/deleteEvent/<id>', methods=['GET', 'POST'])
 @login_required
 def deleteEvent(id): #id passed in will be  the id of the calendar
-
+    logging.debug("Delete event (with id: %s) route request", id)
     # First check the user is a manager
     if current_user.userType != 3:
         return redirect('/home')
 
-        
     # get the booking that matches the id of the parameter given and that of the userId (which is 0 for now)
     # get the event in the calendar
     userBs = UserBookings.query.filter_by(userId=current_user.id).filter_by(calendarId=id).all()
-    
     for i in userBs:
         db.session.delete(i)
-    
     db.session.delete(Calendar.query.get(id))
     db.session.commit()
 
@@ -372,11 +336,10 @@ def deleteEvent(id): #id passed in will be  the id of the calendar
 @app.route('/deleteActivity', methods=['GET', 'POST'])
 @login_required
 def deleteActivity(): 
-
+    logging.debug("Delete activity route request")
     # First check the user is a manager
     if current_user.userType != 3:
         return redirect('/home')
-
     # Should delete the activity(today + timedelta(days=1)), (today + timedelta(days=2)), (today + timedelta(days=3)), (today + timedelta(days=4)), (today + timedelta(days=5)), ((today + timedelta(days=6))
     sActivity = models.Activity.query.filter_by(activityType=request.form['activity']).first()  # The activity selected
 
@@ -400,6 +363,7 @@ def deleteActivity():
 @app.route('/myBookings', methods=['GET', 'POST'])
 @login_required
 def myBookings():
+    logging.debug("My bookings route request")
     today = datetime.now()
     #need a parameter id for the user that is logged in (can be done once cookies is enabled)
     bookings = UserBookings.query.filter_by(userId=current_user.id).all()
@@ -419,16 +383,38 @@ def myBookings():
                             today=today, numEvents=len(bookings),
                             events = events, eventInfo = eventInfo)
 
+@app.route('/userBookings/<id>', methods=['GET', 'POST'])
+@login_required
+def userBookings(id):
+    today = datetime.now()
+    #need a parameter id for the user that is logged in (can be done once cookies is enabled)
+    bookings = UserBookings.query.filter_by(userId=id).all()
+
+    # get all events in order of date and time
+    events = []
+    eventInfo = []
+
+    for i in bookings:
+        events.append(Calendar.query.filter_by(id=i.calendarId).first())
+
+    for j in events:
+        # get event info for each event found
+        eventInfo.append(Activity.query.filter_by(id=j.activityId).first())
+
+    return render_template('myBookings.html', title = 'Bookings', 
+                            today=today, numEvents=len(bookings),
+                            events = events, eventInfo = eventInfo)
+
+
 @app.route('/deleteBasket/<i>', methods=['GET'])
+@login_required
 def deleteBasket(i): # 'i' is the index of the item deleted from the basket
+    logging.debug("Delete basket item (with index: %s) route request", i)
     if session['basketIds'][int(i)] == 'm':
         session.pop('membership')
     else:
         eventId = session['basketIds'][int(i)]
-        print(eventId)
-        print(session['basket'])
         session['basket'].remove(eventId)
-        print(session['basket'])
         # Check if basket empty
         if not session['basket']:
             session.pop('basket')
@@ -438,7 +424,9 @@ def deleteBasket(i): # 'i' is the index of the item deleted from the basket
         return redirect('/home')
 
 @app.route('/deleteBooking/<id>', methods=['GET'])
+@login_required
 def deleteBooking(id): #id passed in will be  the id of the calendar
+    logging.debug("Delete booking (with id: %s) route request", id)
     # get the booking that matches the id of the parameter given and that of the userId 
     booking = UserBookings.query.filter_by(calendarId = id, userId = current_user.id).first()
     # get the event in the calendar
@@ -453,8 +441,9 @@ def deleteBooking(id): #id passed in will be  the id of the calendar
 
 #manager add activity 
 @app.route('/addActivity', methods=['POST', 'GET'])
+@login_required
 def addActivity():
-
+    logging.debug("Add activity route request")
     # First check the user is a manager
     if current_user.userType != 3:
         return redirect('/home')
@@ -484,7 +473,7 @@ def addActivity():
 @app.route('/editActivity', methods=['POST', 'GET'])
 @login_required
 def editActivity():
-
+    logging.debug("Edit activity route request")
     # First check the user is a manager
     if current_user.userType != 3:
         return redirect('/home')
@@ -513,7 +502,7 @@ def editActivity():
 @app.route('/addEvent', methods=['POST', 'GET'])
 @login_required
 def addEvent():
-
+    logging.debug("Add event route request")
     # First check the user is a manager
     if current_user.userType != 3:
         return redirect('/home')
@@ -531,17 +520,17 @@ def addEvent():
         location = form.aLocation.data
         price    = form.aPrice.data
         capacity = form.aCapacity.data
+        isRepeat = False
 
         # y, m, d = form.aDate.data.split('-')
         # date = datetime.datetime(int(y), int(m), int(d))
-        print(type(form.aDateTime.data))
         date = form.aDateTime.data
 
         cEvent = Calendar(aDateTime=date, aDuration=duration,
                           aStaffName=staff,
                           aPrice=price, aLocation=location,
-                          aCapacity=capacity, aSlotsTaken=0,
-                          activity=sActivity)
+                          aCapacity=capacity, aSlotsTaken=0, 
+                          aIsRepeat = isRepeat, activity=sActivity)
             
         db.session.add(cEvent)
         db.session.commit()
@@ -551,13 +540,15 @@ def addEvent():
     return render_template('addEvent.html', title='Add Event',
                            form=form, activities=activities)
 
+
+
 #Can this be removed it isnt being used?
 #manager edit event
 #for now just redirects to viewAEManager
 @app.route('/editEvent/<id>', methods=['POST', 'GET'])
 @login_required
 def editEvent(id):
-
+    logging.debug("Edit event (with id: %s) route request", id)
     # First check the user is a manager
     if current_user.userType != 3:
         return redirect('/home')
@@ -593,9 +584,9 @@ def editEvent(id):
     #if validation failed  return to add event
     return render_template('editEvent.html', title = 'Edit Event', form = form, eventType=eventType, event=event)
 
-
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    logging.debug("Login route request")
     form = LoginForm()
 
     if form.validate_on_submit():
@@ -606,12 +597,15 @@ def login():
             if bcrypt.check_password_hash(user.password, form.Password.data):
                 login_user(user)
                 return redirect(url_for('home'))
+            else:
+                flash("Incorrect username/password. Please try again.")
 
     return render_template('login.html', form=form)
 
 @app.route('/logout', methods=['GET', 'POST'])
 @login_required
 def logout():
+    logging.debug("Logout route request")
     logout_user()
     # Clear sessions
     for key in list(session.keys()):
@@ -621,6 +615,7 @@ def logout():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
+    logging.debug("Register route request")
     form = RegisterForm()
 
     if form.validate_on_submit():
@@ -661,24 +656,29 @@ def register():
 
 @app.route('/home', methods=['GET', 'POST'])
 def home():
+    logging.debug("Home route request")
     return render_template('home.html', title='home')
 
 
 @app.route('/settings', methods=['GET', 'POST'])
 @login_required
 def settings():
+    logging.debug("Settings route request")
     form = SettingsForm()
     if form.validate_on_submit():
         # Check the old password matches the current password
         if not bcrypt.check_password_hash(current_user.password, form.Password.data):
             flash('Incorrect password')
             return redirect(url_for('settings'))
-        # Update the user's details
+
         cUserLogin   = models.UserLogin.query.get(current_user.id)
         cUserDetails = models.UserDetails.query.get(current_user.id)
 
-        cUserDetails.name    = form.Name.data
-        cUserLogin.password  = bcrypt.generate_password_hash(form.NewPassword.data)
+        # Only update the user's details that they have changed
+        if form.Name.data:
+            cUserDetails.name    = form.Name.data
+        if form.NewPasswordx2.data:
+            cUserLogin.password  = bcrypt.generate_password_hash(form.NewPassword.data)
 
         db.session.commit()
         flash('User Details updated')
@@ -691,6 +691,7 @@ def settings():
 @app.route('/cancelMembership', methods=['GET', 'POST'])
 @login_required
 def cancelMembership():
+    logging.debug("Cancel membership route request")
     # Change user to not a member
     usersDetails = UserDetails.query.get(current_user.id)
     usersDetails.isMember = False
@@ -702,15 +703,120 @@ def cancelMembership():
 
 @app.route('/pricingList', methods=['GET', 'POST'])
 def pricingList():
+    logging.debug("Pricing route request")
     return render_template('pricingList.html', title= 'Pricing List')
+
+@app.route('/analysis', methods=['GET', 'POST'])
+@login_required
+def analysis():
+    # First check the user is a manager
+    if current_user.userType != 3:
+        return redirect('/home')
+
+    form = AnalysisForm()
+    activities = Activity.query.all()
+    facilities = Calendar.query.with_entities(Calendar.aLocation).distinct()
+
+    if form.validate_on_submit():
+        # Check if manager has entered facility:
+        if request.form.get('facility') is not None:
+            # First check that the facility exists
+            facility = Calendar.query.filter_by(aLocation = request.form['facility']).first()
+            if facility is None:
+                flash("That is not a valid facility/location")
+                return redirect('/analysis')
+            activityFacility = request.form['facility']
+            # Get all calendar events for that location
+            events = Calendar.query.filter_by(aLocation = request.form['facility']).all()
+
+        elif request.form.get('activity') is not None:
+            # First check that the activity exists
+            activity = Activity.query.filter_by(activityType = request.form['activity']).first()
+            if activity is None:
+                flash("That is not a valid activity")
+                return redirect('/analysis')
+            activityFacility = request.form['activity']
+            # Get all calendar events for that activity
+            events = Calendar.query.filter_by(activityId = activity.id).all()
+
+        else:
+            flash("Please enter either a facility or an activity")
+            return redirect('/analysis')
+
+        # Get date entered
+        dateEntered = form.DateOf.data
+        memberWeek = [0,0,0,0,0,0,0]
+        nonMemberWeek = [0,0,0,0,0,0,0]
+        dates = []
+        sales = [0,0,0,0,0,0,0]
+
+        # Loop through 7 days
+        for day in range(0, 7):
+            dates.append( (dateEntered+timedelta(days=day)).strftime("%d/%m"))
+            bookings = []
+            # Get each individual booking for every event on that day
+            for event in events:
+                # Check for right date
+                if event.aDateTime.date() == dateEntered+timedelta(days=day):
+                    # Go through every user booking of events
+                    for booking in event.userEvents:
+                        # Add to booking
+                        bookings.append(booking)
+                    # Once all bookings for events have been found,
+                    # it can be removed from the list of events to make future searches quicker
+                    events.remove(event)
+
+            # Now we have all user bookings for that location/activity on the right day
+            # we can split them into members and non members
+            for booking in bookings:
+                # Check user details for each booking
+                user = UserDetails.query.filter_by(id=UserBookings.userId).first()
+                userMember = user.isMember
+                # Incrememnt either member or non member count
+                if userMember:
+                    memberWeek[day] += 1
+                else:
+                    # If not a member then add price to sales array
+                    calendarEvent = Calendar.query.get(booking.calendarID)
+                    sales[i] += calendarEvent.aPrice
+                    nonMemberWeek[day] += 1
+
+        # Set session user data
+        session['activityFacility'] = activityFacility
+        session['memberWeek'] = memberWeek
+        session['nonMemberWeek'] = nonMemberWeek
+        session['dates'] = dates
+        session['sales'] = sales
+        return redirect('/analysisGraphs')
+    return render_template('analysis.html', title = 'Analysis', form=form, activities=activities, facilities=facilities)   
+
+@app.route('/analysisGraphs', methods=['GET', 'POST'])
+@login_required
+def analysisGraphs():
+    # First check the user is a manager
+    if current_user.userType != 3:
+        return redirect('/home')
+    
+    return render_template('analysisGraphs.html', title='Analysis',     activityFacility = session['activityFacility'],
+                            memberWeek = session['memberWeek'], nonMemberWeek = session['nonMemberWeek'], 
+                            dates = session['dates'], sales = session['sales'])
+
+
+
 
 @app.route('/manageUsers', methods=['POST', 'GET'])
 @login_required
 def manageUsers():
+    logging.debug("Manage users route request")
 
     # First check the user is a manager
     if current_user.userType != 3:
         return redirect('/home')
+
+    form = SearchForm()
+    if form.validate_on_submit():        
+        search = form.search.data
+        return redirect(url_for('searchResults', search = search))
 
     ## Normal users
     userTypeLogin1 = UserLogin.query.filter_by(userType=1).all()
@@ -724,6 +830,7 @@ def manageUsers():
    
     ## Will not render unless users of every type exist in the database
     return render_template('manageUsers.html', title = 'Manage Users', 
+                            form = form,
                             userTypeNum1   = len(userTypeLogin1),
                             userTypeNum2   = len(userTypeLogin2),
                             userTypeNum3   = len(userTypeLogin3),
@@ -735,7 +842,7 @@ def manageUsers():
 @app.route('/editUser/<id>', methods=['GET', 'POST'])
 @login_required
 def editUser(id):
-
+    logging.debug("Edit user (with id: %s) route request", id)
     # First check the user is a manager
     if current_user.userType != 3:
         return redirect('/home')
@@ -746,10 +853,15 @@ def editUser(id):
         cUserLogin   = models.UserLogin.query.get(id)
         cUserDetails = models.UserDetails.query.get(id)
 
-        cUserDetails.name    = form.Name.data
-        cUserLogin.email     = form.Email.data
-        cUserLogin.password  = bcrypt.generate_password_hash(form.NewPasswordx2.data)
-        cUserLogin.userType      = form.Type.data
+        # Only update anything that has changed
+        if form.Name.data:
+            cUserDetails.name    = form.Name.data
+        if form.Email.data:
+            cUserLogin.email     = form.Email.data
+        if form.NewPasswordx2.data:
+            cUserLogin.password  = bcrypt.generate_password_hash(form.NewPasswordx2.data)
+        if form.Type.data:
+            cUserLogin.userType      = form.Type.data
 
         db.session.commit()
         flash('User Details updated')
@@ -763,7 +875,7 @@ def editUser(id):
 @app.route('/deleteUser/<id>', methods=['GET', 'POST'])
 @login_required
 def deleteUser(id): 
-
+    logging.debug("Delete user (with id: %s) route request", id)
     # First check the user is a manager
     if current_user.userType != 3:
         return redirect('/home')
@@ -795,6 +907,7 @@ def deleteUser(id):
 @app.route('/memberships', methods=['GET', 'POST'])
 @login_required
 def memberships():
+    logging.debug("Memberships route request")
     # Check if user is a member
     cUserDetails = models.UserDetails.query.get(current_user.id)
     isMember = cUserDetails.isMember
@@ -806,6 +919,7 @@ def memberships():
 @app.route('/memberships/monthly', methods=['GET', 'POST'])
 @login_required
 def monthlyMembership():
+    logging.debug("Monthly membership route request")
     cUserDetails = models.UserDetails.query.get(current_user.id)
     cUserDetails.isMember = False
     today = datetime.now()
@@ -821,6 +935,7 @@ def monthlyMembership():
 @app.route('/memberships/annual', methods=['GET', 'POST'])
 @login_required
 def annualMembership():
+    logging.debug("Annual membership route request")
     cUserDetails = models.UserDetails.query.get(current_user.id)
     cUserDetails.isMember = False
     today = datetime.now()
@@ -831,3 +946,37 @@ def annualMembership():
     db.session.commit()
     ##Test to see if working correctly
     return redirect('/basket')
+
+
+## search for a user
+# https://stackoverflow.com/questions/39960942/flask-app-search-bar
+
+@app.route('/searchResults/<search>', methods=['GET', 'POST'])
+@login_required
+def searchResults(search):
+
+    # First check the user is a manager
+    if current_user.userType != 3:
+        return redirect('/home')
+
+    form = SearchForm()
+    if form.validate_on_submit():
+        search = form.search.data
+        return redirect(url_for('searchResults', search = search))
+
+    users = UserLogin.query.all()
+    users2 = UserDetails.query.all()
+
+    results = []
+    for i in users:
+        if search.lower() in (i.email).lower():
+            results.append(i)
+    
+    for j in users2:
+        if search.lower() in (j.name).lower():
+            results.append(UserLogin.query.filter_by(id = j.id).first())
+
+    results = list(dict.fromkeys(results))
+
+
+    return render_template('searches.html', title='Search Results', form = form, results = results, numUsers = len(results))

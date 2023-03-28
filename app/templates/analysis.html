@@ -1,0 +1,78 @@
+<!-- Template for manager analysis -->
+{% extends "base.html" %}
+
+{% block content %}
+<!--Basic Header-->
+<h1>Analysis</h1>
+
+<form method="post" name="analysis" >
+    {{ form.hidden_tag() }}
+
+    <input type = "hidden" name="form_id" value="form1">
+    <!--Date of activity-->
+    <p class="mt-4">
+        Date <br>
+        {{ form.DateOf(class='form-control')}}
+        
+    </p>
+    {% for error in form.DateOf.errors %}
+        [{{ error }}]
+    {% endfor %}
+
+    <!-- Facility -->
+    <label for="facilities">Choose Facility</label>
+    {% if facilities == none %}
+        <p>There are currently no facilities.</p>
+    {% else %}
+        <select name="facility" class="form-control" id="facilities">
+        <option label=" "></option>
+        {% for facility in facilities %}
+            <option value="{{facility[0]}}">{{ facility[0] }}</option>
+        {% endfor %}
+        </select>
+    {% endif %}
+    
+
+    <!--Type (Name of Activity)-->
+    <label for="activities">Choose Activity</label>
+    {% if activities == none %}
+        <p>There are currently no activites.</p>
+    {% else %}
+        <select name="activity" class="form-control" id="activities">
+        <option label=" "></option>
+        {% for activity in activities %}
+            <option value="{{activity.activityType}}">{{ activity.activityType }}</option>
+        {% endfor %}
+        </select>
+    {% endif %}
+    
+<br>
+    <input type="submit" value="Submit">
+    
+</form>
+
+
+<script>
+    var facility = document.getElementById('facilities')
+    var activity = document.getElementById('activities')
+
+    facility.addEventListener('input', ()=> {
+        if(facility.value !== ''){
+            activity.setAttribute('disabled', 'disabled');
+        } else {
+            activity.removeAttribute('disabled');
+        }
+    });
+
+    activity.addEventListener('input', ()=> {
+        if(activity.value !== ''){
+            facility.setAttribute('disabled', 'disabled');
+        } else {
+            facility.removeAttribute('disabled');
+        }
+    });
+
+</script>
+
+
+{% endblock %}

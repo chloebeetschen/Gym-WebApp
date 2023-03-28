@@ -8,10 +8,35 @@
             {{ form.hidden_tag() }}
 
             <p>{{ form.Name(class_='form-control') }}</p>
+            {% for error in form.Name.errors %}
+            <div class="alert alert-danger" role="alert">
+                [{{ error }}]
+              </div>
+            {% endfor %}
             <p>{{ form.Email(class_='form-control') }}</p>
+            {% for error in form.Email.errors %}
+            <div class="alert alert-danger" role="alert">
+                [{{ error }}]
+              </div>
+            {% endfor %}            
             <p>{{ form.NewPassword(class_='form-control') }}</p>
+            {% for error in form.NewPassword.errors %}
+            <div class="alert alert-danger" role="alert">
+                [{{ error }}]
+              </div>
+            {% endfor %}
             <p>{{ form.NewPasswordx2(class_='form-control') }}</p>
+            {% for error in form.NewPasswordx2.errors %}
+            <div class="alert alert-danger" role="alert">
+                [{{ error }}]
+              </div>
+            {% endfor %}
             <p>{{ form.Type(class_='form-control') }}</p>
+            {% for error in form.Type.errors %}
+            <div class="alert alert-danger" role="alert">
+                [{{ error }}]
+              </div>
+            {% endfor %}
 
             
             <input type="submit" value="Submit">

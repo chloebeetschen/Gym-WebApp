@@ -679,7 +679,6 @@ def editEvent(id):
 def login():
     logging.debug("Login route request")
     form = LoginForm()
-
     if form.validate_on_submit():
         user = models.UserLogin.query.filter_by(email=form.Email.data).first()
 
@@ -737,7 +736,6 @@ def register():
                                             loginDetails=newUser.id,
                                             isMember = False,
                                             membershipEnd=datetime.now())
-
         # Add to the database
         db.session.add(newUser)
         db.session.add(newUserDetails)

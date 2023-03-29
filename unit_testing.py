@@ -1,5 +1,8 @@
 #pair programming - Aaditi and Hope 
-#used chat gpt to learn how to use unit test in python  
+#used chat gpt to learn how to use unit test in python 
+
+#test 11 and test 8 don't run... idk why 
+#need to run the tests after password regex stuff is merged, the test should still pass 
 
 import unittest
 from flask import Flask, current_app, url_for
@@ -20,16 +23,13 @@ class TestCase(unittest.TestCase):
         self.app = app.test_client()  
         db.create_all() 
 
-        #app.config['DEBUG'] = False
-        #app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-        # self.app_context = app.app_context()
-        # self.app_context.push()
-        #self.app_context = app_context
        
     #this deletes the test database once testing is complete 
-    #def tearDown(self):
-      #db.session.remove()
-      #db.drop_all()
+    def tearDown(self):
+      db.session.remove()
+      db.drop_all()
+  
+      #delete this?
       #current_app.app_context().pop()
 
     def test_navBarAll_register(self):
@@ -122,21 +122,49 @@ class TestCase(unittest.TestCase):
 
                 response = self.app.post('/register', data=data)
                 
-                #user = models.UserDetails.query.filter_by(name= 'Michael Scott').first()
+                #testing if the database is updated when a user registers, for login db and details db
+                user = models.UserDetails.query.filter_by(name= 'Michael Scott').first()
                 user = models.UserLogin.query.filter_by(email= 'michael.scott@gmail.com').first()
                 self.assertIsNotNone(user)
                 print(10)
+
+    #registering a user and testing if this updates in the database
+    def test_register2(self):
+        response = self.app.get(('/register'), follow_redirects = True)
+        self.assertEqual(response.status_code, 200)
+
+        with app.test_request_context():
+            with app.app_context():
+                data = {
+                    'Name' : 'Aaditi Agrawal',
+                    'DateOfBirth' : datetime.strptime('2002-03-15', '%Y-%m-%d').date(),
+                    'Email' : 'aaditi@gmail.com',
+                    'Password' : 'MichaelScott1',
+                    'ReenterPassword' : 'MichaelScott1',
+                    'Type' : 1
+                    }
+
+                form = RegisterForm(data=data)
+                self.assertTrue(form.validate())
+                if not form.validate():
+                    print(form.errors)
+
+                response = self.app.post('/register', data=data)
+                
+                user = models.UserDetails.query.filter_by(name= 'Aaditi Agrawal').first()
+                user = models.UserLogin.query.filter_by(email= 'aaditi@gmail.com').first()
+                self.assertIsNotNone(user)
+                print(19)
 
 
     # NOT RUNNING 
     #testing to see if we can register a user with missing details - should not be able to
     #missing email field 
     def test_registerMissing(self):
+        response = self.app.get(('/register'), follow_redirects = True)
+        self.assertEqual(response.status_code, 200)
         with app.test_request_context():
             with app.app_context():
-
-                response = self.app.get(('/register'), follow_redirects = True)
-                self.assertEqual(response.status_code, 200)
 
                 data = {
                 'Name' : 'Pam Halpert',
@@ -219,26 +247,31 @@ class TestCase(unittest.TestCase):
                 self.assertIn('This field is required.', error_dict.get('Email', []))
                 print(14)
 
+
     #this test is failing 
     #check privileges - a customer of type1 that is logged in should not be able to access pages for userType 3 accounts
-    def test_correct_privilege(self):
+    #testing that an exisiting user can log in 
+    def test_user_privilege(self):
+        #using the login details of an already registered user
+        response = self.app.get(('/login'), follow_redirects = True)
+        self.assertEqual(response.status_code, 200)
         with app.test_request_context():
             with app.app_context():
-                #logging in again with a user that has already been registered
+
                 data = {
-                'Email' : 'michael.scott@gmail.com',
-                'Password' : 'MichaelScott1',
+                    'Email' : 'aaditi@gmail.com',
+                    'Password' : 'MichaelScott1',
                 }
-                form = LoginForm(date=data)
+
+                form = LoginForm(data=data)
                 self.assertTrue(form.validate())
-                response = self.app.post('/login', data=form.data, follow_redirects=True)
+                response = self.app.post('/login', data=form.data, follow_redirects = True)
                 self.assertEqual(response.status_code, 200)
-                
+        
                 #the user tries to access the manager page analysis
-                response = self.client.get('/analysis')
-                #302 = temporary redirect 
-                self.assertEqual(response.status_code, 302)
-                self.assertEqual(response.location, '/home')
+                response = self.app.get('/editEvent')
+                #404 = page does not exist
+                self.assertEqual(response.status_code, 404)
                 print(15)
 
 

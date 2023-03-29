@@ -1,1 +1,165 @@
 
+INFO | 29/03/2023 16:00:24 | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO | 29/03/2023 16:00:24 | [33mPress CTRL+C to quit[0m
+INFO | 29/03/2023 16:00:24 |  * Restarting with stat
+WARNING | 29/03/2023 16:00:25 |  * Debugger is active!
+INFO | 29/03/2023 16:00:25 |  * Debugger PIN: 106-273-007
+INFO | 29/03/2023 16:01:27 | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO | 29/03/2023 16:01:27 | [33mPress CTRL+C to quit[0m
+INFO | 29/03/2023 16:01:27 |  * Restarting with stat
+WARNING | 29/03/2023 16:01:27 |  * Debugger is active!
+INFO | 29/03/2023 16:01:27 |  * Debugger PIN: 106-273-007
+INFO | 29/03/2023 16:01:32 | 127.0.0.1 - - [29/Mar/2023 16:01:32] "[32mGET / HTTP/1.1[0m" 302 -
+DEBUG | 29/03/2023 16:01:32 | Login route request
+INFO | 29/03/2023 16:01:32 | 127.0.0.1 - - [29/Mar/2023 16:01:32] "GET /login?next=%2F HTTP/1.1" 200 -
+INFO | 29/03/2023 16:01:32 | 127.0.0.1 - - [29/Mar/2023 16:01:32] "GET /static/styles.css HTTP/1.1" 200 -
+INFO | 29/03/2023 16:01:33 | 127.0.0.1 - - [29/Mar/2023 16:01:33] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+DEBUG | 29/03/2023 16:01:38 | Register route request
+INFO | 29/03/2023 16:01:38 | 127.0.0.1 - - [29/Mar/2023 16:01:38] "GET /register HTTP/1.1" 200 -
+INFO | 29/03/2023 16:01:38 | 127.0.0.1 - - [29/Mar/2023 16:01:38] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 29/03/2023 16:01:44 | Login route request
+INFO | 29/03/2023 16:01:44 | 127.0.0.1 - - [29/Mar/2023 16:01:44] "GET /login HTTP/1.1" 200 -
+INFO | 29/03/2023 16:01:44 | 127.0.0.1 - - [29/Mar/2023 16:01:44] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 29/03/2023 16:02:33 | Login route request
+INFO | 29/03/2023 16:02:33 | 127.0.0.1 - - [29/Mar/2023 16:02:33] "GET /login HTTP/1.1" 200 -
+INFO | 29/03/2023 16:02:33 | 127.0.0.1 - - [29/Mar/2023 16:02:33] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 29/03/2023 16:02:48 | Login route request
+INFO | 29/03/2023 16:02:48 | 127.0.0.1 - - [29/Mar/2023 16:02:48] "GET /login HTTP/1.1" 200 -
+INFO | 29/03/2023 16:02:48 | 127.0.0.1 - - [29/Mar/2023 16:02:48] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 29/03/2023 16:03:05 | Login route request
+INFO | 29/03/2023 16:03:05 | 127.0.0.1 - - [29/Mar/2023 16:03:05] "GET /login HTTP/1.1" 200 -
+INFO | 29/03/2023 16:03:05 | 127.0.0.1 - - [29/Mar/2023 16:03:05] "GET /static/styles.css HTTP/1.1" 200 -
+DEBUG | 29/03/2023 16:05:14 | Login route request
+INFO | 29/03/2023 16:05:14 | 127.0.0.1 - - [29/Mar/2023 16:05:14] "GET /login HTTP/1.1" 200 -
+INFO | 29/03/2023 16:05:14 | 127.0.0.1 - - [29/Mar/2023 16:05:14] "GET /static/styles.css HTTP/1.1" 200 -
+DEBUG | 29/03/2023 16:05:15 | Login route request
+INFO | 29/03/2023 16:05:15 | 127.0.0.1 - - [29/Mar/2023 16:05:15] "GET /login HTTP/1.1" 200 -
+INFO | 29/03/2023 16:05:15 | 127.0.0.1 - - [29/Mar/2023 16:05:15] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 29/03/2023 16:05:27 | Login route request
+INFO | 29/03/2023 16:05:27 | 127.0.0.1 - - [29/Mar/2023 16:05:27] "GET /login HTTP/1.1" 200 -
+INFO | 29/03/2023 16:05:27 | 127.0.0.1 - - [29/Mar/2023 16:05:27] "GET /static/styles.css HTTP/1.1" 200 -
+DEBUG | 29/03/2023 16:05:35 | Login route request
+INFO | 29/03/2023 16:05:35 | 127.0.0.1 - - [29/Mar/2023 16:05:35] "GET /login HTTP/1.1" 200 -
+INFO | 29/03/2023 16:05:35 | 127.0.0.1 - - [29/Mar/2023 16:05:35] "GET /static/styles.css HTTP/1.1" 200 -
+DEBUG | 29/03/2023 16:05:36 | Login route request
+INFO | 29/03/2023 16:05:36 | 127.0.0.1 - - [29/Mar/2023 16:05:36] "GET /login HTTP/1.1" 200 -
+INFO | 29/03/2023 16:05:36 | 127.0.0.1 - - [29/Mar/2023 16:05:36] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 29/03/2023 16:06:03 | Login route request
+INFO | 29/03/2023 16:06:03 | 127.0.0.1 - - [29/Mar/2023 16:06:03] "GET /login HTTP/1.1" 200 -
+INFO | 29/03/2023 16:06:03 | 127.0.0.1 - - [29/Mar/2023 16:06:03] "GET /static/styles.css HTTP/1.1" 200 -
+DEBUG | 29/03/2023 16:06:24 | Login route request
+INFO | 29/03/2023 16:06:24 | 127.0.0.1 - - [29/Mar/2023 16:06:24] "GET /login HTTP/1.1" 200 -
+INFO | 29/03/2023 16:06:24 | 127.0.0.1 - - [29/Mar/2023 16:06:24] "GET /static/styles.css HTTP/1.1" 200 -
+DEBUG | 29/03/2023 16:06:40 | Login route request
+INFO | 29/03/2023 16:06:40 | 127.0.0.1 - - [29/Mar/2023 16:06:40] "GET /login HTTP/1.1" 200 -
+INFO | 29/03/2023 16:06:40 | 127.0.0.1 - - [29/Mar/2023 16:06:40] "GET /static/styles.css HTTP/1.1" 200 -
+DEBUG | 29/03/2023 16:06:48 | Login route request
+INFO | 29/03/2023 16:06:48 | 127.0.0.1 - - [29/Mar/2023 16:06:48] "GET /login HTTP/1.1" 200 -
+INFO | 29/03/2023 16:06:48 | 127.0.0.1 - - [29/Mar/2023 16:06:48] "GET /static/styles.css HTTP/1.1" 200 -
+DEBUG | 29/03/2023 16:06:49 | Login route request
+INFO | 29/03/2023 16:06:49 | 127.0.0.1 - - [29/Mar/2023 16:06:49] "GET /login HTTP/1.1" 200 -
+INFO | 29/03/2023 16:06:49 | 127.0.0.1 - - [29/Mar/2023 16:06:49] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 29/03/2023 16:06:54 | Login route request
+INFO | 29/03/2023 16:06:54 | 127.0.0.1 - - [29/Mar/2023 16:06:54] "GET /login HTTP/1.1" 200 -
+INFO | 29/03/2023 16:06:54 | 127.0.0.1 - - [29/Mar/2023 16:06:54] "GET /static/styles.css HTTP/1.1" 200 -
+DEBUG | 29/03/2023 16:07:06 | Login route request
+INFO | 29/03/2023 16:07:06 | 127.0.0.1 - - [29/Mar/2023 16:07:06] "GET /login HTTP/1.1" 200 -
+INFO | 29/03/2023 16:07:06 | 127.0.0.1 - - [29/Mar/2023 16:07:06] "GET /static/styles.css HTTP/1.1" 200 -
+DEBUG | 29/03/2023 16:08:06 | Login route request
+INFO | 29/03/2023 16:08:06 | 127.0.0.1 - - [29/Mar/2023 16:08:06] "GET /login HTTP/1.1" 200 -
+INFO | 29/03/2023 16:08:06 | 127.0.0.1 - - [29/Mar/2023 16:08:06] "GET /static/styles.css HTTP/1.1" 200 -
+INFO | 29/03/2023 16:08:19 | 127.0.0.1 - - [29/Mar/2023 16:08:19] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 29/03/2023 16:09:20 | Login route request
+INFO | 29/03/2023 16:09:20 | 127.0.0.1 - - [29/Mar/2023 16:09:20] "GET /login HTTP/1.1" 200 -
+INFO | 29/03/2023 16:09:20 | 127.0.0.1 - - [29/Mar/2023 16:09:20] "GET /static/styles.css HTTP/1.1" 200 -
+INFO | 29/03/2023 16:09:27 | 127.0.0.1 - - [29/Mar/2023 16:09:27] "GET /home HTTP/1.1" 200 -
+INFO | 29/03/2023 16:09:27 | 127.0.0.1 - - [29/Mar/2023 16:09:27] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 29/03/2023 16:09:30 | 127.0.0.1 - - [29/Mar/2023 16:09:30] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 29/03/2023 16:09:30 | 127.0.0.1 - - [29/Mar/2023 16:09:30] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 29/03/2023 16:10:40 | Login route request
+INFO | 29/03/2023 16:10:40 | 127.0.0.1 - - [29/Mar/2023 16:10:40] "GET /login HTTP/1.1" 200 -
+INFO | 29/03/2023 16:10:40 | 127.0.0.1 - - [29/Mar/2023 16:10:40] "GET /static/styles.css HTTP/1.1" 200 -
+DEBUG | 29/03/2023 16:10:52 | Login route request
+INFO | 29/03/2023 16:10:52 | 127.0.0.1 - - [29/Mar/2023 16:10:52] "GET /login HTTP/1.1" 200 -
+INFO | 29/03/2023 16:10:52 | 127.0.0.1 - - [29/Mar/2023 16:10:52] "GET /static/styles.css HTTP/1.1" 200 -
+DEBUG | 29/03/2023 16:10:59 | Login route request
+INFO | 29/03/2023 16:10:59 | 127.0.0.1 - - [29/Mar/2023 16:10:59] "GET /login HTTP/1.1" 200 -
+INFO | 29/03/2023 16:10:59 | 127.0.0.1 - - [29/Mar/2023 16:10:59] "GET /static/styles.css HTTP/1.1" 200 -
+DEBUG | 29/03/2023 16:11:27 | Login route request
+INFO | 29/03/2023 16:11:27 | 127.0.0.1 - - [29/Mar/2023 16:11:27] "GET /login HTTP/1.1" 200 -
+INFO | 29/03/2023 16:11:27 | 127.0.0.1 - - [29/Mar/2023 16:11:27] "GET /static/styles.css HTTP/1.1" 200 -
+DEBUG | 29/03/2023 16:11:29 | Login route request
+INFO | 29/03/2023 16:11:29 | 127.0.0.1 - - [29/Mar/2023 16:11:29] "GET /login HTTP/1.1" 200 -
+INFO | 29/03/2023 16:11:29 | 127.0.0.1 - - [29/Mar/2023 16:11:29] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 29/03/2023 16:12:00 | Login route request
+INFO | 29/03/2023 16:12:00 | 127.0.0.1 - - [29/Mar/2023 16:12:00] "GET /login HTTP/1.1" 200 -
+INFO | 29/03/2023 16:12:00 | 127.0.0.1 - - [29/Mar/2023 16:12:00] "GET /static/styles.css HTTP/1.1" 200 -
+DEBUG | 29/03/2023 16:12:26 | Login route request
+INFO | 29/03/2023 16:12:26 | 127.0.0.1 - - [29/Mar/2023 16:12:26] "GET /login HTTP/1.1" 200 -
+INFO | 29/03/2023 16:12:26 | 127.0.0.1 - - [29/Mar/2023 16:12:26] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 29/03/2023 16:12:59 | Login route request
+INFO | 29/03/2023 16:12:59 | 127.0.0.1 - - [29/Mar/2023 16:12:59] "GET /login HTTP/1.1" 200 -
+INFO | 29/03/2023 16:12:59 | 127.0.0.1 - - [29/Mar/2023 16:12:59] "GET /static/styles.css HTTP/1.1" 200 -
+DEBUG | 29/03/2023 16:13:59 | Login route request
+INFO | 29/03/2023 16:13:59 | 127.0.0.1 - - [29/Mar/2023 16:13:59] "GET /login HTTP/1.1" 200 -
+INFO | 29/03/2023 16:14:00 | 127.0.0.1 - - [29/Mar/2023 16:14:00] "GET /static/styles.css HTTP/1.1" 200 -
+INFO | 29/03/2023 16:14:02 | 127.0.0.1 - - [29/Mar/2023 16:14:02] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 29/03/2023 16:14:03 | Login route request
+INFO | 29/03/2023 16:14:03 | 127.0.0.1 - - [29/Mar/2023 16:14:03] "GET /login HTTP/1.1" 200 -
+INFO | 29/03/2023 16:14:03 | 127.0.0.1 - - [29/Mar/2023 16:14:03] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 29/03/2023 16:14:12 | Login route request
+INFO | 29/03/2023 16:14:12 | 127.0.0.1 - - [29/Mar/2023 16:14:12] "GET /login HTTP/1.1" 200 -
+INFO | 29/03/2023 16:14:12 | 127.0.0.1 - - [29/Mar/2023 16:14:12] "GET /static/styles.css HTTP/1.1" 200 -
+DEBUG | 29/03/2023 16:16:28 | Login route request
+INFO | 29/03/2023 16:16:28 | 127.0.0.1 - - [29/Mar/2023 16:16:28] "GET /login HTTP/1.1" 200 -
+INFO | 29/03/2023 16:16:28 | 127.0.0.1 - - [29/Mar/2023 16:16:28] "GET /static/styles.css HTTP/1.1" 200 -
+DEBUG | 29/03/2023 16:16:33 | Login route request
+INFO | 29/03/2023 16:16:33 | 127.0.0.1 - - [29/Mar/2023 16:16:33] "GET /login HTTP/1.1" 200 -
+INFO | 29/03/2023 16:16:33 | 127.0.0.1 - - [29/Mar/2023 16:16:33] "GET /static/styles.css HTTP/1.1" 200 -
+DEBUG | 29/03/2023 16:16:49 | Login route request
+INFO | 29/03/2023 16:16:50 | 127.0.0.1 - - [29/Mar/2023 16:16:50] "GET /login HTTP/1.1" 200 -
+INFO | 29/03/2023 16:16:50 | 127.0.0.1 - - [29/Mar/2023 16:16:50] "GET /static/styles.css HTTP/1.1" 200 -
+DEBUG | 29/03/2023 16:18:06 | Login route request
+INFO | 29/03/2023 16:18:06 | 127.0.0.1 - - [29/Mar/2023 16:18:06] "GET /login HTTP/1.1" 200 -
+INFO | 29/03/2023 16:18:06 | 127.0.0.1 - - [29/Mar/2023 16:18:06] "GET /static/styles.css HTTP/1.1" 200 -
+DEBUG | 29/03/2023 16:18:16 | Login route request
+INFO | 29/03/2023 16:18:16 | 127.0.0.1 - - [29/Mar/2023 16:18:16] "GET /login HTTP/1.1" 200 -
+INFO | 29/03/2023 16:18:16 | 127.0.0.1 - - [29/Mar/2023 16:18:16] "GET /static/styles.css HTTP/1.1" 200 -
+DEBUG | 29/03/2023 16:18:26 | Login route request
+INFO | 29/03/2023 16:18:26 | 127.0.0.1 - - [29/Mar/2023 16:18:26] "GET /login HTTP/1.1" 200 -
+INFO | 29/03/2023 16:18:26 | 127.0.0.1 - - [29/Mar/2023 16:18:26] "GET /static/styles.css HTTP/1.1" 200 -
+DEBUG | 29/03/2023 16:18:42 | Login route request
+INFO | 29/03/2023 16:18:42 | 127.0.0.1 - - [29/Mar/2023 16:18:42] "GET /login HTTP/1.1" 200 -
+INFO | 29/03/2023 16:18:42 | 127.0.0.1 - - [29/Mar/2023 16:18:42] "GET /static/styles.css HTTP/1.1" 200 -
+DEBUG | 29/03/2023 16:19:05 | Login route request
+INFO | 29/03/2023 16:19:05 | 127.0.0.1 - - [29/Mar/2023 16:19:05] "GET /login HTTP/1.1" 200 -
+INFO | 29/03/2023 16:19:05 | 127.0.0.1 - - [29/Mar/2023 16:19:05] "GET /static/styles.css HTTP/1.1" 200 -
+DEBUG | 29/03/2023 16:19:18 | Login route request
+INFO | 29/03/2023 16:19:18 | 127.0.0.1 - - [29/Mar/2023 16:19:18] "GET /login HTTP/1.1" 200 -
+INFO | 29/03/2023 16:19:18 | 127.0.0.1 - - [29/Mar/2023 16:19:18] "GET /static/styles.css HTTP/1.1" 200 -
+DEBUG | 29/03/2023 16:19:38 | Login route request
+INFO | 29/03/2023 16:19:38 | 127.0.0.1 - - [29/Mar/2023 16:19:38] "GET /login HTTP/1.1" 200 -
+INFO | 29/03/2023 16:19:38 | 127.0.0.1 - - [29/Mar/2023 16:19:38] "GET /static/styles.css HTTP/1.1" 200 -
+DEBUG | 29/03/2023 16:20:25 | Login route request
+INFO | 29/03/2023 16:20:25 | 127.0.0.1 - - [29/Mar/2023 16:20:25] "GET /login HTTP/1.1" 200 -
+INFO | 29/03/2023 16:20:25 | 127.0.0.1 - - [29/Mar/2023 16:20:25] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 29/03/2023 16:20:31 | Login route request
+INFO | 29/03/2023 16:20:31 | 127.0.0.1 - - [29/Mar/2023 16:20:31] "GET /login HTTP/1.1" 200 -
+INFO | 29/03/2023 16:20:31 | 127.0.0.1 - - [29/Mar/2023 16:20:31] "GET /static/styles.css HTTP/1.1" 200 -
+DEBUG | 29/03/2023 16:20:33 | Login route request
+INFO | 29/03/2023 16:20:33 | 127.0.0.1 - - [29/Mar/2023 16:20:33] "GET /login HTTP/1.1" 200 -
+INFO | 29/03/2023 16:20:33 | 127.0.0.1 - - [29/Mar/2023 16:20:33] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 29/03/2023 16:20:38 | Login route request
+INFO | 29/03/2023 16:20:38 | 127.0.0.1 - - [29/Mar/2023 16:20:38] "GET /login HTTP/1.1" 200 -
+INFO | 29/03/2023 16:20:38 | 127.0.0.1 - - [29/Mar/2023 16:20:38] "GET /static/styles.css HTTP/1.1" 200 -
+DEBUG | 29/03/2023 16:20:48 | Login route request
+INFO | 29/03/2023 16:20:48 | 127.0.0.1 - - [29/Mar/2023 16:20:48] "GET /login HTTP/1.1" 200 -
+INFO | 29/03/2023 16:20:48 | 127.0.0.1 - - [29/Mar/2023 16:20:48] "GET /static/styles.css HTTP/1.1" 200 -
+DEBUG | 29/03/2023 16:20:55 | Login route request
+INFO | 29/03/2023 16:20:55 | 127.0.0.1 - - [29/Mar/2023 16:20:55] "GET /login HTTP/1.1" 200 -
+INFO | 29/03/2023 16:20:55 | 127.0.0.1 - - [29/Mar/2023 16:20:55] "GET /static/styles.css HTTP/1.1" 200 -
+DEBUG | 29/03/2023 16:21:02 | Login route request
+INFO | 29/03/2023 16:21:02 | 127.0.0.1 - - [29/Mar/2023 16:21:02] "GET /login HTTP/1.1" 200 -
+INFO | 29/03/2023 16:21:02 | 127.0.0.1 - - [29/Mar/2023 16:21:02] "GET /static/styles.css HTTP/1.1" 200 -

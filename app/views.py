@@ -31,6 +31,7 @@ def delete_sessions():
     for key in list(session.keys()):
         session.pop(key)
 
+"""
 db.create_all()
 
 # Checks to see if the data has already been populated
@@ -117,6 +118,7 @@ if (aExists == None):
         today = today+timedelta(days=1)
 
     db.session.commit()
+"""
 
 @loginManager.user_loader
 def loadUser(userId):

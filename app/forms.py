@@ -16,6 +16,20 @@ def validateAge(form, field):
     if field.data > oldEnough:
         raise ValidationError("You are not old enough to register")
 
+# Ensure password contains capital letter and digit
+def passwordPolicy(form, field):
+    uppercase = False
+    lowercase = False
+    digit = False
+    for char in field.data:
+        if char.isupper():
+            uppercase = True
+        if char.islower():
+            lowercase = True
+        if char.isnumeric():
+            digit = True
+    if (uppercase != True) or (lowercase != True) or (digit != True) :
+        raise ValidationError("All passwords must contain an uppercase letter, a lowercase letter and a digit")
 
 # For the manager to add a new activity e.g. swimming
 # Can be used for editing and creating activities
@@ -45,7 +59,7 @@ class RegisterForm(FlaskForm):
     Name        = StringField('Name', validators=[DataRequired()], render_kw={"placeholder": "Name"})
     DateOfBirth = DateField('Date of birth', validators=[DataRequired(), validateAge], render_kw={"placeholder": "Date of Birth"})
     Email       = EmailField('Email', validators=[DataRequired()], render_kw={"placeholder": "Email"})
-    Password    = PasswordField('Password', validators=[DataRequired(), Length(min=8, message="Password must be 8 characters or more")], render_kw={"placeholder": "Password"})
+    Password    = PasswordField('Password', validators=[DataRequired(), Length(min=8, message="Password must be 8 characters or more"), passwordPolicy], render_kw={"placeholder": "Password"})
     ReenterPassword = PasswordField('Reenter Password', validators=[DataRequired(), 
                                                                     EqualTo('Password', message="Passwords must match" )],
                                                                     render_kw={"placeholder": "Reenter Password"})
@@ -59,7 +73,7 @@ class LoginForm(FlaskForm):
 class SettingsForm(FlaskForm):
     Name          = StringField('Name', render_kw={"placeholder": "Name"})
     Password      = PasswordField('Old Password', validators=[DataRequired()], render_kw={"placeholder": "Password"})
-    NewPassword   = PasswordField('New Password', validators=[Optional(), Length(min=8, message="Password must be 8 characters or more")], render_kw={"placeholder": "New Password"})
+    NewPassword   = PasswordField('New Password', validators=[Optional(), passwordPolicy, Length(min=8, message="Password must be 8 characters or more")], render_kw={"placeholder": "New Password"})
     NewPasswordx2 = PasswordField('Reenter New Password', validators=[EqualTo('NewPassword', message="Passwords must match")], render_kw={"placeholder": "Reenter New Password"})
 
 class ManagerForm(FlaskForm):

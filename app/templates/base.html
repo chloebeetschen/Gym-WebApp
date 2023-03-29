@@ -31,18 +31,17 @@
       <!-- Navbar with links to all pages -->
       <!-- *** ONLY SHOW FOR LOGGED IN USERS *** -->
       {% if current_user.is_authenticated %}
-      <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+      <nav class="navbar navbar-expand-sm nav-light">
         <!-- When we have users logged on, we can personalise navbar message for them here -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item"><a class="nav-link" href="{{ url_for('home') }}"> <img src="{{url_for('static', filename='images/home.png')}}" width="30" height="30" /><span class="sr-only">(current)</span></a></li>
-            <li class="nav-item"><a class="nav-link" href="/calendar"><img src="{{url_for('static', filename='images/calendar.png')}}" width="30" height="30" /></a></li>
-            <li class="nav-item"><a class="nav-link" href="/myBookings"><img src="{{url_for('static', filename='images/list-check.png')}}" width="30" height="30" /></a></li>
-            <li class="nav-item"><a class="nav-link" href="/memberships"><img src="{{url_for('static', filename='images/membership.png')}}" width="30" height="30" /></a></li>
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('home') }}"> <img src="{{url_for('static', filename='images/home.png')}}" width="30" height="30" alt="Home"> </a></li>
+            <li class="nav-item"><a class="nav-link" href="/calendar"><img src="{{url_for('static', filename='images/calendar.png')}}" width="30" height="30" alt="Calendar"></a></li>
+            <li class="nav-item"><a class="nav-link" href="/myBookings"><img src="{{url_for('static', filename='images/list-check.png')}}" width="30" height="30" alt="Bookings"></a></li>
             <!-- Only managers should have access to these pages -->
             {% if current_user.userType == 2 %}
             <li class="nav-item"><a class="nav-link" href="/manageUsers">Manage Users</a></li>
@@ -57,20 +56,10 @@
             {% endif %}
           </ul>
 
-          <ul class="nav navbar-nav navbar-right">
-            <li class="nav-item"><a class="nav-link" href="/pricingList"><img src="{{url_for('static', filename='images/list.png')}}" width="30" height="30" /></a></li>
-              
-            {% if (current_user.is_authenticated) %}
-              <li class="nav-item"><a class="nav-link" href="/basket"><img src="{{url_for('static', filename='images/shopping-cart.png')}}" width="30" height="30"/></a></li>
-              <li class="nav-item"><a class="nav-link" href="{{ url_for('settings') }}"><img src="{{url_for('static', filename='images/settings.png')}}" width="30" height="30" /></a></li>
-              <li class="nav-item"><a class="nav-link" href="/logout"><img src="{{url_for('static', filename='images/cross.png')}}" width="30" height="30" /></a></li>
-              
-            {% else  %}  
-
-              <li class="nav-item"><a class="nav-link" href="/login"><img src="{{url_for('static', filename='images/user.png')}}" width="30" height="30" />Login</a></li>
-              <li class="nav-item"><a class="nav-link" href="/register"><img src="{{url_for('static', filename='images/user-add.png')}}" width="30" height="30" />Register</a></li>
-
-            {% endif %} 
+          <ul class="nav navbar-nav ms-auto">
+              <li class="nav-item"><a class="nav-link" href="/basket"><img src="{{url_for('static', filename='images/basket-white.png')}}" width="30" height="30" alt="Basket"> </a></li>
+              <li class="nav-item"><a class="nav-link" href="{{ url_for('settings') }}"><img src="{{url_for('static', filename='images/settings.png')}}" width="30" height="30" alt="Settings"/> </a></li>
+              <li class="nav-item"><a class="nav-link" href="/logout"><img src="{{url_for('static', filename='images/cross.png')}}" width="30" height="30" alt="logout"/>  </a></li>
           </ul>
 
         </div>

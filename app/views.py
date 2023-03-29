@@ -139,9 +139,6 @@ def calendarMethod():
     weeks = [today, (today + timedelta(days=1)), (today + timedelta(days=2)), (today + timedelta(days=3)), (today + timedelta(days=4)), (today + timedelta(days=5)), (today + timedelta(days=6)), (today + timedelta(days=7)), (today + timedelta(days=8)), (today + timedelta(days=9)), (today + timedelta(days=10)), (today + timedelta(days=11)), (today + timedelta(days=12)), (today + timedelta(days=13))]
     #days of week integers, from today
     
-    #array for constant events
-    #dailyConstantEvents = ["Swimming (Lane Swimming)", "Swimming (General Use)", "Gym", "Swimming (Lessons)", "Squash", "Sports Hall (Session)", "Climbing"]
-    
     #calculation for making sure we only get 2 weeks of data
     w1 = datetime.now()+timedelta(days=7)
     w2 = datetime.now()+timedelta(days=14)
@@ -157,7 +154,12 @@ def calendarMethod():
     for i in events:
         eventInfo.append(Activity.query.filter_by(id=i.activityId).first())
         # For every event check if user has booked it
-        booked = UserBookings.query.filter_by(userId=current_user.id, calendarId=i.id).first()
+        if 'proxyBooking' in session :
+            for id in session['proxyBooking']:
+                booked = UserBookings.query.filter_by(userId=id, calendarId=i.id).first()
+        else:
+            booked = UserBookings.query.filter_by(userId=current_user.id, calendarId=i.id).first()
+        
         if booked is not None:   
             userBooked1.append(True)
         else:
@@ -169,16 +171,39 @@ def calendarMethod():
     for i in events2:
         eventInfo2.append(Activity.query.filter_by(id=i.activityId).first())
         # For every event check if user has booked it
-        booked = UserBookings.query.filter_by(userId=current_user.id, calendarId=i.id).first()
+        if 'proxyBooking' in session :
+            for id in session['proxyBooking']:
+                booked = UserBookings.query.filter_by(userId=id, calendarId=i.id).first()
+        else:
+            booked = UserBookings.query.filter_by(userId=current_user.id, calendarId=i.id).first()
         if booked is not None:
             userBooked2.append(True)
         else:
             userBooked2.append(False)
 
-    user = UserDetails.query.filter_by(id=current_user.id).first()
+    if 'proxyBooking' in session :
+        for id in session['proxyBooking']:
+            user = UserDetails.query.filter_by(id=id).first()
+    else:
+        user = UserDetails.query.filter_by(id=current_user.id).first()
 
-    
-    return render_template('calendar.html',
+    if 'proxyBooking' in session:
+        return render_template('calendar.html',
+                            title     = 'Calendar',
+                            numEvents = len(events),
+                            numEvents2 = len(events2),
+                            events    = events,
+                            eventInfo = eventInfo,
+                            events2    = events2,
+                            eventInfo2 = eventInfo2,
+                            isMember = True,   
+                            weeks     = weeks,
+                            userBooked1 = userBooked1,
+                            userBooked2 = userBooked2,
+                            proxyBooking = True
+                            )
+    else:
+        return render_template('calendar.html',
                             title     = 'Calendar',
                             numEvents = len(events),
                             numEvents2 = len(events2),
@@ -191,6 +216,13 @@ def calendarMethod():
                             userBooked1 = userBooked1,
                             userBooked2 = userBooked2
                             )
+
+@app.route('/calendar/<id>', methods=['GET', 'POST'])
+@login_required
+def proxyCustomerBooking(id):
+    logging.debug("Book for a customer request")
+    session['proxyBooking'] = [id]
+    return redirect('/calendar')
 
 #calendar of all repeat sessions
 @app.route('/repeatEvents/<id>', methods=['GET', 'POST'])
@@ -228,11 +260,19 @@ def makeBooking(id): # << id passed here is the calendar id (not user)
     eventType = Activity.query.get(event.activityId)
     
     #to update user bookings we need the user Id to be able to update for a specific user
-    newBooking = UserBookings(userId = current_user.id, calendarId = id)
+    if 'proxyBooking' in session:
+        for id in session['proxyBooking']:
+            newBooking = UserBookings(userId = id, calendarId = id)
+        flash('Proxy booking completed')
+        for key in list(session.keys()):
+            if key == 'proxyBooking':
+                session.pop(key)
+    else:
+        newBooking = UserBookings(userId = current_user.id, calendarId = id)
     #add and update db
     db.session.add(newBooking)
     db.session.commit()
-    return redirect('/myBookings')
+    return redirect('/home')
 
 
 # Add to basket button
@@ -491,7 +531,6 @@ def userBookings(id):
     return render_template('myBookings.html', title = 'Bookings', 
                             today=today, numEvents=len(bookings),
                             events = events, eventInfo = eventInfo)
-
 
 @app.route('/deleteBasket/<i>', methods=['GET'])
 @login_required

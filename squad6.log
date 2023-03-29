@@ -1230,3 +1230,23 @@ INFO | 29/03/2023 21:01:14 | 127.0.0.1 - - [29/Mar/2023 21:01:14] "GET /static/s
 DEBUG | 29/03/2023 21:01:28 | Settings route request
 INFO | 29/03/2023 21:01:28 | 127.0.0.1 - - [29/Mar/2023 21:01:28] "GET /settings HTTP/1.1" 200 -
 INFO | 29/03/2023 21:01:28 | 127.0.0.1 - - [29/Mar/2023 21:01:28] "GET /static/styles.css HTTP/1.1" 200 -
+INFO | 29/03/2023 21:08:44 | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO | 29/03/2023 21:08:44 | [33mPress CTRL+C to quit[0m
+INFO | 29/03/2023 21:08:44 |  * Restarting with stat
+WARNING | 29/03/2023 21:08:44 |  * Debugger is active!
+INFO | 29/03/2023 21:08:44 |  * Debugger PIN: 418-335-719
+INFO | 29/03/2023 21:08:48 | 127.0.0.1 - - [29/Mar/2023 21:08:48] "[32mGET /settings HTTP/1.1[0m" 302 -
+DEBUG | 29/03/2023 21:08:48 | Login route request
+INFO | 29/03/2023 21:08:48 | 127.0.0.1 - - [29/Mar/2023 21:08:48] "GET /login?next=%2Fsettings HTTP/1.1" 200 -
+INFO | 29/03/2023 21:08:48 | 127.0.0.1 - - [29/Mar/2023 21:08:48] "GET /static/styles.css HTTP/1.1" 200 -
+DEBUG | 29/03/2023 21:08:49 | Login route request
+INFO | 29/03/2023 21:08:49 | 127.0.0.1 - - [29/Mar/2023 21:08:49] "GET /login?next=%2Fsettings HTTP/1.1" 200 -
+INFO | 29/03/2023 21:08:49 | 127.0.0.1 - - [29/Mar/2023 21:08:49] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 29/03/2023 21:08:54 | Login route request
+INFO | 29/03/2023 21:08:54 | 127.0.0.1 - - [29/Mar/2023 21:08:54] "[32mPOST /login?next=%2Fsettings HTTP/1.1[0m" 302 -
+INFO | 29/03/2023 21:08:54 | 127.0.0.1 - - [29/Mar/2023 21:08:54] "GET /home HTTP/1.1" 200 -
+INFO | 29/03/2023 21:08:54 | 127.0.0.1 - - [29/Mar/2023 21:08:54] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 29/03/2023 21:09:08 | Settings route request
+INFO | 29/03/2023 21:09:08 | 127.0.0.1 - - [29/Mar/2023 21:09:08] "GET /settings HTTP/1.1" 200 -
+INFO | 29/03/2023 21:09:08 | 127.0.0.1 - - [29/Mar/2023 21:09:08] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -

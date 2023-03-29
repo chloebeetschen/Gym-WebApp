@@ -1,47 +1,105 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h1>Basket</h1>
-<br>
-<!-- If stuff in basket, display it -->
-{% if isItems %}
-    <table class="table">
-        {% for i in range (0, num) %}
-        <tr> 
-            <td>
-                {{ basketItems[i][0] }},
-            </td> 
-            <td>
-                {% if itemDiscount[i] %}
-                DISCOUNTED
-                {% endif %}
-                £{{ basketItems[i][1] }} 
-            </td>
-            <td>
-                <a href="/deleteBasket/{{i}}"><button class="btn btn-primary" class="btn">Delete</button></a>
-            </td>
+<div class="shopping-basket">
 
-    {% endfor %}
-   
-    </table>
-     <h2>Subtotal: £ {{ roundedTotal }}</h2>
+    <!-- Flashed messages -->
+    <div class="container-fluid p-0 m-0">
+    <div class="row">
+        <div class="col">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success text-center">
+                {{ message }}
+                </div>
+            {% endfor %}
+            {% endif %}
+        {% endwith %}
+        </div>
+    </div>
+    </div>
+
+    <div class="text-center font-weight-bold " id="central-header"> SHOPPING BASKET </div>
+    <div class="container mt-2 form-container rounded-4 p-4 box-shadow" id="basket-container">
+        <!-- <div class="row mb-3">
+            <div class="col border-bottom">
+                <h3 class="fw-normal">ITEM</h3>
+            </div>
+        </div>
+     -->
+        <!-- If stuff in basket, display it -->
+        {% if isItems %}
+        <div class="table-responsive">
+            <table class="table">
+                <tr>
+                    <th class="fw-bold"> ITEM </th>
+                    <th class="fw-bold text-end "> PRICE </th>
+                    <th class="fw-bold text-end"> REMOVE </th>
+                </tr>
+                {% for i in range (0, num) %}
+                <tr> 
+                    <td>
+                        {{ basketItems[i][0] }},
+                    </td> 
+                    <td class="text-end">                       
+                        {% if itemDiscount[i] %}
+                        DISCOUNTED
+                        {% endif %}
+                        £{{ basketItems[i][1] }} 
+                        
+                    </td>
+                    <td class="text-end">
+                        <a href="/deleteBasket/{{i}}"><button class="btn basket-button pb-0 pt-0" class="btn">X</button></a>
+
+                    </td>
+    
+            {% endfor %}
+        
+            </table>
+        </div>
+           
+        <div class="row">
+            <div class="col">
+                <h5>Total:</h5> 
+                £ {{ roundedTotal }}
+            </div>
+            
+    
+            <div class="col">
+                <form action="/checkout" method="post" class="text-end">
+                    <script 
+                        src="https://checkout.stripe.com/checkout.js"
+                        class="stripe-button payment-btn"
+                        data-key="{{ key }}"
+                        data-description="A Flask Charge"
+                        data-amount="{{ totalPrice * 100 }}"
+                        data-locale="auto">
+        
+                        
+                    </script>
+                    <script>
+                        // Hide default stripe button, be careful there if you
+                        // have more than 1 button of that class
+                        document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';
+                    </script>
+                    <button type="submit" class="btn payment-btn">Pay By Card</button>
+                </form>
+            </div>
 
 
-  <form action="/checkout" method="post">
-    <script 
-        src="https://checkout.stripe.com/checkout.js"
-        class="stripe-button"
-        data-key="{{ key }}"
-        data-description="A Flask Charge"
-        data-amount="{{ totalPrice * 100 }}"
-        data-locale="auto">
-    </script>
-  </form>
+        </div>
+        
+
+        {% else %}
+            <p> Please add something to your basket</p>
+        {% endif %}
+    
+    
 
 
-{% else %}
-    <p> Please add something to your basket</p>
-{% endif %}
 
+
+</div>
 
 {% endblock %}

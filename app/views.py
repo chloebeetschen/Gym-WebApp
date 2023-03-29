@@ -832,15 +832,24 @@ def settings():
 
 @app.route('/cancelMembership', methods=['GET', 'POST'])
 @login_required
+# Change user to not a member
 def cancelMembership():
     logging.debug("Cancel membership route request")
-    # Change user to not a member
-    usersDetails = UserDetails.query.get(current_user.id)
+    if 'proxyMembership' in session:
+        for uid in session['proxyMembership']:
+            usersDetails = models.UserDetails.query.get(uid)
+            flash('Membership cancelled by proxy')
+        for key in list(session.keys()):
+            if key == 'proxyMembership':
+                session.pop(key)
+    else:
+        usersDetails = UserDetails.query.get(current_user.id)
+        flash('Membership cancelled')
     usersDetails.isMember = False
     usersDetails.membershipEnd = datetime.now()
     db.session.commit()
     # Redirect back to memberships page
-    return redirect('/memberships')
+    return redirect('/home')
 
 
 @app.route('/pricingList', methods=['GET', 'POST'])
@@ -1055,7 +1064,11 @@ def deleteUser(id):
 def memberships():
     logging.debug("Memberships route request")
     # Check if user is a member
-    cUserDetails = models.UserDetails.query.get(current_user.id)
+    if 'proxyMembership' in session:
+        for uid in session['proxyMembership']:
+            cUserDetails = models.UserDetails.query.get(uid)
+    else:
+        cUserDetails = models.UserDetails.query.get(current_user.id)
     isMember = cUserDetails.isMember
 
     return render_template('memberships.html', isMember=isMember)
@@ -1066,15 +1079,29 @@ def memberships():
 @login_required
 def monthlyMembership():
     logging.debug("Monthly membership route request")
-    cUserDetails = models.UserDetails.query.get(current_user.id)
-    cUserDetails.isMember = False
-    today = datetime.now()
-    monthAhead = today + relativedelta(months=1)
-    cUserDetails.membershipEnd = monthAhead
-    session['membership'] = "monthly"
-    db.session.commit()
-    ##Test to see if working correctly
-    return redirect('/basket')
+    if 'proxyMembership' in session:
+        for uid in session['proxyMembership']:
+            cUserDetails = models.UserDetails.query.get(uid)
+            cUserDetails.isMember = True
+            today = datetime.now()
+            monthAhead = today + relativedelta(months=1)
+            cUserDetails.membershipEnd = monthAhead
+            db.session.commit()
+            flash('Added monthly membership by proxy')
+            for key in list(session.keys()):
+                if key == 'proxyMembership':
+                    session.pop(key)
+            return redirect('/home')
+    else:
+        cUserDetails = models.UserDetails.query.get(current_user.id)
+        cUserDetails.isMember = False
+        today = datetime.now()
+        monthAhead = today + relativedelta(months=1)
+        cUserDetails.membershipEnd = monthAhead
+        session['membership'] = "monthly"
+        db.session.commit()
+        ##Test to see if working correctly
+        return redirect('/basket')
 
 ## Adds the membership end to a year in the future
 ## Does not update isMember to be true as this is done after payment is completed
@@ -1082,16 +1109,28 @@ def monthlyMembership():
 @login_required
 def annualMembership():
     logging.debug("Annual membership route request")
-    cUserDetails = models.UserDetails.query.get(current_user.id)
-    cUserDetails.isMember = False
-    today = datetime.now()
-    yearAhead = today + relativedelta(years=1)
-    cUserDetails.membershipEnd = yearAhead
-    session['membership'] = "annual"
-   
-    db.session.commit()
-    ##Test to see if working correctly
-    return redirect('/basket')
+    if 'proxyMembership' in session:
+        for uid in session['proxyMembership']:
+            cUserDetails = models.UserDetails.query.get(uid)
+            cUserDetails.isMember = True
+            today = datetime.now()
+            yearAhead = today + relativedelta(years=1)
+            cUserDetails.membershipEnd = yearAhead
+            db.session.commit()
+            flash('Added yearly membership by proxy')
+            for key in list(session.keys()):
+                if key == 'proxyMembership':
+                    session.pop(key)
+            return redirect('/home')
+    else:
+        cUserDetails = models.UserDetails.query.get(current_user.id)
+        cUserDetails.isMember = False
+        today = datetime.now()
+        yearAhead = today + relativedelta(years=1)
+        cUserDetails.membershipEnd = yearAhead
+        session['membership'] = "annual" 
+        db.session.commit()
+        return redirect('/basket')
 
 
 ## search for a user
@@ -1117,7 +1156,7 @@ def searchResults(search):
     for i in users:
         if search.lower() in (i.email).lower():
             results.append(i)
-    
+
     for j in users2:
         if search.lower() in (j.name).lower():
             results.append(UserLogin.query.filter_by(id = j.id).first())
@@ -1131,5 +1170,14 @@ def searchResults(search):
             type = userSearch.userType
             if type == 3:
                 results.remove(user)
+            if type == 2:
+                results.remove(user)
+            
 
     return render_template('searches.html', title='Search Results', form = form, results = results, numUsers = len(results))
+
+@app.route('/proxyChangeMembership/<id>', methods=['GET', 'POST'])
+@login_required
+def proxyChangeMembership(id):
+    session['proxyMembership'] = [id]
+    return redirect('/memberships')

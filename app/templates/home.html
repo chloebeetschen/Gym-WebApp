@@ -62,17 +62,17 @@
       <p class="header">STUDIO</p>
       <p>Pick from a variety of studio classes.</p>
       <div class="time-info-body mt-4 ml-5">
-        PILATES <span class="price">$5</span>
+        PILATES <span class="price">£5</span>
         <ul class="time-info-list text-left">
           <li>Monday 6-7pm</li>
         </ul>
-        AEROBICS <span class="price">$5</span>
+        AEROBICS <span class="price">£5</span>
         <ul class="time-info-list text-left">
           <li>Tuesday 10-11am</li>
           <li>Thursday 7-8pm</li>
           <li>Saturday 10-11am</li>
         </ul>
-        YOGA <span class="price">$5</span>
+        YOGA <span class="price">£5</span>
         <ul class="time-info-list text-left">
           <li>Friday 7-8pm</li>
           <li>Sunday 9-10am</li>
@@ -84,12 +84,12 @@
       <p class="header">TEAM</p>
       <p>Get access to our facilities for 2 hour private team sessions.</p>
       <div class="time-info-body mt-4 ml-5">
-        SPORTS HALL <span class="price">$60</span>
+        SPORTS HALL <span class="price">£60</span>
         <ul class="time-info-list text-left">
           <li>Thursday 7-9pm</li>
           <li>Saturday 9-11am</li>
         </ul>
-        SWIMMING POOL <span class="price">$80</span>
+        SWIMMING POOL <span class="price">£80</span>
         <ul class="time-info-list text-left">
           <li>Friday 8-10am</li>
           <li>Sunday 8-10am</li>
@@ -100,28 +100,49 @@
       <p class="header">INDIVIDUAL</p>
       <p>Facilities can be booked by the hour.</p>
       <div class="time-info-body mt-4 ml-5">
-        SWIMMING POOL <span class="price">$5</span>
+        SWIMMING POOL <span class="price">£5</span>
         <ul class="time-info-list text-left">
           <li>8am - 8pm</li>
         </ul>
-        SPORTS HALL <span class="price">$5</span>
+        SPORTS HALL <span class="price">£5</span>
         <ul class="time-info-list text-left">
           <li>8am - 10pm</li>
         </ul>
-        FITNESS ROOM <span class="price">$5</span>
+        FITNESS ROOM <span class="price">£5</span>
         <ul class="time-info-list text-left">
           <li>8am - 8pm</li>
         </ul>
-        SQUASH COURT <span class="price">$10</span>
+        SQUASH COURT <span class="price">£10</span>
         <ul class="time-info-list text-left">
           <li>8am - 10pm</li>
         </ul>
-        CLIMBING WALL <span class="price">$5</span>
+        CLIMBING WALL <span class="price">£5</span>
         <ul class="time-info-list text-left">
           <li>10am - 8pm</li>
         </ul>
       </div> 
     </div>
   </div>
+
 </div>
+
+{% if current_user.is_authenticated %}
+<div class="membership-container justify-content-evenly">
+  <div class="row text-center">
+    <p class="header mt-3">BUY A MEMBERSHIP TODAY</p>
+  </div>
+
+
+  <div class="row text-center">
+    <div class="col membership-info">
+      <p class="second-header">Annual Membership: £300</p>
+      <a href="/memberships/annual"><button type="button" class="btn btn-secondary">Purchase</button></a>
+    </div>
+    <div class="col membership-info">
+      <p class="second-header">Monthly Membership: £35</p>
+      <a href="/memberships/monthly"><button type="button" class="btn btn-secondary">Purchase</button></a>
+    </div>
+  </div>
+</div>
+{% endif %}
 {% endblock %}

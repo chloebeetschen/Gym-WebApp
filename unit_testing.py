@@ -248,10 +248,9 @@ class TestCase(unittest.TestCase):
                 print(14)
 
 
-    #this test is failing 
     #check privileges - a customer of type1 that is logged in should not be able to access pages for userType 3 accounts
     #testing that an exisiting user can log in 
-    def test_user_privilege(self):
+    def test_user_privilege1(self):
         #using the login details of an already registered user
         response = self.app.get(('/login'), follow_redirects = True)
         self.assertEqual(response.status_code, 200)
@@ -270,8 +269,107 @@ class TestCase(unittest.TestCase):
         
                 #the user tries to access the manager page analysis
                 response = self.app.get('/editEvent')
-                #404 = page does not exist
+                #404 = page does not exist becuase no event id has been passed in 
                 self.assertEqual(response.status_code, 404)
                 print(15)
+    
+    #the same as previous test but for other manager only pages 
+    def test_user_privilege2(self):
+        #using the login details of an already registered user
+        response = self.app.get(('/login'), follow_redirects = True)
+        self.assertEqual(response.status_code, 200)
+        with app.test_request_context():
+            with app.app_context():
+
+                data = {
+                    'Email' : 'aaditi@gmail.com',
+                    'Password' : 'MichaelScott1',
+                }
+
+                form = LoginForm(data=data)
+                self.assertTrue(form.validate())
+                response = self.app.post('/login', data=form.data, follow_redirects = True)
+                self.assertEqual(response.status_code, 200)
+        
+                #the user tries to access the manager page analysis
+                response = self.app.get('/manageUsers')
+                #302 = the user is redirected 
+                self.assertEqual(response.status_code, 302)
+                print(20)
+
+
+    #the same as previous test but for other manager only pages 
+    def test_user_privilege3(self):
+        #using the login details of an already registered user
+        response = self.app.get(('/login'), follow_redirects = True)
+        self.assertEqual(response.status_code, 200)
+        with app.test_request_context():
+            with app.app_context():
+
+                data = {
+                    'Email' : 'aaditi@gmail.com',
+                    'Password' : 'MichaelScott1',
+                }
+
+                form = LoginForm(data=data)
+                self.assertTrue(form.validate())
+                response = self.app.post('/login', data=form.data, follow_redirects = True)
+                self.assertEqual(response.status_code, 200)
+        
+                #the user tries to access the manager page analysis
+                response = self.app.get('/editUser')
+                #404 = page does not exist because no userID passed to html
+                self.assertEqual(response.status_code, 404)
+                print(21)
+
+
+    #the same as previous test but for other manager only pages 
+    def test_user_privilege4(self):
+        #using the login details of an already registered user
+        response = self.app.get(('/login'), follow_redirects = True)
+        self.assertEqual(response.status_code, 200)
+        with app.test_request_context():
+            with app.app_context():
+
+                data = {
+                    'Email' : 'aaditi@gmail.com',
+                    'Password' : 'MichaelScott1',
+                }
+
+                form = LoginForm(data=data)
+                self.assertTrue(form.validate())
+                response = self.app.post('/login', data=form.data, follow_redirects = True)
+                self.assertEqual(response.status_code, 200)
+        
+                #the user tries to access the manager page analysis
+                response = self.app.get('/analysis')
+                #302 = the user is redirected 
+                self.assertEqual(response.status_code, 302)
+                print(22)
+
+    #the same as previous test but for other manager only pages 
+    def test_user_privilege5(self):
+        #using the login details of an already registered user
+        response = self.app.get(('/login'), follow_redirects = True)
+        self.assertEqual(response.status_code, 200)
+        with app.test_request_context():
+            with app.app_context():
+
+                data = {
+                    'Email' : 'aaditi@gmail.com',
+                    'Password' : 'MichaelScott1',
+                }
+
+                form = LoginForm(data=data)
+                self.assertTrue(form.validate())
+                response = self.app.post('/login', data=form.data, follow_redirects = True)
+                self.assertEqual(response.status_code, 200)
+        
+                #the user tries to access the manager page analysis
+                response = self.app.get('/editActivity')
+                #302 = the user is redirected 
+                self.assertEqual(response.status_code, 302)
+                print(23)
+
 
 

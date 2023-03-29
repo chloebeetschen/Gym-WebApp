@@ -738,7 +738,6 @@ def register():
         db.session.add(newUser)
         db.session.add(newUserDetails)
         db.session.commit()
-        flash("Created new account")
         return redirect(url_for('login'))
 
     return render_template('register.html', form=form, title="Register")

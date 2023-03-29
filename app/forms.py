@@ -49,7 +49,6 @@ class RegisterForm(FlaskForm):
     ReenterPassword = PasswordField('Reenter Password', validators=[DataRequired(), 
                                                                     EqualTo('Password', message="Passwords must match" )],
                                                                     render_kw={"placeholder": "Reenter Password"})
-    Type        = IntegerField('Type', validators=[DataRequired(), NumberRange(min=1, max=3)], render_kw={"placeholder": "Type"})
 
 
 class LoginForm(FlaskForm):

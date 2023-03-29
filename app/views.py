@@ -31,6 +31,7 @@ def delete_sessions():
     for key in list(session.keys()):
         session.pop(key)
 
+"""
 db.create_all()
 
 # Checks to see if the data has already been populated
@@ -117,6 +118,7 @@ if (aExists == None):
         today = today+timedelta(days=1)
 
     db.session.commit()
+"""
 
 @loginManager.user_loader
 def loadUser(userId):
@@ -124,7 +126,6 @@ def loadUser(userId):
     
 
 @app.route('/')
-@login_required
 def index():
     return redirect(url_for('home'))
 
@@ -690,7 +691,7 @@ def login():
             else:
                 flash("Incorrect username/password. Please try again.")
 
-    return render_template('login.html', form=form)
+    return render_template('login.html', form=form, title='Login')
 
 @app.route('/logout', methods=['GET', 'POST'])
 @login_required
@@ -720,14 +721,13 @@ def register():
         dob     = form.DateOfBirth.data
         Email   = form.Email.data
 
-        
         hashedPassword = bcrypt.generate_password_hash(form.Password.data)
 
         # Create new user and details
         # users that register are automatically set to 1
         newUser = models.UserLogin(email=Email,
                                    password=hashedPassword,
-                                   userType=form.Type.data)
+                                   userType=1)
 
         newUserDetails = models.UserDetails(name=Name,
                                             dateOfBirth=dob,

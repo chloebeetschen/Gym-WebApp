@@ -8,9 +8,29 @@
         <form action="" method="post">
             {{ form.hidden_tag() }}
             <p>{{ form.Name(class_='form-control') }}</p>
+            {% for error in form.Name.errors %}
+            <div class="alert alert-danger" role="alert">
+              {{ error }}
+            </div>
+            {% endfor %}
             <p>{{ form.Password(class_='form-control') }}</p>
+            {% for error in form.Password.errors %}
+            <div class="alert alert-danger" role="alert">
+              {{ error }}
+            </div>
+            {% endfor %}
             <p>{{ form.NewPassword(class_='form-control') }}</p>
+            {% for error in form.NewPassword.errors %}
+            <div class="alert alert-danger" role="alert">
+              {{ error }}
+            </div>
+            {% endfor %}
             <p>{{ form.NewPasswordx2(class_='form-control') }}</p>
+            {% for error in form.NewPasswordx2.errors %}
+            <div class="alert alert-danger" role="alert">
+              {{ error }}
+            </div>
+            {% endfor %}
             
             <input type="submit" value="Submit">
         </form>

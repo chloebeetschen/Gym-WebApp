@@ -3,15 +3,14 @@
 
 {% block content %}
 <!--Basic Header-->
-<h1>My Bookings</h1>
+<h1>Bookings</h1>
 
 <!--Basic table to hold booking information of a user-->
 <table class="table">
     <thead>
         <tr>
             <th>Activity</th>
-            <th>Date</th>
-            <th>Time</th>
+            <th>Date and Time</th>
             <th>Duration</th>
             <th>Location</th>
             <th>Staff Member</th>
@@ -23,7 +22,6 @@
             <tr>
                 <!--display event and event info in the tables-->
                 <td>{{eventInfo[i].activityType}}</td>
-                <td>{{events[i].aDateTime}}</td>
                 <td>{{events[i].aDateTime}}</td>
                 <td>{{events[i].aDuration}} hrs</td>
                 <td>{{events[i].aLocation}}</td>

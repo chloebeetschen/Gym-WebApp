@@ -1,13 +1,19 @@
 from app import db
 from flask_login import UserMixin
-from sqlalchemy.orm import validates
+from sqlalchemy.orm import validates, load_only
 from datetime import *
+
 
 class Activity(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    activityType = db.Column(db.String(250), unique=True, nullable=False)
+    activityType = db.Column(db.String(250), nullable=False)
     # foreign key for activity table
     calendarEvents = db.relationship('Calendar', backref='activity')
+
+    @staticmethod
+    def create(activityType): 
+        db.session.add(Activity(activityType))
+        db.session.commit()
 
 
 class Calendar(db.Model):
@@ -20,6 +26,8 @@ class Calendar(db.Model):
     aCapacity  = db.Column(db.Integer, nullable=False)
     #this is the number of people signed up to the activity, which will need to be incremented
     aSlotsTaken = db.Column(db.Integer, nullable=False)
+    #is it a daily repeated event?
+    aIsRepeat  = db.Column(db.Boolean, nullable=False)
     # Relationship with Activity
     activityId = db.Column(db.Integer, db.ForeignKey('activity.id'), nullable=False)
     # Relationship with user bookings
@@ -51,6 +59,7 @@ class Calendar(db.Model):
         return Calendar
 
 
+
 class UserBookings(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     
@@ -60,15 +69,6 @@ class UserBookings(db.Model):
     userId = db.Column(db.Integer, db.ForeignKey('user_login.id'))
     calendarId = db.Column(db.Integer, db.ForeignKey('calendar.id'))
 
-
-
-# table to store payment cards
-class PaymentCard(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    cardName = db.Column(db.String(100))
-    cardNum = db.Column(db.Integer)
-    cardCVV = db.Column(db.Integer)
-    cardExpDate = db.Column(db.Date)
  
 # Login details
 class UserLogin(db.Model, UserMixin):

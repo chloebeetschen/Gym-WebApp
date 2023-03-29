@@ -20,8 +20,8 @@
     </div>
     </div>
 
-    <div class="text-center font-weight-bold mt-3 p-4 " id="central-header"> SHOPPING BASKET </div>
-    <div class="container mt-2 form-container rounded-4 p-4 box-shadow" id="basket-container">
+    <div class="text-center font-weight-bold mt-3 p-4 central-header" id="central-header"> SHOPPING BASKET </div>
+    <div class="container mt-2 basket-container rounded-4 p-4 box-shadow">
         <!-- <div class="row mb-3">
             <div class="col border-bottom">
                 <h3 class="fw-normal">ITEM</h3>
@@ -31,7 +31,7 @@
         <!-- If stuff in basket, display it -->
         {% if isItems %}
         <div class="table-responsive">
-            <table class="table">
+            <table class="table basket-table">
                 <tr>
                     <th class="fw-bold"> ITEM </th>
                     <th class="fw-bold text-end "> PRICE </th>

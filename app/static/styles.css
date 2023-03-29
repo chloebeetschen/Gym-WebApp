@@ -31,6 +31,15 @@ html, body {
     height: 100%;
 }
 
+.settings-container {
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to bottom, #051e46, #194578);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .title-text-container {
     display: flex;
     justify-content: end;
@@ -99,11 +108,14 @@ html, body {
 
 .box-shadow {
     box-shadow: 0px 0px 20px 1px rgb(30, 30, 30);    
+    box-shadow: 0px 0px 20px 1px rgb(30, 30, 30);    
 }
 
-.form-container {
+.login-reg-form-container {
     width: 100% !important;
     max-width: 750px !important;
+    background-color: var(--background-light);
+    opacity: 90%;
 }
 
 .btn-primary {
@@ -132,15 +144,6 @@ html, body {
     padding: 0;
 }
 
-.shopping-basket {
-    width: 100%;
-    height: 100%;
-    background-color: #7c9cb6;
-    background-size: cover;
-    background-position: center;
-    z-index: -900;
-    padding: 0; 
-}
 .facilities-container {
     background-color: var(--background-medium);
     padding: 8vw;
@@ -207,6 +210,13 @@ img {
     padding: 3vw;
 }
 
+.register-container {
+}
+
+.form-control {
+    border-radius: 22px !important;
+}
+
 .time-header {
     text-decoration: underline;
 }
@@ -236,20 +246,16 @@ img {
     margin-bottom: 3vh;
 }
 
-#central-header {
-    font-size: 2.8vw;
-    font-weight: bold;
-    padding-top: 20px;
+li a i {
+    font-size: 2vw;
+    padding-right: 0.2vw;
 }
 
-#basket-container {
-    background-color: #4b7da6;
+li a i:hover {
+    color: var(--btn-color);
+
 }
 
-.table {
-    width: 100%;
-    font-size: 25px;
-}
 
 .basket-button {
     background-color: #1a5189;
@@ -271,4 +277,26 @@ img {
 .payment-btn {
     background-color: var(--background-dark) !important;
     color: #ffffff;
+}
+
+.navbar-nav {
+    padding-left: 1vw;
+    padding-right: 1vw;
+}
+
+.navbar {
+    border-bottom: 2px solid var(--btn-color);
+}
+
+.login-reg-bg {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    background: url(https://img.freepik.com/free-photo/young-woman-blue-shirt-playing-tennis-she-hits-ball-with-racket_155003-30153.jpg?w=1480&t=st=1680102201~exp=1680102801~hmac=dc24670c4167f419974aac2c0c18ba191ed0e01c196ac30517cdd47502c3e503);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }

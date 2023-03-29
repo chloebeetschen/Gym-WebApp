@@ -20,7 +20,7 @@
     </div>
     </div>
 
-    <div class="text-center font-weight-bold " id="central-header"> SHOPPING BASKET </div>
+    <div class="text-center font-weight-bold mt-3 p-4 " id="central-header"> SHOPPING BASKET </div>
     <div class="container mt-2 form-container rounded-4 p-4 box-shadow" id="basket-container">
         <!-- <div class="row mb-3">
             <div class="col border-bottom">
@@ -43,9 +43,7 @@
                         {{ basketItems[i][0] }},
                     </td> 
                     <td class="text-end">                       
-                        {% if itemDiscount[i] %}
-                        DISCOUNTED
-                        {% endif %}
+
                         £{{ basketItems[i][1] }} 
                         
                     </td>
@@ -59,10 +57,15 @@
             </table>
         </div>
            
-        <div class="row">
+        <div class="row align-items-center">
             <div class="col">
-                <h5>Total:</h5> 
-                £ {{ roundedTotal }}
+                <div class="m-2 p-2 ">
+
+                    <h5 >Discounts: -£{{ roundedDiscount }}</h5> 
+                    <h4 class="fw-bold">Total: £{{ roundedTotal }}</h4> 
+                   
+                </div>
+
             </div>
             
     
@@ -83,7 +86,7 @@
                         // have more than 1 button of that class
                         document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';
                     </script>
-                    <button type="submit" class="btn payment-btn">Pay By Card</button>
+                    <button type="submit" class="btn payment-btn p-3 m-2">Pay By Card</button>
                 </form>
             </div>
 
@@ -92,7 +95,7 @@
         
 
         {% else %}
-            <p> Please add something to your basket</p>
+            <h3 class="text-center"> Please add something to your basket</h3>
         {% endif %}
     
     

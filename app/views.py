@@ -265,7 +265,7 @@ def basket():
     isItems = False
     basketItems = []
     itemNames = []
-    itemDiscount = []
+    itemDiscounts = 0
     totalPrice=0
     session['basketIds'] = []
 
@@ -321,13 +321,13 @@ def basket():
                 itemPrice = item.aPrice
             totalPrice += itemPrice
             roundedPrice = "%0.2f" % itemPrice
+            itemDiscounts += (item.aPrice - itemPrice)
 
             session['basketIds'].append(itemId)
             itemActivity = Activity.query.get(item.activityId)
             name = itemActivity.activityType
             nameDate = name + ", " + (item.aDateTime).strftime("%d/%m, %H:%M")
             basketItems.append((nameDate, roundedPrice))
-            itemDiscount.append(discount)
 
     if 'membership' in session:
         isItems = True
@@ -342,10 +342,11 @@ def basket():
     session['basketTotal'] = totalPrice
     # String formatting for total 2 d.p
     roundedTotal = "%0.2f" % totalPrice
+    roundedDiscount = "%0.2f" % itemDiscounts
     return render_template('basket.html', title='Basket', isItems=isItems,
                             basketItems=basketItems, num=len(basketItems),
                             roundedTotal=roundedTotal, totalPrice = totalPrice,
-                            itemDiscount=itemDiscount, key=stripe_keys['publicKey'])
+                            roundedDiscount=roundedDiscount, key=stripe_keys['publicKey'])
 
 @app.route('/checkout', methods=['POST'])
 @login_required

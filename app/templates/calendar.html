@@ -2,16 +2,33 @@
 {% extends "base.html" %}
 {% block content %}
 
+<!-- Flashed messages -->
+<div class="container-fluid p-0 m-0">
+    <div class="row">
+        <div class="col">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success text-center">
+                {{ message }}
+                </div>
+            {% endfor %}
+            {% endif %}
+        {% endwith %}
+        </div>
+    </div>
+</div>
+
 <!--Basic Header-->
 <h1>Calendar</h1>
 <h2>If you would like to book one of our sessions that is open all day please choose from below.</h2>
-<a href="/repeatEvents/2"><button type="button" class="btns">Lane Swimming</button></a>
-<a href="/repeatEvents/4"><button type="button" class="btns">General Use Swimming</button></a>
-<a href="/repeatEvents/3"><button type="button" class="btns">Swimming Lessons</button></a>
-<a href="/repeatEvents/5"><button type="button" class="btns">Gym</button></a>
-<a href="/repeatEvents/7"><button type="button" class="btns">Climbing</button></a>
-<a href="/repeatEvents/6"><button type="button" class="btns">Squash</button></a>
-<a href="/repeatEvents/12"><button type="button" class="btns">Sports Hall Session</button></a>
+<a href="/repeatEvents/2"><button type="button" class="btn btn-primary">Lane Swimming</button></a>
+<a href="/repeatEvents/4"><button type="button" class="btn btn-primary">General Use Swimming</button></a>
+<a href="/repeatEvents/3"><button type="button" class="btn btn-primary">Swimming Lessons</button></a>
+<a href="/repeatEvents/5"><button type="button" class="btn btn-primary">Gym</button></a>
+<a href="/repeatEvents/7"><button type="button" class="btn btn-primary">Climbing</button></a>
+<a href="/repeatEvents/6"><button type="button" class="btn btn-primary">Squash</button></a>
+<a href="/repeatEvents/12"><button type="button" class="btn btn-primary">Sports Hall Session</button></a>
 
 
 <!--Basic table to hold calendar information-->
@@ -56,19 +73,21 @@
                                         <td><a href=""><button type="button" class="btn btn-primary">Event Info</button></td>
                                     {% endif %}
                                     <!--If statement to see if acitivity is full and whether or not to dispay bookable button-->
-                                    <td>
-                                        {% if userBooked1[i]==True %}
-                                            <a href=""></a><button type="button" class="btn btn-primary" id="disabled">Booked</button></a>
-                                        {% elif events[i].aSlotsTaken == events[i].aCapacity %}
-                                            <a href=""></a><button type="button" class="btn btn-primary" id="disabled">Full</button></a>
-                                        {% else %}
-                                            {% if isMember == False %}
-                                                <a href="/addBasket/{{events[i].id}}"><button type="button" class="btn btn-primary">Add to Basket</button>
-                                            {% else %}    
-                                                <a href="/makeBooking/{{events[i].id}}"><button type="button" class="btn btn-primary">Book</button>
+                                    {% if current_user.userType != 3 %}
+                                        <td>
+                                            {% if userBooked1[i]==True %}
+                                                <a href=""></a><button type="button" class="btn btn-primary" id="disabled">Booked</button></a>
+                                            {% elif events[i].aSlotsTaken == events[i].aCapacity %}
+                                                <a href=""></a><button type="button" class="btn btn-primary" id="disabled">Full</button></a>
+                                            {% else %}
+                                                {% if isMember == False %}
+                                                    <a href="/addBasket/{{events[i].id}}"><button type="button" class="btn btn-primary">Add to Basket</button>
+                                                {% else %}    
+                                                    <a href="/makeBooking/{{events[i].id}}"><button type="button" class="btn btn-primary">Book</button>
+                                                {% endif %}
                                             {% endif %}
-                                        {% endif %}
-                                    </td>
+                                        </td>
+                                    {% endif %}
                                 </tr>
                             {% endif %}
                         {% endfor %}
@@ -109,19 +128,21 @@
                                         <td><a href=""><button type="button" class="btn btn-primary">Event Info</button></td>
                                     {% endif %}
                                     <!--If statement to see if acitivity is full and whether or not to dispay bookable button-->
-                                    <td>
-                                        {% if userBooked2[i]==True %}
-                                            <a href=""></a><button type="button" class="btn btn-primary" id="disabled">Booked</button></a>
-                                        {% elif events[i].aSlotsTaken == events[i].aCapacity %}
-                                            <a href=""></a><button type="button" class="btn btn-primary" id="disabled">Full</button></a>
-                                        {% else %}
-                                            {% if isMember == False %}
-                                                <a href="/addBasket/{{events2[i].id}}"><button type="button" class="btn btn-primary">Add to Basket</button>
-                                            {% else %}    
-                                                <a href="/makeBooking/{{events2[i].id}}"><button type="button" class="btn btn-primary">Book</button>
+                                    {% if current_user.userType != 3 %}
+                                        <td>
+                                            {% if userBooked2[i]==True %}
+                                                <a href=""></a><button type="button" class="btn btn-primary" id="disabled">Booked</button></a>
+                                            {% elif events[i].aSlotsTaken == events[i].aCapacity %}
+                                                <a href=""></a><button type="button" class="btn btn-primary" id="disabled">Full</button></a>
+                                            {% else %}
+                                                {% if isMember == False %}
+                                                    <a href="/addBasket/{{events2[i].id}}"><button type="button" class="btn btn-primary">Add to Basket</button>
+                                                {% else %}    
+                                                    <a href="/makeBooking/{{events2[i].id}}"><button type="button" class="btn btn-primary">Book</button>
+                                                {% endif %}
                                             {% endif %}
-                                        {% endif %}
-                                    </td>
+                                        </td>
+                                    {% endif %}
                                 </tr>
                             {% endif %}
                         {% endfor %}

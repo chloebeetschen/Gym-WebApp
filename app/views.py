@@ -687,7 +687,10 @@ def login():
             # Check the password hash against the stored hashed password
             if bcrypt.check_password_hash(user.password, form.Password.data):
                 login_user(user)
-                return redirect(url_for('home'))
+                if user.userType != 3:
+                    return redirect(url_for('home'))
+                else:
+                    return redirect('/calendar')
             else:
                 flash("Incorrect username/password. Please try again.")
 
@@ -746,6 +749,9 @@ def register():
 
 @app.route('/home', methods=['GET', 'POST'])
 def home():
+    if current_user.is_authenticated:
+        if current_user.userType == 3:
+            return redirect('/calendar')
     return render_template('home.html', title='Home',
                             logged=current_user.is_authenticated)
 
@@ -996,9 +1002,8 @@ def deleteUser(id):
     db.session.commit()
     flash('User deleted')
         
-    return render_template('home.html',
-                            title='Home')
-
+    return redirect('/calendar')
+    
 ## Renders the memberships page with two options: annual and monthly
 @app.route('/memberships', methods=['GET', 'POST'])
 @login_required

@@ -31,12 +31,15 @@
                 [{{ error }}]
               </div>
             {% endfor %}
+
+            {% if currentUserType == 3 %}
             <p>{{ form.Type(class_='form-control') }}</p>
             {% for error in form.Type.errors %}
             <div class="alert alert-danger" role="alert">
                 [{{ error }}]
               </div>
             {% endfor %}
+            {% endif %}
 
             
             <input type="submit" value="Submit">

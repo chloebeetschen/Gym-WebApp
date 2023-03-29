@@ -32,6 +32,8 @@ def delete_sessions():
         session.pop(key)
 
 db.create_all()
+
+# Checks to see if the data has already been populated
 aExists = Activity.query.filter_by(activityType="Swimming (Team Events)").first()
 
 if (aExists == None):
@@ -937,6 +939,8 @@ def editUser(id):
     if current_user.userType == 1:
         return redirect('/home')
 
+    currentUserType = current_user.userType
+
     form = ManagerForm()
     if form.validate_on_submit():
         # Update the user's details
@@ -959,7 +963,8 @@ def editUser(id):
     return render_template('editUser.html',
                             title='Edit User',
                             form=form,
-                            user=id)
+                            user=id,
+                            currentUserType=currentUserType)
 
 ## Deletes a user's userlogin, userdetails, userbookings and decreases the slots taken for the calender events
 @app.route('/deleteUser/<id>', methods=['GET', 'POST'])

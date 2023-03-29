@@ -37,7 +37,7 @@ html, body {
     color: white;
     position: absolute;
     width: 100%;
-    top: 28%;
+    top: 25%;
     flex-wrap: wrap;
 }
 
@@ -47,7 +47,7 @@ html, body {
 
 .push-pull {
     font-family: 'Oswald', sans-serif;
-    font-size: 9rem;
+    font-size: 8vw;
     background-color: #ff0099;
     width: auto;
     height: auto;
@@ -61,7 +61,7 @@ html, body {
     background-color: #498fb8;
     width: auto;
     height: auto;
-    font-size: 4rem;
+    font-size: 4.5vw;
     opacity: 75%;
     font-family: 'Montserrat', sans-serif;
     padding: 0 11rem 0 3rem;
@@ -88,11 +88,11 @@ html, body {
 }
 
 .bi-arrow-down {
-    font-size: 5rem;
+    font-size: 5vw;
 }
 
 #facilities {
-    font-size: 3.2rem;
+    font-size: 2.8vw;
     font-weight: bold;
 }
 
@@ -125,7 +125,7 @@ html, body {
 .landing-page {
     width: 100%;
     height: 100%;
-    background: url('../static/homepageImg.jpg');
+    background: url('https://img.freepik.com/free-photo/portrait-young-spotive-girl-doing-exercises-with-rope-keeping-body-fit-isolated-blue-background-neon_155003-45631.jpg?w=1480&t=st=1680043756~exp=1680044356~hmac=6c9b060796b1c0e5c73d2b272b501c56cd66f34e81bf9e8061095feaad811b5c');
     background-size: cover;
     background-position: center;
     z-index: -900;
@@ -134,7 +134,7 @@ html, body {
 
 .facilities-container {
     background-color: var(--background-medium);
-    padding: 10rem;
+    padding: 8vw;
     margin: 0 !important;
 }
 
@@ -177,6 +177,7 @@ img {
 
 .time-info {
     text-align: center;
+<<<<<<< HEAD
     font-size: 1.3vw;
     background-color: var(--background-light);
     padding-top: 1vw;
@@ -198,4 +199,7 @@ img {
 
 .time-info-list {
     margin-bottom: 3vh;
+=======
+    font-size: 1.5rem;
+>>>>>>> 9a027007e84b06f4408674f4d0a9d63ccc923a87
 }

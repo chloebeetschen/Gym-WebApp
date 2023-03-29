@@ -74,3 +74,6 @@ class AnalysisForm(FlaskForm):
     #need to add some type of validation here: latest date chosen can be 7 days prior to todays date
     DateOf    = DateField('Date', format='%Y-%m-%d', validators=[DataRequired(message="Please enter a Date")], render_kw={"placeholder": "Date of activity"})
     Facility    = StringField("Facility", render_kw={"placeholder": "Facility"}) 
+
+class DiscountForm(FlaskForm):
+    DiscountAmount = IntegerField('Discount', validators=[DataRequired(message="Enter a discount amount")], render_kw={"placeholder": "Amount"})

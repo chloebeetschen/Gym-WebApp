@@ -25,13 +25,18 @@ loginManager = LoginManager()
 loginManager.init_app(app)
 loginManager.login_view = "login"
 
-
 @app.before_first_request
 def delete_sessions():
     for key in list(session.keys()):
         session.pop(key)
 
 db.create_all()
+
+aDiscountExists = models.DiscountAmount.query.filter_by(discountAmount=15).first()
+if (aDiscountExists == None):
+    amount = models.DiscountAmount(discountAmount=15)
+    db.session.add(amount)
+    db.session.commit()
 
 # Checks to see if the data has already been populated
 aExists = Activity.query.filter_by(activityType="Swimming (Team Events)").first()
@@ -142,11 +147,26 @@ if (aExists == None):
 def loadUser(userId):
     return models.UserLogin.query.get(int(userId))
     
-
 @app.route('/')
 @login_required
 def index():
     return redirect(url_for('home'))
+
+@app.route('/changeDiscount', methods=['GET', 'POST'])
+@login_required
+def changeDiscount():
+    form = DiscountForm()
+    if form.validate_on_submit():
+        oldAmount = models.DiscountAmount.query.all()
+        for amounts in oldAmount:
+            db.session.delete(amounts)
+            db.session.commit()
+        amount = models.DiscountAmount(discountAmount=form.DiscountAmount.data)
+        db.session.add(amount)
+        db.session.commit()
+        flash('Added new discount.')
+        return redirect('/home')   
+    return render_template('changeDiscount.html', form=form)
 
 
 # Calendar of all sessions
@@ -376,7 +396,9 @@ def basket():
                     discount = True
             # Change item price depending on discocunt
             if discount == True:
-                itemPrice = item.aPrice * 0.85
+                amount = DiscountAmount.query.first()
+                amountToDiscount = (100 - amount.discountAmount)/100
+                itemPrice = item.aPrice * amountToDiscount
             else:
                 itemPrice = item.aPrice
             totalPrice += itemPrice
@@ -779,10 +801,8 @@ def logout():
 def register():
     logging.debug("Register route request")
     form = RegisterForm()
-    print('Yo')
 
     if form.validate_on_submit():
-        print('Hey')
         # Check that the email hasn't been used already.
         usedEmail = models.UserLogin.query.filter_by(email=form.Email.data).first()
         if usedEmail:

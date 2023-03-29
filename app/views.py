@@ -298,22 +298,23 @@ def basket():
             # Check for discount
             discount = False
             # Go through basket items and find 7 days before
-            for id in session['basket']:
-                basketEvent = Calendar.query.get(id)
-                dayDifference = (date.today()-(basketEvent.aDateTime).date()).days
-                indexDate = 6-dayDifference
-                # Count 7 days before
-                count = 0
-                for i in range (0, 6):
-                    count += datesOfBookings[indexDate-i]
-                if count > 2:
-                    discount = True
-                # Count 7 days after
-                count = 0
-                for i in range (0, 6):
-                    count += datesOfBookings[indexDate+i]
-                if count > 2:
-                    discount = True
+
+            basketEvent = Calendar.query.get(id)
+            dayDifference = (date.today()-(basketEvent.aDateTime).date()).days
+            indexDate = 6-dayDifference
+            # Count 7 days before
+            count = 0
+            for i in range (0, 7):
+                count += datesOfBookings[indexDate-i]
+            if count > 2:
+                discount = True
+            # Count 7 days after
+            count = 0
+            for i in range (0, 7):
+                count += datesOfBookings[indexDate+i]
+            if count > 2:
+                discount = True
+
             # Change item price depending on discocunt
             if discount == True:
                 itemPrice = item.aPrice * 0.85
@@ -328,7 +329,6 @@ def basket():
             name = itemActivity.activityType
             nameDate = name + ", " + (item.aDateTime).strftime("%d/%m, %H:%M")
             basketItems.append((nameDate, roundedPrice))
-
     if 'membership' in session:
         isItems = True
         session['basketIds'].append('m')

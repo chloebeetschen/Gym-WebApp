@@ -325,4 +325,5 @@ li a i:hover {
     background-position: center;
     z-index: -900;
     padding: 0; 
+    margin: 0;
 }

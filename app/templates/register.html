@@ -40,12 +40,6 @@
       {{ error }}
     </div>
     {% endfor %}
-    <p>{{ form.Type(class_='form-control') }} </p>
-    {% for error in form.Type.errors %}
-    <div class="alert alert-danger" role="alert">
-      {{ error }}
-    </div>
-    {% endfor %}
     <p><input type="submit" class="btn btn-primary" value="Submit"></p>
 
 </form>

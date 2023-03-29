@@ -25,13 +25,20 @@ loginManager = LoginManager()
 loginManager.init_app(app)
 loginManager.login_view = "login"
 
-
 @app.before_first_request
 def delete_sessions():
     for key in list(session.keys()):
         session.pop(key)
 '''
 db.create_all()
+
+aDiscountExists = models.DiscountAmount.query.filter_by(discountAmount=15).first()
+if (aDiscountExists == None):
+    amount = models.DiscountAmount(discountAmount=15)
+    db.session.add(amount)
+    db.session.commit()
+
+# Checks to see if the data has already been populated
 aExists = Activity.query.filter_by(activityType="Swimming (Team Events)").first()
 
 if (aExists == None):
@@ -114,17 +121,52 @@ if (aExists == None):
         #increment day
         today = today+timedelta(days=1)
 
+        aEmailExists = UserLogin.query.filter_by(email="admin@admin.com").first()
+        if (aEmailExists == None):
+            hashedPassword = bcrypt.generate_password_hash('password')
+            oldEnough = datetime.now().date()-timedelta(days=16*365)
+            managerEmail = 'admin@admin.com'
+
+            newUser = models.UserLogin(email=managerEmail,
+                                   password=hashedPassword,
+                                   userType=3)
+
+            newUserDetails = models.UserDetails(name='Admin',
+                                            dateOfBirth=oldEnough,
+                                            loginDetails=newUser.id,
+                                            isMember = False,
+                                            membershipEnd=datetime.now())
+
+            # Add to the database
+            db.session.add(newUser)
+            db.session.add(newUserDetails)
+
     db.session.commit()
 '''
 @loginManager.user_loader
 def loadUser(userId):
     return models.UserLogin.query.get(int(userId))
     
-
 @app.route('/')
 @login_required
 def index():
     return redirect(url_for('home'))
+
+@app.route('/changeDiscount', methods=['GET', 'POST'])
+@login_required
+def changeDiscount():
+    form = DiscountForm()
+    if form.validate_on_submit():
+        oldAmount = models.DiscountAmount.query.all()
+        for amounts in oldAmount:
+            db.session.delete(amounts)
+            db.session.commit()
+        amount = models.DiscountAmount(discountAmount=form.DiscountAmount.data)
+        db.session.add(amount)
+        db.session.commit()
+        flash('Added new discount.')
+        return redirect('/home')   
+    return render_template('changeDiscount.html', form=form)
 
 
 # Calendar of all sessions
@@ -136,9 +178,6 @@ def calendarMethod():
     #week span
     weeks = [today, (today + timedelta(days=1)), (today + timedelta(days=2)), (today + timedelta(days=3)), (today + timedelta(days=4)), (today + timedelta(days=5)), (today + timedelta(days=6)), (today + timedelta(days=7)), (today + timedelta(days=8)), (today + timedelta(days=9)), (today + timedelta(days=10)), (today + timedelta(days=11)), (today + timedelta(days=12)), (today + timedelta(days=13))]
     #days of week integers, from today
-    
-    #array for constant events
-    #dailyConstantEvents = ["Swimming (Lane Swimming)", "Swimming (General Use)", "Gym", "Swimming (Lessons)", "Squash", "Sports Hall (Session)", "Climbing"]
     
     #calculation for making sure we only get 2 weeks of data
     w1 = datetime.now()+timedelta(days=7)
@@ -155,7 +194,12 @@ def calendarMethod():
     for i in events:
         eventInfo.append(Activity.query.filter_by(id=i.activityId).first())
         # For every event check if user has booked it
-        booked = UserBookings.query.filter_by(userId=current_user.id, calendarId=i.id).first()
+        if 'proxyBooking' in session :
+            for id in session['proxyBooking']:
+                booked = UserBookings.query.filter_by(userId=id, calendarId=i.id).first()
+        else:
+            booked = UserBookings.query.filter_by(userId=current_user.id, calendarId=i.id).first()
+        
         if booked is not None:   
             userBooked1.append(True)
         else:
@@ -167,16 +211,39 @@ def calendarMethod():
     for i in events2:
         eventInfo2.append(Activity.query.filter_by(id=i.activityId).first())
         # For every event check if user has booked it
-        booked = UserBookings.query.filter_by(userId=current_user.id, calendarId=i.id).first()
+        if 'proxyBooking' in session :
+            for id in session['proxyBooking']:
+                booked = UserBookings.query.filter_by(userId=id, calendarId=i.id).first()
+        else:
+            booked = UserBookings.query.filter_by(userId=current_user.id, calendarId=i.id).first()
         if booked is not None:
             userBooked2.append(True)
         else:
             userBooked2.append(False)
 
-    user = UserDetails.query.filter_by(id=current_user.id).first()
+    if 'proxyBooking' in session :
+        for id in session['proxyBooking']:
+            user = UserDetails.query.filter_by(id=id).first()
+    else:
+        user = UserDetails.query.filter_by(id=current_user.id).first()
 
-    
-    return render_template('calendar.html',
+    if 'proxyBooking' in session:
+        return render_template('calendar.html',
+                            title     = 'Calendar',
+                            numEvents = len(events),
+                            numEvents2 = len(events2),
+                            events    = events,
+                            eventInfo = eventInfo,
+                            events2    = events2,
+                            eventInfo2 = eventInfo2,
+                            isMember = True,   
+                            weeks     = weeks,
+                            userBooked1 = userBooked1,
+                            userBooked2 = userBooked2,
+                            proxyBooking = True
+                            )
+    else:
+        return render_template('calendar.html',
                             title     = 'Calendar',
                             numEvents = len(events),
                             numEvents2 = len(events2),
@@ -189,6 +256,13 @@ def calendarMethod():
                             userBooked1 = userBooked1,
                             userBooked2 = userBooked2
                             )
+
+@app.route('/calendar/<id>', methods=['GET', 'POST'])
+@login_required
+def proxyCustomerBooking(id):
+    logging.debug("Book for a customer request")
+    session['proxyBooking'] = [id]
+    return redirect('/calendar')
 
 #calendar of all repeat sessions
 @app.route('/repeatEvents/<id>', methods=['GET', 'POST'])
@@ -226,11 +300,19 @@ def makeBooking(id): # << id passed here is the calendar id (not user)
     eventType = Activity.query.get(event.activityId)
     
     #to update user bookings we need the user Id to be able to update for a specific user
-    newBooking = UserBookings(userId = current_user.id, calendarId = id)
+    if 'proxyBooking' in session:
+        for uid in session['proxyBooking']:
+            newBooking = UserBookings(userId = uid, calendarId = id)
+        flash('Proxy booking completed')
+        for key in list(session.keys()):
+            if key == 'proxyBooking':
+                session.pop(key)
+    else:
+        newBooking = UserBookings(userId = current_user.id, calendarId = id)
     #add and update db
     db.session.add(newBooking)
     db.session.commit()
-    return redirect('/myBookings')
+    return redirect('/home')
 
 
 # Add to basket button
@@ -313,7 +395,9 @@ def basket():
                     discount = True
             # Change item price depending on discocunt
             if discount == True:
-                itemPrice = item.aPrice * 0.85
+                amount = DiscountAmount.query.first()
+                amountToDiscount = (100 - amount.discountAmount)/100
+                itemPrice = item.aPrice * amountToDiscount
             else:
                 itemPrice = item.aPrice
             totalPrice += itemPrice
@@ -467,9 +551,16 @@ def myBookings():
                             today=today, numEvents=len(bookings),
                             events = events, eventInfo = eventInfo)
 
+
+@app.route('/proxyEdit/<id>', methods=['GET', 'POST'])
+@login_required
+def proxyEdit(id):
+    session['proxyEdit'] = [id]
+    return redirect(url_for('userBookings', id=id))
+
 @app.route('/userBookings/<id>', methods=['GET', 'POST'])
 @login_required
-def userBookings(id):
+def userBookings(id):    
     today = datetime.now()
     #need a parameter id for the user that is logged in (can be done once cookies is enabled)
     bookings = UserBookings.query.filter_by(userId=id).all()
@@ -488,7 +579,6 @@ def userBookings(id):
     return render_template('myBookings.html', title = 'Bookings', 
                             today=today, numEvents=len(bookings),
                             events = events, eventInfo = eventInfo)
-
 
 @app.route('/deleteBasket/<i>', methods=['GET'])
 @login_required
@@ -510,11 +600,18 @@ def deleteBasket(i): # 'i' is the index of the item deleted from the basket
 @login_required
 def deleteBooking(id): #id passed in will be  the id of the calendar
     logging.debug("Delete booking (with id: %s) route request", id)
-    # First check the user is a manager
-    if current_user.userType != 3:
-        return redirect('/home')
     # get the booking that matches the id of the parameter given and that of the userId 
+    
     booking = UserBookings.query.filter_by(calendarId = id, userId = current_user.id).first()
+
+    if 'proxyEdit' in session:
+        for uid in session['proxyEdit'] :
+            booking = UserBookings.query.filter_by(calendarId = id, userId = uid).first()
+        flash('Proxy deletion complete')
+        for key in list(session.keys()):
+            if key == 'proxyEdit':
+                session.pop(key)
+    
     # get the event in the calendar
     calendarBooking = Calendar.query.filter_by(id=id).first()
     # alter capacity of calendar
@@ -522,7 +619,7 @@ def deleteBooking(id): #id passed in will be  the id of the calendar
     
     db.session.delete(booking)
     db.session.commit()
-    return redirect('/myBookings')
+    return redirect('/home')
 
 
 #manager add activity 
@@ -723,7 +820,7 @@ def register():
         # users that register are automatically set to 1
         newUser = models.UserLogin(email=Email,
                                    password=hashedPassword,
-                                   userType=form.Type.data)
+                                   userType=1)
 
         newUserDetails = models.UserDetails(name=Name,
                                             dateOfBirth=dob,
@@ -776,15 +873,24 @@ def settings():
 
 @app.route('/cancelMembership', methods=['GET', 'POST'])
 @login_required
+# Change user to not a member
 def cancelMembership():
     logging.debug("Cancel membership route request")
-    # Change user to not a member
-    usersDetails = UserDetails.query.get(current_user.id)
+    if 'proxyMembership' in session:
+        for uid in session['proxyMembership']:
+            usersDetails = models.UserDetails.query.get(uid)
+            flash('Membership cancelled by proxy')
+        for key in list(session.keys()):
+            if key == 'proxyMembership':
+                session.pop(key)
+    else:
+        usersDetails = UserDetails.query.get(current_user.id)
+        flash('Membership cancelled')
     usersDetails.isMember = False
     usersDetails.membershipEnd = datetime.now()
     db.session.commit()
     # Redirect back to memberships page
-    return redirect('/memberships')
+    return redirect('/home')
 
 
 @app.route('/pricingList', methods=['GET', 'POST'])
@@ -895,10 +1001,8 @@ def analysisGraphs():
 def manageUsers():
     logging.debug("Manage users route request")
 
-    userType = current_user.userType
-
     # First check the user is a employee / manager
-    if userType == 1:
+    if current_user.userType == 1:
         return redirect('/home')
 
     form = SearchForm()
@@ -925,7 +1029,7 @@ def manageUsers():
                             userTypeLogin1 = userTypeLogin1, 
                             userTypeLogin2 = userTypeLogin2,
                             userTypeLogin3 = userTypeLogin3,
-                            userType = userType )  
+                            userType = current_user.userType )  
 
 ## Edits a users details (name, email, password and type)
 @app.route('/editUser/<id>', methods=['GET', 'POST'])
@@ -935,6 +1039,8 @@ def editUser(id):
     # First check the user is a manager
     if current_user.userType == 1:
         return redirect('/home')
+
+    currentUserType = current_user.userType
 
     form = ManagerForm()
     if form.validate_on_submit():
@@ -958,7 +1064,8 @@ def editUser(id):
     return render_template('editUser.html',
                             title='Edit User',
                             form=form,
-                            user=id)
+                            user=id,
+                            currentUserType=currentUserType)
 
 ## Deletes a user's userlogin, userdetails, userbookings and decreases the slots taken for the calender events
 @app.route('/deleteUser/<id>', methods=['GET', 'POST'])
@@ -998,7 +1105,11 @@ def deleteUser(id):
 def memberships():
     logging.debug("Memberships route request")
     # Check if user is a member
-    cUserDetails = models.UserDetails.query.get(current_user.id)
+    if 'proxyMembership' in session:
+        for uid in session['proxyMembership']:
+            cUserDetails = models.UserDetails.query.get(uid)
+    else:
+        cUserDetails = models.UserDetails.query.get(current_user.id)
     isMember = cUserDetails.isMember
 
     return render_template('memberships.html', isMember=isMember)
@@ -1009,15 +1120,29 @@ def memberships():
 @login_required
 def monthlyMembership():
     logging.debug("Monthly membership route request")
-    cUserDetails = models.UserDetails.query.get(current_user.id)
-    cUserDetails.isMember = False
-    today = datetime.now()
-    monthAhead = today + relativedelta(months=1)
-    cUserDetails.membershipEnd = monthAhead
-    session['membership'] = "monthly"
-    db.session.commit()
-    ##Test to see if working correctly
-    return redirect('/basket')
+    if 'proxyMembership' in session:
+        for uid in session['proxyMembership']:
+            cUserDetails = models.UserDetails.query.get(uid)
+            cUserDetails.isMember = True
+            today = datetime.now()
+            monthAhead = today + relativedelta(months=1)
+            cUserDetails.membershipEnd = monthAhead
+            db.session.commit()
+            flash('Added monthly membership by proxy')
+            for key in list(session.keys()):
+                if key == 'proxyMembership':
+                    session.pop(key)
+            return redirect('/home')
+    else:
+        cUserDetails = models.UserDetails.query.get(current_user.id)
+        cUserDetails.isMember = False
+        today = datetime.now()
+        monthAhead = today + relativedelta(months=1)
+        cUserDetails.membershipEnd = monthAhead
+        session['membership'] = "monthly"
+        db.session.commit()
+        ##Test to see if working correctly
+        return redirect('/basket')
 
 ## Adds the membership end to a year in the future
 ## Does not update isMember to be true as this is done after payment is completed
@@ -1025,16 +1150,28 @@ def monthlyMembership():
 @login_required
 def annualMembership():
     logging.debug("Annual membership route request")
-    cUserDetails = models.UserDetails.query.get(current_user.id)
-    cUserDetails.isMember = False
-    today = datetime.now()
-    yearAhead = today + relativedelta(years=1)
-    cUserDetails.membershipEnd = yearAhead
-    session['membership'] = "annual"
-   
-    db.session.commit()
-    ##Test to see if working correctly
-    return redirect('/basket')
+    if 'proxyMembership' in session:
+        for uid in session['proxyMembership']:
+            cUserDetails = models.UserDetails.query.get(uid)
+            cUserDetails.isMember = True
+            today = datetime.now()
+            yearAhead = today + relativedelta(years=1)
+            cUserDetails.membershipEnd = yearAhead
+            db.session.commit()
+            flash('Added monthly membership by proxy')
+            for key in list(session.keys()):
+                if key == 'proxyMembership':
+                    session.pop(key)
+            return redirect('/home')
+    else:
+        cUserDetails = models.UserDetails.query.get(current_user.id)
+        cUserDetails.isMember = False
+        today = datetime.now()
+        yearAhead = today + relativedelta(years=1)
+        cUserDetails.membershipEnd = yearAhead
+        session['membership'] = "annual" 
+        db.session.commit()
+        return redirect('/basket')
 
 
 ## search for a user
@@ -1044,8 +1181,8 @@ def annualMembership():
 @login_required
 def searchResults(search):
 
-    # First check the user is a manager
-    if current_user.userType != 3:
+    # First check the user is a employee / manager
+    if current_user.userType == 1:
         return redirect('/home')
 
     form = SearchForm()
@@ -1060,12 +1197,28 @@ def searchResults(search):
     for i in users:
         if search.lower() in (i.email).lower():
             results.append(i)
-    
+
     for j in users2:
         if search.lower() in (j.name).lower():
             results.append(UserLogin.query.filter_by(id = j.id).first())
 
     results = list(dict.fromkeys(results))
 
+    # Prevents employees from searching for manager accounts
+    for user in results:
+        if current_user.userType == 2:
+            userSearch = UserLogin.query.filter_by(id = user.id).first()
+            type = userSearch.userType
+            if type == 3:
+                results.remove(user)
+            if type == 2:
+                results.remove(user)
+            
 
     return render_template('searches.html', title='Search Results', form = form, results = results, numUsers = len(results))
+
+@app.route('/proxyChangeMembership/<id>', methods=['GET', 'POST'])
+@login_required
+def proxyChangeMembership(id):
+    session['proxyMembership'] = [id]
+    return redirect('/memberships')

@@ -111,3 +111,5 @@ class UserDetails(db.Model, UserMixin):
             raise ValueError("Not old enough")
         return UserDetails
 
+class DiscountAmount(db.Model):
+    discountAmount = db.Column(db.Integer, primary_key=True)

@@ -20,8 +20,10 @@
     <thead>
         <tr>
             <th>Email</th>
+            <th>User Type</th>
             <th>Bookings</th>
-            <th>Edit</th>
+            <th>Change membership</th>
+            <th>Edit details</th>
             <th>Delete</th>
         </tr>
     </thead>
@@ -31,8 +33,15 @@
                 <tr>
                     <!--display event and event info in the tables-->
                     <td>{{userTypeLogin1[i].email}}</td>
+                    <td>{{userTypeLogin1[i].userType}}</td>
+
                     <td>    
-                        <a href="/userBookings/{{userTypeLogin1[i].id}}"><button type="button" class="btns">Bookings</button></a>
+                        <a href="/calendar/{{userTypeLogin1[i].id}}"><button type="button" class="btns">Make Booking</button></a>
+                        <a href="/proxyEdit/{{userTypeLogin1[i].id}}"><button type="button" class="btns">Edit Bookings</button></a>
+                    </td>
+                    <td>
+                        <!--TBC-->
+                        <a href="/proxyChangeMembership/{{userTypeLogin1[i].id}}"><button type="button" class="btns">Change membership</button></a>
                     </td>
                     <td>    
                         <a href="/editUser/{{userTypeLogin1[i].id}}"><button type="button" class="btns">Edit</button></a>

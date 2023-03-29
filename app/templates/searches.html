@@ -22,7 +22,8 @@
             <th>Email</th>
             <th>User Type</th>
             <th>Bookings</th>
-            <th>Edit</th>
+            <th>Change membership</th>
+            <th>Edit details</th>
             <th>Delete</th>
         </tr>
     </thead>
@@ -34,7 +35,12 @@
                 <td>{{results[i].userType}}</td>
 
                 <td>    
-                    <a href="/userBookings/{{results[i].id}}"><button type="button" class="btns">Bookings</button></a>
+                    <a href="/calendar/{{results[i].id}}"><button type="button" class="btns">Make Booking</button></a>
+                    <a href="/proxyEdit/{{results[i].id}}"><button type="button" class="btns">Edit Bookings</button></a>
+                </td>
+                <td>
+                    <!--TBC-->
+                    <a href="/proxyChangeMembership/{{results[i].id}}"><button type="button" class="btns">Change membership</button></a>
                 </td>
                 <td>    
                     <a href="/editUser/{{results[i].id}}"><button type="button" class="btns">Edit</button></a>

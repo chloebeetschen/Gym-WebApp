@@ -126,7 +126,6 @@ def loadUser(userId):
     
 
 @app.route('/')
-@login_required
 def index():
     return redirect(url_for('home'))
 
@@ -691,7 +690,7 @@ def login():
             else:
                 flash("Incorrect username/password. Please try again.")
 
-    return render_template('login.html', form=form)
+    return render_template('login.html', form=form, title='Login')
 
 @app.route('/logout', methods=['GET', 'POST'])
 @login_required
@@ -721,14 +720,13 @@ def register():
         dob     = form.DateOfBirth.data
         Email   = form.Email.data
 
-        
         hashedPassword = bcrypt.generate_password_hash(form.Password.data)
 
         # Create new user and details
         # users that register are automatically set to 1
         newUser = models.UserLogin(email=Email,
                                    password=hashedPassword,
-                                   userType=form.Type.data)
+                                   userType=1)
 
         newUserDetails = models.UserDetails(name=Name,
                                             dateOfBirth=dob,
@@ -740,6 +738,7 @@ def register():
         db.session.add(newUser)
         db.session.add(newUserDetails)
         db.session.commit()
+        flash("Created new account")
         return redirect(url_for('login'))
 
     return render_template('register.html', form=form, title="Register")

@@ -278,3 +278,111 @@ INFO | 29/03/2023 16:50:54 | 127.0.0.1 - - [29/Mar/2023 16:50:54] "[36mGET /sta
 DEBUG | 29/03/2023 16:50:55 | Register route request
 INFO | 29/03/2023 16:50:55 | 127.0.0.1 - - [29/Mar/2023 16:50:55] "GET /register HTTP/1.1" 200 -
 INFO | 29/03/2023 16:50:55 | 127.0.0.1 - - [29/Mar/2023 16:50:55] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 29/03/2023 17:32:06 |  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO | 29/03/2023 17:32:06 |  * Restarting with stat
+INFO | 29/03/2023 17:32:19 | 127.0.0.1 - - [29/Mar/2023 17:32:19] "[32mGET / HTTP/1.1[0m" 302 -
+DEBUG | 29/03/2023 17:32:19 | Login route request
+INFO | 29/03/2023 17:32:19 | 127.0.0.1 - - [29/Mar/2023 17:32:19] "GET /login?next=%2F HTTP/1.1" 200 -
+INFO | 29/03/2023 17:32:19 | 127.0.0.1 - - [29/Mar/2023 17:32:19] "GET /static/styles.css HTTP/1.1" 200 -
+INFO | 29/03/2023 17:32:25 | 127.0.0.1 - - [29/Mar/2023 17:32:25] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO | 29/03/2023 17:32:58 |  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO | 29/03/2023 17:32:58 |  * Restarting with stat
+INFO | 29/03/2023 17:33:01 |  * Detected change in '/home/cserv1_a/soc_ug/sc21t2hh/Documents/y2/sem2/project-squad6/app/views.py', reloading
+INFO | 29/03/2023 17:33:01 |  * Restarting with stat
+INFO | 29/03/2023 17:33:11 | 127.0.0.1 - - [29/Mar/2023 17:33:11] "[32mGET / HTTP/1.1[0m" 302 -
+INFO | 29/03/2023 17:33:11 | 127.0.0.1 - - [29/Mar/2023 17:33:11] "GET /home HTTP/1.1" 200 -
+INFO | 29/03/2023 17:33:11 | 127.0.0.1 - - [29/Mar/2023 17:33:11] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 29/03/2023 17:33:18 | Register route request
+INFO | 29/03/2023 17:33:18 | 127.0.0.1 - - [29/Mar/2023 17:33:18] "GET /register HTTP/1.1" 200 -
+INFO | 29/03/2023 17:33:18 | 127.0.0.1 - - [29/Mar/2023 17:33:18] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 29/03/2023 17:34:18 | Register route request
+INFO | 29/03/2023 17:34:18 | 127.0.0.1 - - [29/Mar/2023 17:34:18] "POST /register HTTP/1.1" 200 -
+INFO | 29/03/2023 17:34:18 | 127.0.0.1 - - [29/Mar/2023 17:34:18] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 29/03/2023 17:35:32 | Register route request
+INFO | 29/03/2023 17:35:32 | 127.0.0.1 - - [29/Mar/2023 17:35:32] "POST /register HTTP/1.1" 200 -
+INFO | 29/03/2023 17:35:32 | 127.0.0.1 - - [29/Mar/2023 17:35:32] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 29/03/2023 17:35:47 | Login route request
+INFO | 29/03/2023 17:35:47 | 127.0.0.1 - - [29/Mar/2023 17:35:47] "GET /login HTTP/1.1" 200 -
+INFO | 29/03/2023 17:35:47 | 127.0.0.1 - - [29/Mar/2023 17:35:47] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 29/03/2023 17:35:56 | Login route request
+INFO | 29/03/2023 17:35:56 | 127.0.0.1 - - [29/Mar/2023 17:35:56] "POST /login HTTP/1.1" 200 -
+INFO | 29/03/2023 17:35:56 | 127.0.0.1 - - [29/Mar/2023 17:35:56] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 29/03/2023 17:41:17 |  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO | 29/03/2023 17:41:17 |  * Restarting with stat
+DEBUG | 29/03/2023 17:41:21 | Register route request
+INFO | 29/03/2023 17:41:21 | 127.0.0.1 - - [29/Mar/2023 17:41:21] "GET /register HTTP/1.1" 200 -
+INFO | 29/03/2023 17:41:21 | 127.0.0.1 - - [29/Mar/2023 17:41:21] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 29/03/2023 17:41:37 | Register route request
+INFO | 29/03/2023 17:41:37 | 127.0.0.1 - - [29/Mar/2023 17:41:37] "POST /register HTTP/1.1" 200 -
+INFO | 29/03/2023 17:41:37 | 127.0.0.1 - - [29/Mar/2023 17:41:37] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 29/03/2023 17:42:17 |  * Detected change in '/home/cserv1_a/soc_ug/sc21t2hh/Documents/y2/sem2/project-squad6/app/views.py', reloading
+INFO | 29/03/2023 17:42:18 |  * Restarting with stat
+DEBUG | 29/03/2023 17:42:21 | Register route request
+INFO | 29/03/2023 17:42:21 | The CSRF tokens do not match.
+INFO | 29/03/2023 17:42:21 | 127.0.0.1 - - [29/Mar/2023 17:42:21] "POST /register HTTP/1.1" 200 -
+INFO | 29/03/2023 17:42:21 | 127.0.0.1 - - [29/Mar/2023 17:42:21] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 29/03/2023 17:42:26 | Register route request
+INFO | 29/03/2023 17:42:26 | 127.0.0.1 - - [29/Mar/2023 17:42:26] "POST /register HTTP/1.1" 200 -
+INFO | 29/03/2023 17:42:26 | 127.0.0.1 - - [29/Mar/2023 17:42:26] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 29/03/2023 17:43:26 | Register route request
+INFO | 29/03/2023 17:43:26 | 127.0.0.1 - - [29/Mar/2023 17:43:26] "POST /register HTTP/1.1" 200 -
+INFO | 29/03/2023 17:43:26 | 127.0.0.1 - - [29/Mar/2023 17:43:26] "GET /static/styles.css HTTP/1.1" 200 -
+DEBUG | 29/03/2023 17:43:33 | Register route request
+INFO | 29/03/2023 17:43:33 | 127.0.0.1 - - [29/Mar/2023 17:43:33] "POST /register HTTP/1.1" 200 -
+INFO | 29/03/2023 17:43:33 | 127.0.0.1 - - [29/Mar/2023 17:43:33] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 29/03/2023 17:44:16 |  * Detected change in '/home/cserv1_a/soc_ug/sc21t2hh/Documents/y2/sem2/project-squad6/app/views.py', reloading
+INFO | 29/03/2023 17:44:16 |  * Restarting with stat
+INFO | 29/03/2023 17:45:39 |  * Detected change in '/home/cserv1_a/soc_ug/sc21t2hh/Documents/y2/sem2/project-squad6/app/views.py', reloading
+INFO | 29/03/2023 17:45:39 |  * Restarting with stat
+INFO | 29/03/2023 17:45:46 |  * Detected change in '/home/cserv1_a/soc_ug/sc21t2hh/Documents/y2/sem2/project-squad6/app/views.py', reloading
+INFO | 29/03/2023 17:45:46 |  * Restarting with stat
+DEBUG | 29/03/2023 17:45:54 | Login route request
+INFO | 29/03/2023 17:45:54 | 127.0.0.1 - - [29/Mar/2023 17:45:54] "GET /login HTTP/1.1" 200 -
+INFO | 29/03/2023 17:45:54 | 127.0.0.1 - - [29/Mar/2023 17:45:54] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 29/03/2023 17:46:11 | Login route request
+INFO | 29/03/2023 17:46:11 | 127.0.0.1 - - [29/Mar/2023 17:46:11] "POST /login HTTP/1.1" 200 -
+INFO | 29/03/2023 17:46:11 | 127.0.0.1 - - [29/Mar/2023 17:46:11] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 29/03/2023 17:47:39 |  * Detected change in '/home/cserv1_a/soc_ug/sc21t2hh/Documents/y2/sem2/project-squad6/app/views.py', reloading
+INFO | 29/03/2023 17:47:39 |  * Restarting with stat
+INFO | 29/03/2023 17:47:43 |  * Detected change in '/home/cserv1_a/soc_ug/sc21t2hh/Documents/y2/sem2/project-squad6/app/views.py', reloading
+INFO | 29/03/2023 17:47:43 |  * Restarting with stat
+DEBUG | 29/03/2023 17:49:35 | Login route request
+INFO | 29/03/2023 17:49:35 | The CSRF tokens do not match.
+INFO | 29/03/2023 17:49:35 | 127.0.0.1 - - [29/Mar/2023 17:49:35] "POST /login HTTP/1.1" 200 -
+INFO | 29/03/2023 17:49:35 | 127.0.0.1 - - [29/Mar/2023 17:49:35] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 29/03/2023 17:49:37 | Register route request
+INFO | 29/03/2023 17:49:37 | 127.0.0.1 - - [29/Mar/2023 17:49:37] "GET /register HTTP/1.1" 200 -
+INFO | 29/03/2023 17:49:37 | 127.0.0.1 - - [29/Mar/2023 17:49:37] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 29/03/2023 17:50:06 | Register route request
+INFO | 29/03/2023 17:50:06 | 127.0.0.1 - - [29/Mar/2023 17:50:06] "[32mPOST /register HTTP/1.1[0m" 302 -
+DEBUG | 29/03/2023 17:50:06 | Login route request
+INFO | 29/03/2023 17:50:06 | 127.0.0.1 - - [29/Mar/2023 17:50:06] "GET /login HTTP/1.1" 200 -
+INFO | 29/03/2023 17:50:06 | 127.0.0.1 - - [29/Mar/2023 17:50:06] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 29/03/2023 17:50:36 |  * Detected change in '/home/cserv1_a/soc_ug/sc21t2hh/Documents/y2/sem2/project-squad6/app/views.py', reloading
+INFO | 29/03/2023 17:50:36 |  * Restarting with stat
+INFO | 29/03/2023 17:50:55 |  * Detected change in '/home/cserv1_a/soc_ug/sc21t2hh/Documents/y2/sem2/project-squad6/app/forms.py', reloading
+INFO | 29/03/2023 17:50:55 |  * Restarting with stat
+INFO | 29/03/2023 17:51:02 |  * Detected change in '/home/cserv1_a/soc_ug/sc21t2hh/Documents/y2/sem2/project-squad6/app/views.py', reloading
+INFO | 29/03/2023 17:51:02 |  * Restarting with stat
+INFO | 29/03/2023 17:51:16 |  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO | 29/03/2023 17:51:16 |  * Restarting with stat
+DEBUG | 29/03/2023 17:51:20 | Register route request
+INFO | 29/03/2023 17:51:20 | 127.0.0.1 - - [29/Mar/2023 17:51:20] "GET /register HTTP/1.1" 200 -
+INFO | 29/03/2023 17:51:20 | 127.0.0.1 - - [29/Mar/2023 17:51:20] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 29/03/2023 17:51:32 | Register route request
+INFO | 29/03/2023 17:51:32 | 127.0.0.1 - - [29/Mar/2023 17:51:32] "[32mPOST /register HTTP/1.1[0m" 302 -
+DEBUG | 29/03/2023 17:51:32 | Login route request
+INFO | 29/03/2023 17:51:32 | 127.0.0.1 - - [29/Mar/2023 17:51:32] "GET /login HTTP/1.1" 200 -
+INFO | 29/03/2023 17:51:32 | 127.0.0.1 - - [29/Mar/2023 17:51:32] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 29/03/2023 17:51:35 | Login route request
+INFO | 29/03/2023 17:51:35 | 127.0.0.1 - - [29/Mar/2023 17:51:35] "[32mPOST /login HTTP/1.1[0m" 302 -
+INFO | 29/03/2023 17:51:35 | 127.0.0.1 - - [29/Mar/2023 17:51:35] "GET /home HTTP/1.1" 200 -
+INFO | 29/03/2023 17:51:35 | 127.0.0.1 - - [29/Mar/2023 17:51:35] "GET /static/images/home.png HTTP/1.1" 200 -
+INFO | 29/03/2023 17:51:35 | 127.0.0.1 - - [29/Mar/2023 17:51:35] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 29/03/2023 17:51:35 | 127.0.0.1 - - [29/Mar/2023 17:51:35] "GET /static/images/calendar.png HTTP/1.1" 200 -
+INFO | 29/03/2023 17:51:35 | 127.0.0.1 - - [29/Mar/2023 17:51:35] "GET /static/images/membership.png HTTP/1.1" 200 -
+INFO | 29/03/2023 17:51:35 | 127.0.0.1 - - [29/Mar/2023 17:51:35] "GET /static/images/list-check.png HTTP/1.1" 200 -
+INFO | 29/03/2023 17:51:35 | 127.0.0.1 - - [29/Mar/2023 17:51:35] "GET /static/images/list.png HTTP/1.1" 200 -
+INFO | 29/03/2023 17:51:35 | 127.0.0.1 - - [29/Mar/2023 17:51:35] "GET /static/images/shopping-cart.png HTTP/1.1" 200 -
+INFO | 29/03/2023 17:51:35 | 127.0.0.1 - - [29/Mar/2023 17:51:35] "GET /static/images/settings.png HTTP/1.1" 200 -
+INFO | 29/03/2023 17:51:35 | 127.0.0.1 - - [29/Mar/2023 17:51:35] "GET /static/images/cross.png HTTP/1.1" 200 -

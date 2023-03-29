@@ -1,14 +1,6 @@
 #pair programming - Aaditi and Hope 
 #used chat gpt to learn how to use unit test in python  
 
-
-#removed payment page test 
-#removed address from register pages since this field is not valid anymore
-#added analysis page for managers 
-#updated passwords to match regular expression validation 
-#capital letter, lowercase, digit, 8 characters
-
-
 import unittest
 from flask import Flask, current_app, url_for
 from flask_sqlalchemy import SQLAlchemy
@@ -17,61 +9,70 @@ from app.models import *
 from app.views import *
 from app.forms import *
 from flask.testing import FlaskClient 
-#import stripe
-
+from test_config import *
 
 class TestCase(unittest.TestCase):
 
     #this is setting up a test database 
     def setUp(self):
-        app.config.from_object('config')
-        app.config['TESTING'] = True
-        app.config['WTF_CSRF_ENABLED'] = False
+        app.config.from_object('test_config')
 
-        app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
-        
-        self.app = app.test_client()
-        db.create_all()
+        self.app = app.test_client()  
+        db.create_all() 
 
+        #app.config['DEBUG'] = False
+        #app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+        # self.app_context = app.app_context()
+        # self.app_context.push()
+        #self.app_context = app_context
        
     #this deletes the test database once testing is complete 
-    def tearDown(self):
-        db.session.remove()
-        db.drop_all()
+    #def tearDown(self):
+      #db.session.remove()
+      #db.drop_all()
+      #current_app.app_context().pop()
 
     def test_navBarAll_register(self):
         response = self.app.get(('/register'), follow_redirects=True)
         self.assertEqual(response.status_code, 200)   
+        print(16)
 
     def test_navBarAll_home(self):
         response = self.app.get(('/home'), follow_redirects = True)
         self.assertEqual(response.status_code, 200)   
+        print(17)
 
     def test_navBarAll_login(self):
         response = self.app.get(('/login'), follow_redirects = True)
         self.assertEqual(response.status_code, 200) 
-
+        print(18)
 
     #for user type 1  
     def test_navBarType1_myBookings(self):
         response = self.app.get(('/myBookings'), follow_redirects=True)
         self.assertEqual(response.status_code, 200)
+        print(1)
     
     def test_navBarType1_calendar(self):
         response = self.app.get(('/calendar'), follow_redirects=True)
         self.assertEqual(response.status_code, 200)
+        print(2)
+
 
     def test_navBarType1_settings(self):
         response = self.app.get(('/settings'), follow_redirects = True)
         self.assertEqual(response.status_code, 200)
+        print(3)
 
     def test_navBarType1_basket(self):
         response = self.app.get(('/basket'), follow_redirects = True)
         self.assertEqual(response.status_code, 200)
+        print(4)
     
     def test_navBarType1_memberships(self):
         response = self.app.get(('/memberships'), follow_redirects = True)
-        self.assertEqual(response.status_code, 200)   
+        self.assertEqual(response.status_code, 200)
+        print(5)   
 
     #for user Type 2 - employees 
 
@@ -79,25 +80,28 @@ class TestCase(unittest.TestCase):
     def test_navBarType3_addEvent(self):
         response = self.app.get(('/addEvent'), follow_redirects=True)
         self.assertEqual(response.status_code, 200)  
+        print(6)
 
     def test_navBarType3_addActivity(self):
         response = self.app.get(('/addActivity'), follow_redirects=True)
-        self.assertEqual(response.status_code, 200)   
+        self.assertEqual(response.status_code, 200)  
+        print(7) 
 
+    # NOT RUNNING
     def test_navBarType3_manageUsers(self):
         response = self.app.get(('/manageUsers'), follow_redirects=True)
         self.assertEqual(response.status_code, 200)  
+        print(8)
     
     def test_navBarType3_manageUsers(self):
         response = self.app.get(('/analysis'), follow_redirects=True)
         self.assertEqual(response.status_code, 200)
+        print(9)
 
 
     #registering a user and testing if this updates in the database
     def test_register(self):
-    
         response = self.app.get(('/register'), follow_redirects = True)
-
         self.assertEqual(response.status_code, 200)
 
         with app.test_request_context():
@@ -121,16 +125,19 @@ class TestCase(unittest.TestCase):
                 #user = models.UserDetails.query.filter_by(name= 'Michael Scott').first()
                 user = models.UserLogin.query.filter_by(email= 'michael.scott@gmail.com').first()
                 self.assertIsNotNone(user)
+                print(10)
 
 
+    # NOT RUNNING 
     #testing to see if we can register a user with missing details - should not be able to
     #missing email field 
     def test_registerMissing(self):
-        response = self.app.get(('/register'), follow_redirects = True)
-        self.assertEqual(response.status_code, 200)
-
         with app.test_request_context():
             with app.app_context():
+
+                response = self.app.get(('/register'), follow_redirects = True)
+                self.assertEqual(response.status_code, 200)
+
                 data = {
                 'Name' : 'Pam Halpert',
                 'DateOfBirth' : datetime.strptime('2002-03-15', '%Y-%m-%d').date(),
@@ -146,6 +153,7 @@ class TestCase(unittest.TestCase):
                 error_dict = form.errors
                 #check if error message for missing email is displayed
                 self.assertIn('This field is required.', error_dict.get('Email', []))
+                print(11)
 
     
     #testing to see if we can register a user with missing details - should not be able to
@@ -171,6 +179,7 @@ class TestCase(unittest.TestCase):
                 error_dict = form.errors
                 #check if error message for missing email is displayed
                 self.assertIn('This field is required.', error_dict.get('Name', []))
+                print(12)
 
 
     #need to add app context 
@@ -185,13 +194,13 @@ class TestCase(unittest.TestCase):
                 data = {
                     'Email' : 'michael.scott@gmail.com',
                     'Password' : 'MichaelScott1',
-                    'Type' : 1
                 }
 
                 form = LoginForm(data=data)
                 self.assertTrue(form.validate())
                 response = self.app.post('/login', data=form.data, follow_redirects = True)
                 self.assertEqual(response.status_code, 200)
+                print(13)
 
 
     #logging in a user with missing fields
@@ -202,11 +211,35 @@ class TestCase(unittest.TestCase):
 
                 data = {
                     'Email' : ' ',
-                    'Password' : 'MichaelScott1'
+                    'Password' : 'MichaelScott1',
                 }
 
                 form = LoginForm(data=data)
                 self.assertFalse(form.validate())
                 error_dict = form.errors
                 self.assertIn('This field is required.', error_dict.get('Email', []))
+                print(14)
+
+    #this test is failing 
+    #check privileges - a customer of type1 that is logged in should not be able to access pages for userType 3 accounts
+    def test_correct_privilege(self):
+        with app.test_request_context():
+            with app.app_context():
+                #logging in again with a user that has already been registered
+                data = {
+                'Email' : 'michael.scott@gmail.com',
+                'Password' : 'MichaelScott1',
+                }
+                form = LoginForm(date=data)
+                self.assertTrue(form.validate())
+                response = self.app.post('/login', data=form.data, follow_redirects=True)
+                self.assertEqual(response.status_code, 200)
+                
+                #the user tries to access the manager page analysis
+                response = self.client.get('/analysis')
+                #302 = temporary redirect 
+                self.assertEqual(response.status_code, 302)
+                self.assertEqual(response.location, '/home')
+                print(15)
+
 

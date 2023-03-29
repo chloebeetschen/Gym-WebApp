@@ -261,8 +261,8 @@ def makeBooking(id): # << id passed here is the calendar id (not user)
     
     #to update user bookings we need the user Id to be able to update for a specific user
     if 'proxyBooking' in session:
-        for id in session['proxyBooking']:
-            newBooking = UserBookings(userId = id, calendarId = id)
+        for uid in session['proxyBooking']:
+            newBooking = UserBookings(userId = uid, calendarId = id)
         flash('Proxy booking completed')
         for key in list(session.keys()):
             if key == 'proxyBooking':
@@ -510,9 +510,16 @@ def myBookings():
                             today=today, numEvents=len(bookings),
                             events = events, eventInfo = eventInfo)
 
+
+@app.route('/proxyEdit/<id>', methods=['GET', 'POST'])
+@login_required
+def proxyEdit(id):
+    session['proxyEdit'] = [id]
+    return redirect(url_for('userBookings', id=id))
+
 @app.route('/userBookings/<id>', methods=['GET', 'POST'])
 @login_required
-def userBookings(id):
+def userBookings(id):    
     today = datetime.now()
     #need a parameter id for the user that is logged in (can be done once cookies is enabled)
     bookings = UserBookings.query.filter_by(userId=id).all()
@@ -552,11 +559,18 @@ def deleteBasket(i): # 'i' is the index of the item deleted from the basket
 @login_required
 def deleteBooking(id): #id passed in will be  the id of the calendar
     logging.debug("Delete booking (with id: %s) route request", id)
-    # First check the user is a manager
-    if current_user.userType != 3:
-        return redirect('/home')
     # get the booking that matches the id of the parameter given and that of the userId 
+    
     booking = UserBookings.query.filter_by(calendarId = id, userId = current_user.id).first()
+
+    if 'proxyEdit' in session:
+        for uid in session['proxyEdit'] :
+            booking = UserBookings.query.filter_by(calendarId = id, userId = uid).first()
+        flash('Proxy deletion complete')
+        for key in list(session.keys()):
+            if key == 'proxyEdit':
+                session.pop(key)
+    
     # get the event in the calendar
     calendarBooking = Calendar.query.filter_by(id=id).first()
     # alter capacity of calendar
@@ -564,7 +578,7 @@ def deleteBooking(id): #id passed in will be  the id of the calendar
     
     db.session.delete(booking)
     db.session.commit()
-    return redirect('/myBookings')
+    return redirect('/home')
 
 
 #manager add activity 
@@ -937,10 +951,8 @@ def analysisGraphs():
 def manageUsers():
     logging.debug("Manage users route request")
 
-    userType = current_user.userType
-
     # First check the user is a employee / manager
-    if userType == 1:
+    if current_user.userType == 1:
         return redirect('/home')
 
     form = SearchForm()
@@ -967,7 +979,7 @@ def manageUsers():
                             userTypeLogin1 = userTypeLogin1, 
                             userTypeLogin2 = userTypeLogin2,
                             userTypeLogin3 = userTypeLogin3,
-                            userType = userType )  
+                            userType = current_user.userType )  
 
 ## Edits a users details (name, email, password and type)
 @app.route('/editUser/<id>', methods=['GET', 'POST'])
@@ -1089,8 +1101,8 @@ def annualMembership():
 @login_required
 def searchResults(search):
 
-    # First check the user is a manager
-    if current_user.userType != 3:
+    # First check the user is a employee / manager
+    if current_user.userType == 1:
         return redirect('/home')
 
     form = SearchForm()
@@ -1112,5 +1124,12 @@ def searchResults(search):
 
     results = list(dict.fromkeys(results))
 
+    # Prevents employees from searching for manager accounts
+    for user in results:
+        if current_user.userType == 2:
+            userSearch = UserLogin.query.filter_by(id = user.id).first()
+            type = userSearch.userType
+            if type == 3:
+                results.remove(user)
 
     return render_template('searches.html', title='Search Results', form = form, results = results, numUsers = len(results))

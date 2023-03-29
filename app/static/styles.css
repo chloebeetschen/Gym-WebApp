@@ -6,6 +6,17 @@
     --btn-hover: #799aa7;
     --background-medium: #39355c;
     --background-dark: #051e46;
+    --background-light: #194578;
+}
+
+.bg-dark {
+    background-color: var(--background-dark) !important;
+}
+.bg-md {
+    background-color: var(--background-medium) !important;
+}
+.bg-light {
+    background-color: var(--background-light) !important;
 }
 
 * {
@@ -151,11 +162,13 @@ img {
 
 .login-reg-container {
     position: absolute;
+    background-color: transparent !important;
 }
 
 .times-container {
     background-color: var(--background-dark);
-    padding: 3rem 1rem 8rem 1rem;
+    padding: 3rem 1rem 4rem 1rem;
+    padding: 3vw;
 }
 
 .time-header {
@@ -164,5 +177,25 @@ img {
 
 .time-info {
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 1.3vw;
+    background-color: var(--background-light);
+    padding-top: 1vw;
+    margin-left: 1vw;
+    margin-right: 1vw;
+}
+
+.time-info-body {
+    text-align: left;    
+    margin-left: 2vw;
+}
+
+.price {
+    float: right;
+    background-color: var(--background-dark);
+    padding: 10px;
+    margin-right: 1.5vw;
+}
+
+.time-info-list {
+    margin-bottom: 3vh;
 }

@@ -177,7 +177,6 @@ img {
 
 .time-info {
     text-align: center;
-<<<<<<< HEAD
     font-size: 1.3vw;
     background-color: var(--background-light);
     padding-top: 1vw;
@@ -199,7 +198,4 @@ img {
 
 .time-info-list {
     margin-bottom: 3vh;
-=======
-    font-size: 1.5rem;
->>>>>>> 9a027007e84b06f4408674f4d0a9d63ccc923a87
 }

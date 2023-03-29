@@ -2,6 +2,13 @@
 #used chat gpt to learn how to use unit test in python  
 
 
+#removed payment page test 
+#removed address from register pages since this field is not valid anymore
+#added analysis page for managers 
+#updated passwords to match regular expression validation 
+#capital letter, lowercase, digit, 8 characters
+
+
 import unittest
 from flask import Flask, current_app, url_for
 from flask_sqlalchemy import SQLAlchemy
@@ -10,6 +17,7 @@ from app.models import *
 from app.views import *
 from app.forms import *
 from flask.testing import FlaskClient 
+#import stripe
 
 
 class TestCase(unittest.TestCase):
@@ -52,10 +60,6 @@ class TestCase(unittest.TestCase):
     def test_navBarType1_calendar(self):
         response = self.app.get(('/calendar'), follow_redirects=True)
         self.assertEqual(response.status_code, 200)
-     
-    def test_navBarType1_payment(self):
-        response = self.app.get(('/paymentForm'), follow_redirects = True)
-        self.assertEqual(response.status_code, 200)
 
     def test_navBarType1_settings(self):
         response = self.app.get(('/settings'), follow_redirects = True)
@@ -68,24 +72,26 @@ class TestCase(unittest.TestCase):
     def test_navBarType1_memberships(self):
         response = self.app.get(('/memberships'), follow_redirects = True)
         self.assertEqual(response.status_code, 200)   
-            
-    #TO DO :
-    #pricing list page 
+
+    #for user Type 2 - employees 
 
     #for user type 3 
-    def test_navBarType2_addEvent(self):
+    def test_navBarType3_addEvent(self):
         response = self.app.get(('/addEvent'), follow_redirects=True)
         self.assertEqual(response.status_code, 200)  
 
-    def test_navBarType2_addActivity(self):
+    def test_navBarType3_addActivity(self):
         response = self.app.get(('/addActivity'), follow_redirects=True)
         self.assertEqual(response.status_code, 200)   
 
-    def test_navBarType2_manageUsers(self):
+    def test_navBarType3_manageUsers(self):
         response = self.app.get(('/manageUsers'), follow_redirects=True)
         self.assertEqual(response.status_code, 200)  
+    
+    def test_navBarType3_manageUsers(self):
+        response = self.app.get(('/analysis'), follow_redirects=True)
+        self.assertEqual(response.status_code, 200)
 
-# NEED TO GET RID OF ADDRESS FIELDS IN ALL TESTS SINCE IT HAS BEEN TAKE OUT OF ALL FORMS AS IT IS REDUNDANT 
 
     #registering a user and testing if this updates in the database
     def test_register(self):
@@ -99,10 +105,9 @@ class TestCase(unittest.TestCase):
                 data = {
                     'Name' : 'Michael Scott',
                     'DateOfBirth' : datetime.strptime('2002-03-15', '%Y-%m-%d').date(),
-                    'Address' : '7 Uni Road',
                     'Email' : 'michael.scott@gmail.com',
-                    'Password' : '12345678',
-                    'ReenterPassword' : '12345678',
+                    'Password' : 'MichaelScott1',
+                    'ReenterPassword' : 'MichaelScott1',
                     'Type' : 1
                     }
 
@@ -129,10 +134,9 @@ class TestCase(unittest.TestCase):
                 data = {
                 'Name' : 'Pam Halpert',
                 'DateOfBirth' : datetime.strptime('2002-03-15', '%Y-%m-%d').date(),
-                'Address' : '89 Uni Road',
                 'Email' : ' ',
-                'Password' : '12345678',
-                'ReenterPassword' : '12345678',
+                'Password' : 'MichaelScott1',
+                'ReenterPassword' : 'MichaelScott1',
                 'Type' : 1
                 }
 
@@ -141,7 +145,7 @@ class TestCase(unittest.TestCase):
                 self.assertFalse(form.validate())
                 error_dict = form.errors
                 #check if error message for missing email is displayed
-                self.assertIn('Please enter an email', error_dict.get('Email', []))
+                self.assertIn('This field is required.', error_dict.get('Email', []))
 
     
     #testing to see if we can register a user with missing details - should not be able to
@@ -155,10 +159,9 @@ class TestCase(unittest.TestCase):
                 data = {
                 'Name' : ' ',
                 'DateOfBirth' : datetime.strptime('2002-03-15', '%Y-%m-%d').date(),
-                'Address' : '89 Uni Road',
                 'Email' : 'Pam.halpert@gmail.com',
-                'Password' : '12345678',
-                'ReenterPassword' : '12345678',
+                'Password' : 'MichaelScott1',
+                'ReenterPassword' : 'MichaelScott1',
                 'Type' : 1
                 }
 
@@ -167,7 +170,7 @@ class TestCase(unittest.TestCase):
                 self.assertFalse(form.validate())
                 error_dict = form.errors
                 #check if error message for missing email is displayed
-                self.assertIn('Please enter a name', error_dict.get('Name', []))
+                self.assertIn('This field is required.', error_dict.get('Name', []))
 
 
     #need to add app context 
@@ -181,7 +184,7 @@ class TestCase(unittest.TestCase):
 
                 data = {
                     'Email' : 'michael.scott@gmail.com',
-                    'Password' : '12345678',
+                    'Password' : 'MichaelScott1',
                     'Type' : 1
                 }
 
@@ -190,19 +193,20 @@ class TestCase(unittest.TestCase):
                 response = self.app.post('/login', data=form.data, follow_redirects = True)
                 self.assertEqual(response.status_code, 200)
 
-     #logging in a user with missing fields
-     #an error message should be displayed to the user 
+
+    #logging in a user with missing fields
+    #an error message should be displayed to the user 
     def test_invalid_login(self):
         with app.test_request_context():
             with app.app_context():
 
                 data = {
                     'Email' : ' ',
-                    'Password' : '12345678'
+                    'Password' : 'MichaelScott1'
                 }
 
                 form = LoginForm(data=data)
                 self.assertFalse(form.validate())
                 error_dict = form.errors
-                self.assertIn('Please enter your email', error_dict.get('Email', []))
+                self.assertIn('This field is required.', error_dict.get('Email', []))
 

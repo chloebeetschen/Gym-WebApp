@@ -116,6 +116,26 @@ if (aExists == None):
         #increment day
         today = today+timedelta(days=1)
 
+        aEmailExists = UserLogin.query.filter_by(email="admin@admin.com").first()
+        if (aEmailExists == None):
+            hashedPassword = bcrypt.generate_password_hash('password')
+            oldEnough = datetime.now().date()-timedelta(days=16*365)
+            managerEmail = 'admin@admin.com'
+
+            newUser = models.UserLogin(email=managerEmail,
+                                   password=hashedPassword,
+                                   userType=3)
+
+            newUserDetails = models.UserDetails(name='Admin',
+                                            dateOfBirth=oldEnough,
+                                            loginDetails=newUser.id,
+                                            isMember = False,
+                                            membershipEnd=datetime.now())
+
+            # Add to the database
+            db.session.add(newUser)
+            db.session.add(newUserDetails)
+
     db.session.commit()
 
 @loginManager.user_loader
@@ -759,8 +779,10 @@ def logout():
 def register():
     logging.debug("Register route request")
     form = RegisterForm()
+    print('Yo')
 
     if form.validate_on_submit():
+        print('Hey')
         # Check that the email hasn't been used already.
         usedEmail = models.UserLogin.query.filter_by(email=form.Email.data).first()
         if usedEmail:
@@ -779,7 +801,7 @@ def register():
         # users that register are automatically set to 1
         newUser = models.UserLogin(email=Email,
                                    password=hashedPassword,
-                                   userType=form.Type.data)
+                                   userType=1)
 
         newUserDetails = models.UserDetails(name=Name,
                                             dateOfBirth=dob,
@@ -1117,7 +1139,7 @@ def annualMembership():
             yearAhead = today + relativedelta(years=1)
             cUserDetails.membershipEnd = yearAhead
             db.session.commit()
-            flash('Added yearly membership by proxy')
+            flash('Added monthly membership by proxy')
             for key in list(session.keys()):
                 if key == 'proxyMembership':
                     session.pop(key)

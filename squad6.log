@@ -452,3 +452,19 @@ DEBUG | 29/03/2023 20:20:56 | Register route request
 INFO | 29/03/2023 20:20:56 | The CSRF token is missing.
 DEBUG | 29/03/2023 20:20:56 | Register route request
 INFO | 29/03/2023 20:20:56 | The CSRF token is missing.
+DEBUG | 29/03/2023 20:29:37 | Login route request
+DEBUG | 29/03/2023 20:29:37 | Login route request
+DEBUG | 29/03/2023 20:29:37 | Home route request
+DEBUG | 29/03/2023 20:29:37 | Login route request
+DEBUG | 29/03/2023 20:29:37 | Register route request
+DEBUG | 29/03/2023 20:29:37 | Login route request
+DEBUG | 29/03/2023 20:29:37 | Login route request
+DEBUG | 29/03/2023 20:29:37 | Login route request
+DEBUG | 29/03/2023 20:29:37 | Login route request
+DEBUG | 29/03/2023 20:29:37 | Login route request
+DEBUG | 29/03/2023 20:29:37 | Login route request
+DEBUG | 29/03/2023 20:29:37 | Login route request
+DEBUG | 29/03/2023 20:29:37 | Login route request
+DEBUG | 29/03/2023 20:29:37 | Register route request
+DEBUG | 29/03/2023 20:29:37 | Register route request
+DEBUG | 29/03/2023 20:29:37 | Register route request

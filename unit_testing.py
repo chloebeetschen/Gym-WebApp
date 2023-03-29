@@ -182,7 +182,6 @@ class TestCase(unittest.TestCase):
                 print(12)
 
 
-    #need to add app context 
     #testing that an exisiting user can log in 
     def test_login(self):
         #using the login details of an already registered user

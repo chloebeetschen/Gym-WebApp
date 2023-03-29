@@ -2,5 +2,126 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <img src="{{url_for('static', filename='images/GYM.png')}}" width="1000" height="600" />
+
+<!-- Landing page -->
+<div class="landing-page">
+  <div class="title-text-container">
+    <div class="push-pull">PUSH N PULL</div>
+    <div class="line-break"></div>
+    <div class="gym-corp">GYMCORP</div>
+  </div>
+  <div class="down-arrow p-0">
+    <p id="facilities" class="pb-0 m-0">OUR FACILITIES</p>
+    <i class="bi bi-arrow-down p-0 m-0"></i>
+  </div>
+</div>
+
+<!-- Facilities -->
+<div class="facilities-container d-flex justify-content-evenly">
+  <div class="facility-text">
+    <p class="fw-bold header">STATE OF THE ART FACILITIES</p>
+    <p>
+      Welcome to our cutting-edge fitness facility! We are thrilled to
+      provide you with a diverse range of facilities, including swimming,
+      a fully-equipped gym, rock climbing walls, squash courts and much more.
+      Our facility is designed to help you achieve your fitness goals, offering
+      everything you need to get the results you want.
+      Don't wait - join us today and experience ultimate fitness!
+    </p>
+  </div>
+
+  <!-- *** CAN CHANGE OUT THESE IMAGES *** -->
+  <div id="facilities-carousel" class="carousel slide w-50">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="https://img.freepik.com/free-photo/strong-man-training-gym_1303-23478.jpg?size=626&ext=jpg" class="d-block w-100" alt="Strong man lifting weights">
+      </div>
+      <div class="carousel-item">
+        <img src="https://img.freepik.com/free-photo/yoga-group-classes-inside-gym_1303-14779.jpg?size=626&ext=jpg" class="d-block w-100" alt="Yoga class stretching on mats">
+      </div>
+      <div class="carousel-item">
+        <img src="https://img.freepik.com/free-photo/woman-doing-hyperextension-with-weight_651396-764.jpg?size=626&ext=jpg" class="d-block w-100" alt="Woman lifting weight.">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#facilities-carousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#facilities-carousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+
+<!-- Times and prices -->
+<div class="times-container container-fluid">
+  <p class="header p-3 mb-5 time-header">8AM TO 10PM. EVERYDAY.</p>
+  <div class="row">
+    <div class="col time-info">
+      <p class="header">STUDIO</p>
+      <p>Pick from a variety of studio classes.</p>
+      <div class="time-info-body mt-4 ml-5">
+        PILATES <span class="price">$5</span>
+        <ul class="time-info-list text-left">
+          <li>Monday 6-7pm</li>
+        </ul>
+        AEROBICS <span class="price">$5</span>
+        <ul class="time-info-list text-left">
+          <li>Tuesday 10-11am</li>
+          <li>Thursday 7-8pm</li>
+          <li>Saturday 10-11am</li>
+        </ul>
+        YOGA <span class="price">$5</span>
+        <ul class="time-info-list text-left">
+          <li>Friday 7-8pm</li>
+          <li>Sunday 9-10am</li>
+        </ul>
+      </div> 
+    </div>
+
+    <div class="col time-info">
+      <p class="header">TEAM</p>
+      <p>Get access to our facilities for 2 hour private team sessions.</p>
+      <div class="time-info-body mt-4 ml-5">
+        SPORTS HALL <span class="price">$60</span>
+        <ul class="time-info-list text-left">
+          <li>Thursday 7-9pm</li>
+          <li>Saturday 9-11am</li>
+        </ul>
+        SWIMMING POOL <span class="price">$80</span>
+        <ul class="time-info-list text-left">
+          <li>Friday 8-10am</li>
+          <li>Sunday 8-10am</li>
+        </ul>
+      </div> 
+    </div>
+    <div class="col time-info">
+      <p class="header">INDIVIDUAL</p>
+      <p>Facilities can be booked by the hour.</p>
+      <div class="time-info-body mt-4 ml-5">
+        SWIMMING POOL <span class="price">$5</span>
+        <ul class="time-info-list text-left">
+          <li>8am - 8pm</li>
+        </ul>
+        SPORTS HALL <span class="price">$5</span>
+        <ul class="time-info-list text-left">
+          <li>8am - 10pm</li>
+        </ul>
+        FITNESS ROOM <span class="price">$5</span>
+        <ul class="time-info-list text-left">
+          <li>8am - 8pm</li>
+        </ul>
+        SQUASH COURT <span class="price">$10</span>
+        <ul class="time-info-list text-left">
+          <li>8am - 10pm</li>
+        </ul>
+        CLIMBING WALL <span class="price">$5</span>
+        <ul class="time-info-list text-left">
+          <li>10am - 8pm</li>
+        </ul>
+      </div> 
+    </div>
+  </div>
+</div>
 {% endblock %}

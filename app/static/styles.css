@@ -161,9 +161,31 @@ html, body {
 .carousel-inner > .item > img, .carousel-inner > .item > a > img {
     width: 100%;
 }
-
+/* 
 img {
     width: 10% !important;
+} */
+
+
+.membership-container {
+    background-color: var(--background-medium);
+    margin: 0 !important;
+    padding: 3rem 1rem 4rem 1rem;
+    padding: 3vw;
+    padding-left: 6vw;
+    padding-right: 6vw;
+    padding-bottom: 6vw;
+    
+}
+
+.membership-info {
+    text-align: center;
+    font-size: 1.3vw;
+    background-color: #4f4b73;
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+    margin-left: 3vw;
+    margin-right: 3vw;
 }
 
 .header {
@@ -172,6 +194,11 @@ img {
     font-weight: bold;
 }
 
+.second-header{
+    text-align: center;
+    font-size: 1.8vw !important;
+    font-weight: bold;
+}
 .login-reg-container {
     position: absolute;
     background-color: transparent !important;
@@ -229,6 +256,29 @@ li a i:hover {
 
 }
 
+
+.basket-button {
+    background-color: #1a5189;
+}
+
+.btn-secondary {
+    font-weight: bold;
+    background-color: var(--background-medium) !important;
+    border-radius: 40px !important;
+    padding: 20px;
+    width: 200px;
+}
+
+.btn-secondary:hover {
+    background-color: #4f4b73 !important;
+    border-color: var(--background-medium) !important;
+}
+
+.payment-btn {
+    background-color: var(--background-dark) !important;
+    color: #ffffff;
+}
+
 .navbar-nav {
     padding-left: 1vw;
     padding-right: 1vw;
@@ -248,4 +298,5 @@ li a i:hover {
     display: flex;
     justify-content: center;
     align-items: center;
+
 }

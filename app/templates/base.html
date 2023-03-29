@@ -31,7 +31,7 @@
       <!-- Navbar with links to all pages -->
       <!-- *** ONLY SHOW FOR LOGGED IN USERS *** -->
       {% if current_user.is_authenticated %}
-      <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+      <nav class="navbar navbar-expand-sm nav-light">
         <!-- When we have users logged on, we can personalise navbar message for them here -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -39,9 +39,11 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           
           <ul class="navbar-nav me-auto">
+
             <li class="nav-item"><a class="nav-link" href="{{ url_for('home') }}"><i class="bi bi-house-door"></i></a></li>
             <li class="nav-item"><a class="nav-link" href="/calendar"><i class="bi bi-calendar-date"></i></a></li>
             <li class="nav-item"><a class="nav-link" href="/myBookings"><i class="bi bi-card-checklist"></i></a></li>
+
             <!-- Only managers should have access to these pages -->
             {% if current_user.userType == 2 %}
             <li class="nav-item"><a class="nav-link" href="/manageUsers">Manage Users</a></li>
@@ -57,9 +59,11 @@
           </ul>
 
           <ul class="nav navbar-nav ms-auto">
+
             <li class="nav-item"><a class="nav-link" href="/basket"><i class="bi bi-cart2"></i></a></li>
             <li class="nav-item"><a class="nav-link" href="{{ url_for('settings') }}"><i class="bi bi-gear"></i></a></li>
             <li class="nav-item"><a class="nav-link" href="/logout"><i class="bi bi-person-dash"></i></a></li>
+
           </ul>
 
         </div>

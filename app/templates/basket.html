@@ -22,13 +22,7 @@
 
     <div class="text-center font-weight-bold mt-3 p-4 " id="central-header"> SHOPPING BASKET </div>
     <div class="container mt-2 form-container rounded-4 p-4 box-shadow" id="basket-container">
-        <!-- <div class="row mb-3">
-            <div class="col border-bottom">
-                <h3 class="fw-normal">ITEM</h3>
-            </div>
-        </div>
-     -->
-        <!-- If stuff in basket, display it -->
+
         {% if isItems %}
         <div class="table-responsive">
             <table class="table">
@@ -51,7 +45,7 @@
                         <a href="/deleteBasket/{{i}}"><button class="btn basket-button pb-0 pt-0" class="btn">X</button></a>
 
                     </td>
-    
+                </tr>
             {% endfor %}
         
             </table>

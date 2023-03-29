@@ -282,7 +282,6 @@ def basket():
 
     # If anything in basket, set isItems to true and get all the events in basket
     if 'basket' in session:
-        print(session['basket'])
         isItems = True
         # Go through basket adding to corresponding dates
         for id in session['basket']:

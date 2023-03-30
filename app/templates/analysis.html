@@ -2,9 +2,10 @@
 {% extends "base.html" %}
 
 {% block content %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 <!--Basic Header-->
 <h1>Analysis</h1>
-
+<h5>Pick a date, and an activity or facility to view usage and sales data</h5>
 <form method="post" name="analysis" >
     {{ form.hidden_tag() }}
 
@@ -47,10 +48,10 @@
     {% endif %}
     
 <br>
-    <input type="submit" value="Submit">
+    <input type="submit" class="btn btn-primary" value="Submit">
     
 </form>
-
+<br>
 
 <script>
     var facility = document.getElementById('facilities')
@@ -72,6 +73,84 @@
         }
     });
 
+</script>
+
+<hr>
+
+<h2> Analysis for all bookings this week</h2>
+<h3> Week of {{ thisWeek[0] }} - {{ thisWeek[6]}} </h3>
+
+<h3>Usage </h3>
+<canvas id="usageChart"> Graph of usage data </canvas>
+
+<hr>
+
+<h3>Sales</h3>
+<canvas id="salesChart"> Graph of usage data </canvas>
+
+<!-- The below code is adapted from W3 schools -->
+<script>
+var xValues = ["{{thisWeek[0]}}", "{{thisWeek[1]}}","{{thisWeek[2]}}","{{thisWeek[3]}}","{{thisWeek[4]}}","{{thisWeek[5]}}","{{ thisWeek[6]}}"];
+
+new Chart("usageChart", {
+  type: "bar",
+  data: {
+    labels: xValues,
+    datasets: [
+    {
+      label: "Members",
+      backgroundColor: "#a8d5e5",
+      data: {{currentMemberWeek}}
+    },
+    {
+      label: "Non-Members",
+      backgroundColor: "#93adcf",
+      data: {{currentNonMemberWeek}}
+    }]
+  },
+  options: {
+    scales: {
+      yAxes: [{
+        scaleLabel: {
+            display: true,
+            labelString: 'Bookings'
+        },
+        ticks: {
+          beginAtZero: true
+        }
+      }],
+    }
+  }
+});
+
+new Chart("salesChart", {
+  type: "bar",
+  data: {
+    labels: xValues,
+    datasets: [
+    {
+      backgroundColor: "#a8d5e5",
+      data: {{currentSales}}
+    }]
+  },
+  options: {
+    legend: {display: false},
+    layout: {
+        padding: 20
+    },
+    scales: {
+      yAxes: [{
+        scaleLabel: {
+            display: true,
+            labelString: 'Sales (£)'
+        },
+        ticks: {
+          beginAtZero: true
+        }
+      }],
+    }
+  }
+});
 </script>
 
 

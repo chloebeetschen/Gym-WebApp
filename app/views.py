@@ -390,7 +390,9 @@ def basket():
                 # Count 7 days after
                 count = 0
                 for i in range (0, 6):
-                    count += datesOfBookings[indexDate+i]
+                    # Check if date within 3 weeks:
+                    if len(datesOfBookings) > indexDate+i:
+                        count += datesOfBookings[indexDate+i]
                 if count > 2:
                     discount = True
             # Change item price depending on discocunt
@@ -905,6 +907,30 @@ def analysis():
     if current_user.userType != 3:
         return redirect('/home')
 
+
+    # Get all usage and sales from past week:
+    bookings = UserBookings.query.all()
+    today = date.today()
+    currentMemberWeek = [0,0,0,0,0,0,0]
+    currentNonMemberWeek = [0,0,0,0,0,0,0]
+    thisWeek = []
+    currentSales = [0,0,0,0,0,0,0]
+    for day in range(6, -1, -1):
+        thisWeek.append( (today-timedelta(days=day)).strftime("%d/%m"))
+        
+        for booking in bookings:
+            print(booking)
+            event = Calenday.query.filter_by(id=calendarId).first()
+            if event.aDateTime.date() == dateEntered-timedelta(days=day):
+                user = UserDetails.query.filter_by(id=userId).first()
+                if user.isMember:
+                    currentMemberWeek[day] += 1
+                else:
+                    currentNonMemberWeek[day] += 1
+                    currentSales[day] += event.aPrice
+
+
+
     form = AnalysisForm()
     activities = Activity.query.all()
     facilities = Calendar.query.with_entities(Calendar.aLocation).distinct()
@@ -980,7 +1006,12 @@ def analysis():
         session['dates'] = dates
         session['sales'] = sales
         return redirect('/analysisGraphs')
-    return render_template('analysis.html', title = 'Analysis', form=form, activities=activities, facilities=facilities)   
+
+    return render_template('analysis.html', title = 'Analysis', form=form, 
+                            activities=activities, facilities=facilities,
+                            currentNonMemberWeek=currentNonMemberWeek, 
+                            currentMemberWeek=currentMemberWeek, thisWeek=thisWeek,
+                            currentSales=currentSales)   
 
 @app.route('/analysisGraphs', methods=['GET', 'POST'])
 @login_required

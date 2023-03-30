@@ -166,7 +166,7 @@ def changeDiscount():
         amount = models.DiscountAmount(discountAmount=form.DiscountAmount.data)
         db.session.add(amount)
         db.session.commit()
-        flash('Added new discount.')
+        flash('Added new discount.', "success")
         return redirect('/home')   
     return render_template('changeDiscount.html', form=form)
 
@@ -317,7 +317,7 @@ def makeBooking(id): # << id passed here is the calendar id (not user)
     if 'proxyBooking' in session:
         for uid in session['proxyBooking']:
             newBooking = UserBookings(userId = uid, calendarId = id)
-        flash('Proxy booking completed')
+        flash('Proxy booking completed', "success")
         for key in list(session.keys()):
             if key == 'proxyBooking':
                 session.pop(key)
@@ -625,7 +625,7 @@ def deleteBooking(id): #id passed in will be  the id of the calendar
     if 'proxyEdit' in session:
         for uid in session['proxyEdit'] :
             booking = UserBookings.query.filter_by(calendarId = id, userId = uid).first()
-        flash('Proxy deletion complete')
+        flash('Proxy deletion complete', "success")
         for key in list(session.keys()):
             if key == 'proxyEdit':
                 session.pop(key)
@@ -902,13 +902,13 @@ def cancelMembership():
     if 'proxyMembership' in session:
         for uid in session['proxyMembership']:
             usersDetails = models.UserDetails.query.get(uid)
-            flash('Membership cancelled by proxy')
+            flash('Membership cancelled by proxy', "success")
         for key in list(session.keys()):
             if key == 'proxyMembership':
                 session.pop(key)
     else:
         usersDetails = UserDetails.query.get(current_user.id)
-        flash('Membership cancelled')
+        flash('Membership cancelled', "success")
     usersDetails.isMember = False
     usersDetails.membershipEnd = datetime.now()
     db.session.commit()
@@ -1180,7 +1180,7 @@ def monthlyMembership():
             monthAhead = today + relativedelta(months=1)
             cUserDetails.membershipEnd = monthAhead
             db.session.commit()
-            flash('Added monthly membership by proxy')
+            flash('Added monthly membership by proxy', "success")
             for key in list(session.keys()):
                 if key == 'proxyMembership':
                     session.pop(key)
@@ -1210,7 +1210,7 @@ def annualMembership():
             yearAhead = today + relativedelta(years=1)
             cUserDetails.membershipEnd = yearAhead
             db.session.commit()
-            flash('Added monthly membership by proxy')
+            flash('Added monthly membership by proxy', "success")
             for key in list(session.keys()):
                 if key == 'proxyMembership':
                     session.pop(key)

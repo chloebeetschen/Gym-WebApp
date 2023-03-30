@@ -83,8 +83,8 @@
             <div class="col">
                 <form action="/checkout" method="post" class="text-end">
                     <script src="https://checkout.stripe.com/checkout.js" class="stripe-button payment-btn"
-                        data-key="{{ key }}" data-description="A Flask Charge" data-amount="{{ totalPrice * 100 }}"
-                        data-locale="auto">
+                        data-key="{{ key }}" data-description="Push and Pull payment" data-amount="{{ totalPrice * 100 }}"
+                        data-locale="auto" data-currency='gbp'>
 
 
                         </script>

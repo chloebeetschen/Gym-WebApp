@@ -449,8 +449,7 @@ def basket():
 @login_required
 def checkout():
     
-
-    user = models.UserDetails.query.get(id=current_user.id)
+    user = models.UserDetails.query.filter_by(id=current_user.id).first()
     paymentId = user.paymentId
 
     if paymentId == None:

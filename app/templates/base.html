@@ -7,7 +7,7 @@
       
       <!-- Bootstrap CSS -->
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
       {% if current_user.userType != 3 %}
       <!-- other css sheet: -->
         <link rel="stylesheet" href="../static/styles.css" type="text/css">
@@ -22,6 +22,7 @@
     </head>
     
     <body>
+      {% if current_user.is_authenticated%}
       <!-- Navbar with links to all pages -->
       <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
 
@@ -63,7 +64,7 @@
 
         </div>
       </nav>
-      {% else %}
+     {% else %}
       <!-- This is for user's that aren't logged in -->
       <div class="container-fluid p-md-3 pt-3 bg-light d-flex login-reg-container bg-transparent">
         <div class="row">
@@ -78,7 +79,6 @@
       {% endif %}
 
 
-
       <!-- If user is manager then layout is different: -->
       <!-- layout of page content for managers: -->
       {% if current_user.userType == 3 %}
@@ -87,12 +87,15 @@
           <div class="col-3"></div>
             <div class="col-6">
               <br> </br>
+
+      {% endif %}
+      {% block content %}{% endblock %}
+
+      {% if current_user.userType == 3 %}
            </div>
         </div>
       </div>  
       {% endif %}
-
-        {% block content %}{% endblock %}
 
 
       <!-- Optional JavaScript -->

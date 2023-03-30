@@ -30,13 +30,6 @@ def delete_sessions():
     for key in list(session.keys()):
         session.pop(key)
 
-db.create_all()
-
-aDiscountExists = models.DiscountAmount.query.filter_by(discountAmount=15).first()
-if (aDiscountExists == None):
-    amount = models.DiscountAmount(discountAmount=15)
-    db.session.add(amount)
-    db.session.commit()
     db.create_all()
 
     aDiscountExists = models.DiscountAmount.query.filter_by(discountAmount=15).first()
@@ -44,116 +37,123 @@ if (aDiscountExists == None):
         amount = models.DiscountAmount(discountAmount=15)
         db.session.add(amount)
         db.session.commit()
+        db.create_all()
 
-    # Checks to see if the data has already been populated
-    aExists = Activity.query.filter_by(activityType="Swimming (Team Events)").first()
+        aDiscountExists = models.DiscountAmount.query.filter_by(discountAmount=15).first()
+        if (aDiscountExists == None):
+            amount = models.DiscountAmount(discountAmount=15)
+            db.session.add(amount)
+            db.session.commit()
 
-    if (aExists == None):
-        logging.debug("Creating database tables")
-    
-        #pre-populating calendar and activity with given data from spec
+        # Checks to see if the data has already been populated
+        aExists = Activity.query.filter_by(activityType="Swimming (Team Events)").first()
 
-        db.session.add_all([
-        Activity(activityType="Swimming (Team Events)"),    #1
-        Activity(activityType="Swimming (Lane Swimming)"),  #2
-        Activity(activityType="Swimming (Lessons)"),        #3 
-        Activity(activityType="Swimming (General Use)"),    #4
-        Activity(activityType="Gym"),                       #5
-        Activity(activityType="Squash"),                    #6
-        Activity(activityType="Climbing"),                  #7
-        Activity(activityType="Pilates"),                   #8
-        Activity(activityType="Aerobics"),                  #9
-        Activity(activityType="Yoga"),                      #10
-        Activity(activityType="Sports Hall (Team Events)"), #11
-        Activity(activityType="Sports Hall (Session)")      #12
-        ])
+        if (aExists == None):
+            logging.debug("Creating database tables")
+        
+            #pre-populating calendar and activity with given data from spec
 
-        #get todays date and iterate for 2 weeks from today as events will appear every day
-        today = date.today() + timedelta(days=1)
-        twoWeeks = today+timedelta(days=14)
+            db.session.add_all([
+            Activity(activityType="Swimming (Team Events)"),    #1
+            Activity(activityType="Swimming (Lane Swimming)"),  #2
+            Activity(activityType="Swimming (Lessons)"),        #3 
+            Activity(activityType="Swimming (General Use)"),    #4
+            Activity(activityType="Gym"),                       #5
+            Activity(activityType="Squash"),                    #6
+            Activity(activityType="Climbing"),                  #7
+            Activity(activityType="Pilates"),                   #8
+            Activity(activityType="Aerobics"),                  #9
+            Activity(activityType="Yoga"),                      #10
+            Activity(activityType="Sports Hall (Team Events)"), #11
+            Activity(activityType="Sports Hall (Session)")      #12
+            ])
 
-        while today < twoWeeks:
-            timeStart = datetime.combine(today, time(8,00))
+            #get todays date and iterate for 2 weeks from today as events will appear every day
+            today = date.today() + timedelta(days=1)
+            twoWeeks = today+timedelta(days=14)
 
-            #all activities in the while loop occur every day of the week
-            while timeStart < datetime.combine(today, time(22,00)):
-                if timeStart < datetime.combine(today, time(20,00)):
+            while today < twoWeeks:
+                timeStart = datetime.combine(today, time(8,00))
+
+                #all activities in the while loop occur every day of the week
+                while timeStart < datetime.combine(today, time(22,00)):
+                    if timeStart < datetime.combine(today, time(20,00)):
+                        db.session.add_all([
+                            #swimming (lane)
+                            Calendar(aDateTime=timeStart, aDuration=1, aStaffName="Life Guard", aPrice=10, aLocation="Swimming Pool", aCapacity=30, aSlotsTaken=0, aIsRepeat = True, activity=Activity.query.get(2)),
+                            #swimming (lessons)
+                            Calendar(aDateTime=timeStart, aDuration=1, aStaffName="Life Guard", aPrice=10, aLocation="Swimming Pool", aCapacity=30, aSlotsTaken=0, aIsRepeat = True, activity=Activity.query.get(3)),
+                            #swimming (general)
+                            Calendar(aDateTime=timeStart, aDuration=1, aStaffName="Life Guard", aPrice=10, aLocation="Swimming Pool", aCapacity=30, aSlotsTaken=0, aIsRepeat = True, activity=Activity.query.get(4)),  
+                        ])
+                    #climbing wall
+                    if timeStart > datetime.combine(today, time(10,00)):
+                        db.session.add(
+                            Calendar(aDateTime=timeStart, aDuration=2, aStaffName="Instructor", aPrice=10, aLocation="Climbing Wall", aCapacity=22, aSlotsTaken=0, aIsRepeat = True, activity=Activity.query.get(7))
+                        )
+
                     db.session.add_all([
-                        #swimming (lane)
-                        Calendar(aDateTime=timeStart, aDuration=1, aStaffName="Life Guard", aPrice=10, aLocation="Swimming Pool", aCapacity=30, aSlotsTaken=0, aIsRepeat = True, activity=Activity.query.get(2)),
-                        #swimming (lessons)
-                        Calendar(aDateTime=timeStart, aDuration=1, aStaffName="Life Guard", aPrice=10, aLocation="Swimming Pool", aCapacity=30, aSlotsTaken=0, aIsRepeat = True, activity=Activity.query.get(3)),
-                        #swimming (general)
-                        Calendar(aDateTime=timeStart, aDuration=1, aStaffName="Life Guard", aPrice=10, aLocation="Swimming Pool", aCapacity=30, aSlotsTaken=0, aIsRepeat = True, activity=Activity.query.get(4)),  
+                        #gym
+                        Calendar(aDateTime=timeStart, aDuration=1, aStaffName="Supervisor", aPrice=10, aLocation="Fitness Room", aCapacity=35, aSlotsTaken=0, aIsRepeat = True, activity=Activity.query.get(5)),
+                        #squash courts
+                        Calendar(aDateTime=timeStart, aDuration=1, aStaffName="None", aPrice=10, aLocation="Court 1", aCapacity=4, aSlotsTaken=0, aIsRepeat = True, activity=Activity.query.get(6)),
+                        Calendar(aDateTime=timeStart, aDuration=1, aStaffName="None", aPrice=10, aLocation="Court 2", aCapacity=4, aSlotsTaken=0, aIsRepeat = True, activity=Activity.query.get(6)),
+                        #sports hall
+                        Calendar(aDateTime=timeStart, aDuration=1, aStaffName="Sport Organiser", aPrice=10, aLocation="Sports Hall", aCapacity=45, aIsRepeat = True, aSlotsTaken=0, activity=Activity.query.get(12))
                     ])
-                #climbing wall
-                if timeStart > datetime.combine(today, time(10,00)):
-                    db.session.add(
-                        Calendar(aDateTime=timeStart, aDuration=2, aStaffName="Instructor", aPrice=10, aLocation="Climbing Wall", aCapacity=22, aSlotsTaken=0, aIsRepeat = True, activity=Activity.query.get(7))
-                    )
+                    
+                    #increment time
+                    timeStart = timeStart+timedelta(hours=1)
 
-                db.session.add_all([
-                    #gym
-                    Calendar(aDateTime=timeStart, aDuration=1, aStaffName="Supervisor", aPrice=10, aLocation="Fitness Room", aCapacity=35, aSlotsTaken=0, aIsRepeat = True, activity=Activity.query.get(5)),
-                    #squash courts
-                    Calendar(aDateTime=timeStart, aDuration=1, aStaffName="None", aPrice=10, aLocation="Court 1", aCapacity=4, aSlotsTaken=0, aIsRepeat = True, activity=Activity.query.get(6)),
-                    Calendar(aDateTime=timeStart, aDuration=1, aStaffName="None", aPrice=10, aLocation="Court 2", aCapacity=4, aSlotsTaken=0, aIsRepeat = True, activity=Activity.query.get(6)),
-                    #sports hall
-                    Calendar(aDateTime=timeStart, aDuration=1, aStaffName="Sport Organiser", aPrice=10, aLocation="Sports Hall", aCapacity=45, aIsRepeat = True, aSlotsTaken=0, activity=Activity.query.get(12))
-                ])
-                
-                #increment time
-                timeStart = timeStart+timedelta(hours=1)
-
-            #individual day activities
-            #0 = monday ... 6 = sunday
-            if today.weekday() == 0:
-                db.session.add(Calendar(aDateTime=datetime.combine(today, time(18,00)), aDuration=1, aStaffName="Trainer", aPrice=10, aLocation="Studio", aCapacity=25, aSlotsTaken=0, aIsRepeat = False, activity=Activity.query.get(8)))
-            elif today.weekday() == 1:
-                db.session.add(Calendar(aDateTime=datetime.combine(today, time(10,00)), aDuration=1, aStaffName="Trainer", aPrice=10, aLocation="Studio", aCapacity=25, aSlotsTaken=0, aIsRepeat = False, activity=Activity.query.get(9)))
-            elif today.weekday() == 3:
-                db.session.add(Calendar(aDateTime=datetime.combine(today, time(19,00)), aDuration=1, aStaffName="Trainer", aPrice=10, aLocation="Studio", aCapacity=25, aSlotsTaken=0, aIsRepeat = False, activity=Activity.query.get(9)))
-                db.session.add(Calendar(aDateTime=datetime.combine(today, time(19,00)), aDuration=2, aStaffName="None", aPrice=10, aLocation="Sports Hall", aCapacity=1, aSlotsTaken=0, aIsRepeat = False, activity=Activity.query.get(11)))
-            elif today.weekday() == 4:
-                db.session.add(Calendar(aDateTime=datetime.combine(today, time(19,00)), aDuration=1, aStaffName="Trainer", aPrice=10, aLocation="Studio", aCapacity=25, aSlotsTaken=0, aIsRepeat = False, activity=Activity.query.get(10)))
-                db.session.add(Calendar(aDateTime=datetime.combine(today, time(8,00)), aDuration=2, aStaffName="Life Guard", aPrice=10, aLocation="Swimming Pool", aCapacity=1, aIsRepeat = False, aSlotsTaken=0, activity=Activity.query.get(1)))
-            elif today.weekday() == 5:
-                db.session.add(Calendar(aDateTime=datetime.combine(today, time(10,00)), aDuration=1, aStaffName="Trainer", aPrice=10, aLocation="Studio", aCapacity=25, aSlotsTaken=0, aIsRepeat = False, activity=Activity.query.get(9)))
-                db.session.add(Calendar(aDateTime=datetime.combine(today, time(9,00)), aDuration=2, aStaffName="None", aPrice=10, aLocation="Sports Hall", aCapacity=1, aSlotsTaken=0, aIsRepeat = False, activity=Activity.query.get(11)))
-            elif today.weekday() == 6:
-                db.session.add(Calendar(aDateTime=datetime.combine(today, time(8,00)), aDuration=2, aStaffName="Life Guard", aPrice=10, aLocation="Swimming Pool", aCapacity=1, aSlotsTaken=0, aIsRepeat = False, activity=Activity.query.get(1)))
-                db.session.add(Calendar(aDateTime=datetime.combine(today, time(9,00)), aDuration=1, aStaffName="Trainer", aPrice=10, aLocation="Studio", aCapacity=25, aSlotsTaken=0, aIsRepeat = False, activity=Activity.query.get(10)))
+                #individual day activities
+                #0 = monday ... 6 = sunday
+                if today.weekday() == 0:
+                    db.session.add(Calendar(aDateTime=datetime.combine(today, time(18,00)), aDuration=1, aStaffName="Trainer", aPrice=10, aLocation="Studio", aCapacity=25, aSlotsTaken=0, aIsRepeat = False, activity=Activity.query.get(8)))
+                elif today.weekday() == 1:
+                    db.session.add(Calendar(aDateTime=datetime.combine(today, time(10,00)), aDuration=1, aStaffName="Trainer", aPrice=10, aLocation="Studio", aCapacity=25, aSlotsTaken=0, aIsRepeat = False, activity=Activity.query.get(9)))
+                elif today.weekday() == 3:
+                    db.session.add(Calendar(aDateTime=datetime.combine(today, time(19,00)), aDuration=1, aStaffName="Trainer", aPrice=10, aLocation="Studio", aCapacity=25, aSlotsTaken=0, aIsRepeat = False, activity=Activity.query.get(9)))
+                    db.session.add(Calendar(aDateTime=datetime.combine(today, time(19,00)), aDuration=2, aStaffName="None", aPrice=10, aLocation="Sports Hall", aCapacity=1, aSlotsTaken=0, aIsRepeat = False, activity=Activity.query.get(11)))
+                elif today.weekday() == 4:
+                    db.session.add(Calendar(aDateTime=datetime.combine(today, time(19,00)), aDuration=1, aStaffName="Trainer", aPrice=10, aLocation="Studio", aCapacity=25, aSlotsTaken=0, aIsRepeat = False, activity=Activity.query.get(10)))
+                    db.session.add(Calendar(aDateTime=datetime.combine(today, time(8,00)), aDuration=2, aStaffName="Life Guard", aPrice=10, aLocation="Swimming Pool", aCapacity=1, aIsRepeat = False, aSlotsTaken=0, activity=Activity.query.get(1)))
+                elif today.weekday() == 5:
+                    db.session.add(Calendar(aDateTime=datetime.combine(today, time(10,00)), aDuration=1, aStaffName="Trainer", aPrice=10, aLocation="Studio", aCapacity=25, aSlotsTaken=0, aIsRepeat = False, activity=Activity.query.get(9)))
+                    db.session.add(Calendar(aDateTime=datetime.combine(today, time(9,00)), aDuration=2, aStaffName="None", aPrice=10, aLocation="Sports Hall", aCapacity=1, aSlotsTaken=0, aIsRepeat = False, activity=Activity.query.get(11)))
+                elif today.weekday() == 6:
+                    db.session.add(Calendar(aDateTime=datetime.combine(today, time(8,00)), aDuration=2, aStaffName="Life Guard", aPrice=10, aLocation="Swimming Pool", aCapacity=1, aSlotsTaken=0, aIsRepeat = False, activity=Activity.query.get(1)))
+                    db.session.add(Calendar(aDateTime=datetime.combine(today, time(9,00)), aDuration=1, aStaffName="Trainer", aPrice=10, aLocation="Studio", aCapacity=25, aSlotsTaken=0, aIsRepeat = False, activity=Activity.query.get(10)))
 
 
-            #increment day
-            today = today+timedelta(days=1)
+                #increment day
+                today = today+timedelta(days=1)
 
 
-            aEmailExists = UserLogin.query.filter_by(email="admin@admin.com").first()
-            if (aEmailExists == None):
-                hashedPassword = bcrypt.generate_password_hash('password')
-                oldEnough = datetime.now().date()-timedelta(days=16*365)
-                managerEmail = 'admin@admin.com'
+                aEmailExists = UserLogin.query.filter_by(email="admin@admin.com").first()
+                if (aEmailExists == None):
+                    hashedPassword = bcrypt.generate_password_hash('password')
+                    oldEnough = datetime.now().date()-timedelta(days=16*365)
+                    managerEmail = 'admin@admin.com'
 
-                newUser = models.UserLogin(email=managerEmail,
+                    newUser = models.UserLogin(email=managerEmail,
 
-                                   password=hashedPassword,
-                                   userType=3)
+                                    password=hashedPassword,
+                                    userType=3)
 
 
-                newUserDetails = models.UserDetails(name='Admin',
-                                            dateOfBirth=oldEnough,
-                                            loginDetails=newUser.id,
-                                            isMember = False,
-                                            membershipEnd=datetime.now())
+                    newUserDetails = models.UserDetails(name='Admin',
+                                                dateOfBirth=oldEnough,
+                                                loginDetails=newUser.id,
+                                                isMember = False,
+                                                membershipEnd=datetime.now())
 
-                # Add to the database
-                db.session.add(newUser)
-                db.session.add(newUserDetails)
+                    # Add to the database
+                    db.session.add(newUser)
+                    db.session.add(newUserDetails)
 
 
 
-        db.session.commit()
+            db.session.commit()
 
 
 @loginManager.user_loader

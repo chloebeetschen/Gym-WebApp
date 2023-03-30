@@ -47,7 +47,7 @@
 
               <!-- Only managers should have access to these pages -->
               {% if current_user.userType == 2 %}
-                <li class="nav-item"><a class="nav-link" href="/manageUsers">Manage Users</a></li>
+                <li class="nav-item"><a class="nav-link" href="/manageUsers"><i class="bi bi-person-add"></i></a></li>
               {% endif %}
             {% endif %}
             {% if current_user.userType == 3 %}

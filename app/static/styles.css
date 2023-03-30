@@ -133,9 +133,20 @@ html, body {
     background-color: var(--btn-color) !important;
     border-color: var(--btn-color) !important;
     border-radius: 40px !important;
-    padding: 15px;
+    padding: 12px;
     width: 150px;
 
+}
+
+.btn-size-auto {
+    width: auto;
+    height: auto;
+}
+
+.search-bar {
+    padding: 8px;
+    padding-left: 1.5vw;
+    width: 85%;
 }
 
 .btn-primary:hover {
@@ -198,10 +209,6 @@ html, body {
 .carousel-inner > .item > img, .carousel-inner > .item > a > img {
     width: 100%;
 }
-/* 
-img {
-    width: 10% !important;
-} */
 
 
 .membership-container {
@@ -439,14 +446,6 @@ th, td {
     vertical-align: middle;
 }
 
-  
-
-.alert-box {
-    padding: 20px;
-    
-    opacity: 0.9;
-    font-size: medium;
-}
 
 .error {
     background-color: #f44336;
@@ -457,7 +456,14 @@ th, td {
 .success {
     background-color: #85f56e;
     color: black;
+}
 
+.alert-box {
+    padding: 20px;
+    background-color: #f44336;
+    color: white;
+    opacity: 0.9;
+    font-size: medium;
 }
 
 .closebtn {
@@ -475,4 +481,8 @@ th, td {
     color: black;
 }
 
-
+.manage-users-container {
+    background-color: var(--background-dark);
+    opacity: 90%;
+    font-size: 1.2vw;
+}

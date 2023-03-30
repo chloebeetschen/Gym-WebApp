@@ -1,71 +1,82 @@
 {% extends "base.html" %}
 {% block content %}
 {% with messages = get_flashed_messages() %}
-{% if messages %}
-{% for message in messages %}
-    <div class="alert alert-success text-center">
-    {{ message }}
-    </div>
-{% endfor %}
-{% endif %}
-{% endwith %}
-<!--Basic Header-->
-<h1>Manage Users</h1>
-
-<div>
-    <h2>Search by email or name...</h2>
-    <form method="post" name="search">
-        {{ form.hidden_tag() }}
-        {{ form.search(class='form-control')}}
-        <br>
-        <input type="submit" class="btn btn-primary" value="Search">
-    </form>
-
-</div>
-
-<br>
-<hr>
-<br>
-
-<h2>Users</h2>
-<!--Basic table to hold booking information of a user-->
-<table class="table">
-    <thead>
-        <tr>
-            <th>Email</th>
-            {% if userType != 3 %}
-            <th>Bookings</th>
-            <th>Change membership</th>
-            {% endif %}
-            <th>Edit details</th>
-            <th>Delete user</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for i in range (0 , numUsers) %}
-            <tr>
-                <!--display event and event info in the tables-->
-                <td>{{results[i].email}}</td>
-                {% if userType != 3 %}
-                <td>    
-
-                    <a href="/calendar/{{results[i].id}}"><button type="button" class="btns">Make Booking</button></a>
-                    <a href="/proxyEdit/{{results[i].id}}"><button type="button" class="btns">Edit Bookings</button></a>
-                </td>
-                <td>
-                    <a href="/proxyChangeMembership/{{results[i].id}}"><button type="button" class="btns">Change membership</button></a>
-
-                </td>
-                {%endif%}
-                <td>    
-                    <a href="/editUser/{{results[i].id}}"><button type="button" class="btn btn-primary">Edit</button></a>
-                </td>
-                <td>    
-                    <a href="/deleteUser/{{results[i].id}}"><button type="button" class="btn btn-primary">Delete</button></a>
-                </td>
-            </tr>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success text-center">
+            {{ message }}
+            </div>
         {% endfor %}
-    </tbody>
-</table>
+    {% endif %}
+{% endwith %}
 
+
+<div class="container-fluid settings-container">
+    <div class="manage-users-container container p-5 rounded-5 box-shadow">
+        <div class="row border-bottom border-3">
+            <div class="col">
+                <h1 class="header pb-2">Manage Users</h1>
+            </div>
+        </div>
+        <div class="row pt-4">
+            <div class="col">
+                <form method="post" name="search">
+                    {{ form.hidden_tag() }}
+                    <label for="search" class="fw-bold fs-5 pl-4 pb-2">Search by email or name</label>
+                    <div class="d-flex justify-content-around">
+                            {{ form.search(class='form-control search-bar', id='search' ) }}
+                            <input type="submit" class="btn py-0 btn-primary" value="Search">
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="row mt-5 border-bottom border-2">
+            <div class="col mb-3">
+                <h3 class="header fs-2">Users</h3>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <!--Basic table to hold booking information of a user-->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Email</th>
+                        {% if userType != 3 %}
+                            <th>Bookings</th>
+                            <th>Change membership</th>
+                        {% endif %}
+                        <th>Edit details</th>
+                        <th>Delete user</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in range (0 , numUsers) %}
+                        <tr>
+                            <!--display event and event info in the tables-->
+                            <td>{{results[i].email}}</td>
+                            {% if userType != 3 %}
+                            <td>    
+
+                                <a href="/calendar/{{results[i].id}}"><button type="button" class="btn btn-primary">Make Booking</button></a>
+                                <a href="/proxyEdit/{{results[i].id}}"><button type="button" class="btn btn-primary">Edit Bookings</button></a>
+                            </td>
+                            <td>
+                                <a href="/proxyChangeMembership/{{results[i].id}}"><button type="button" class="btn btn-primary">Change membership</button></a>
+
+                            </td>
+                            {%endif%}
+                            <td>    
+                                <a href="/editUser/{{results[i].id}}"><button type="button" class="btn btn-primary">Edit</button></a>
+                            </td>
+                            <td>    
+                                <a href="/deleteUser/{{results[i].id}}"><button type="button" class="btn btn-primary">Delete</button></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 {% endblock %}

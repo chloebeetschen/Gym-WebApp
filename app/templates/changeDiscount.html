@@ -4,11 +4,14 @@
     <form action="" method="post" name="login">
         {{ form.hidden_tag() }}
         <p>{{ form.DiscountAmount(class_='form-control') }}</p>
-        {% for error in form.DiscountAmount.errors %}
-        <div class="alert alert-danger" role="alert">
-            [{{ error }}]
+        <div class="d-flex align-items-center flashed-msg-container justify-content-center">
+            {% for error in form.DiscountAmount.errors %}
+            <div class="alert alert-danger" role="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times</span>
+                {{ error }}
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
         <p><input type="submit" class="btn btn-primary" value="Submit"></p>
     </form>  
 {% endblock %}

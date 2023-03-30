@@ -101,6 +101,7 @@ class UserDetails(db.Model, UserMixin):
     dateOfBirth = db.Column(db.Date, nullable=False)
     isMember = db.Column(db.Boolean)
     membershipEnd = db.Column(db.DateTime)
+    paymentId=db.Column(db.String(150))
     parentId = db.Column(db.Integer, db.ForeignKey('user_login.id'))
 
     # Validate that age is over 16

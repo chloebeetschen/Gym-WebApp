@@ -182,8 +182,8 @@ def calendarMethod():
     #days of week integers, from today
     
     #calculation for making sure we only get 2 weeks of data
-    w1 = datetime.now()+timedelta(days=7)
-    w2 = datetime.now()+timedelta(days=14)
+    w1 = datetime.now()+timedelta(days=6)
+    w2 = datetime.now()+timedelta(days=13)
 
     # get all events in order of date and time w1 and w2
     events = Calendar.query.filter(Calendar.aDateTime >= date.today()).filter(Calendar.aIsRepeat==False).filter(Calendar.aDateTime < w1).order_by(Calendar.aDateTime).all()
@@ -448,17 +448,33 @@ def basket():
 @app.route('/checkout', methods=['POST'])
 @login_required
 def checkout():
-    customer = stripe.Customer.create(
-        email='sample@customer.com',
-        source=request.form['stripeToken']
-    )
+    
+    user = models.UserDetails.query.filter_by(id=current_user.id).first()
+    paymentId = user.paymentId
 
-    stripe.Charge.create(
-        customer=customer.id,
-        amount=int(session['basketTotal']) * 100,
-        currency='GBP',
-        description='Flask Charge'
-    )
+    if paymentId == None:
+        customer = stripe.Customer.create(
+            email=current_user.email,
+            source=request.form['stripeToken']
+        )
+
+        stripe.Charge.create(
+            customer=customer.id,
+            amount=int(session['basketTotal']) * 100,
+            currency='GBP',
+            description='Push and Pull Payment'
+        )
+        # Save payment details for later
+        user.paymentId = customer.id
+        db.session.add(user)
+        db.session.commit()
+    else:
+        stripe.Charge.create(
+            customer=paymentId,
+            amount=int(session['basketTotal']) * 100,
+            currency='GBP',
+            description='Push and Pull Payment'
+        )
 
     if 'membership' in session:
         usersDetails = UserDetails.query.get(current_user.id)
@@ -941,9 +957,9 @@ def analysis():
         
         for booking in bookings:
             print(booking)
-            event = Calenday.query.filter_by(id=calendarId).first()
-            if event.aDateTime.date() == dateEntered-timedelta(days=day):
-                user = UserDetails.query.filter_by(id=userId).first()
+            event = Calendar.query.filter_by(id=booking.calendarId).first()
+            if event.aDateTime.date() == today-timedelta(days=day):
+                user = UserDetails.query.filter_by(id=booking.userId).first()
                 if user.isMember:
                     currentMemberWeek[day] += 1
                 else:
@@ -1111,8 +1127,10 @@ def editUser(id):
             cUserLogin.userType = form.Type.data
 
         db.session.commit()
+
         flash('User Details updated', "success")
         return redirect ('/manageUsers')
+
         
     return render_template('editUser.html',
                             title='Edit User',
@@ -1267,7 +1285,12 @@ def searchResults(search):
                 results.remove(user)
             
 
-    return render_template('searches.html', title='Search Results', form = form, results = results, numUsers = len(results))
+    return render_template('searches.html', 
+                            title='Search Results', 
+                            form = form, 
+                            results = results, 
+                            numUsers = len(results),
+                            userType = current_user.userType)
 
 @app.route('/proxyChangeMembership/<id>', methods=['GET', 'POST'])
 @login_required

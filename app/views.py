@@ -117,6 +117,26 @@ if (aExists == None):
         #increment day
         today = today+timedelta(days=1)
 
+        aEmailExists = UserLogin.query.filter_by(email="admin@admin.com").first()
+        if (aEmailExists == None):
+            hashedPassword = bcrypt.generate_password_hash('password')
+            oldEnough = datetime.now().date()-timedelta(days=16*365)
+            managerEmail = 'admin@admin.com'
+
+            newUser = models.UserLogin(email=managerEmail,
+                                   password=hashedPassword,
+                                   userType=3)
+
+            newUserDetails = models.UserDetails(name='Admin',
+                                            dateOfBirth=oldEnough,
+                                            loginDetails=newUser.id,
+                                            isMember = False,
+                                            membershipEnd=datetime.now())
+
+            # Add to the database
+            db.session.add(newUser)
+            db.session.add(newUserDetails)
+
     db.session.commit()
 
 
@@ -388,8 +408,8 @@ def checkout():
         if key == 'membership':
             session.pop(key)
 
-    flash('Payment Successful')
-    return redirect(url_for('home'))
+    flash('Payment Successful', "success")
+    return redirect('/myBookings')
 
 #this is so the manager is able to delete an event - delete button
 @app.route('/deleteEvent/<id>', methods=['GET', 'POST'])
@@ -544,7 +564,7 @@ def addActivity():
         aExists = Activity.query.filter_by(activityType=form.aType.data).first()
         # Activity type is unique so first check that the activity doesn't exist already
         if(aExists):
-            flash("This activity already exists.")
+            flash("This activity already exists.", "error")
             return redirect(url_for('addActivity'))
 
         #create new activity
@@ -553,7 +573,7 @@ def addActivity():
         #add and commit to db
         db.session.add(newAct)
         db.session.commit()
-        flash('New activity added')
+        flash('New activity added', "success")
     
     return render_template('addActivity.html', title='Add Activity', form=form)
 
@@ -576,13 +596,13 @@ def editActivity():
         # Check the new name isn't the same as any of the other names
         for activity in activities:
             if form.aType.data.upper() == activity.activityType.upper():
-                flash("This activity name is already taken")
+                flash("This activity name is already taken", "error")
                 return redirect(url_for('editActivity'))
         
         # update the name with the new name
         sActivity.activityType = form.aType.data
         db.session.commit()
-        flash("Updated activity type successfully")
+        flash("Updated activity type successfully", "success")
 
     return render_template('editActivity.html', title='Add Event',
                             form=form, activities=activities)
@@ -624,7 +644,7 @@ def addEvent():
             
         db.session.add(cEvent)
         db.session.commit()
-        flash("Successfully created event!")
+        flash("Successfully created event!", "success")
 
     #if validation failed  return to add event
     return render_template('addEvent.html', title='Add Event',
@@ -667,7 +687,7 @@ def editEvent(id):
             event.aCapacity = form.aCapacity.data
 
         db.session.commit()
-        flash('Event edited succesfully!')
+        flash('Event edited succesfully!', "success")
         #return to previous page for now
         return redirect('/calendar')
 
@@ -690,7 +710,7 @@ def login():
                 else:
                     return redirect('/calendar')
             else:
-                flash("Incorrect username/password. Please try again.")
+                flash("Incorrect username/password. Please try again.", "error")
 
     return render_template('login.html', form=form, title='Login')
 
@@ -715,7 +735,7 @@ def register():
         # Check that the email hasn't been used already.
         usedEmail = models.UserLogin.query.filter_by(email=form.Email.data).first()
         if usedEmail:
-            flash("Looks like this email is already in use. Please log in.")
+            flash("Looks like this email is already in use. Please log in.", "error")
             return redirect(url_for('login'))
 
         # Get data from the form
@@ -762,7 +782,7 @@ def settings():
     if form.validate_on_submit():
         # Check the old password matches the current password
         if not bcrypt.check_password_hash(current_user.password, form.Password.data):
-            flash('Incorrect password')
+            flash('Incorrect password', "error")
             return redirect(url_for('settings'))
 
         cUserLogin   = models.UserLogin.query.get(current_user.id)
@@ -775,7 +795,7 @@ def settings():
             cUserLogin.password  = bcrypt.generate_password_hash(form.NewPassword.data)
 
         db.session.commit()
-        flash('User Details updated')
+        flash('User Details updated', "success")
         
     return render_template('settings.html',
                             title='Settings',
@@ -817,7 +837,7 @@ def analysis():
             # First check that the facility exists
             facility = Calendar.query.filter_by(aLocation = request.form['facility']).first()
             if facility is None:
-                flash("That is not a valid facility/location")
+                flash("That is not a valid facility/location", "error")
                 return redirect('/analysis')
             activityFacility = request.form['facility']
             # Get all calendar events for that location
@@ -827,14 +847,14 @@ def analysis():
             # First check that the activity exists
             activity = Activity.query.filter_by(activityType = request.form['activity']).first()
             if activity is None:
-                flash("That is not a valid activity")
+                flash("That is not a valid activity", "error")
                 return redirect('/analysis')
             activityFacility = request.form['activity']
             # Get all calendar events for that activity
             events = Calendar.query.filter_by(activityId = activity.id).all()
 
         else:
-            flash("Please enter either a facility or an activity")
+            flash("Please enter either a facility or an activity", "error")
             return redirect('/analysis')
 
         # Get date entered
@@ -954,16 +974,17 @@ def editUser(id):
 
         # Only update anything that has changed
         if form.Name.data:
-            cUserDetails.name    = form.Name.data
+            cUserDetails.name = form.Name.data
         if form.Email.data:
-            cUserLogin.email     = form.Email.data
+            cUserLogin.email = form.Email.data
         if form.NewPasswordx2.data:
-            cUserLogin.password  = bcrypt.generate_password_hash(form.NewPasswordx2.data)
+            cUserLogin.password = bcrypt.generate_password_hash(form.NewPasswordx2.data)
         if form.Type.data:
-            cUserLogin.userType      = form.Type.data
+            cUserLogin.userType = form.Type.data
 
         db.session.commit()
-        flash('User Details updated')
+        flash('User Details updated', "success")
+        return redirect ('/manageUsers')
         
     return render_template('editUser.html',
                             title='Edit User',
@@ -998,9 +1019,9 @@ def deleteUser(id):
     db.session.delete(cUserDetails)
 
     db.session.commit()
-    flash('User deleted')
+    flash('User deleted', "success")
         
-    return redirect('/calendar')
+    return redirect('/manageUsers')
     
 ## Renders the memberships page with two options: annual and monthly
 @app.route('/memberships', methods=['GET', 'POST'])

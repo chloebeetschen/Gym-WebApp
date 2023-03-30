@@ -16,7 +16,6 @@
     transform: translate(-50%, -50%) !important;
     z-index: 1000 !important;
     font-size: 3vw !important;
-
 }
 
 .bg-dark {
@@ -432,3 +431,10 @@ li a i:hover {
     color: black;
 }
 
+.form-error {
+    padding: 20px;
+    opacity: 0.9;
+    font-size: medium;
+    background-color: #f44336;
+    color: white;
+}

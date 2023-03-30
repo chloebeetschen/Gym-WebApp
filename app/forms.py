@@ -30,10 +30,7 @@ def passwordPolicy(form, field):
             digit = True
     if (uppercase != True) or (lowercase != True) or (digit != True) :
         raise ValidationError("All passwords must contain an uppercase letter, a lowercase letter and a digit")
-<<<<<<< HEAD
 
-=======
->>>>>>> 5453fbb44bff312b47dcaf02f7a51fe666e43cdf
 
 # For the manager to add a new activity e.g. swimming
 # Can be used for editing and creating activities

@@ -2,8 +2,17 @@
 {% extends "base.html" %}
 
 {% block content %}
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+    <div class="alert alert-success text-center">
+    {{ message }}
+    </div>
+{% endfor %}
+{% endif %}
+{% endwith %}
 <!--Basic Header-->
-<h1>Edit Activity (Manager)</h1>
+<h1>Edit Activity</h1>
 
 <!--Form for manager to edit an activity-->
 <form action="{{ url_for('editActivity') }}" method="post" name="editActivity">
@@ -31,7 +40,9 @@
     <p><input type="submit" class="btn btn-primary mt-2" value="Edit Activity"></p>
 </form>
 
-<br><br>
+<br>
+<hr>
+<br>
 
 <h1>Delete Activity</h1>
 <h4 class="">

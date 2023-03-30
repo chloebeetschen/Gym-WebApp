@@ -34,15 +34,19 @@
                         {% endif %}
                         <!--If statement to see if acitivity is full and whether or not to dispay bookable button-->
                         <td>
-                            {% if events[i].aSlotsTaken == events[i].aCapacity %}
-                                <a href=""></a><button type="button" class="btns">Full</button></a>
-                            {% else %}
-                                {% if member == False %}
-                                    <a href="/addBasket/{{events[i].id}}"><button type="button" class="btns">Add to Basket</button>
-                                {% else %}    
-                                    <a href="/makeBooking/{{events[i].id}}"><button type="button" class="btns">Book</button>
+                            {% if current_user.userType != 3 %}
+                                {% if events[i].aSlotsTaken == events[i].aCapacity %}
+                                    <a href=""></a><button type="button" class="btn btn-primary">Full</button></a>
+                                {% else %}
+                                    {% if member == False %}
+                                        <a href="/addBasket/{{events[i].id}}"><button type="button" class="btn btn-primary">Add to Basket</button>
+                                    {% else %}    
+                                        <a href="/makeBooking/{{events[i].id}}"><button type="button" class="btn btn-primary">Book</button>
+                                    {% endif %}
                                 {% endif %}
-                            {% endif %}
+                            {% else %}
+                                <td><a href="/editEvent/{{events[i].id}}"><button type="button" class="btn btn-primary">Edit/View Event</button></td>
+                            {% endif %}      
                         </td>
                     </tr>
                 {% endif %}

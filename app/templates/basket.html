@@ -6,10 +6,10 @@
 
 <!-- Flashed error Messages -->
 <div class="d-flex align-items-center flashed-msg-container justify-content-center">
-    {% with messages = get_flashed_messages(category_filter=['error']) %}
+    {% with messages = get_flashed_messages(with_categories=True) %}
         {% if messages %}
         {% for category, message in messages %}
-            <div class="alert-box rounded-4 p-5">
+            <div class="{{ category }} alert-box rounded-4 p-5">
             <span class="closebtn" onclick="this.parentElement.style.display='none';">&times</span>
             {{ message }}
             </div>
@@ -18,20 +18,6 @@
     {% endwith %}
 </div>
 
-<!-- Flashed success Messages -->
-<div class="d-flex align-items-center flashed-msg-container justify-content-center">
-    {% with messages = get_flashed_messages(category_filter=['success']) %}
-        {% if messages %}
-        {% for category, message in messages %}
-            <div class="alert-box rounded-4 p-5">
-            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times</span>
-            {{ message }}
-            </div>
-        {% endfor %}
-        {% endif %}
-    {% endwith %}
-</div>
-  
   
     <div class="login-reg-form-container rounded-4 p-4 box-shadow">
         <div class="col border-bottom">
@@ -81,6 +67,7 @@
 
 
             <div class="col">
+                
                 <form action="/checkout" method="post" class="text-end">
                     <script src="https://checkout.stripe.com/checkout.js" class="stripe-button payment-btn"
                         data-key="{{ key }}" data-description="Push and Pull payment" data-amount="{{ totalPrice * 100 }}"

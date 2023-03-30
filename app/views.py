@@ -30,6 +30,7 @@ def delete_sessions():
     for key in list(session.keys()):
         session.pop(key)
 
+
 db.create_all()
 
 
@@ -339,13 +340,13 @@ def addBasket(id):
     
     #First check if event is already in basket
     if id in session['basket']:
-        flash("This event is already in your basket.")
+        flash("This event is already in your basket.", "error")
         return redirect('/calendar')
 
     # Add calendar event id to sessions
     session['basket'].append(id)
     # Flash message that event has been added to basket
-    flash("An event has been added to your basket")
+    flash("An event has been added to your basket", "success")
     # Redirect back to calendar
     return redirect('/calendar')
 

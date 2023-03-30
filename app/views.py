@@ -301,7 +301,7 @@ def repeatEvents(id):
                             numEvents = len(events),
                             events    = events,
                             eventType = eventType,
-                            member    = user.isMember,
+                            isMember    = user.isMember,
                             weeks     = weeks,
                             userBooked = userBooked)
 

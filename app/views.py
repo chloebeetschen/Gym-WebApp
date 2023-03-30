@@ -288,7 +288,13 @@ def repeatEvents(id):
     eventType = (Activity.query.get(id)).activityType
     today = datetime.now()
     weeks = [today, (today + timedelta(days=1)), (today + timedelta(days=2)), (today + timedelta(days=3)), (today + timedelta(days=4)), (today + timedelta(days=5)), (today + timedelta(days=6)), (today + timedelta(days=7)), (today + timedelta(days=8)), (today + timedelta(days=9)), (today + timedelta(days=10)), (today + timedelta(days=11)), (today + timedelta(days=12)), (today + timedelta(days=13))]
-
+    userBooked = []
+    for event in events:
+        booked = UserBookings.query.filter_by(userId=current_user.id, calendarId=event.id).first()
+        if booked is not None:   
+            userBooked.append(True)
+        else:
+            userBooked.append(False)
     user = UserDetails.query.filter_by(id=current_user.id).first()
 
     return render_template('repeatEvents.html',
@@ -297,7 +303,8 @@ def repeatEvents(id):
                             events    = events,
                             eventType = eventType,
                             member    = user.isMember,
-                            weeks     = weeks)
+                            weeks     = weeks,
+                            userBooked = userBooked)
 
 #this is a book event button for the calendar
 @app.route('/makeBooking/<id>', methods=['GET'])
@@ -326,7 +333,7 @@ def makeBooking(id): # << id passed here is the calendar id (not user)
     #add and update db
     db.session.add(newBooking)
     db.session.commit()
-    return redirect('/home')
+    return redirect('/myBookings')
 
 
 # Add to basket button

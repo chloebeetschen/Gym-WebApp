@@ -30,7 +30,10 @@ def passwordPolicy(form, field):
             digit = True
     if (uppercase != True) or (lowercase != True) or (digit != True) :
         raise ValidationError("All passwords must contain an uppercase letter, a lowercase letter and a digit")
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5453fbb44bff312b47dcaf02f7a51fe666e43cdf
 
 # For the manager to add a new activity e.g. swimming
 # Can be used for editing and creating activities
@@ -74,7 +77,7 @@ class LoginForm(FlaskForm):
 class SettingsForm(FlaskForm):
     Name          = StringField('Name', render_kw={"placeholder": "Name"})
     Password      = PasswordField('Old Password', validators=[DataRequired()], render_kw={"placeholder": "Password"})
-    NewPassword   = PasswordField('New Password', validators=[Optional(), Length(min=8, message="Password must be 8 characters or more")], render_kw={"placeholder": "New Password"})
+    NewPassword   = PasswordField('New Password', validators=[Optional(), passwordPolicy, Length(min=8, message="Password must be 8 characters or more")], render_kw={"placeholder": "New Password"})
     NewPasswordx2 = PasswordField('Reenter New Password', validators=[EqualTo('NewPassword', message="Passwords must match")], render_kw={"placeholder": "Reenter New Password"})
 
 class ManagerForm(FlaskForm):
@@ -89,3 +92,6 @@ class AnalysisForm(FlaskForm):
     #need to add some type of validation here: latest date chosen can be 7 days prior to todays date
     DateOf    = DateField('Date', format='%Y-%m-%d', validators=[DataRequired(message="Please enter a Date")], render_kw={"placeholder": "Date of activity"})
     Facility    = StringField("Facility", render_kw={"placeholder": "Facility"}) 
+
+class DiscountForm(FlaskForm):
+    DiscountAmount = IntegerField('Discount', validators=[DataRequired(message="Enter a discount amount")], render_kw={"placeholder": "Amount"})

@@ -49,6 +49,7 @@ html, body {
     align-items: center;
 }
 
+
 .title-text-container {
     display: flex;
     justify-content: end;
@@ -142,6 +143,10 @@ html, body {
 
 }
 
+.btn-calendar {
+    height:100%;
+}
+
 .central-header {
     font-size: 2.8vw;
     font-weight: bold;
@@ -209,6 +214,10 @@ img {
     
 }
 
+.vertical-align-middle {
+    vertical-align: middle !important;
+}
+
 .membership-info {
     text-align: center;
     font-size: 1.3vw;
@@ -218,6 +227,8 @@ img {
     margin-left: 3vw;
     margin-right: 3vw;
 }
+
+
 
 .header {
     text-align: center;
@@ -241,6 +252,27 @@ img {
     padding: 3vw;
 }
 
+.calendar-container {
+    background-image: linear-gradient(to bottom, #051e46, #194578);
+    padding: 3rem 1rem 4rem 1rem;
+    padding: 4vw;
+    padding-top: 1vw;
+}
+
+.calendar-info {
+    text-align: center;
+    font-size: 1vw;
+    background-color: var(--background-light);
+    padding: 4vw;
+    margin-left: 1vw;
+    margin-right: 1vw;  
+}
+
+.calendar-days {
+    text-align: left;
+    font-size: 1.5vw !important;
+    font-weight: bold;
+}
 .register-container {
 }
 
@@ -272,6 +304,7 @@ img {
     margin-left: 1vw;
     margin-right: 1vw;
 }
+
 
 .time-info-body {
     text-align: left;    
@@ -309,15 +342,16 @@ li a i:hover {
 
 .btn-secondary {
     font-weight: bold;
-    background-color: var(--background-medium) !important;
+    background-color: var(--background-dark) !important;
+    border-color: var(--background-dark);
     border-radius: 40px !important;
     padding: 20px;
     width: 200px;
 }
 
 .btn-secondary:hover {
-    background-color: #4f4b73 !important;
-    border-color: var(--background-medium) !important;
+    background-color: #010f29 !important;
+    border-color: #010f29 !important;
 }
 
 .payment-btn {
@@ -347,13 +381,6 @@ li a i:hover {
 
 }
 
-
-.calendar {
-    width: 100%;
-    height: 100%;
-    background-image: linear-gradient(to bottom, #051e46, #194578);
-    justify-content: center;
-}
 
 .event-info {
     position: relative;
@@ -395,7 +422,23 @@ li a i:hover {
     border-width: 5px;
     border-style: solid;
     border-color: transparent transparent var(--btn-hover) transparent;
-  }
+}
+
+.mybookings-container {
+    background-color: var(--background-dark);
+    opacity: 90%;
+}
+
+th {
+    padding-bottom: 1vw !important;
+}
+
+th, td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+  
 
 .alert-box {
     padding: 20px;
@@ -431,6 +474,7 @@ li a i:hover {
     color: black;
 }
 
+<<<<<<< HEAD
 .form-error {
     padding: 20px;
     opacity: 0.9;
@@ -438,3 +482,6 @@ li a i:hover {
     background-color: #f44336;
     color: white;
 }
+=======
+
+>>>>>>> 5453fbb44bff312b47dcaf02f7a51fe666e43cdf

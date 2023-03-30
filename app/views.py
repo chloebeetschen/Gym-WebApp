@@ -711,6 +711,7 @@ def register():
     form = RegisterForm()
 
     if form.validate_on_submit():
+        print("submitted")
         # Check that the email hasn't been used already.
         usedEmail = models.UserLogin.query.filter_by(email=form.Email.data).first()
         if usedEmail:

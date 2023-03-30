@@ -17,3 +17,4 @@ WTF_CSRF_ENABLED = False
 # import secrets
 # secretKey = secrets.token_hex()
 SECRET_KEY = 'group6-secret-key'
+

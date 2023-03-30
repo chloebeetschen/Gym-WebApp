@@ -33,6 +33,23 @@ def delete_sessions():
 
 db.create_all()
 
+mExists = UserLogin.query.filter_by(email="admin@admin.com").first()
+if(mExists == None):
+    hashedPassword = bcrypt.generate_password_hash("Admin123")
+    newUser = models.UserLogin(email="admin@admin.com",
+                                password=hashedPassword,
+                                userType=3)
+
+    newUserDetails = models.UserDetails(name="admin",
+                                        dateOfBirth=datetime(2002, 7, 30).date(),
+                                        loginDetails=newUser.id,
+                                        isMember = False,
+                                        membershipEnd=datetime.now())
+    # Add to the database
+    db.session.add(newUser)
+    db.session.add(newUserDetails)
+    db.session.commit()
+
 # Checks to see if the data has already been populated
 aExists = Activity.query.filter_by(activityType="Swimming (Team Events)").first()
 
@@ -137,6 +154,7 @@ if (aExists == None):
 
     db.session.commit()
 
+
 @loginManager.user_loader
 def loadUser(userId):
     return models.UserLogin.query.get(int(userId))
@@ -163,16 +181,22 @@ def calendarMethod():
     #calculation for making sure we only get 2 weeks of data
     w1 = datetime.now()+timedelta(days=7)
     w2 = datetime.now()+timedelta(days=14)
+
     # get all events in order of date and time w1 and w2
     events = Calendar.query.filter(Calendar.aDateTime >= date.today()).filter(Calendar.aIsRepeat==False).filter(Calendar.aDateTime < w1).order_by(Calendar.aDateTime).all()
     events2 = Calendar.query.filter(Calendar.aDateTime >= w1).filter(Calendar.aDateTime < w2).filter(Calendar.aIsRepeat==False).order_by(Calendar.aDateTime).all()
 
     userBooked1 = []
     userBooked2 = []
+    weeksCount = [0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    dateWeeks = [d.date() for d in weeks]
 
     # get event type for each event found
     eventInfo = []
     for i in events:
+        # Find the index of day in weeks list
+        index = dateWeeks.index((i.aDateTime).date())
+        weeksCount[index] +=1
         eventInfo.append(Activity.query.filter_by(id=i.activityId).first())
         # For every event check if user has booked it
         booked = UserBookings.query.filter_by(userId=current_user.id, calendarId=i.id).first()
@@ -185,6 +209,9 @@ def calendarMethod():
     # get event type for each event found
     eventInfo2 = []
     for i in events2:
+        # Find the index of day in weeks list
+        index = dateWeeks.index((i.aDateTime).date())
+        weeksCount[index] +=1
         eventInfo2.append(Activity.query.filter_by(id=i.activityId).first())
         # For every event check if user has booked it
         booked = UserBookings.query.filter_by(userId=current_user.id, calendarId=i.id).first()
@@ -194,7 +221,6 @@ def calendarMethod():
             userBooked2.append(False)
 
     user = UserDetails.query.filter_by(id=current_user.id).first()
-
     
     return render_template('calendar.html',
                             title     = 'Calendar',
@@ -207,7 +233,8 @@ def calendarMethod():
                             isMember = user.isMember,   
                             weeks     = weeks,
                             userBooked1 = userBooked1,
-                            userBooked2 = userBooked2
+                            userBooked2 = userBooked2,
+                            weeksCount=weeksCount
                             )
 
 #calendar of all repeat sessions
@@ -531,9 +558,7 @@ def deleteBasket(i): # 'i' is the index of the item deleted from the basket
 @login_required
 def deleteBooking(id): #id passed in will be  the id of the calendar
     logging.debug("Delete booking (with id: %s) route request", id)
-    # First check the user is a manager
-    if current_user.userType != 3:
-        return redirect('/home')
+
     # get the booking that matches the id of the parameter given and that of the userId 
     booking = UserBookings.query.filter_by(calendarId = id, userId = current_user.id).first()
     # get the event in the calendar

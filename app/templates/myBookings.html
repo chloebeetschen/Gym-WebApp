@@ -31,18 +31,21 @@
                             <td>{{events[i].aLocation}}</td>
                             <td>{{events[i].aStaffName}}</td>
 
-                            <!--Delete activity button-->
-                            <td>
-                                {% if events[i].aDateTime > today %}
-                                    <a href="/deleteBooking/{{events[i].id}}"><button type="button" class="btn btn-primary">Cancel</button></a>
-                                {% endif %}
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+
+                    <!--Delete activity button-->
+                    <td>
+                    {% if events[i].aDateTime > today %}
+                        <a href="/deleteBooking/{{events[i].id}}"><button type="button" class="btn btn-primary">Cancel</button></a>
+                    {% endif %}
+                      </td>
+                      </tr>
+                {% endfor %}
+          </tbody>
+          </table>
+
                     
         </div>
     </div>
 </div>
+
 {% endblock %}

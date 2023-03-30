@@ -244,14 +244,15 @@
                             {% elif events2[i].aSlotsTaken == events2[i].aCapacity %}
                             <a href=""></a><button type="button" class="btn btn-primary disabled"> Full</button></a>
                             {% else %}
-                            {% if isMember == False %}
-                            <a href="/addBasket/{{events2[i].id}}"><button type="button" class="btn btn-primary">Add to
+                                {% if isMember == False %}
+                                <a href="/addBasket/{{events2[i].id}}"><button type="button" class="btn btn-primary">Add to
                                     Basket</button>
                                 {% else %}
                                 <a href="/makeBooking/{{events2[i].id}}"><button type="button"
                                         class="btn btn-primary">Book</button>
-                                    {% endif %}
-                                    {% endif %}
+
+                                {% endif %}
+                            {% endif %}
 
                         </td>
                         {% endif %}

@@ -265,8 +265,15 @@ img {
     font-size: 1vw;
     background-color: var(--background-light);
     padding: 4vw;
+    padding-top: 2vw !important; 
     margin-left: 1vw;
     margin-right: 1vw;  
+}
+
+.repeat-info {
+    padding-top: 0vw !important; 
+    margin-left: 15vw !important;
+    margin-right: 15vw !important;
 }
 
 .calendar-days {
@@ -274,7 +281,9 @@ img {
     font-size: 1.5vw !important;
     font-weight: bold;
 }
-.register-container {
+
+.repeat-days {
+    padding-top: 4vw !important;
 }
 
 .basket-container {
@@ -391,10 +400,10 @@ li a i:hover {
 .event-info .event-info-popup {
     visibility: hidden;
     width: 300px;
-    background-color: var(--btn-hover);
+    background-color: var(--background-dark);
     color: white;
     text-align: center;
-    padding: 5px 0;
+    padding: 3vh;
     top: 100%;
     left: 50%;
     margin-top: 10px;
@@ -408,6 +417,7 @@ li a i:hover {
 .popup-table {
     width: 100%;
     font-size: 15px;
+
 }
 .event-info:hover .event-info-popup {
     visibility: visible;
@@ -420,9 +430,9 @@ li a i:hover {
     bottom: 100%;
     left: 50%;
     margin-left: -5px;
-    border-width: 5px;
+    border-width: 10px;
     border-style: solid;
-    border-color: transparent transparent var(--btn-hover) transparent;
+    border-color: transparent transparent var(--background-dark) transparent;
 }
 
 .mybookings-container {
@@ -443,21 +453,10 @@ th, td {
 
 .alert-box {
     padding: 20px;
-    
-    opacity: 0.9;
-    font-size: medium;
-}
-
-.error {
     background-color: #f44336;
     color: white;
-
-}
-
-.success {
-    background-color: #85f56e;
-    color: black;
-
+    opacity: 0.9;
+    font-size: medium;
 }
 
 .closebtn {

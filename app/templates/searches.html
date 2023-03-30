@@ -1,6 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
-
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+    <div class="alert alert-success text-center">
+    {{ message }}
+    </div>
+{% endfor %}
+{% endif %}
+{% endwith %}
 <!--Basic Header-->
 <h1>Manage Users</h1>
 
@@ -8,11 +16,16 @@
     <h2>Search by email or name...</h2>
     <form method="post" name="search">
         {{ form.hidden_tag() }}
-        <input type="submit" class="btn btn-primary" value="Search">
         {{ form.search(class='form-control')}}
+        <br>
+        <input type="submit" class="btn btn-primary" value="Search">
     </form>
 
 </div>
+
+<br>
+<hr>
+<br>
 
 <h2>Users</h2>
 <!--Basic table to hold booking information of a user-->
@@ -35,18 +48,19 @@
                 <td>{{results[i].userType}}</td>
 
                 <td>    
+
                     <a href="/calendar/{{results[i].id}}"><button type="button" class="btns">Make Booking</button></a>
                     <a href="/proxyEdit/{{results[i].id}}"><button type="button" class="btns">Edit Bookings</button></a>
                 </td>
                 <td>
-                    <!--TBC-->
                     <a href="/proxyChangeMembership/{{results[i].id}}"><button type="button" class="btns">Change membership</button></a>
+
                 </td>
                 <td>    
-                    <a href="/editUser/{{results[i].id}}"><button type="button" class="btns">Edit</button></a>
+                    <a href="/editUser/{{results[i].id}}"><button type="button" class="btn btn-primary">Edit</button></a>
                 </td>
                 <td>    
-                    <a href="/deleteUser/{{results[i].id}}"><button type="button" class="btns">Delete</button></a>
+                    <a href="/deleteUser/{{results[i].id}}"><button type="button" class="btn btn-primary">Delete</button></a>
                 </td>
             </tr>
         {% endfor %}

@@ -1,19 +1,33 @@
 {% extends "base.html" %}
 {% block content %}
-
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+    <div class="alert alert-success text-center">
+    {{ message }}
+    </div>
+{% endfor %}
+{% endif %}
+{% endwith %}
 <!--Basic Header-->
 <h1>Manage Users</h1>
+<hr>
+<br>
 
 <div>
     <h2>Search by email or name...</h2>
     <form method="post" name="search">
         {{ form.hidden_tag() }}
-        <input type="submit" class="btn btn-primary" value="Search">
         {{ form.search(class='form-control')}}
+        <br>
+        <input type="submit" class="btn btn-primary" value="Search">
+
     </form>
 
 </div>
-
+<br>
+<hr>
+<br>
 <h2>Customers</h2>
 <!--Basic table to hold booking information of a user-->
 <table class="table">
@@ -40,14 +54,14 @@
                         <a href="/proxyEdit/{{userTypeLogin1[i].id}}"><button type="button" class="btns">Edit Bookings</button></a>
                     </td>
                     <td>
-                        <!--TBC-->
                         <a href="/proxyChangeMembership/{{userTypeLogin1[i].id}}"><button type="button" class="btns">Change membership</button></a>
+
                     </td>
                     <td>    
-                        <a href="/editUser/{{userTypeLogin1[i].id}}"><button type="button" class="btns">Edit</button></a>
+                        <a href="/editUser/{{userTypeLogin1[i].id}}"><button type="button" class="btn btn-primary">Edit</button></a>
                     </td>
                     <td>    
-                        <a href="/deleteUser/{{userTypeLogin1[i].id}}"><button type="button" class="btns">Delete</button></a>
+                        <a href="/deleteUser/{{userTypeLogin1[i].id}}"><button type="button" class="btn btn-primary">Delete</button></a>
                     </td>
                 </tr>
             {% endfor %}
@@ -57,6 +71,9 @@
 
 <!-- Only managers should be able to alter Employee or User accounts -->
 {% if userType == 3 %}
+<br>
+<hr>
+<br>
 
 <h2>Employees</h2>
 <!--Basic table to hold booking information of a user-->
@@ -78,17 +95,19 @@
                         <td>{{userTypeLogin2[i].email}}</td>
                     <!--Delete activity button-->
                     <td>    
-                        <a href="/editUser/{{userTypeLogin2[i].id}}"><button type="button" class="btns">Edit</button></a>
+                        <a href="/editUser/{{userTypeLogin2[i].id}}"><button type="button" class="btn btn-primary">Edit</button></a>
                     </td>
                     <td>    
-                        <a href="/deleteUser/{{userTypeLogin2[i].id}}"><button type="button" class="btns">Delete</button></a>
+                        <a href="/deleteUser/{{userTypeLogin2[i].id}}"><button type="button" class="btn btn-primary">Delete</button></a>
                     </td>
                 </tr>
             {% endfor %}
         {% endif %}
     </tbody>
 </table>
-
+<br>
+<hr>
+<br>
 <h2>Managers</h2>
 <!--Basic table to hold booking information of a user-->
 <table class="table">
@@ -109,10 +128,10 @@
                         <td>{{userTypeLogin3[i].email}}</td>
                     <!--Delete activity button-->
                     <td>    
-                        <a href="/editUser/{{userTypeLogin3[i].id}}"><button type="button" class="btns">Edit</button></a>
+                        <a href="/editUser/{{userTypeLogin3[i].id}}"><button type="button" class="btn btn-primary">Edit</button></a>
                     </td>
                     <td>    
-                        <a href="/deleteUser/{{userTypeLogin3[i].id}}"><button type="button" class="btns">Delete</button></a>
+                        <a href="/deleteUser/{{userTypeLogin3[i].id}}"><button type="button" class="btn btn-primary">Delete</button></a>
                     </td>
                 </tr>
             {% endfor %}

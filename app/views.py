@@ -32,6 +32,7 @@ def delete_sessions():
 
 db.create_all()
 
+
 aDiscountExists = models.DiscountAmount.query.filter_by(discountAmount=15).first()
 if (aDiscountExists == None):
     amount = models.DiscountAmount(discountAmount=15)
@@ -143,12 +144,12 @@ if (aExists == None):
 
     db.session.commit()
 
+
 @loginManager.user_loader
 def loadUser(userId):
     return models.UserLogin.query.get(int(userId))
     
 @app.route('/')
-@login_required
 def index():
     return redirect(url_for('home'))
 
@@ -182,16 +183,22 @@ def calendarMethod():
     #calculation for making sure we only get 2 weeks of data
     w1 = datetime.now()+timedelta(days=7)
     w2 = datetime.now()+timedelta(days=14)
+
     # get all events in order of date and time w1 and w2
     events = Calendar.query.filter(Calendar.aDateTime >= date.today()).filter(Calendar.aIsRepeat==False).filter(Calendar.aDateTime < w1).order_by(Calendar.aDateTime).all()
     events2 = Calendar.query.filter(Calendar.aDateTime >= w1).filter(Calendar.aDateTime < w2).filter(Calendar.aIsRepeat==False).order_by(Calendar.aDateTime).all()
 
     userBooked1 = []
     userBooked2 = []
+    weeksCount = [0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    dateWeeks = [d.date() for d in weeks]
 
     # get event type for each event found
     eventInfo = []
     for i in events:
+        # Find the index of day in weeks list
+        index = dateWeeks.index((i.aDateTime).date())
+        weeksCount[index] +=1
         eventInfo.append(Activity.query.filter_by(id=i.activityId).first())
         # For every event check if user has booked it
         if 'proxyBooking' in session :
@@ -209,6 +216,9 @@ def calendarMethod():
     # get event type for each event found
     eventInfo2 = []
     for i in events2:
+        # Find the index of day in weeks list
+        index = dateWeeks.index((i.aDateTime).date())
+        weeksCount[index] +=1
         eventInfo2.append(Activity.query.filter_by(id=i.activityId).first())
         # For every event check if user has booked it
         if 'proxyBooking' in session :
@@ -220,6 +230,7 @@ def calendarMethod():
             userBooked2.append(True)
         else:
             userBooked2.append(False)
+
 
     if 'proxyBooking' in session :
         for id in session['proxyBooking']:
@@ -254,7 +265,8 @@ def calendarMethod():
                             isMember = user.isMember,   
                             weeks     = weeks,
                             userBooked1 = userBooked1,
-                            userBooked2 = userBooked2
+                            userBooked2 = userBooked2,
+                            weeksCount=weeksCount
                             )
 
 @app.route('/calendar/<id>', methods=['GET', 'POST'])
@@ -345,7 +357,7 @@ def basket():
     isItems = False
     basketItems = []
     itemNames = []
-    itemDiscount = []
+    itemDiscounts = 0
     totalPrice=0
     session['basketIds'] = []
 
@@ -377,6 +389,7 @@ def basket():
             # Check for discount
             discount = False
             # Go through basket items and find 7 days before
+
             for id in session['basket']:
                 basketEvent = Calendar.query.get(id)
                 dayDifference = (date.today()-(basketEvent.aDateTime).date()).days
@@ -404,14 +417,13 @@ def basket():
                 itemPrice = item.aPrice
             totalPrice += itemPrice
             roundedPrice = "%0.2f" % itemPrice
+            itemDiscounts += (item.aPrice - itemPrice)
 
             session['basketIds'].append(itemId)
             itemActivity = Activity.query.get(item.activityId)
             name = itemActivity.activityType
             nameDate = name + ", " + (item.aDateTime).strftime("%d/%m, %H:%M")
             basketItems.append((nameDate, roundedPrice))
-            itemDiscount.append(discount)
-
     if 'membership' in session:
         isItems = True
         session['basketIds'].append('m')
@@ -425,10 +437,11 @@ def basket():
     session['basketTotal'] = totalPrice
     # String formatting for total 2 d.p
     roundedTotal = "%0.2f" % totalPrice
+    roundedDiscount = "%0.2f" % itemDiscounts
     return render_template('basket.html', title='Basket', isItems=isItems,
                             basketItems=basketItems, num=len(basketItems),
                             roundedTotal=roundedTotal, totalPrice = totalPrice,
-                            itemDiscount=itemDiscount, key=stripe_keys['publicKey'])
+                            roundedDiscount=roundedDiscount, key=stripe_keys['publicKey'])
 
 @app.route('/checkout', methods=['POST'])
 @login_required
@@ -471,7 +484,7 @@ def checkout():
             session.pop(key)
 
     flash('Payment Successful')
-    return redirect(url_for('home'))
+    return redirect(url_for('myBookings'))
 
 #this is so the manager is able to delete an event - delete button
 @app.route('/deleteEvent/<id>', methods=['GET', 'POST'])
@@ -602,6 +615,7 @@ def deleteBasket(i): # 'i' is the index of the item deleted from the basket
 @login_required
 def deleteBooking(id): #id passed in will be  the id of the calendar
     logging.debug("Delete booking (with id: %s) route request", id)
+
     # get the booking that matches the id of the parameter given and that of the userId 
     
     booking = UserBookings.query.filter_by(calendarId = id, userId = current_user.id).first()
@@ -773,7 +787,6 @@ def editEvent(id):
 def login():
     logging.debug("Login route request")
     form = LoginForm()
-
     if form.validate_on_submit():
         user = models.UserLogin.query.filter_by(email=form.Email.data).first()
 
@@ -781,11 +794,14 @@ def login():
             # Check the password hash against the stored hashed password
             if bcrypt.check_password_hash(user.password, form.Password.data):
                 login_user(user)
-                return redirect(url_for('home'))
+                if user.userType != 3:
+                    return redirect(url_for('home'))
+                else:
+                    return redirect('/calendar')
             else:
                 flash("Incorrect username/password. Please try again.")
 
-    return render_template('login.html', form=form)
+    return render_template('login.html', form=form, title='Login')
 
 @app.route('/logout', methods=['GET', 'POST'])
 @login_required
@@ -804,6 +820,7 @@ def register():
     form = RegisterForm()
 
     if form.validate_on_submit():
+        print("submitted")
         # Check that the email hasn't been used already.
         usedEmail = models.UserLogin.query.filter_by(email=form.Email.data).first()
         if usedEmail:
@@ -815,7 +832,6 @@ def register():
         dob     = form.DateOfBirth.data
         Email   = form.Email.data
 
-        
         hashedPassword = bcrypt.generate_password_hash(form.Password.data)
 
         # Create new user and details
@@ -829,7 +845,6 @@ def register():
                                             loginDetails=newUser.id,
                                             isMember = False,
                                             membershipEnd=datetime.now())
-
         # Add to the database
         db.session.add(newUser)
         db.session.add(newUserDetails)
@@ -841,8 +856,12 @@ def register():
 
 @app.route('/home', methods=['GET', 'POST'])
 def home():
-    logging.debug("Home route request")
-    return render_template('home.html', title='home')
+    if current_user.is_authenticated:
+        if current_user.userType == 3:
+            return redirect('/calendar')
+    return render_template('home.html', title='Home',
+                            logged=current_user.is_authenticated)
+
 
 
 @app.route('/settings', methods=['GET', 'POST'])
@@ -850,6 +869,7 @@ def home():
 def settings():
     logging.debug("Settings route request")
     form = SettingsForm()
+    cUserDetails = models.UserDetails.query.get(current_user.id)
     if form.validate_on_submit():
         # Check the old password matches the current password
         if not bcrypt.check_password_hash(current_user.password, form.Password.data):
@@ -857,7 +877,6 @@ def settings():
             return redirect(url_for('settings'))
 
         cUserLogin   = models.UserLogin.query.get(current_user.id)
-        cUserDetails = models.UserDetails.query.get(current_user.id)
 
         # Only update the user's details that they have changed
         if form.Name.data:
@@ -866,12 +885,11 @@ def settings():
             cUserLogin.password  = bcrypt.generate_password_hash(form.NewPassword.data)
 
         db.session.commit()
-        flash('User Details updated')
         
     return render_template('settings.html',
                             title='Settings',
                             form=form,
-                            user=current_user)
+                            userIsMember=cUserDetails.isMember)
 
 @app.route('/cancelMembership', methods=['GET', 'POST'])
 @login_required
@@ -1127,9 +1145,8 @@ def deleteUser(id):
     db.session.commit()
     flash('User deleted')
         
-    return render_template('home.html',
-                            title='Home')
-
+    return redirect('/calendar')
+    
 ## Renders the memberships page with two options: annual and monthly
 @app.route('/memberships', methods=['GET', 'POST'])
 @login_required

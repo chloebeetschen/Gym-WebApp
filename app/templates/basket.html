@@ -1,47 +1,79 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h1>Basket</h1>
-<br>
-<!-- If stuff in basket, display it -->
-{% if isItems %}
-    <table class="table">
-        {% for i in range (0, num) %}
-        <tr> 
-            <td>
-                {{ basketItems[i][0] }},
-            </td> 
-            <td>
-                {% if itemDiscount[i] %}
-                DISCOUNTED
-                {% endif %}
-                £{{ basketItems[i][1] }} 
-            </td>
-            <td>
-                <a href="/deleteBasket/{{i}}"><button class="btn btn-primary" class="btn">Delete</button></a>
-            </td>
+<div class="container-fluid shopping-basket">
 
-    {% endfor %}
-   
-    </table>
-     <h2>Subtotal: £ {{ roundedTotal }}</h2>
+    <div class="login-reg-form-container rounded-4 p-4 box-shadow">
+        <div class="col border-bottom">
+            <h1 class="fw-bold">Shopping Basket</h1>
+        </div>
+        <!-- If stuff in basket, display it -->
+
+        {% if isItems %}
+        <div class="table-responsive">
+            <table class="table basket-table">
+                <tr>
+                    <th class="fw-bold"> Item </th>
+                    <th class="fw-bold text-end "> Price </th>
+                    <th class="fw-bold text-end"> Remove </th>
+                </tr>
+                {% for i in range (0, num) %}
+                <tr>
+                    <td>
+                        {{ basketItems[i][0] }},
+                    </td>
+                    <td class="text-end">
+
+                        £{{ basketItems[i][1] }}
+
+                    </td>
+                    <td class="text-end">
+                        <a href="/deleteBasket/{{i}}"><button class="btn basket-button pb-0 pt-0"
+                                class="btn">X</button></a>
+
+                    </td>
+                </tr>
+                {% endfor %}
+
+            </table>
+        </div>
+
+        <div class="row align-items-center">
+            <div class="col">
+                <div class="m-2 p-2 ">
+
+                    <h5>Discounts: -£{{ roundedDiscount }}</h5>
+                    <h4 class="fw-bold">Total: £{{ roundedTotal }}</h4>
+
+                </div>
+
+            </div>
 
 
-  <form action="/checkout" method="post">
-    <script 
-        src="https://checkout.stripe.com/checkout.js"
-        class="stripe-button"
-        data-key="{{ key }}"
-        data-description="A Flask Charge"
-        data-amount="{{ totalPrice * 100 }}"
-        data-locale="auto">
-    </script>
-  </form>
+            <div class="col">
+                <form action="/checkout" method="post" class="text-end">
+                    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button payment-btn"
+                        data-key="{{ key }}" data-description="A Flask Charge" data-amount="{{ totalPrice * 100 }}"
+                        data-locale="auto">
 
 
-{% else %}
-    <p> Please add something to your basket</p>
-{% endif %}
+                        </script>
+                    <script>
+                        // Hide default stripe button, be careful there if you
+                        // have more than 1 button of that class
+                        document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';
+                    </script>
+                    <button type="submit" class="btn payment-btn p-3 m-2">Pay By Card</button>
+                </form>
+            </div>
 
 
+        </div>
+
+
+        {% else %}
+        <h3 class="text-center"> Please add something to your basket</h3>
+        {% endif %}
+    </div>
+</div>
 {% endblock %}

@@ -1,20 +1,21 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class="shopping-basket m-0">
-
-
-    <div class="text-center font-weight-bold p-4 central-header" id="central-header"> SHOPPING BASKET </div>
-    <div class="container mt-2 basket-container rounded-4 p-4 box-shadow">
+<div class="container-fluid shopping-basket">
+  
+    <div class="login-reg-form-container rounded-4 p-4 box-shadow">
+        <div class="col border-bottom">
+            <h1 class="fw-bold">Shopping Basket</h1>
+          </div>
         <!-- If stuff in basket, display it -->
 
         {% if isItems %}
         <div class="table-responsive">
             <table class="table basket-table">
                 <tr>
-                    <th class="fw-bold"> ITEM </th>
-                    <th class="fw-bold text-end "> PRICE </th>
-                    <th class="fw-bold text-end"> REMOVE </th>
+                    <th class="fw-bold"> Item </th>
+                    <th class="fw-bold text-end "> Price </th>
+                    <th class="fw-bold text-end"> Remove </th>
                 </tr>
                 {% for i in range (0, num) %}
                 <tr> 

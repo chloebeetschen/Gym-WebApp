@@ -504,3 +504,30 @@ th, td {
     color: white;
 
 }
+
+.footer-container ul {
+    color: white;
+    list-style-type: none;
+    padding-top: 0.5vw;
+    padding-left: 0;
+    margin-left: 0;
+}
+
+.footer-row {
+    border-top: 3px solid var(--background-light)
+}
+
+.footer-container li {
+    padding-top: 0.8rem;
+}
+
+.footer-container a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer-links-header {
+    font-weight: bold;
+    font-size: 1vw;
+    margin: 0;
+}

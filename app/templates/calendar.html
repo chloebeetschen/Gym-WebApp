@@ -98,7 +98,7 @@
                         <td>{{eventInfo[i].activityType}}</td>
                         <td>{{events[i].aCapacity-events[i].aSlotsTaken}}</td>
                         {% if isMember == False %}
-                        <td>{{events[i].aPrice}}</td>
+                        <td>£{{events[i].aPrice}}</td>
                         {% endif %}
                         <!--TODO Popup for event info-->
                         {% if current_user.userType == 3 %}
@@ -112,22 +112,17 @@
                                         <table class="table popup-table">
                                             <tr>
                                                 <td> Duration </td>
-                                                <td class="fw-light"> {{ events[i].aDuration }} </td>
+                                                <td class="fw-light"> {{ events[i].aDuration }} hour(s)</td>
                                             </tr>
                                             <tr>
                                                 <td> Location </td>
-                                                <td> {{ events[i].aLocation }} </td>
+                                                <td class="fw-light"> {{ events[i].aLocation }} </td>
                                             </tr>
                                             <tr>
                                                 <td> Staff </td>
-                                                <td> {{ events[i].aStaffName }} </td>
+                                                <td class="fw-light"> {{ events[i].aStaffName }} </td>
                                             </tr>
-                                            <tr>
-                                                {% if isMember == False %}
-                                                <td> Price </td>
-                                                <td> £{{ events[i].aPrice }} </td>
-                                                {% endif %}
-                                            </tr>
+                                
                                         </table>
                                     </div>
                                 </span>
@@ -170,7 +165,6 @@
 
         </div>
 
-
         <div class="col calendar-info rounded-5 box-shadow">
             <div class=" mt-0 pt-0 border-bottom">
                 <p class="header"> WEEK 2</p>
@@ -204,7 +198,7 @@
                         <td>{{eventInfo2[i].activityType}}</td>
                         <td>{{events2[i].aCapacity-events2[i].aSlotsTaken}}</td>
                         {% if isMember == False %}
-                        <td>{{events2[i].aPrice}}</td>
+                        <td>£{{events2[i].aPrice}}</td>
                         {% endif %}
                         {% if current_user.userType == 3 %}
                         <td><a href="/editEvent/{{events2[i].id}}"><button type="button"
@@ -217,20 +211,17 @@
                                         <table class="table popup-table">
                                             <tr>
                                                 <td> Duration </td>
-                                                <td class="fw-light"> {{ events2[i].aDuration }} </td>
+                                                <td class="fw-light"> {{ events2[i].aDuration }} hour(s) </td>
                                             </tr>
                                             <tr>
                                                 <td> Location </td>
-                                                <td> {{ events2[i].aLocation }} </td>
+                                                <td class="fw-light"> {{ events2[i].aLocation }} </td>
                                             </tr>
                                             <tr>
                                                 <td> Staff </td>
-                                                <td> {{ events2[i].aStaffName }} </td>
+                                                <td class="fw-light"> {{ events2[i].aStaffName }} </td>
                                             </tr>
-                                            <tr>
-                                                <td> Price </td>
-                                                <td> £{{ events2[i].aPrice }} </td>
-                                            </tr>
+                                
                                         </table>
                                     </div>
                                 </span>

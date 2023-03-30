@@ -31,7 +31,6 @@ def delete_sessions():
     for key in list(session.keys()):
         session.pop(key)
 
-"""
 db.create_all()
 
 # Checks to see if the data has already been populated
@@ -117,8 +116,26 @@ if (aExists == None):
         #increment day
         today = today+timedelta(days=1)
 
+        aEmailExists = UserLogin.query.filter_by(email="admin@admin.com").first()
+        if (aEmailExists == None):
+            hashedPassword = bcrypt.generate_password_hash('password')
+            oldEnough = datetime.now().date()-timedelta(days=16*365)
+            managerEmail = 'admin@admin.com'
+
+            newUser = models.UserLogin(email=managerEmail,
+                                   password=hashedPassword,
+                                   userType=3)
+
+            newUserDetails = models.UserDetails(name='Admin',
+                                            dateOfBirth=oldEnough,
+                                            loginDetails=newUser.id,
+                                            isMember = False,
+                                            membershipEnd=datetime.now())
+            # Add to the database
+            db.session.add(newUser)
+            db.session.add(newUserDetails)
+
     db.session.commit()
-"""
 
 @loginManager.user_loader
 def loadUser(userId):
@@ -389,7 +406,7 @@ def checkout():
             session.pop(key)
 
     flash('Payment Successful')
-    return redirect(url_for('home'))
+    return redirect(url_for('myBookings'))
 
 #this is so the manager is able to delete an event - delete button
 @app.route('/deleteEvent/<id>', methods=['GET', 'POST'])

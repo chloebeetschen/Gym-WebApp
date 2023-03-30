@@ -386,4 +386,18 @@ li a i:hover {
     border-width: 5px;
     border-style: solid;
     border-color: transparent transparent var(--btn-hover) transparent;
-  }
+}
+
+.mybookings-container {
+    background-color: var(--background-dark);
+    opacity: 90%;
+}
+
+th {
+    padding-bottom: 1vw !important;
+}
+
+th, td {
+    text-align: center;
+    vertical-align: middle;
+}

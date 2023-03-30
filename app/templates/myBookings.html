@@ -2,39 +2,50 @@
 {% extends "base.html" %}
 
 {% block content %}
-<!--Basic Header-->
-<h1>Bookings</h1>
 
-<!--Basic table to hold booking information of a user-->
-<table class="table">
-    <thead>
-        <tr>
-            <th>Activity</th>
-            <th>Date and Time</th>
-            <th>Duration</th>
-            <th>Location</th>
-            <th>Staff Member</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for i in range (0 , numEvents) %}
-            <tr>
-                <!--display event and event info in the tables-->
-                <td>{{eventInfo[i].activityType}}</td>
-                <td>{{events[i].aDateTime}}</td>
-                <td>{{events[i].aDuration}} hrs</td>
-                <td>{{events[i].aLocation}}</td>
-                <td>{{events[i].aStaffName}}</td>
+<div class="settings-container">
+    <div class="container mybookings-container rounded-5 p-5 pt-4 box-shadow">
+        <div class="row">
+            <h1 class="header pb-4 border-bottom border-3">My bookings</h1>
+        </div>
+        <div class="row">
+            <!--Basic table to hold booking information of a user-->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col" class="table-header">Activity</th>
+                        <th scope="col">Date and Time</th>
+                        <th scope="col">Duration</th>
+                        <th scope="col">Location</th>
+                        <th scope="col">Staff Member</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in range (0 , numEvents) %}
+                        <tr>
+                            <!--display event and event info in the tables-->
+                            <td>{{eventInfo[i].activityType}}</td>
+                            <td>{{events[i].aDateTime}}</td>
+                            <td>{{events[i].aDuration}} hrs</td>
+                            <td>{{events[i].aLocation}}</td>
+                            <td>{{events[i].aStaffName}}</td>
 
-                <!--Delete activity button-->
-                <td>
+
+                    <!--Delete activity button-->
+                    <td>
                     {% if events[i].aDateTime > today %}
-                        <a href="/deleteBooking/{{events[i].id}}"><button type="button" class="btn">Cancel</button></a>
+                        <a href="/deleteBooking/{{events[i].id}}"><button type="button" class="btn btn-primary">Cancel</button></a>
                     {% endif %}
-                </td>
-            </tr>
-        {% endfor %}
-    </tbody>
-</table>
+                      </td>
+                      </tr>
+                {% endfor %}
+          </tbody>
+          </table>
+
+                    
+        </div>
+    </div>
+</div>
+
 {% endblock %}

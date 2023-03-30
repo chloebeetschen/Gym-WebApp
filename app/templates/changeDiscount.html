@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Change discount amount:</h1>
+    <form action="" method="post" name="login">
+        {{ form.hidden_tag() }}
+        <p>{{ form.DiscountAmount(class_='form-control') }}</p>
+        {% for error in form.DiscountAmount.errors %}
+        <div class="alert alert-danger" role="alert">
+            [{{ error }}]
+        </div>
+        {% endfor %}
+        <p><input type="submit" class="btn btn-primary" value="Submit"></p>
+    </form>  
+{% endblock %}

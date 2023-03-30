@@ -7,25 +7,42 @@
     <h1>Cancel Membership</h1>
     <a href="/cancelMembership"><button class="btn btn-primary" class="btn">Cancel</button></a>
 {% else %}
-    <h1>Buy a membership: </h1>
+    {% if 'proxyMembership' in session %}
+        <h1>    Choose a membership for the selected user:   </h1>
+        <body><b>If you did not wish to do this, choose an option and cancel the user's membership afterwards</b> </body>                
+    {% else %}
+        <h1>Buy a membership: </h1>
+    {% endif %}
     <table class="table">
         <thead>
             <tr>
                 <th>Annual: </th>
                 <th>Monthly: </th>
             </tr>
+            {% if 'proxyMembership' in session %}
+
+            {% else %}
             <tr>
                 <th> £300 </th>
                 <th> £35 </th>
             </tr>
+            {% endif %}
         </thead>
         <tbody>
             <tr>
                 <td>    
+                    {% if 'proxyMembership' in session %}
+                    <a href="/memberships/annual"><button type="button" class="btn btn-primary">Select</button></a>
+                    {% else %}
                     <a href="/memberships/annual"><button type="button" class="btn btn-primary">Purchase</button></a>
+                    {% endif %}
                 </td>
                 <td>    
+                    {% if 'proxyMembership' in session %}
+                    <a href="/memberships/monthly"><button type="button" class="btn btn-primary">Select</button></a>
+                    {% else %}
                     <a href="/memberships/monthly"><button type="button" class="btn btn-primary">Purchase</button></a>
+                    {% endif %}                
                 </td>
             </tr>
         </tbody>

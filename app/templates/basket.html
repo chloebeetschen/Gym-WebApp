@@ -6,10 +6,10 @@
 
 <!-- Flashed error Messages -->
 <div class="d-flex align-items-center flashed-msg-container justify-content-center">
-    {% with messages = get_flashed_messages(category_filter=['error']) %}
+    {% with messages = get_flashed_messages(with_categories=True) %}
         {% if messages %}
         {% for category, message in messages %}
-            <div class="alert-box rounded-4 p-5">
+            <div class="{{ category }} alert-box rounded-4 p-5">
             <span class="closebtn" onclick="this.parentElement.style.display='none';">&times</span>
             {{ message }}
             </div>
@@ -18,23 +18,9 @@
     {% endwith %}
 </div>
 
-<!-- Flashed success Messages -->
-<div class="d-flex align-items-center flashed-msg-container justify-content-center">
-    {% with messages = get_flashed_messages(category_filter=['success']) %}
-        {% if messages %}
-        {% for category, message in messages %}
-            <div class="alert-box rounded-4 p-5">
-            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times</span>
-            {{ message }}
-            </div>
-        {% endfor %}
-        {% endif %}
-    {% endwith %}
-</div>
-  
   
     <div class="login-reg-form-container rounded-4 p-4 box-shadow">
-        <div class="col border-bottom">
+        <div class="col text-center border-bottom">
             <h1 class="fw-bold">Shopping Basket</h1>
         </div>
         <!-- If stuff in basket, display it -->
@@ -43,23 +29,22 @@
         <div class="table-responsive">
             <table class="table basket-table">
                 <tr>
-                    <th class="fw-bold"> Item </th>
+                    <th class="fw-bold text-start"> Item </th>
                     <th class="fw-bold text-end "> Price </th>
                     <th class="fw-bold text-end"> Remove </th>
                 </tr>
                 {% for i in range (0, num) %}
                 <tr>
-                    <td>
-                        {{ basketItems[i][0] }},
+                    <td class="text-start">
+                        {{ basketItems[i][0] }}
                     </td>
                     <td class="text-end">
 
                         £{{ basketItems[i][1] }}
 
                     </td>
-                    <td class="text-end">
-                        <a href="/deleteBasket/{{i}}"><button class="btn basket-button pb-0 pt-0"
-                                class="btn">X</button></a>
+                    <td class="text-center">
+                        <a href="/deleteBasket/{{i}}"><button class="btn basket-button pb-0 pt-0">X</button></a>
 
                     </td>
                 </tr>
@@ -80,11 +65,12 @@
             </div>
 
 
-            <div class="col">
+            <div class="col justify-content-center">
+                
                 <form action="/checkout" method="post" class="text-end">
                     <script src="https://checkout.stripe.com/checkout.js" class="stripe-button payment-btn"
-                        data-key="{{ key }}" data-description="A Flask Charge" data-amount="{{ totalPrice * 100 }}"
-                        data-locale="auto">
+                        data-key="{{ key }}" data-description="Push and Pull payment" data-amount="{{ totalPrice * 100 }}"
+                        data-locale="auto" data-currency='gbp'>
 
 
                         </script>
@@ -102,6 +88,7 @@
 
 
         {% else %}
+        <br>
         <h3 class="text-center"> Please add something to your basket</h3>
         {% endif %}
     </div>

@@ -3,21 +3,19 @@
 
 {% block content %}
 <div class="login-reg-bg">
-
-	<!-- Flashed Messages -->
-	<div class="d-flex align-items-center flashed-msg-container justify-content-center">
-		{% with messages = get_flashed_messages() %}
-			{% if messages %}
-				{% for message in messages %}
-				<div class="alert-box rounded-4 p-5">
-					<span class="closebtn" onclick="this.parentElement.style.display='none';">&times</span>
-					{{ message }}
-				</div>
-				{% endfor %}
-			{% endif %}
-		{% endwith %}
-	</div>
-
+<!-- Flashed error Messages -->
+<div class="d-flex align-items-center flashed-msg-container justify-content-center">
+    {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+        {% for category, message in messages %}
+            <div class="{{ category }} alert-box rounded-4 p-5">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times</span>
+            {{ message }}
+            </div>
+        {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
 	<div class=" login-reg-form-container register-container rounded-4 p-4 pt-3 box-shadow">
 		<div class="col border-bottom">
 			<h1 class="fw-bold">Register</h1>
@@ -62,25 +60,34 @@
 		</form>
 	</div>
 
-	<!-- Flashed Messages -->
-	<div class="d-flex align-items-center flashed-msg-container justify-content-center">
-		{% for error in form.DateOfBirth.errors%}
-		<div class="alert-box rounded-4 p-5">
-			<span class="closebtn" onclick="this.parentElement.style.display='none';">&times</span>
-			{{ error }}
-		</div>
-		{% endfor %}
+<!-- Flashed Messages -->
+<div class="d-flex align-items-center flashed-msg-container justify-content-center">
+	{% for error in form.DateOfBirth.errors%}
+	<div class="form-error rounded-4 p-5">
+		<span class="closebtn" onclick="this.parentElement.style.display='none';">&times</span>
+		{{ error }}
 	</div>
-
-	<!-- Flashed Messages -->
-	<div class="d-flex align-items-center flashed-msg-container justify-content-center">
-		{% for error in form.ReenterPassword.errors%}
-		<div class="alert-box rounded-4 p-5">
-			<span class="closebtn" onclick="this.parentElement.style.display='none';">&times</span>
-			{{ error }}
-		</div>
-		{% endfor %}
-	</div>
-
+	{% endfor %}
 </div>
+
+<!-- Flashed Messages -->
+<div class="d-flex align-items-center flashed-msg-container justify-content-center">
+	{% for error in form.ReenterPassword.errors%}
+	<div class="form-error rounded-4 p-5">
+		<span class="closebtn" onclick="this.parentElement.style.display='none';">&times</span>
+		{{ error }}
+	</div>
+	{% endfor %}
+</div>
+
+<!-- Flashed Messages -->
+<div class="d-flex align-items-center flashed-msg-container justify-content-center">
+	{% for error in form.Password.errors%}
+	<div class="form-error rounded-4 p-5">
+		<span class="closebtn" onclick="this.parentElement.style.display='none';">&times</span>
+		{{ error }}
+	</div>
+	{% endfor %}
+</div>
+
 {% endblock %}

@@ -5,6 +5,21 @@
 <!--Basic Header-->
 <h1>Edit Event (Manager)</h1>
 
+<!-- Flashed Messages -->
+<div class="d-flex align-items-center flashed-msg-container justify-content-center">
+    {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+        {% for category, message in messages %}
+            <div class="{{ category }} alert-box rounded-4 p-5">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times</span>
+            {{ message }}
+            </div>
+        {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
+
+
 <h3>
     Selected Event: <br> {{eventType}} @ {{event.aDateTime}} for {{event.aDuration}}hours
 </h3>

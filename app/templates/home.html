@@ -5,6 +5,20 @@
 
 <!-- Landing page -->
 <div class="landing-page">
+
+  <div class="d-flex align-items-center flashed-msg-container justify-content-center">
+    {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+        {% for category, message in messages %}
+            <div class="{{ category }} alert-box rounded-4 p-5">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times</span>
+            {{ message }}
+            </div>
+        {% endfor %}
+        {% endif %}
+    {% endwith %}
+  </div>
+  
   <div class="title-text-container">
     <div class="push-pull">PUSH N PULL</div>
     <div class="line-break"></div>
@@ -143,6 +157,7 @@
       </div>
     </div>
   </div>
+
 {% endif %}
 {% endblock %}
 

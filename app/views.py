@@ -166,7 +166,7 @@ def changeDiscount():
         amount = models.DiscountAmount(discountAmount=form.DiscountAmount.data)
         db.session.add(amount)
         db.session.commit()
-        flash('Added new discount.')
+        flash('Added new discount.', "success")
         return redirect('/home')   
     return render_template('changeDiscount.html', form=form)
 
@@ -182,8 +182,8 @@ def calendarMethod():
     #days of week integers, from today
     
     #calculation for making sure we only get 2 weeks of data
-    w1 = datetime.now()+timedelta(days=7)
-    w2 = datetime.now()+timedelta(days=14)
+    w1 = datetime.now()+timedelta(days=6)
+    w2 = datetime.now()+timedelta(days=13)
 
     # get all events in order of date and time w1 and w2
     events = Calendar.query.filter(Calendar.aDateTime >= date.today()).filter(Calendar.aIsRepeat==False).filter(Calendar.aDateTime < w1).order_by(Calendar.aDateTime).all()
@@ -288,7 +288,13 @@ def repeatEvents(id):
     eventType = (Activity.query.get(id)).activityType
     today = datetime.now()
     weeks = [today, (today + timedelta(days=1)), (today + timedelta(days=2)), (today + timedelta(days=3)), (today + timedelta(days=4)), (today + timedelta(days=5)), (today + timedelta(days=6)), (today + timedelta(days=7)), (today + timedelta(days=8)), (today + timedelta(days=9)), (today + timedelta(days=10)), (today + timedelta(days=11)), (today + timedelta(days=12)), (today + timedelta(days=13))]
-
+    userBooked = []
+    for event in events:
+        booked = UserBookings.query.filter_by(userId=current_user.id, calendarId=event.id).first()
+        if booked is not None:   
+            userBooked.append(True)
+        else:
+            userBooked.append(False)
     user = UserDetails.query.filter_by(id=current_user.id).first()
 
     return render_template('repeatEvents.html',
@@ -297,7 +303,8 @@ def repeatEvents(id):
                             events    = events,
                             eventType = eventType,
                             member    = user.isMember,
-                            weeks     = weeks)
+                            weeks     = weeks,
+                            userBooked = userBooked)
 
 #this is a book event button for the calendar
 @app.route('/makeBooking/<id>', methods=['GET'])
@@ -317,7 +324,7 @@ def makeBooking(id): # << id passed here is the calendar id (not user)
     if 'proxyBooking' in session:
         for uid in session['proxyBooking']:
             newBooking = UserBookings(userId = uid, calendarId = id)
-        flash('Proxy booking completed')
+        flash('Proxy booking completed', "success")
         for key in list(session.keys()):
             if key == 'proxyBooking':
                 session.pop(key)
@@ -326,7 +333,7 @@ def makeBooking(id): # << id passed here is the calendar id (not user)
     #add and update db
     db.session.add(newBooking)
     db.session.commit()
-    return redirect('/home')
+    return redirect('/myBookings')
 
 
 # Add to basket button
@@ -448,17 +455,33 @@ def basket():
 @app.route('/checkout', methods=['POST'])
 @login_required
 def checkout():
-    customer = stripe.Customer.create(
-        email='sample@customer.com',
-        source=request.form['stripeToken']
-    )
+    
+    user = models.UserDetails.query.filter_by(id=current_user.id).first()
+    paymentId = user.paymentId
 
-    stripe.Charge.create(
-        customer=customer.id,
-        amount=int(session['basketTotal']) * 100,
-        currency='GBP',
-        description='Flask Charge'
-    )
+    if paymentId == None:
+        customer = stripe.Customer.create(
+            email=current_user.email,
+            source=request.form['stripeToken']
+        )
+
+        stripe.Charge.create(
+            customer=customer.id,
+            amount=int(session['basketTotal']) * 100,
+            currency='GBP',
+            description='Push and Pull Payment'
+        )
+        # Save payment details for later
+        user.paymentId = customer.id
+        db.session.add(user)
+        db.session.commit()
+    else:
+        stripe.Charge.create(
+            customer=paymentId,
+            amount=int(session['basketTotal']) * 100,
+            currency='GBP',
+            description='Push and Pull Payment'
+        )
 
     if 'membership' in session:
         usersDetails = UserDetails.query.get(current_user.id)
@@ -485,8 +508,8 @@ def checkout():
         if key == 'membership':
             session.pop(key)
 
-    flash('Payment Successful')
-    return redirect(url_for('myBookings'))
+    flash('Payment Successful', "success")
+    return redirect('/myBookings')
 
 #this is so the manager is able to delete an event - delete button
 @app.route('/deleteEvent/<id>', methods=['GET', 'POST'])
@@ -625,7 +648,7 @@ def deleteBooking(id): #id passed in will be  the id of the calendar
     if 'proxyEdit' in session:
         for uid in session['proxyEdit'] :
             booking = UserBookings.query.filter_by(calendarId = id, userId = uid).first()
-        flash('Proxy deletion complete')
+        flash('Proxy deletion complete', "success")
         for key in list(session.keys()):
             if key == 'proxyEdit':
                 session.pop(key)
@@ -655,7 +678,7 @@ def addActivity():
         aExists = Activity.query.filter_by(activityType=form.aType.data).first()
         # Activity type is unique so first check that the activity doesn't exist already
         if(aExists):
-            flash("This activity already exists.")
+            flash("This activity already exists.", "error")
             return redirect(url_for('addActivity'))
 
         #create new activity
@@ -664,7 +687,7 @@ def addActivity():
         #add and commit to db
         db.session.add(newAct)
         db.session.commit()
-        flash('New activity added')
+        flash('New activity added', "success")
     
     return render_template('addActivity.html', title='Add Activity', form=form)
 
@@ -687,13 +710,13 @@ def editActivity():
         # Check the new name isn't the same as any of the other names
         for activity in activities:
             if form.aType.data.upper() == activity.activityType.upper():
-                flash("This activity name is already taken")
+                flash("This activity name is already taken", "error")
                 return redirect(url_for('editActivity'))
         
         # update the name with the new name
         sActivity.activityType = form.aType.data
         db.session.commit()
-        flash("Updated activity type successfully")
+        flash("Updated activity type successfully", "success")
 
     return render_template('editActivity.html', title='Add Event',
                             form=form, activities=activities)
@@ -735,7 +758,7 @@ def addEvent():
             
         db.session.add(cEvent)
         db.session.commit()
-        flash("Successfully created event!")
+        flash("Successfully created event!", "success")
 
     #if validation failed  return to add event
     return render_template('addEvent.html', title='Add Event',
@@ -778,7 +801,7 @@ def editEvent(id):
             event.aCapacity = form.aCapacity.data
 
         db.session.commit()
-        flash('Event edited succesfully!')
+        flash('Event edited succesfully!', "success")
         #return to previous page for now
         return redirect('/calendar')
 
@@ -801,7 +824,7 @@ def login():
                 else:
                     return redirect('/calendar')
             else:
-                flash("Incorrect username/password. Please try again.")
+                flash("Incorrect username/password. Please try again.", "error")
 
     return render_template('login.html', form=form, title='Login')
 
@@ -826,7 +849,7 @@ def register():
         # Check that the email hasn't been used already.
         usedEmail = models.UserLogin.query.filter_by(email=form.Email.data).first()
         if usedEmail:
-            flash("Looks like this email is already in use. Please log in.")
+            flash("Looks like this email is already in use. Please log in.", "error")
             return redirect(url_for('login'))
 
         # Get data from the form
@@ -875,7 +898,7 @@ def settings():
     if form.validate_on_submit():
         # Check the old password matches the current password
         if not bcrypt.check_password_hash(current_user.password, form.Password.data):
-            flash('Incorrect password')
+            flash('Incorrect password', "error")
             return redirect(url_for('settings'))
 
         cUserLogin   = models.UserLogin.query.get(current_user.id)
@@ -887,7 +910,8 @@ def settings():
             cUserLogin.password  = bcrypt.generate_password_hash(form.NewPassword.data)
 
         db.session.commit()
-        
+        flash('User Details updated', "success")
+
     return render_template('settings.html',
                             title='Settings',
                             form=form,
@@ -901,13 +925,13 @@ def cancelMembership():
     if 'proxyMembership' in session:
         for uid in session['proxyMembership']:
             usersDetails = models.UserDetails.query.get(uid)
-            flash('Membership cancelled by proxy')
+            flash('Membership cancelled by proxy', "success")
         for key in list(session.keys()):
             if key == 'proxyMembership':
                 session.pop(key)
     else:
         usersDetails = UserDetails.query.get(current_user.id)
-        flash('Membership cancelled')
+        flash('Membership cancelled', "success")
     usersDetails.isMember = False
     usersDetails.membershipEnd = datetime.now()
     db.session.commit()
@@ -961,7 +985,7 @@ def analysis():
             # First check that the facility exists
             facility = Calendar.query.filter_by(aLocation = request.form['facility']).first()
             if facility is None:
-                flash("That is not a valid facility/location")
+                flash("That is not a valid facility/location", "error")
                 return redirect('/analysis')
             activityFacility = request.form['facility']
             # Get all calendar events for that location
@@ -971,14 +995,14 @@ def analysis():
             # First check that the activity exists
             activity = Activity.query.filter_by(activityType = request.form['activity']).first()
             if activity is None:
-                flash("That is not a valid activity")
+                flash("That is not a valid activity", "error")
                 return redirect('/analysis')
             activityFacility = request.form['activity']
             # Get all calendar events for that activity
             events = Calendar.query.filter_by(activityId = activity.id).all()
 
         else:
-            flash("Please enter either a facility or an activity")
+            flash("Please enter either a facility or an activity", "error")
             return redirect('/analysis')
 
         # Get date entered
@@ -1101,17 +1125,19 @@ def editUser(id):
 
         # Only update anything that has changed
         if form.Name.data:
-            cUserDetails.name    = form.Name.data
+            cUserDetails.name = form.Name.data
         if form.Email.data:
-            cUserLogin.email     = form.Email.data
+            cUserLogin.email = form.Email.data
         if form.NewPasswordx2.data:
-            cUserLogin.password  = bcrypt.generate_password_hash(form.NewPasswordx2.data)
+            cUserLogin.password = bcrypt.generate_password_hash(form.NewPasswordx2.data)
         if form.Type.data:
-            cUserLogin.userType      = form.Type.data
+            cUserLogin.userType = form.Type.data
 
         db.session.commit()
-        flash('User Details updated')
-        return redirect('/manageUsers')
+
+        flash('User Details updated', "success")
+        return redirect ('/manageUsers')
+
         
     return render_template('editUser.html',
                             title='Edit User',
@@ -1146,9 +1172,9 @@ def deleteUser(id):
     db.session.delete(cUserDetails)
 
     db.session.commit()
-    flash('User deleted')
+    flash('User deleted', "success")
         
-    return redirect('/calendar')
+    return redirect('/manageUsers')
     
 ## Renders the memberships page with two options: annual and monthly
 @app.route('/memberships', methods=['GET', 'POST'])
@@ -1179,7 +1205,7 @@ def monthlyMembership():
             monthAhead = today + relativedelta(months=1)
             cUserDetails.membershipEnd = monthAhead
             db.session.commit()
-            flash('Added monthly membership by proxy')
+            flash('Added monthly membership by proxy', "success")
             for key in list(session.keys()):
                 if key == 'proxyMembership':
                     session.pop(key)
@@ -1209,7 +1235,7 @@ def annualMembership():
             yearAhead = today + relativedelta(years=1)
             cUserDetails.membershipEnd = yearAhead
             db.session.commit()
-            flash('Added monthly membership by proxy')
+            flash('Added monthly membership by proxy', "success")
             for key in list(session.keys()):
                 if key == 'proxyMembership':
                     session.pop(key)

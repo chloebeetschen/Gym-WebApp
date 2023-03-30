@@ -19,6 +19,8 @@
       {% if current_user.userType != 3 %}
       <!-- other css sheet: -->
         <link rel="stylesheet" href="../static/styles.css" type="text/css">
+        {% else %}
+        <link rel="stylesheet" href="../static/managerStyles.css" type="text/css">
       {% endif %}
 
       <!-- Set title: -->
@@ -63,7 +65,7 @@
           </ul>
 
           <ul class="nav navbar-nav ms-auto">
-            {% if current_user.userType != 3 %}
+            {% if current_user.userType == 1 %}
               <li class="nav-item"><a class="nav-link" href="/basket"><i class="bi bi-cart2"></i></a></li>
             {% endif %}
             <li class="nav-item"><a class="nav-link" href="{{ url_for('settings') }}"><i class="bi bi-gear"></i></a></li>
@@ -85,7 +87,6 @@
         </div>
       </div>
       {% endif %}
-
 
       <!-- If user is manager then layout is different: -->
       <!-- layout of page content for managers: -->

@@ -1,14 +1,21 @@
 {% extends "base.html" %}
 {% block content %}
-{% with messages = get_flashed_messages() %}
-    {% if messages %}
-        {% for message in messages %}
-            <div class="alert alert-success text-center">
-                {{ message }}
+
+
+<!-- Flashed Messages -->
+<div class="d-flex align-items-center flashed-msg-container justify-content-center">
+    {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+        {% for category, message in messages %}
+            <div class="{{ category }} alert-box rounded-4 p-5">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times</span>
+            {{ message }}
             </div>
         {% endfor %}
-    {% endif %}
-{% endwith %}
+        {% endif %}
+    {% endwith %}
+</div>
+
 
 <div class="container-fluid settings-container">
     <div class="manage-users-container container p-5 rounded-5 box-shadow">

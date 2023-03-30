@@ -43,9 +43,8 @@
                         £{{ basketItems[i][1] }}
 
                     </td>
-                    <td class="text-end">
-                        <a href="/deleteBasket/{{i}}"><button class="btn basket-button pb-0 pt-0"
-                                class="btn">X</button></a>
+                    <td class="text-center">
+                        <a href="/deleteBasket/{{i}}"><button class="btn basket-button pb-0 pt-0">X</button></a>
 
                     </td>
                 </tr>
@@ -66,7 +65,7 @@
             </div>
 
 
-            <div class="col">
+            <div class="col justify-content-center">
                 
                 <form action="/checkout" method="post" class="text-end">
                     <script src="https://checkout.stripe.com/checkout.js" class="stripe-button payment-btn"

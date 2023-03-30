@@ -452,10 +452,18 @@ th, td {
 
 .alert-box {
     padding: 20px;
-    background-color: #f44336;
-    color: white;
     opacity: 0.9;
     font-size: medium;
+}
+
+.error{
+    background-color: #f44336;
+    color: white;
+}
+
+.success {
+    background-color: #85f56e;
+    color: black;
 }
 
 .closebtn {

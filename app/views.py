@@ -939,9 +939,9 @@ def analysis():
         
         for booking in bookings:
             print(booking)
-            event = Calenday.query.filter_by(id=calendarId).first()
-            if event.aDateTime.date() == dateEntered-timedelta(days=day):
-                user = UserDetails.query.filter_by(id=userId).first()
+            event = Calendar.query.filter_by(id=booking.calendarId).first()
+            if event.aDateTime.date() == today-timedelta(days=day):
+                user = UserDetails.query.filter_by(id=booking.userId).first()
                 if user.isMember:
                     currentMemberWeek[day] += 1
                 else:
@@ -1110,6 +1110,7 @@ def editUser(id):
 
         db.session.commit()
         flash('User Details updated')
+        return redirect('/manageUsers')
         
     return render_template('editUser.html',
                             title='Edit User',
@@ -1264,7 +1265,12 @@ def searchResults(search):
                 results.remove(user)
             
 
-    return render_template('searches.html', title='Search Results', form = form, results = results, numUsers = len(results))
+    return render_template('searches.html', 
+                            title='Search Results', 
+                            form = form, 
+                            results = results, 
+                            numUsers = len(results),
+                            userType = current_user.userType)
 
 @app.route('/proxyChangeMembership/<id>', methods=['GET', 'POST'])
 @login_required

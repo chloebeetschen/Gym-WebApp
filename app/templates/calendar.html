@@ -1,7 +1,7 @@
 <!-- Template for calender frontend -->
 {% extends "base.html" %}
 {% block content %}
-
+<div class="calendar">
 <!-- Flashed messages -->
 <div class="container-fluid p-0 m-0">
     <div class="row">
@@ -70,7 +70,31 @@
                                     {% if current_user.userType == 3 %}
                                         <td><a href="/editEvent/{{events[i].id}}"><button type="button" class="btn btn-primary">Edit/View Event</button></td>
                                     {% else %}
-                                        <td><a href=""><button type="button" class="btn btn-primary">Event Info</button></td>
+                                    <td><button type="button" class="btn btn-primary event-info">Event Info 
+                                        <!-- Popup for event info -->
+                                        <span class="event-info-popup">
+                                            <div class="table-responsive">
+                                                <table class="table popup-table">
+                                                    <tr>
+                                                        <td> Duration </td>
+                                                        <td class="fw-light"> {{ events[i].aDuration }}  </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td> Location </td>
+                                                        <td> {{ events[i].aLocation }}  </td>
+                                                    </tr>   
+                                                    <tr>
+                                                        <td> Staff </td>
+                                                        <td> {{ events[i].aStaffName }}  </td>
+                                                    </tr>             
+                                                    <tr>
+                                                        <td> Price </td>
+                                                        <td> £{{ events[i].aPrice }}  </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </span> 
+                                    </button></td>
                                     {% endif %}
                                     <!--If statement to see if acitivity is full and whether or not to dispay bookable button-->
                                     {% if current_user.userType != 3 %}
@@ -121,11 +145,34 @@
                                     {% if member == False %}
                                         <td>{{events2[i].aPrice}}</td>
                                     {% endif %}
-                                    <!--TODO Popup for event info-->
                                     {% if current_user.userType == 3 %}
                                         <td><a href="/editEvent/{{events2[i].id}}"><button type="button" class="btn btn-primary">Edit/View Event</button></td>
                                     {% else %}
-                                        <td><a href=""><button type="button" class="btn btn-primary">Event Info</button></td>
+                                        <td><button type="button" class="btn btn-primary event-info">Event Info 
+                                            <!-- Popup for event info -->
+                                            <span class="event-info-popup">
+                                                <div class="table-responsive">
+                                                    <table class="table popup-table">
+                                                        <tr>
+                                                            <td> Duration </td>
+                                                            <td class="fw-light"> {{ events2[i].aDuration }}  </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> Location </td>
+                                                            <td> {{ events2[i].aLocation }}  </td>
+                                                        </tr>   
+                                                        <tr>
+                                                            <td> Staff </td>
+                                                            <td> {{ events2[i].aStaffName }}  </td>
+                                                        </tr>             
+                                                        <tr>
+                                                            <td> Price </td>
+                                                            <td> £{{ events2[i].aPrice }}  </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </span> 
+                                        </button></td>
                                     {% endif %}
                                     <!--If statement to see if acitivity is full and whether or not to dispay bookable button-->
                                     {% if current_user.userType != 3 %}
@@ -152,6 +199,9 @@
         </td>
     </tbody>
 </table>
+
+
+</div>
 
 <script>
     document.getElementById('disabled').disabled= true;

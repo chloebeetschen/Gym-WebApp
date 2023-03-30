@@ -232,6 +232,7 @@ img {
     width: 100% !important;
     max-width: 750px !important;
     background-color: #4b7da6;
+    opacity: 90%;
 }
 
 .form-control {
@@ -340,3 +341,52 @@ li a i:hover {
     padding: 0; 
     margin: 0;
 }
+
+.calendar {
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to bottom, #051e46, #194578);
+    justify-content: center;
+}
+
+.event-info {
+    position: relative;
+    display: inline-block;
+}
+
+.event-info .event-info-popup {
+    visibility: hidden;
+    width: 300px;
+    background-color: var(--btn-hover);
+    color: white;
+    text-align: center;
+    padding: 5px 0;
+    top: 100%;
+    left: 50%;
+    margin-top: 10px;
+    margin-left: -150px; 
+    /* ^ half the width */
+    position: absolute;
+    z-index: 1;
+    border-radius: 6px;
+}
+
+.popup-table {
+    width: 100%;
+    font-size: 15px;
+}
+.event-info:hover .event-info-popup {
+    visibility: visible;
+}
+
+/* Below gets arrow on popup */
+.event-info .event-info-popup::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent var(--btn-hover) transparent;
+  }

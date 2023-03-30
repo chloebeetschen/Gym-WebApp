@@ -24,35 +24,38 @@
         <p class="header p-0 m-0 pt-0 mb-0">Calendar</p>
         <p class="mb-4 text-center">If you would like to book one of our sessions that is open all day please choose
             from below.</p>
-        <div class="col"></div>
-        <div class="col"></div>
-        <div class="col">
-            <a href="/repeatEvents/2"><button type="button" class="btn btn-primary btn-calendar">Lane
-                    Swimming</button></a>
+        <!-- <div class="col"></div>
+        <div class="col"></div> -->
+        <div class="d-flex justify-content-center">
+            <div class="col">
+                <a href="/repeatEvents/2"><button type="button" class="btn btn-primary btn-calendar">Lane
+                        Swimming</button></a>
+            </div>
+            <div class="col">
+                <a href="/repeatEvents/4"><button type="button" class="btn  btn-primary btn-calendar">General Use
+                        Swimming</button></a>
+            </div>
+            <div class="col">
+                <a href="/repeatEvents/3"><button type="button" class="btn  btn-primary btn-calendar">Swimming
+                        Lessons</button></a>
+            </div>
+            <div class="col">
+                <a href="/repeatEvents/5"><button type="button" class="btn  btn-primary btn-calendar">Gym</button></a>
+            </div>
+            <div class="col">
+                <a href="/repeatEvents/7"><button type="button" class="btn  btn-primary btn-calendar">Climbing</button></a>
+            </div>
+            <div class="col">
+                <a href="/repeatEvents/6"><button type="button" class="btn  btn-primary btn-calendar">Squash</button></a>
+            </div>
+            <div class="col">
+                <a href="/repeatEvents/12"><button type="button" class="btn  btn-primary btn-calendar">Sports Hall
+                        Session</button></a>
+            </div>
         </div>
-        <div class="col">
-            <a href="/repeatEvents/4"><button type="button" class="btn btn-primary btn-calendar">General Use
-                    Swimming</button></a>
-        </div>
-        <div class="col">
-            <a href="/repeatEvents/3"><button type="button" class="btn btn-primary btn-calendar">Swimming
-                    Lessons</button></a>
-        </div>
-        <div class="col">
-            <a href="/repeatEvents/5"><button type="button" class="btn btn-primary btn-calendar">Gym</button></a>
-        </div>
-        <div class="col">
-            <a href="/repeatEvents/7"><button type="button" class="btn btn-primary btn-calendar">Climbing</button></a>
-        </div>
-        <div class="col">
-            <a href="/repeatEvents/6"><button type="button" class="btn btn-primary btn-calendar">Squash</button></a>
-        </div>
-        <div class="col">
-            <a href="/repeatEvents/12"><button type="button" class="btn btn-primary btn-calendar">Sports Hall
-                    Session</button></a>
-        </div>
-        <div class="col"></div>
-        <div class="col"></div>
+        
+        <!-- <div class="col"></div>
+        <div class="col"></div> -->
     </div>
 
     <!--Basic table to hold calendar information-->
@@ -81,7 +84,7 @@
                     {% else %}
                     <th>Time</th>
                     <th>Activity</th>
-                    <th>Spaces</th>
+                    <!-- <th>Spaces</th> -->
                     {% if isMember == False %}
                     <th>Price</th>
                     {% endif %}
@@ -96,38 +99,37 @@
                         <!--display event and event info in the tables-->
                         <td>{{events[i].aDateTime.strftime("%H:%M")}}</td>
                         <td>{{eventInfo[i].activityType}}</td>
-                        <td>{{events[i].aCapacity-events[i].aSlotsTaken}}</td>
+                        <!-- <td>{{events[i].aCapacity-events[i].aSlotsTaken}}</td> -->
                         {% if isMember == False %}
-                        <td>{{events[i].aPrice}}</td>
+                        <td>£{{events[i].aPrice}}</td>
                         {% endif %}
                         <!--TODO Popup for event info-->
                         {% if current_user.userType == 3 %}
                         <td><a href="/editEvent/{{events[i].id}}"><button type="button"
-                                    class="btn btn-primary">Edit/View Event</button></td>
+                                    class="btn btn-responsive-calendar btn-primary">Edit/View Event</button></td>
                         {% else %}
-                        <td><button type="button" class="btn btn-primary event-info">Event Info
+                        <td><button type="button" class="btn btn-primary btn-responsive-calendar btn-block event-info">Event Info
                                 <!-- Popup for event info -->
                                 <span class="event-info-popup">
                                     <div class="table-responsive">
                                         <table class="table popup-table">
                                             <tr>
                                                 <td> Duration </td>
-                                                <td class="fw-light"> {{ events[i].aDuration }} </td>
+                                                <td class="fw-light"> {{ events[i].aDuration }} hour(s)</td>
                                             </tr>
                                             <tr>
                                                 <td> Location </td>
-                                                <td> {{ events[i].aLocation }} </td>
+                                                <td class="fw-light"> {{ events[i].aLocation }} </td>
                                             </tr>
                                             <tr>
                                                 <td> Staff </td>
-                                                <td> {{ events[i].aStaffName }} </td>
+                                                <td class="fw-light"> {{ events[i].aStaffName }} </td>
                                             </tr>
                                             <tr>
-                                                {% if isMember == False %}
-                                                <td> Price </td>
-                                                <td> £{{ events[i].aPrice }} </td>
-                                                {% endif %}
+                                                <td> Spaces Left </td>
+                                                <td class="fw-light"> {{events[i].aCapacity-events[i].aSlotsTaken}} </td>
                                             </tr>
+                                
                                         </table>
                                     </div>
                                 </span>
@@ -137,16 +139,16 @@
                         {% if current_user.userType != 3 %}
                         <td>
                             {% if userBooked1[i]==True %}
-                            <a href=""></a><button type="button" class="btn btn-primary disabled">Booked</button></a>
+                            <a href=""></a><button type="button" class="btn btn-responsive-calendar btn-primary disabled">Booked</button></a>
                             {% elif events[i].aSlotsTaken == events[i].aCapacity %}
-                            <a href=""></a><button type="button" class="btn btn-primary disabled">Full</button></a>
+                            <a href=""></a><button type="button" class="btn btn-responsive-calendar btn-primary disabled">Full</button></a>
                             {% else %}
                             {% if isMember == False %}
-                            <a href="/addBasket/{{events[i].id}}"><button type="button" class="btn btn-primary">Add to
+                            <a href="/addBasket/{{events[i].id}}"><button type="button" class="btn btn-responsive-calendar btn-primary">Add to
                                     Basket</button>
                                 {% else %}
                                 <a href="/makeBooking/{{events[i].id}}"><button type="button"
-                                        class="btn btn-primary">Book</button>
+                                        class="btn btn-primary btn-responsive-calendar">Book</button>
                                     {% endif %}
                                     {% endif %}
                         </td>
@@ -170,7 +172,6 @@
 
         </div>
 
-
         <div class="col calendar-info rounded-5 box-shadow">
             <div class=" mt-0 pt-0 border-bottom">
                 <p class="header"> WEEK 2</p>
@@ -187,7 +188,6 @@
                         {% else %}
                         <th>Time</th>
                         <th>Activity</th>
-                        <th>Spaces</th>
                         {% if isMember == False %}
                         <th>Price</th>
                         {% endif %}
@@ -202,35 +202,35 @@
                         <!--display event and event info in the tables-->
                         <td>{{events2[i].aDateTime.strftime("%H:%M")}}</td>
                         <td>{{eventInfo2[i].activityType}}</td>
-                        <td>{{events2[i].aCapacity-events2[i].aSlotsTaken}}</td>
                         {% if isMember == False %}
-                        <td>{{events2[i].aPrice}}</td>
+                        <td>£{{events2[i].aPrice}}</td>
                         {% endif %}
                         {% if current_user.userType == 3 %}
                         <td><a href="/editEvent/{{events2[i].id}}"><button type="button"
-                                    class="btn btn-primary">Edit/View Event</button></td>
+                                    class="btn btn-responsive-calendar btn-primary">Edit/View Event</button></td>
                         {% else %}
-                        <td><button type="button" class="btn btn-primary event-info">Event Info
+                        <td><button type="button" class="btn btn-responsive-calendar btn-primary event-info">Event Info
                                 <!-- Popup for event info -->
                                 <span class="event-info-popup">
                                     <div class="table-responsive">
                                         <table class="table popup-table">
                                             <tr>
                                                 <td> Duration </td>
-                                                <td class="fw-light"> {{ events2[i].aDuration }} </td>
+                                                <td class="fw-light"> {{ events2[i].aDuration }} hour(s) </td>
                                             </tr>
                                             <tr>
                                                 <td> Location </td>
-                                                <td> {{ events2[i].aLocation }} </td>
+                                                <td class="fw-light"> {{ events2[i].aLocation }} </td>
                                             </tr>
                                             <tr>
                                                 <td> Staff </td>
-                                                <td> {{ events2[i].aStaffName }} </td>
+                                                <td class="fw-light"> {{ events2[i].aStaffName }} </td>
                                             </tr>
                                             <tr>
-                                                <td> Price </td>
-                                                <td> £{{ events2[i].aPrice }} </td>
+                                                <td>Spaces Left</td>
+                                                <td class="fw-light">{{events2[i].aCapacity-events2[i].aSlotsTaken}}</td>
                                             </tr>
+                                
                                         </table>
                                     </div>
                                 </span>
@@ -240,16 +240,16 @@
                         {% if current_user.userType != 3 %}
                         <td>
                             {% if userBooked2[i]==True %}
-                            <a href=""></a><button type="button" class="btn btn-primary disabled"> Booked</button></a>
+                            <a href=""></a><button type="button" class="btn btn-responsive-calendar btn-primary disabled"> Booked</button></a>
                             {% elif events2[i].aSlotsTaken == events2[i].aCapacity %}
-                            <a href=""></a><button type="button" class="btn btn-primary disabled"> Full</button></a>
+                            <a href=""></a><button type="button" class="btn btn-responsive-calendar btn-primary disabled"> Full</button></a>
                             {% else %}
                                 {% if isMember == False %}
-                                <a href="/addBasket/{{events2[i].id}}"><button type="button" class="btn btn-primary">Add to
+                                <a href="/addBasket/{{events2[i].id}}"><button type="button" class="btn btn-responsive-calendar btn-primary">Add to
                                     Basket</button>
                                 {% else %}
                                 <a href="/makeBooking/{{events2[i].id}}"><button type="button"
-                                        class="btn btn-primary">Book</button>
+                                        class="btn btn-responsive-calendar btn-primary">Book</button>
 
                                 {% endif %}
                             {% endif %}

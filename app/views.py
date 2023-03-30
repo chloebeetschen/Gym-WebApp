@@ -94,10 +94,10 @@ def delete_sessions():
                     #sports hall
                     Calendar(aDateTime=timeStart, aDuration=1, aStaffName="Sport Organiser", aPrice=10, aLocation="Sports Hall", aCapacity=45, aIsRepeat = True, aSlotsTaken=0, activity=Activity.query.get(12))
                 ])
-            
+                
                 #increment time
                 timeStart = timeStart+timedelta(hours=1)
-            
+
             #individual day activities
             #0 = monday ... 6 = sunday
             if today.weekday() == 0:
@@ -121,6 +121,7 @@ def delete_sessions():
             #increment day
             today = today+timedelta(days=1)
 
+
             aEmailExists = UserLogin.query.filter_by(email="admin@admin.com").first()
             if (aEmailExists == None):
                 hashedPassword = bcrypt.generate_password_hash('password')
@@ -132,6 +133,7 @@ def delete_sessions():
                                    password=hashedPassword,
                                    userType=3)
 
+
                 newUserDetails = models.UserDetails(name='Admin',
                                             dateOfBirth=oldEnough,
                                             loginDetails=newUser.id,
@@ -141,6 +143,7 @@ def delete_sessions():
                 # Add to the database
                 db.session.add(newUser)
                 db.session.add(newUserDetails)
+
 
         db.session.commit()
 
@@ -300,7 +303,7 @@ def repeatEvents(id):
                             numEvents = len(events),
                             events    = events,
                             eventType = eventType,
-                            member    = user.isMember,
+                            isMember    = user.isMember,
                             weeks     = weeks,
                             userBooked = userBooked)
 

@@ -34,6 +34,23 @@ def delete_sessions():
 
 db.create_all()
 
+mExists = UserLogin.query.filter_by(email="admin@admin.com").first()
+if(mExists == None):
+    hashedPassword = bcrypt.generate_password_hash("Admin123")
+    newUser = models.UserLogin(email="admin@admin.com",
+                                password=hashedPassword,
+                                userType=3)
+
+    newUserDetails = models.UserDetails(name="admin",
+                                        dateOfBirth=datetime(2002, 7, 30).date(),
+                                        loginDetails=newUser.id,
+                                        isMember = False,
+                                        membershipEnd=datetime.now())
+    # Add to the database
+    db.session.add(newUser)
+    db.session.add(newUserDetails)
+    db.session.commit()
+
 # Checks to see if the data has already been populated
 aExists = Activity.query.filter_by(activityType="Swimming (Team Events)").first()
 
@@ -514,9 +531,7 @@ def deleteBasket(i): # 'i' is the index of the item deleted from the basket
 @login_required
 def deleteBooking(id): #id passed in will be  the id of the calendar
     logging.debug("Delete booking (with id: %s) route request", id)
-    # First check the user is a manager
-    if current_user.userType != 3:
-        return redirect('/home')
+
     # get the booking that matches the id of the parameter given and that of the userId 
     booking = UserBookings.query.filter_by(calendarId = id, userId = current_user.id).first()
     # get the event in the calendar

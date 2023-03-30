@@ -3,7 +3,6 @@
 
 {% block content %}
 
-
 <!-- Landing page -->
 <div class="landing-page">
   <div class="title-text-container">
@@ -128,22 +127,21 @@
 </div>
 
 {% if current_user.is_authenticated %}
-<div class="membership-container justify-content-evenly">
-  <div class="row text-center">
-    <p class="header mt-3">BUY A MEMBERSHIP TODAY</p>
-  </div>
-
-
-  <div class="row text-center">
-    <div class="col membership-info">
-      <p class="second-header">Annual Membership: £300</p>
-      <a href="/memberships/annual"><button type="button" class="btn btn-secondary">Purchase</button></a>
+  <div class="membership-container justify-content-evenly">
+    <div class="row text-center mt-3 mb-3">
+      <p class="header pb-0 mb-0">BUY A MEMBERSHIP TODAY</p>
+      <p class="fs-5" >Gain access to unlimited free classes!</p>
     </div>
-    <div class="col membership-info">
-      <p class="second-header">Monthly Membership: £35</p>
-      <a href="/memberships/monthly"><button type="button" class="btn btn-secondary">Purchase</button></a>
+    <div class="row text-center">
+      <div class="col membership-info rounded-3 box-shadow">
+        <p class="second-header">Annual Membership: £300</p>
+        <a href="/memberships/annual"><button type="button" class="btn btn-secondary">Purchase</button></a>
+      </div>
+      <div class="col membership-info rounded-3 box-shadow">
+        <p class="second-header">Monthly Membership: £35</p>
+        <a href="/memberships/monthly"><button type="button" class="btn btn-secondary">Purchase</button></a>
+      </div>
     </div>
   </div>
-</div>
 {% endif %}
 {% endblock %}

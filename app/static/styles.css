@@ -210,6 +210,10 @@ img {
     
 }
 
+.vertical-align-middle {
+    vertical-align: middle !important;
+}
+
 .membership-info {
     text-align: center;
     font-size: 1.3vw;
@@ -219,6 +223,8 @@ img {
     margin-left: 3vw;
     margin-right: 3vw;
 }
+
+
 
 .header {
     text-align: center;
@@ -242,8 +248,6 @@ img {
     padding: 3vw;
 }
 
-.register-container {
-}
 
 .basket-container {
     width: 100% !important;
@@ -310,15 +314,16 @@ li a i:hover {
 
 .btn-secondary {
     font-weight: bold;
-    background-color: var(--background-medium) !important;
+    background-color: var(--background-dark) !important;
+    border-color: var(--background-dark);
     border-radius: 40px !important;
     padding: 20px;
     width: 200px;
 }
 
 .btn-secondary:hover {
-    background-color: #4f4b73 !important;
-    border-color: var(--background-medium) !important;
+    background-color: #010f29 !important;
+    border-color: #010f29 !important;
 }
 
 .payment-btn {
@@ -396,7 +401,23 @@ li a i:hover {
     border-width: 5px;
     border-style: solid;
     border-color: transparent transparent var(--btn-hover) transparent;
-  }
+}
+
+.mybookings-container {
+    background-color: var(--background-dark);
+    opacity: 90%;
+}
+
+th {
+    padding-bottom: 1vw !important;
+}
+
+th, td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+  
 
 .alert-box {
     padding: 20px;

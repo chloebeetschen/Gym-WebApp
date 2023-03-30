@@ -276,7 +276,7 @@ def calendarMethod():
 def proxyCustomerBooking(id):
     logging.debug("Book for a customer request")
     session['proxyBooking'] = [id]
-    return redirect('/calendar')
+    return redirect('/manageUsers')
 
 #calendar of all repeat sessions
 @app.route('/repeatEvents/<id>', methods=['GET', 'POST'])

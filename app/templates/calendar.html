@@ -1,7 +1,7 @@
 <!-- Template for calender frontend -->
 {% extends "base.html" %}
 {% block content %}
-<div class="calendar">
+<div class="calendar-container container-fluid">
 <!-- Flashed messages -->
 <div class="container-fluid p-0 m-0">
     <div class="row">
@@ -19,29 +19,41 @@
     </div>
 </div>
 
-<!--Basic Header-->
-<h1>Calendar</h1>
-<h2>If you would like to book one of our sessions that is open all day please choose from below.</h2>
-<a href="/repeatEvents/2"><button type="button" class="btn btn-primary">Lane Swimming</button></a>
-<a href="/repeatEvents/4"><button type="button" class="btn btn-primary">General Use Swimming</button></a>
-<a href="/repeatEvents/3"><button type="button" class="btn btn-primary">Swimming Lessons</button></a>
-<a href="/repeatEvents/5"><button type="button" class="btn btn-primary">Gym</button></a>
-<a href="/repeatEvents/7"><button type="button" class="btn btn-primary">Climbing</button></a>
-<a href="/repeatEvents/6"><button type="button" class="btn btn-primary">Squash</button></a>
-<a href="/repeatEvents/12"><button type="button" class="btn btn-primary">Sports Hall Session</button></a>
-
+<div class="row m-0 p-0 text-center">
+    <!--Basic Header-->
+    <p class="header p-3 pt-0 mb-0">Calendar</p class="header p-3 mb-5 time-header">
+    <p class="mb-5 text-center">If you would like to book one of our sessions that is open all day please choose from below.</p>
+    <div class="col"></div>
+    <div class="col"></div>
+    <div class="col">
+        <a href="/repeatEvents/2"><button type="button" class="btn btn-primary btn-calendar">Lane Swimming</button></a>
+    </div>
+    <div class="col">
+        <a href="/repeatEvents/4"><button type="button" class="btn btn-primary btn-calendar">General Use Swimming</button></a>
+    </div>
+    <div class="col">
+        <a href="/repeatEvents/3"><button type="button" class="btn btn-primary btn-calendar">Swimming Lessons</button></a>
+    </div>
+    <div class="col">
+        <a href="/repeatEvents/5"><button type="button" class="btn btn-primary btn-calendar">Gym</button></a>
+    </div>
+    <div class="col">
+        <a href="/repeatEvents/7"><button type="button" class="btn btn-primary btn-calendar">Climbing</button></a>
+    </div>
+    <div class="col">
+        <a href="/repeatEvents/6"><button type="button" class="btn btn-primary btn-calendar">Squash</button></a>
+    </div>
+    <div class="col">
+        <a href="/repeatEvents/12"><button type="button" class="btn btn-primary btn-calendar">Sports Hall Session</button></a>
+    </div>
+    <div class="col"></div> 
+    <div class="col"></div>
+</div>
 
 <!--Basic table to hold calendar information-->
-<table class="table">
-    <thead>
-        <tr>
-            <th>Week 1</th>
-            <th>Week 2</th>
-        </tr>
-    </thead>
-    <tbody>
-        <!--W1-->
-        <td>
+<div class="row">
+    <div class="col time-info rounded-5 box-shadow">
+            <h1> WEEK 1</h1>
             {% for j in range(0, 7) %}
                 <table class="table">
                     <h3>{{weeks[j].strftime("%A")}} - {{weeks[j].strftime("%d/%m/%y")}}</h3>
@@ -118,9 +130,13 @@
                     </tbody>
                 </table>
             {% endfor %}
-        </td>
-        <!--W2-->
-        <td>
+
+
+        </div>
+
+
+        <div class="col time-info rounded-5 box-shadow">
+            <h1>WEEK 2</h1>
             {% for j in range(0, 7) %}
                 <table class="table">
                     <h3>{{weeks[j + 7].strftime("%A")}} - {{weeks[j + 7].strftime("%d/%m/%y")}}</h3>
@@ -135,7 +151,7 @@
                         <th></th>
                     </thead>
                     <tbody>
-                        {% for i in range( numEvents2) %}
+                        {% for i in range( numEvents2 ) %}
                             {% if events2[i].aDateTime.weekday() == weeks[j].weekday() %} 
                                 <tr>
                                     <!--display event and event info in the tables-->
@@ -179,7 +195,7 @@
                                         <td>
                                             {% if userBooked2[i]==True %}
                                                 <a href=""></a><button type="button" class="btn btn-primary" id="disabled">Booked</button></a>
-                                            {% elif events[i].aSlotsTaken == events[i].aCapacity %}
+                                            {% elif events2[i].aSlotsTaken == events2[i].aCapacity %}
                                                 <a href=""></a><button type="button" class="btn btn-primary" id="disabled">Full</button></a>
                                             {% else %}
                                                 {% if isMember == False %}
@@ -196,11 +212,11 @@
                     </tbody>
                 </table>
             {% endfor %}
-        </td>
-    </tbody>
-</table>
 
-
+ 
+    </div>
+</div>
+  
 </div>
 
 <script>

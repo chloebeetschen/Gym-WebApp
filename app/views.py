@@ -31,7 +31,7 @@ def delete_sessions():
     for key in list(session.keys()):
         session.pop(key)
 
-"""
+
 db.create_all()
 
 # Checks to see if the data has already been populated
@@ -118,7 +118,7 @@ if (aExists == None):
         today = today+timedelta(days=1)
 
     db.session.commit()
-"""
+
 
 @loginManager.user_loader
 def loadUser(userId):
@@ -146,6 +146,7 @@ def calendarMethod():
     #calculation for making sure we only get 2 weeks of data
     w1 = datetime.now()+timedelta(days=7)
     w2 = datetime.now()+timedelta(days=14)
+
     # get all events in order of date and time w1 and w2
     events = Calendar.query.filter(Calendar.aDateTime >= date.today()).filter(Calendar.aIsRepeat==False).filter(Calendar.aDateTime < w1).order_by(Calendar.aDateTime).all()
     events2 = Calendar.query.filter(Calendar.aDateTime >= w1).filter(Calendar.aDateTime < w2).filter(Calendar.aIsRepeat==False).order_by(Calendar.aDateTime).all()
@@ -177,7 +178,6 @@ def calendarMethod():
             userBooked2.append(False)
 
     user = UserDetails.query.filter_by(id=current_user.id).first()
-
     
     return render_template('calendar.html',
                             title     = 'Calendar',

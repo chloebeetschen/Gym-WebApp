@@ -30,7 +30,6 @@ def delete_sessions():
     for key in list(session.keys()):
         session.pop(key)
 
-
     db.create_all()
 
     aDiscountExists = models.DiscountAmount.query.filter_by(discountAmount=15).first()
@@ -44,22 +43,22 @@ def delete_sessions():
 
     if (aExists == None):
         logging.debug("Creating database tables")
-        
+    
         #pre-populating calendar and activity with given data from spec
 
         db.session.add_all([
-            Activity(activityType="Swimming (Team Events)"),    #1
-            Activity(activityType="Swimming (Lane Swimming)"),  #2
-            Activity(activityType="Swimming (Lessons)"),        #3 
-            Activity(activityType="Swimming (General Use)"),    #4
-            Activity(activityType="Gym"),                       #5
-            Activity(activityType="Squash"),                    #6
-            Activity(activityType="Climbing"),                  #7
-            Activity(activityType="Pilates"),                   #8
-            Activity(activityType="Aerobics"),                  #9
-            Activity(activityType="Yoga"),                      #10
-            Activity(activityType="Sports Hall (Team Events)"), #11
-            Activity(activityType="Sports Hall (Session)")      #12
+        Activity(activityType="Swimming (Team Events)"),    #1
+        Activity(activityType="Swimming (Lane Swimming)"),  #2
+        Activity(activityType="Swimming (Lessons)"),        #3 
+        Activity(activityType="Swimming (General Use)"),    #4
+        Activity(activityType="Gym"),                       #5
+        Activity(activityType="Squash"),                    #6
+        Activity(activityType="Climbing"),                  #7
+        Activity(activityType="Pilates"),                   #8
+        Activity(activityType="Aerobics"),                  #9
+        Activity(activityType="Yoga"),                      #10
+        Activity(activityType="Sports Hall (Team Events)"), #11
+        Activity(activityType="Sports Hall (Session)")      #12
         ])
 
         #get todays date and iterate for 2 weeks from today as events will appear every day
@@ -98,7 +97,7 @@ def delete_sessions():
                 
                 #increment time
                 timeStart = timeStart+timedelta(hours=1)
-                
+
             #individual day activities
             #0 = monday ... 6 = sunday
             if today.weekday() == 0:
@@ -122,28 +121,31 @@ def delete_sessions():
             #increment day
             today = today+timedelta(days=1)
 
-        aEmailExists = UserLogin.query.filter_by(email="admin@admin.com").first()
-        if (aEmailExists == None):
-            hashedPassword = bcrypt.generate_password_hash('password')
-            oldEnough = datetime.now().date()-timedelta(days=16*365)
-            managerEmail = 'admin@admin.com'
 
-            newUser = models.UserLogin(email=managerEmail,
-                                password=hashedPassword,
-                                userType=3)
+            aEmailExists = UserLogin.query.filter_by(email="admin@admin.com").first()
+            if (aEmailExists == None):
+                hashedPassword = bcrypt.generate_password_hash('password')
+                oldEnough = datetime.now().date()-timedelta(days=16*365)
+                managerEmail = 'admin@admin.com'
 
-            newUserDetails = models.UserDetails(name='Admin',
+                newUser = models.UserLogin(email=managerEmail,
+
+                                   password=hashedPassword,
+                                   userType=3)
+
+
+                newUserDetails = models.UserDetails(name='Admin',
                                             dateOfBirth=oldEnough,
                                             loginDetails=newUser.id,
                                             isMember = False,
                                             membershipEnd=datetime.now())
 
-            # Add to the database
-            db.session.add(newUser)
-            db.session.add(newUserDetails)
+                # Add to the database
+                db.session.add(newUser)
+                db.session.add(newUserDetails)
+
 
         db.session.commit()
-
 
 @loginManager.user_loader
 def loadUser(userId):
@@ -880,11 +882,16 @@ def register():
 
 @app.route('/home', methods=['GET', 'POST'])
 def home():
+    isMember = False
     if current_user.is_authenticated:
+        userDetail = UserDetails.query.get(current_user.id)
+        if userDetail.isMember == True:
+            isMember = True
         if current_user.userType == 3:
             return redirect('/calendar')
     return render_template('home.html', title='Home',
-                            logged=current_user.is_authenticated)
+                            logged=current_user.is_authenticated,
+                            isMember=isMember)
 
 
 

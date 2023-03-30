@@ -113,3 +113,11 @@ class UserDetails(db.Model, UserMixin):
 
 class DiscountAmount(db.Model):
     discountAmount = db.Column(db.Integer, primary_key=True)
+
+    @validates("discountAmount")
+    def validate_discountAmount(self, key, DiscountAmount):
+        maxDiscount = 100
+        minDiscount = 0
+        if DiscountAmount > maxDiscount or DiscountAmount < minDiscount:
+            raise ValueError("Discount not within acceptable range")
+        return DiscountAmount

@@ -775,6 +775,7 @@ def home():
 def settings():
     logging.debug("Settings route request")
     form = SettingsForm()
+    cUserDetails = models.UserDetails.query.get(current_user.id)
     if form.validate_on_submit():
         # Check the old password matches the current password
         if not bcrypt.check_password_hash(current_user.password, form.Password.data):
@@ -782,7 +783,6 @@ def settings():
             return redirect(url_for('settings'))
 
         cUserLogin   = models.UserLogin.query.get(current_user.id)
-        cUserDetails = models.UserDetails.query.get(current_user.id)
 
         # Only update the user's details that they have changed
         if form.Name.data:
@@ -791,12 +791,11 @@ def settings():
             cUserLogin.password  = bcrypt.generate_password_hash(form.NewPassword.data)
 
         db.session.commit()
-        flash('User Details updated')
         
     return render_template('settings.html',
                             title='Settings',
                             form=form,
-                            user=current_user)
+                            userIsMember=cUserDetails.isMember)
 
 @app.route('/cancelMembership', methods=['GET', 'POST'])
 @login_required

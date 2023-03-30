@@ -251,7 +251,8 @@ def calendarMethod():
                             weeks     = weeks,
                             userBooked1 = userBooked1,
                             userBooked2 = userBooked2,
-                            proxyBooking = True
+                            proxyBooking = True,
+                            weeksCount = weeksCount
                             )
     else:
         return render_template('calendar.html',

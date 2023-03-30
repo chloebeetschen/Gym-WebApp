@@ -170,10 +170,15 @@ def calendarMethod():
 
     userBooked1 = []
     userBooked2 = []
+    weeksCount = [0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    dateWeeks = [d.date() for d in weeks]
 
     # get event type for each event found
     eventInfo = []
     for i in events:
+        # Find the index of day in weeks list
+        index = dateWeeks.index((i.aDateTime).date())
+        weeksCount[index] +=1
         eventInfo.append(Activity.query.filter_by(id=i.activityId).first())
         # For every event check if user has booked it
         booked = UserBookings.query.filter_by(userId=current_user.id, calendarId=i.id).first()
@@ -186,6 +191,9 @@ def calendarMethod():
     # get event type for each event found
     eventInfo2 = []
     for i in events2:
+        # Find the index of day in weeks list
+        index = dateWeeks.index((i.aDateTime).date())
+        weeksCount[index] +=1
         eventInfo2.append(Activity.query.filter_by(id=i.activityId).first())
         # For every event check if user has booked it
         booked = UserBookings.query.filter_by(userId=current_user.id, calendarId=i.id).first()
@@ -207,7 +215,8 @@ def calendarMethod():
                             isMember = user.isMember,   
                             weeks     = weeks,
                             userBooked1 = userBooked1,
-                            userBooked2 = userBooked2
+                            userBooked2 = userBooked2,
+                            weeksCount=weeksCount
                             )
 
 #calendar of all repeat sessions

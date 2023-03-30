@@ -2,224 +2,278 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="calendar-container container-fluid">
-<!-- Flashed messages -->
-<div class="container-fluid p-0 m-0">
-    <div class="row">
-        <div class="col">
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-            {% for message in messages %}
+    <!-- Flashed messages -->
+    <div class="container-fluid p-0 m-0">
+        <div class="row">
+            <div class="col">
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                {% for message in messages %}
                 <div class="alert alert-success text-center">
-                {{ message }}
+                    {{ message }}
                 </div>
-            {% endfor %}
-            {% endif %}
-        {% endwith %}
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+            </div>
         </div>
     </div>
-</div>
 
-<div class="row m-0 p-0 text-center">
-    <!--Basic Header-->
-    <p class="header p-3 pt-0 mb-0">Calendar</p class="header p-3 mb-5 time-header">
-    <p class="mb-5 text-center">If you would like to book one of our sessions that is open all day please choose from below.</p>
-    <div class="col"></div>
-    <div class="col"></div>
-    <div class="col">
-        <a href="/repeatEvents/2"><button type="button" class="btn btn-primary btn-calendar">Lane Swimming</button></a>
+    <div class="row m-0 p-0 mb-4 text-center">
+        <!--Basic Header-->
+        <p class="header p-0 m-0 pt-0 mb-0">Calendar</p>
+        <p class="mb-4 text-center">If you would like to book one of our sessions that is open all day please choose
+            from below.</p>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col">
+            <a href="/repeatEvents/2"><button type="button" class="btn btn-primary btn-calendar">Lane
+                    Swimming</button></a>
+        </div>
+        <div class="col">
+            <a href="/repeatEvents/4"><button type="button" class="btn btn-primary btn-calendar">General Use
+                    Swimming</button></a>
+        </div>
+        <div class="col">
+            <a href="/repeatEvents/3"><button type="button" class="btn btn-primary btn-calendar">Swimming
+                    Lessons</button></a>
+        </div>
+        <div class="col">
+            <a href="/repeatEvents/5"><button type="button" class="btn btn-primary btn-calendar">Gym</button></a>
+        </div>
+        <div class="col">
+            <a href="/repeatEvents/7"><button type="button" class="btn btn-primary btn-calendar">Climbing</button></a>
+        </div>
+        <div class="col">
+            <a href="/repeatEvents/6"><button type="button" class="btn btn-primary btn-calendar">Squash</button></a>
+        </div>
+        <div class="col">
+            <a href="/repeatEvents/12"><button type="button" class="btn btn-primary btn-calendar">Sports Hall
+                    Session</button></a>
+        </div>
+        <div class="col"></div>
+        <div class="col"></div>
     </div>
-    <div class="col">
-        <a href="/repeatEvents/4"><button type="button" class="btn btn-primary btn-calendar">General Use Swimming</button></a>
-    </div>
-    <div class="col">
-        <a href="/repeatEvents/3"><button type="button" class="btn btn-primary btn-calendar">Swimming Lessons</button></a>
-    </div>
-    <div class="col">
-        <a href="/repeatEvents/5"><button type="button" class="btn btn-primary btn-calendar">Gym</button></a>
-    </div>
-    <div class="col">
-        <a href="/repeatEvents/7"><button type="button" class="btn btn-primary btn-calendar">Climbing</button></a>
-    </div>
-    <div class="col">
-        <a href="/repeatEvents/6"><button type="button" class="btn btn-primary btn-calendar">Squash</button></a>
-    </div>
-    <div class="col">
-        <a href="/repeatEvents/12"><button type="button" class="btn btn-primary btn-calendar">Sports Hall Session</button></a>
-    </div>
-    <div class="col"></div> 
-    <div class="col"></div>
-</div>
 
-<!--Basic table to hold calendar information-->
-<div class="row">
-    <div class="col time-info rounded-5 box-shadow">
-            <h1> WEEK 1</h1>
+    <!--Basic table to hold calendar information-->
+    <div class="row">
+        <div class="col calendar-info rounded-5 box-shadow">
+            <!-- Table for whole week -->
+            <!-- <table class="table">
+
+            <thead>-->
+            <div class=" mt-0 pt-0 border-bottom">
+                <p class="header"> WEEK 1</p>
+            </div>
+
+            <!-- </thead>
+
+            <tbody> -->
             {% for j in range(0, 7) %}
-                <table class="table">
-                    <h3>{{weeks[j].strftime("%A")}} - {{weeks[j].strftime("%d/%m/%y")}}</h3>
+            <!-- <tr> -->
+            <table class="table table-responsive">
+                <p class="mb-0 mt-5 calendar-days">{{weeks[j].strftime("%A")}} - {{weeks[j].strftime("%d/%m/%y")}}</p>
+                <thead>
+                    {% if weeksCount[j] == 0 %}
+                    <th class="text-start pb-5 fw-light">There are no sessions on this day. </th>
+
+                    {% else %}
+                    <th>Time</th>
+                    <th>Activity</th>
+                    <th>Spaces</th>
+                    {% if isMember == False %}
+                    <th>Price</th>
+                    {% endif %}
+                    <th></th>
+                    <th></th>
+                    {% endif %}
+                </thead>
+                <tbody>
+                    {% for i in range(numEvents) %}
+                    {% if events[i].aDateTime.weekday() == weeks[j].weekday() %}
+                    <tr>
+                        <!--display event and event info in the tables-->
+                        <td>{{events[i].aDateTime.strftime("%H:%M")}}</td>
+                        <td>{{eventInfo[i].activityType}}</td>
+                        <td>{{events[i].aCapacity-events[i].aSlotsTaken}}</td>
+                        {% if isMember == False %}
+                        <td>{{events[i].aPrice}}</td>
+                        {% endif %}
+                        <!--TODO Popup for event info-->
+                        {% if current_user.userType == 3 %}
+                        <td><a href="/editEvent/{{events[i].id}}"><button type="button"
+                                    class="btn btn-primary">Edit/View Event</button></td>
+                        {% else %}
+                        <td><button type="button" class="btn btn-primary event-info">Event Info
+                                <!-- Popup for event info -->
+                                <span class="event-info-popup">
+                                    <div class="table-responsive">
+                                        <table class="table popup-table">
+                                            <tr>
+                                                <td> Duration </td>
+                                                <td class="fw-light"> {{ events[i].aDuration }} </td>
+                                            </tr>
+                                            <tr>
+                                                <td> Location </td>
+                                                <td> {{ events[i].aLocation }} </td>
+                                            </tr>
+                                            <tr>
+                                                <td> Staff </td>
+                                                <td> {{ events[i].aStaffName }} </td>
+                                            </tr>
+                                            <tr>
+                                                {% if isMember == False %}
+                                                <td> Price </td>
+                                                <td> £{{ events[i].aPrice }} </td>
+                                                {% endif %}
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </span>
+                            </button></td>
+                        {% endif %}
+                        <!--If statement to see if acitivity is full and whether or not to dispay bookable button-->
+                        {% if current_user.userType != 3 %}
+                        <td>
+                            {% if userBooked1[i]==True %}
+                            <a href=""></a><button type="button" class="btn btn-primary disabled">Booked</button></a>
+                            {% elif events[i].aSlotsTaken == events[i].aCapacity %}
+                            <a href=""></a><button type="button" class="btn btn-primary disabled">Full</button></a>
+                            {% else %}
+                            {% if isMember == False %}
+                            <a href="/addBasket/{{events[i].id}}"><button type="button" class="btn btn-primary">Add to
+                                    Basket</button>
+                                {% else %}
+                                <a href="/makeBooking/{{events[i].id}}"><button type="button"
+                                        class="btn btn-primary">Book</button>
+                                    {% endif %}
+                                    {% endif %}
+                        </td>
+                        {% endif %}
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                    <tr>
+                        <br>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- </tr> -->
+            {% endfor %}
+
+            <!-- </tbody>
+            
+
+        </table> -->
+
+
+        </div>
+
+
+        <div class="col calendar-info rounded-5 box-shadow">
+            <div class=" mt-0 pt-0 border-bottom">
+                <p class="header"> WEEK 2</p>
+            </div>
+
+            {% for j in range(0, 7) %}
+            <table class="table table-responsive">
+                <p class="mb-0 mt-5 calendar-days">{{weeks[j+7].strftime("%A")}} - {{weeks[j+7].strftime("%d/%m/%y")}}
+                </p>
+                <thead>
                     <thead>
+                        {% if weeksCount[j+7] == 0 %}
+                        <th class="text-start pb-5 fw-light">There are no sessions on this day. </th>
+                        {% else %}
                         <th>Time</th>
-                        <th>Activity Name</th>
-                        <th>Spaces Left</th>
-                        {% if member == False %}
-                            <th>Price</th>                        
+                        <th>Activity</th>
+                        <th>Spaces</th>
+                        {% if isMember == False %}
+                        <th>Price</th>
                         {% endif %}
                         <th></th>
                         <th></th>
+                        {% endif %}
                     </thead>
-                    <tbody>
-                        {% for i in range(numEvents) %}
-                            {% if events[i].aDateTime.weekday() == weeks[j].weekday() %} 
-                                <tr>
-                                    <!--display event and event info in the tables-->
-                                    <td>{{events[i].aDateTime.strftime("%H:%M")}}</td>
-                                    <td>{{eventInfo[i].activityType}}</td>
-                                    <td>{{events[i].aCapacity-events[i].aSlotsTaken}}</td>
-                                    {% if member == False %}
-                                        <td>{{events[i].aPrice}}</td>
+                <tbody>
+                    {% for i in range( numEvents2 ) %}
+                    {% if events2[i].aDateTime.weekday() == weeks[j].weekday() %}
+                    <tr>
+                        <!--display event and event info in the tables-->
+                        <td>{{events2[i].aDateTime.strftime("%H:%M")}}</td>
+                        <td>{{eventInfo2[i].activityType}}</td>
+                        <td>{{events2[i].aCapacity-events2[i].aSlotsTaken}}</td>
+                        {% if isMember == False %}
+                        <td>{{events2[i].aPrice}}</td>
+                        {% endif %}
+                        {% if current_user.userType == 3 %}
+                        <td><a href="/editEvent/{{events2[i].id}}"><button type="button"
+                                    class="btn btn-primary">Edit/View Event</button></td>
+                        {% else %}
+                        <td><button type="button" class="btn btn-primary event-info">Event Info
+                                <!-- Popup for event info -->
+                                <span class="event-info-popup">
+                                    <div class="table-responsive">
+                                        <table class="table popup-table">
+                                            <tr>
+                                                <td> Duration </td>
+                                                <td class="fw-light"> {{ events2[i].aDuration }} </td>
+                                            </tr>
+                                            <tr>
+                                                <td> Location </td>
+                                                <td> {{ events2[i].aLocation }} </td>
+                                            </tr>
+                                            <tr>
+                                                <td> Staff </td>
+                                                <td> {{ events2[i].aStaffName }} </td>
+                                            </tr>
+                                            <tr>
+                                                <td> Price </td>
+                                                <td> £{{ events2[i].aPrice }} </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </span>
+                            </button></td>
+                        {% endif %}
+                        <!--If statement to see if acitivity is full and whether or not to dispay bookable button-->
+                        {% if current_user.userType != 3 %}
+                        <td>
+                            {% if userBooked2[i]==True %}
+                            <a href=""></a><button type="button" class="btn btn-primary disabled"> Booked</button></a>
+                            {% elif events2[i].aSlotsTaken == events2[i].aCapacity %}
+                            <a href=""></a><button type="button" class="btn btn-primary disabled"> Full</button></a>
+                            {% else %}
+                            {% if isMember == False %}
+                            <a href="/addBasket/{{events2[i].id}}"><button type="button" class="btn btn-primary">Add to
+                                    Basket</button>
+                                {% else %}
+                                <a href="/makeBooking/{{events2[i].id}}"><button type="button"
+                                        class="btn btn-primary">Book</button>
                                     {% endif %}
-                                    <!--TODO Popup for event info-->
-                                    {% if current_user.userType == 3 %}
-                                        <td><a href="/editEvent/{{events[i].id}}"><button type="button" class="btn btn-primary">Edit/View Event</button></td>
-                                    {% else %}
-                                    <td><button type="button" class="btn btn-primary event-info">Event Info 
-                                        <!-- Popup for event info -->
-                                        <span class="event-info-popup">
-                                            <div class="table-responsive">
-                                                <table class="table popup-table">
-                                                    <tr>
-                                                        <td> Duration </td>
-                                                        <td class="fw-light"> {{ events[i].aDuration }}  </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td> Location </td>
-                                                        <td> {{ events[i].aLocation }}  </td>
-                                                    </tr>   
-                                                    <tr>
-                                                        <td> Staff </td>
-                                                        <td> {{ events[i].aStaffName }}  </td>
-                                                    </tr>             
-                                                    <tr>
-                                                        <td> Price </td>
-                                                        <td> £{{ events[i].aPrice }}  </td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                        </span> 
-                                    </button></td>
                                     {% endif %}
-                                    <!--If statement to see if acitivity is full and whether or not to dispay bookable button-->
-                                    {% if current_user.userType != 3 %}
-                                        <td>
-                                            {% if userBooked1[i]==True %}
-                                                <a href=""></a><button type="button" class="btn btn-primary" id="disabled">Booked</button></a>
-                                            {% elif events[i].aSlotsTaken == events[i].aCapacity %}
-                                                <a href=""></a><button type="button" class="btn btn-primary" id="disabled">Full</button></a>
-                                            {% else %}
-                                                {% if isMember == False %}
-                                                    <a href="/addBasket/{{events[i].id}}"><button type="button" class="btn btn-primary">Add to Basket</button>
-                                                {% else %}    
-                                                    <a href="/makeBooking/{{events[i].id}}"><button type="button" class="btn btn-primary">Book</button>
-                                                {% endif %}
-                                            {% endif %}
-                                        </td>
-                                    {% endif %}
-                                </tr>
-                            {% endif %}
-                        {% endfor %}
-                    </tbody>
-                </table>
+                        </td>
+                        {% endif %}
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                    <tr>
+                        <br>
+                    </tr>
+                </tbody>
+            </table>
             {% endfor %}
 
 
         </div>
-
-
-        <div class="col time-info rounded-5 box-shadow">
-            <h1>WEEK 2</h1>
-            {% for j in range(0, 7) %}
-                <table class="table">
-                    <h3>{{weeks[j + 7].strftime("%A")}} - {{weeks[j + 7].strftime("%d/%m/%y")}}</h3>
-                    <thead>
-                        <th>Time</th>
-                        <th>Activity Name</th>
-                        <th>Spaces Left</th>
-                        {% if member == False %}
-                            <th>Price</th>
-                        {% endif %}
-                        <th></th>
-                        <th></th>
-                    </thead>
-                    <tbody>
-                        {% for i in range( numEvents2 ) %}
-                            {% if events2[i].aDateTime.weekday() == weeks[j].weekday() %} 
-                                <tr>
-                                    <!--display event and event info in the tables-->
-                                    <td>{{events2[i].aDateTime.strftime("%H:%M")}}</td>
-                                    <td>{{eventInfo2[i].activityType}}</td>
-                                    <td>{{events2[i].aCapacity-events2[i].aSlotsTaken}}</td>
-                                    {% if member == False %}
-                                        <td>{{events2[i].aPrice}}</td>
-                                    {% endif %}
-                                    {% if current_user.userType == 3 %}
-                                        <td><a href="/editEvent/{{events2[i].id}}"><button type="button" class="btn btn-primary">Edit/View Event</button></td>
-                                    {% else %}
-                                        <td><button type="button" class="btn btn-primary event-info">Event Info 
-                                            <!-- Popup for event info -->
-                                            <span class="event-info-popup">
-                                                <div class="table-responsive">
-                                                    <table class="table popup-table">
-                                                        <tr>
-                                                            <td> Duration </td>
-                                                            <td class="fw-light"> {{ events2[i].aDuration }}  </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td> Location </td>
-                                                            <td> {{ events2[i].aLocation }}  </td>
-                                                        </tr>   
-                                                        <tr>
-                                                            <td> Staff </td>
-                                                            <td> {{ events2[i].aStaffName }}  </td>
-                                                        </tr>             
-                                                        <tr>
-                                                            <td> Price </td>
-                                                            <td> £{{ events2[i].aPrice }}  </td>
-                                                        </tr>
-                                                    </table>
-                                                </div>
-                                            </span> 
-                                        </button></td>
-                                    {% endif %}
-                                    <!--If statement to see if acitivity is full and whether or not to dispay bookable button-->
-                                    {% if current_user.userType != 3 %}
-                                        <td>
-                                            {% if userBooked2[i]==True %}
-                                                <a href=""></a><button type="button" class="btn btn-primary" id="disabled">Booked</button></a>
-                                            {% elif events2[i].aSlotsTaken == events2[i].aCapacity %}
-                                                <a href=""></a><button type="button" class="btn btn-primary" id="disabled">Full</button></a>
-                                            {% else %}
-                                                {% if isMember == False %}
-                                                    <a href="/addBasket/{{events2[i].id}}"><button type="button" class="btn btn-primary">Add to Basket</button>
-                                                {% else %}    
-                                                    <a href="/makeBooking/{{events2[i].id}}"><button type="button" class="btn btn-primary">Book</button>
-                                                {% endif %}
-                                            {% endif %}
-                                        </td>
-                                    {% endif %}
-                                </tr>
-                            {% endif %}
-                        {% endfor %}
-                    </tbody>
-                </table>
-            {% endfor %}
-
- 
     </div>
-</div>
-  
+
 </div>
 
 <script>
-    document.getElementById('disabled').disabled= true;
+    const disabledBtns = document.getElementsByClassName("disabled");
+    for (let i = 0; i < disabledBtns.length; i++) {
+        disabledBtns[i].disabled = true;
+    }
+    document.getElementById('disabled').disabled = true;
 </script>
 {% endblock %}

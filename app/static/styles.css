@@ -240,9 +240,24 @@ img {
 .calendar-container {
     background-image: linear-gradient(to bottom, #051e46, #194578);
     padding: 3rem 1rem 4rem 1rem;
-    padding: 3vw;
+    padding: 4vw;
+    padding-top: 1vw;
 }
 
+.calendar-info {
+    text-align: center;
+    font-size: 1vw;
+    background-color: var(--background-light);
+    padding: 4vw;
+    margin-left: 1vw;
+    margin-right: 1vw;  
+}
+
+.calendar-days {
+    text-align: left;
+    font-size: 1.5vw !important;
+    font-weight: bold;
+}
 .register-container {
 }
 
@@ -274,6 +289,7 @@ img {
     margin-left: 1vw;
     margin-right: 1vw;
 }
+
 
 .time-info-body {
     text-align: left;    

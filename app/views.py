@@ -31,7 +31,6 @@ def delete_sessions():
     for key in list(session.keys()):
         session.pop(key)
 
-
 db.create_all()
 
 mExists = UserLogin.query.filter_by(email="admin@admin.com").first()
@@ -133,6 +132,25 @@ if (aExists == None):
 
         #increment day
         today = today+timedelta(days=1)
+
+        aEmailExists = UserLogin.query.filter_by(email="admin@admin.com").first()
+        if (aEmailExists == None):
+            hashedPassword = bcrypt.generate_password_hash('password')
+            oldEnough = datetime.now().date()-timedelta(days=16*365)
+            managerEmail = 'admin@admin.com'
+
+            newUser = models.UserLogin(email=managerEmail,
+                                   password=hashedPassword,
+                                   userType=3)
+
+            newUserDetails = models.UserDetails(name='Admin',
+                                            dateOfBirth=oldEnough,
+                                            loginDetails=newUser.id,
+                                            isMember = False,
+                                            membershipEnd=datetime.now())
+            # Add to the database
+            db.session.add(newUser)
+            db.session.add(newUserDetails)
 
     db.session.commit()
 
@@ -415,7 +433,7 @@ def checkout():
             session.pop(key)
 
     flash('Payment Successful')
-    return redirect(url_for('home'))
+    return redirect(url_for('myBookings'))
 
 #this is so the manager is able to delete an event - delete button
 @app.route('/deleteEvent/<id>', methods=['GET', 'POST'])
@@ -735,6 +753,7 @@ def register():
     form = RegisterForm()
 
     if form.validate_on_submit():
+        print("submitted")
         # Check that the email hasn't been used already.
         usedEmail = models.UserLogin.query.filter_by(email=form.Email.data).first()
         if usedEmail:
@@ -782,6 +801,7 @@ def home():
 def settings():
     logging.debug("Settings route request")
     form = SettingsForm()
+    cUserDetails = models.UserDetails.query.get(current_user.id)
     if form.validate_on_submit():
         # Check the old password matches the current password
         if not bcrypt.check_password_hash(current_user.password, form.Password.data):
@@ -789,7 +809,6 @@ def settings():
             return redirect(url_for('settings'))
 
         cUserLogin   = models.UserLogin.query.get(current_user.id)
-        cUserDetails = models.UserDetails.query.get(current_user.id)
 
         # Only update the user's details that they have changed
         if form.Name.data:
@@ -798,12 +817,11 @@ def settings():
             cUserLogin.password  = bcrypt.generate_password_hash(form.NewPassword.data)
 
         db.session.commit()
-        flash('User Details updated')
         
     return render_template('settings.html',
                             title='Settings',
                             form=form,
-                            user=current_user)
+                            userIsMember=cUserDetails.isMember)
 
 @app.route('/cancelMembership', methods=['GET', 'POST'])
 @login_required

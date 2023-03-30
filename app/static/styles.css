@@ -9,6 +9,16 @@
     --background-light: #194578;
 }
 
+.flashed-msg-container {
+    position: absolute !important;
+    top: 15% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 1000 !important;
+    font-size: 3vw !important;
+
+}
+
 .bg-dark {
     background-color: var(--background-dark) !important;
 }
@@ -205,6 +215,10 @@ img {
     
 }
 
+.vertical-align-middle {
+    vertical-align: middle !important;
+}
+
 .membership-info {
     text-align: center;
     font-size: 1.3vw;
@@ -214,6 +228,8 @@ img {
     margin-left: 3vw;
     margin-right: 3vw;
 }
+
+
 
 .header {
     text-align: center;
@@ -327,15 +343,16 @@ li a i:hover {
 
 .btn-secondary {
     font-weight: bold;
-    background-color: var(--background-medium) !important;
+    background-color: var(--background-dark) !important;
+    border-color: var(--background-dark);
     border-radius: 40px !important;
     padding: 20px;
     width: 200px;
 }
 
 .btn-secondary:hover {
-    background-color: #4f4b73 !important;
-    border-color: var(--background-medium) !important;
+    background-color: #010f29 !important;
+    border-color: #010f29 !important;
 }
 
 .payment-btn {
@@ -406,4 +423,44 @@ li a i:hover {
     border-width: 5px;
     border-style: solid;
     border-color: transparent transparent var(--btn-hover) transparent;
-  }
+}
+
+.mybookings-container {
+    background-color: var(--background-dark);
+    opacity: 90%;
+}
+
+th {
+    padding-bottom: 1vw !important;
+}
+
+th, td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+  
+
+.alert-box {
+    padding: 20px;
+    background-color: #f44336;
+    color: white;
+    opacity: 0.9;
+    font-size: medium;
+}
+
+.closebtn {
+    margin-left: 20px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 30px;
+    line-height: 20px;
+    cursor: pointer;
+
+}
+
+.closebtn:hover {
+    color: black;
+}
+

@@ -183,8 +183,8 @@ def calendarMethod():
     #days of week integers, from today
     
     #calculation for making sure we only get 2 weeks of data
-    w1 = datetime.now()+timedelta(days=6)
-    w2 = datetime.now()+timedelta(days=13)
+    w1 = datetime.now()+timedelta(days=7)
+    w2 = datetime.now()+timedelta(days=14)
 
     # get all events in order of date and time w1 and w2
     events = Calendar.query.filter(Calendar.aDateTime >= date.today()).filter(Calendar.aIsRepeat==False).filter(Calendar.aDateTime < w1).order_by(Calendar.aDateTime).all()

@@ -1304,3 +1304,8 @@ def searchResults(search):
 def proxyChangeMembership(id):
     session['proxyMembership'] = [id]
     return redirect('/memberships')
+
+
+@app.route('/meetTheTeam')
+def meetTheTeam():
+    return render_template('meetTheTeam.html', title='Meet the team')

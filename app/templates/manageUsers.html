@@ -48,9 +48,10 @@
                 <thead>
                     <tr>
                         <th>Email</th>
-                        <th>User Type</th>
+                        {% if userType != 3 %}
                         <th>Bookings</th>
                         <th>Change membership</th>
+                        {% endif %}
                         <th>Edit details</th>
                         <th>Delete</th>
                     </tr>
@@ -61,7 +62,7 @@
                             <tr>
                                 <!--display event and event info in the tables-->
                                 <td>{{userTypeLogin1[i].email}}</td>
-                                <td>{{userTypeLogin1[i].userType}}</td>
+                                {% if userType != 3 %}
                                 <td>
                                     <a href="/calendar/{{userTypeLogin1[i].id}}"><button type="button" class="btn btn-primary">Make Booking</button></a>
                                     <a href="/proxyEdit/{{userTypeLogin1[i].id}}"><button type="button" class="btn btn-primary">Edit Bookings</button></a>
@@ -70,6 +71,7 @@
                                     <a href="/proxyChangeMembership/{{userTypeLogin1[i].id}}"><button type="button" class="btn btn-primary">Change membership</button></a>
 
                                 </td>
+                                {% endif %}
                                 <td>
                                     <a href="/editUser/{{userTypeLogin1[i].id}}"><button type="button" class="btn btn-primary">Edit</button></a>
                                 </td>

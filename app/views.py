@@ -1306,3 +1306,7 @@ def proxyChangeMembership(id):
 @app.route('/meetTheTeam')
 def meetTheTeam():
     return render_template('meetTheTeam.html', title='Meet the team')
+
+@app.route('/termsAndConditions')
+def termsAndConditions():
+    return render_template('termsAndConditions.html', title='Terms and Conditions')

@@ -509,20 +509,25 @@ th, td {
     box-shadow: 0 4px 8px 0 rgba(0,0,0, 0.2);
     background-color: #051e46;
     height: 500px;
+    color: white;
 }
 
 .column {
     float: left;
     width: 16.5%;
     margin-bottom: 15px;
-    padding: 0 8px;
+    margin-top: 125px;
+    padding: 5px;
 }
 
-.team-container {
-    padding: 15px 15px 15px 15px;
-   
-    
+.tc-column {
+    float: left;
+    width: 50%;
+    margin-bottom: 15px;
+    margin-top: 125px;
+    padding: 5px;
 }
+
 
 .team-page {
     width: 100%;
@@ -535,15 +540,15 @@ th, td {
 }
 
 .team-title {
+    position: absolute;
     font-family: 'Oswald', sans-serif;
-    font-size: 8vw;
+    font-size: 6vw;
     background-color: #ff0099;
-    width: auto;
-    height: auto;
+    width: 100%;
+    height: 18%;
     opacity: 100%;
     padding: 0 15rem 0 3rem;
     color: #ffa9dc;
-    margin-bottom: 1rem;
     z-index: 1000;
 
 }
@@ -555,6 +560,7 @@ th, td {
     width: 300px;
     height: 300px;
     object-fit: scale-down;
+}
 
 
 .footer-container ul {

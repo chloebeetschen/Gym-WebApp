@@ -505,3 +505,88 @@ th, td {
 
 }
 
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0, 0.2);
+    background-color: #051e46;
+    height: 500px;
+    color: white;
+}
+
+.column {
+    float: left;
+    width: 16.5%;
+    margin-bottom: 15px;
+    margin-top: 125px;
+    padding: 5px;
+}
+
+.tc-column {
+    float: left;
+    width: 50%;
+    margin-bottom: 15px;
+    margin-top: 125px;
+    padding: 5px;
+}
+
+
+.team-page {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: -900;
+    padding: 0;
+    background-color:#194578;
+}
+
+.team-title {
+    position: absolute;
+    font-family: 'Oswald', sans-serif;
+    font-size: 6vw;
+    background-color: #ff0099;
+    width: 100%;
+    height: 18%;
+    opacity: 100%;
+    padding: 0 15rem 0 3rem;
+    color: #ffa9dc;
+    z-index: 1000;
+
+}
+
+.img-team {
+    border: 2px;
+    border-radius: 5px;
+    padding: 5px;
+    width: 300px;
+    height: 300px;
+    object-fit: scale-down;
+}
+
+
+.footer-container ul {
+    color: white;
+    list-style-type: none;
+    padding-top: 0.5vw;
+    padding-left: 0;
+    margin-left: 0;
+}
+
+.footer-row {
+    border-top: 3px solid var(--background-light)
+}
+
+.footer-container li {
+    padding-top: 0.8rem;
+}
+
+.footer-container a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer-links-header {
+    font-weight: bold;
+    font-size: 1vw;
+    margin: 0;
+}
+

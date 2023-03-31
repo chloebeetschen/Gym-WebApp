@@ -30,6 +30,13 @@ def delete_sessions():
     for key in list(session.keys()):
         session.pop(key)
 
+db.create_all()
+
+aDiscountExists = models.DiscountAmount.query.filter_by(discountAmount=15).first()
+if (aDiscountExists == None):
+    amount = models.DiscountAmount(discountAmount=15)
+    db.session.add(amount)
+    db.session.commit()
     db.create_all()
 
     aDiscountExists = models.DiscountAmount.query.filter_by(discountAmount=15).first()
@@ -145,7 +152,9 @@ def delete_sessions():
                 db.session.add(newUserDetails)
 
 
+
         db.session.commit()
+
 
 @loginManager.user_loader
 def loadUser(userId):
@@ -1310,3 +1319,12 @@ def searchResults(search):
 def proxyChangeMembership(id):
     session['proxyMembership'] = [id]
     return redirect('/memberships')
+
+
+@app.route('/meetTheTeam')
+def meetTheTeam():
+    return render_template('meetTheTeam.html', title='Meet the team')
+
+@app.route('/termsAndConditions')
+def termsAndConditions():
+    return render_template('termsAndConditions.html', title='Terms and Conditions')

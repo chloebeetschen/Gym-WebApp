@@ -328,6 +328,20 @@ def makeBooking(id): # << id passed here is the calendar id (not user)
     event = Calendar.query.get(id)
     #update number of people on current
     event.aSlotsTaken += 1
+
+    if event.aLocation == "Swimming Pool":
+        # First check if a team event
+        if event.activityId == 1:
+            otherPoolEvents = Calendar.query.filter_by(aDateTime=event.aDateTime, aLocation="Swimming Pool").all()
+            for eventPool in otherPoolEvents:
+                eventPool.aSlotsTaken = eventPool.aCapacity
+        else:
+            otherPoolEvents = Calendar.query.filter_by(aDateTime=event.aDateTime, aLocation="Swimming Pool").all()
+            for eventPool in otherPoolEvents:
+                eventPool.aSlotsTaken +=1
+
+
+
     #get capactiy of that activity
     eventType = Activity.query.get(event.activityId)
     
@@ -668,6 +682,19 @@ def deleteBooking(id): #id passed in will be  the id of the calendar
     calendarBooking = Calendar.query.filter_by(id=id).first()
     # alter capacity of calendar
     calendarBooking.aSlotsTaken -= 1
+
+    if calendarBooking.aLocation == "Swimming Pool":
+        # First check if a team event
+        if calendarBooking.activityId == 1:
+            otherPoolEvents = Calendar.query.filter_by(aDateTime=event.aDateTime, aLocation="Swimming Pool").all()
+            for eventPool in otherPoolEvents:
+                eventPool.aSlotsTaken = 0
+        else:
+            otherPoolEvents = Calendar.query.filter_by(aDateTime=event.aDateTime, aLocation="Swimming Pool").all()
+
+            for eventPool in otherPoolEvents:
+                eventPool.aSlotsTaken -=1
+
     
     db.session.delete(booking)
     db.session.commit()

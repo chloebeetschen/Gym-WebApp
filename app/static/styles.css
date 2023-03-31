@@ -136,10 +136,6 @@ html, body {
     width: 150px;
 
 }
-.btn-responsive-calendar {
-    width: 9.5vw !important;
-    height: 100% !important;
-}
 
 .btn-size-auto {
     width: auto;
@@ -160,7 +156,6 @@ html, body {
 
 .btn-calendar {
     height:100%;
-    width: 10vw !important;
 }
 
 .central-header {
@@ -279,7 +274,6 @@ html, body {
     padding-top: 2vw !important; 
     margin-left: 1vw;
     margin-right: 1vw;  
-    width: 30vw !important;
 }
 
 .repeat-info {
@@ -510,3 +504,4 @@ th, td {
     color: white;
 
 }
+

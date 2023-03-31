@@ -178,14 +178,15 @@ def changeDiscount():
 def calendarMethod():
     logging.debug("Calendar route request")
     today = datetime.now()
+
     #week span
     weeks = [today, (today + timedelta(days=1)), (today + timedelta(days=2)), (today + timedelta(days=3)), (today + timedelta(days=4)), (today + timedelta(days=5)), (today + timedelta(days=6)), (today + timedelta(days=7)), (today + timedelta(days=8)), (today + timedelta(days=9)), (today + timedelta(days=10)), (today + timedelta(days=11)), (today + timedelta(days=12)), (today + timedelta(days=13))]
     #days of week integers, from today
     
     #calculation for making sure we only get 2 weeks of data
-    w1 = datetime.now()+timedelta(days=7)
-    w2 = datetime.now()+timedelta(days=14)
-
+    w1 = datetime.now()+timedelta(days=6)
+    w2 = datetime.now()+timedelta(days=13)
+    
     # get all events in order of date and time w1 and w2
     events = Calendar.query.filter(Calendar.aDateTime >= date.today()).filter(Calendar.aIsRepeat==False).filter(Calendar.aDateTime < w1).order_by(Calendar.aDateTime).all()
     events2 = Calendar.query.filter(Calendar.aDateTime >= w1).filter(Calendar.aDateTime < w2).filter(Calendar.aIsRepeat==False).order_by(Calendar.aDateTime).all()

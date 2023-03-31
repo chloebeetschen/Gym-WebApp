@@ -268,7 +268,8 @@ html, body {
     background-image: linear-gradient(to bottom, #051e46, #194578);
     padding: 3rem 1rem 4rem 1rem;
     padding: 4vw;
-    padding-top: 1vw;
+    padding-top: 1vh;
+    height: auto;
 }
 
 .calendar-info {

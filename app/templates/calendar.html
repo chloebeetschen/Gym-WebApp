@@ -161,15 +161,7 @@
                     </tr>
                 </tbody>
             </table>
-            <!-- </tr> -->
             {% endfor %}
-
-            <!-- </tbody>
-            
-
-        </table> -->
-
-
         </div>
 
         <div class="col calendar-info rounded-5 box-shadow">
@@ -197,7 +189,7 @@
                     </thead>
                 <tbody>
                     {% for i in range( numEvents2 ) %}
-                    {% if events2[i].aDateTime.weekday() == weeks[j].weekday() %}
+                    {% if events2[i].aDateTime.weekday() == weeks[j+7].weekday() %}
                     <tr>
                         <!--display event and event info in the tables-->
                         <td>{{events2[i].aDateTime.strftime("%H:%M")}}</td>
@@ -264,11 +256,7 @@
                     </tr>
                 </tbody>
             </table>
-
-
             {% endfor %}
-
-
         </div>
     </div>
 

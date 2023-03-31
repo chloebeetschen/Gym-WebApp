@@ -33,31 +33,31 @@
                     <tr>
                         <!--display event and event info in the tables-->
                         <td>{{events[i].aDateTime.strftime("%H:%M")}}</td>
-                        <td>{{events[i].aDuration}}</td>
+                        <td>{{events[i].aDuration}} hour(s)</td>
                         <td>{{events[i].aLocation}}</td>
                         <td>{{events[i].aCapacity-events[i].aSlotsTaken}}</td>
                         {% if isMember == False %}
-                            <td>{{events[i].aPrice}}</td>
+                            <td>£{{events[i].aPrice}}</td>
                         {% endif %}
                         {% if current_user.userType == 3 %}
                         <td><a href="/editEvent/{{events[i].id}}"><button type="button"
-                                    class="btn btn-primary">Edit/View Event</button></td>
+                                    class="btn btn-responsive-calendar btn-primary">Edit/View Event</button></td>
                         {% else %}
                         
                         <td>
                             {% if userBooked[i]==True %}
-                            <a href=""></a><button type="button" class="btn btn-primary disabled">Booked</button></a>
+                            <a href=""></a><button type="button" class="btn btn-responsive-calendar btn-primary disabled">Booked</button></a>
                             {% elif events[i].aSlotsTaken == events[i].aCapacity %}
-                            <a href=""></a><button type="button" class="btn btn-primary disabled">Full</button></a>
+                            <a href=""></a><button type="button" class="btn btn-responsive-calendar btn-primary disabled">Full</button></a>
                             {% else %}
                             {% if isMember == False %}
-                            <a href="/addBasket/{{events[i].id}}"><button type="button" class="btn btn-primary">Add to
+                            <a href="/addBasket/{{events[i].id}}"><button type="button" class="btn btn-responsive-calendar btn-primary">Add to
                                     Basket</button>
-                                {% else %}
-                                <a href="/makeBooking/{{events[i].id}}"><button type="button"
-                                        class="btn btn-primary">Book</button>
-                                    {% endif %}
-                                    {% endif %}
+                            {% else %}
+                            <a href="/makeBooking/{{events[i].id}}"><button type="button" class="btn btn-responsive-calendar btn-primary">
+                                Book</button>
+                            {% endif %}
+                            {% endif %}
                         </td>
                         {% endif %}
                     </tr>

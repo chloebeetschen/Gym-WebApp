@@ -141,6 +141,7 @@
 </div>
 
 {% if current_user.is_authenticated %}
+{% if isMember == False %}
   <div class="membership-container justify-content-evenly">
     <div class="row text-center mt-3 mb-3">
       <p class="header pb-0 mb-0">BUY A MEMBERSHIP TODAY</p>
@@ -157,7 +158,7 @@
       </div>
     </div>
   </div>
-
+{% endif %}
 {% endif %}
 {% endblock %}
 

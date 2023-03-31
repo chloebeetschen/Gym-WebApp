@@ -30,9 +30,7 @@ def delete_sessions():
     for key in list(session.keys()):
         session.pop(key)
 
-
 db.create_all()
-
 
 aDiscountExists = models.DiscountAmount.query.filter_by(discountAmount=15).first()
 if (aDiscountExists == None):
@@ -144,7 +142,6 @@ if (aExists == None):
             db.session.add(newUserDetails)
 
     db.session.commit()
-
 
 @loginManager.user_loader
 def loadUser(userId):

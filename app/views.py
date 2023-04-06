@@ -644,7 +644,7 @@ def deleteBasket(i): # 'i' is the index of the item deleted from the basket
     return redirect('/basket')
 
 
-@app.route('/deleteBooking/<id>', methods=['GET'])
+@app.route('/deleteBooking/<id>', methods=['GET', 'POST'])
 @login_required
 def deleteBooking(id): #id passed in will be  the id of the calendar
     logging.debug("Delete booking (with id: %s) route request", id)
@@ -668,7 +668,7 @@ def deleteBooking(id): #id passed in will be  the id of the calendar
     
     db.session.delete(booking)
     db.session.commit()
-    return redirect('/home')
+    return redirect('/myBookings')
 
 
 #manager add activity 

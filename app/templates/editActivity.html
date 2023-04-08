@@ -2,8 +2,26 @@
 {% extends "base.html" %}
 
 {% block content %}
+
+
+
 <!--Basic Header-->
-<h1>Edit Activity (Manager)</h1>
+<h1>Edit Activity</h1>
+
+<!-- Flashed Messages -->
+<div class="d-flex align-items-center flashed-msg-container justify-content-center">
+    {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+        {% for category, message in messages %}
+            <div class="{{ category }} alert-box rounded-4 p-5">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times</span>
+            {{ message }}
+            </div>
+        {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
+
 
 <!--Form for manager to edit an activity-->
 <form action="{{ url_for('editActivity') }}" method="post" name="editActivity">
@@ -31,7 +49,9 @@
     <p><input type="submit" class="btn btn-primary mt-2" value="Edit Activity"></p>
 </form>
 
-<br><br>
+<br>
+<hr>
+<br>
 
 <h1>Delete Activity</h1>
 <h4 class="">

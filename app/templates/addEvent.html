@@ -2,8 +2,24 @@
 {% extends "base.html" %}
 
 {% block content %}
+
 <!--Basic Header-->
-<h1>Add Event (Manager)</h1>
+<h1>Add Event</h1>
+
+<!-- Flashed Messages -->
+<div class="d-flex align-items-center flashed-msg-container justify-content-center">
+    {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+        {% for category, message in messages %}
+            <div class="{{ category }} alert-box rounded-4 p-5">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times</span>
+            {{ message }}
+            </div>
+        {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
+
 
 <!--Form for manager to create a new event for their chosen activity to be insterted into the calendar-->
 <form method="post" name="addEvent">

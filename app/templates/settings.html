@@ -2,38 +2,79 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="container">
-        <h1>Settings</h1>
-        <h3>Amend your details</h3>
-        <form action="" method="post">
-            {{ form.hidden_tag() }}
-            <p>{{ form.Name(class_='form-control') }}</p>
-            {% for error in form.Name.errors %}
-            <div class="alert alert-danger" role="alert">
-              {{ error }}
-            </div>
-            {% endfor %}
-            <p>{{ form.Password(class_='form-control') }}</p>
-            {% for error in form.Password.errors %}
-            <div class="alert alert-danger" role="alert">
-              {{ error }}
-            </div>
-            {% endfor %}
-            <p>{{ form.NewPassword(class_='form-control') }}</p>
-            {% for error in form.NewPassword.errors %}
-            <div class="alert alert-danger" role="alert">
-              {{ error }}
-            </div>
-            {% endfor %}
-            <p>{{ form.NewPasswordx2(class_='form-control') }}</p>
-            {% for error in form.NewPasswordx2.errors %}
-            <div class="alert alert-danger" role="alert">
-              {{ error }}
-            </div>
-            {% endfor %}
-            
-            <input type="submit" value="Submit">
-        </form>
 
+<!-- Flashed Messages -->
+<div class="d-flex align-items-center flashed-msg-container justify-content-center">
+  {% with messages = get_flashed_messages(with_categories=True) %}
+    {% if messages %}
+      {% for category, message in messages %}
+      <div class="{{ category }} alert-box rounded-4 p-5">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times</span>
+        {{ message }}
+      </div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+</div>
+
+
+<div class="container-fluid settings-container">
+  <div class=" login-reg-form-container  rounded-4 pb-4 px-5 pt-3 box-shadow">
+    <div class="row mb-4">
+      <div class="col border-bottom border-3">
+        <h1 class="fw-bold">Settings</h1>
+      </div>
     </div>
+    <div class="row mb-2">
+      <div class="col">
+        <h3 class="border-bottom pb-2">Amend Your Details</h3>
+      </div>
+    </div>
+    <form action="" method="post">
+      {{ form.hidden_tag() }}
+      <div class="row pb-3">
+        <div class="col">
+          <label for="name" class="fw-bold pb-2">Name</label>
+          {{ form.Name(class_='form-control', id="name") }}
+        </div>
+      </div>
+      <div class="row pb-3">
+        <div class="col">
+          <label for="pwd" class="fw-bold pb-2">Password</label>
+          {{ form.Password(class_='form-control', id="pwd") }}
+        </div>
+      </div>
+      <div class="row pb-3">
+        <div class="col">
+          <label for="newpwd" class="fw-bold pb-2">New Password</label>
+          {{ form.Password(class_='form-control', id="newpwd") }}
+        </div>
+      </div>
+      <div class="row pb-3">
+        <div class="col">
+          <label for="conpwd" class="fw-bold pb-2">Confirm New Password</label>
+          {{ form.Password(class_='form-control', id="conpwd") }}
+        </div>
+      </div>
+
+      <div class="row pt-1">
+        <div class="col d-flex justify-content-end">
+          <p><input type="submit" class="btn btn-primary" value="Submit"></p>
+        </div>
+      </div>
+    </form>
+
+    {% if userIsMember %}
+      <div class="row my-2 border-bottom border-top py-3">
+        <div class="col border-right border-1 text-center">
+          <h3 class="">Cancel Your Membership</h3>
+        </div>
+        <div class="col d-flex justify-content-center">
+          <a href="/cancelMembership"><button type="submit" class="btn btn-block btn-primary">Cancel</button></a>
+        </div>
+      </div>
+    
+    {% endif %}
+  </div>
+</div>
 {% endblock %}

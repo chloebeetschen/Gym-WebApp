@@ -101,6 +101,7 @@ class UserDetails(db.Model, UserMixin):
     dateOfBirth = db.Column(db.Date, nullable=False)
     isMember = db.Column(db.Boolean)
     membershipEnd = db.Column(db.DateTime)
+    paymentId=db.Column(db.String(150))
     parentId = db.Column(db.Integer, db.ForeignKey('user_login.id'))
 
     # Validate that age is over 16
@@ -111,3 +112,13 @@ class UserDetails(db.Model, UserMixin):
             raise ValueError("Not old enough")
         return UserDetails
 
+class DiscountAmount(db.Model):
+    discountAmount = db.Column(db.Integer, primary_key=True)
+
+    @validates("discountAmount")
+    def validate_discountAmount(self, key, DiscountAmount):
+        maxDiscount = 100
+        minDiscount = 0
+        if DiscountAmount > maxDiscount or DiscountAmount < minDiscount:
+            raise ValueError("Discount not within acceptable range")
+        return DiscountAmount

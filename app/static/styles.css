@@ -1,1 +1,593 @@
 /* Any hard coded styles */
+
+/* Global variables */
+:root {
+    --btn-color: #368cad;
+    --btn-hover: #799aa7;
+    --background-medium: #39355c;
+    --background-dark: #051e46;
+    --background-light: #194578;
+}
+
+.flashed-msg-container {
+    position: absolute !important;
+    top: 15% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 1000 !important;
+    font-size: 3vw !important;
+}
+
+.bg-dark {
+    background-color: var(--background-dark) !important;
+}
+.bg-md {
+    background-color: var(--background-medium) !important;
+}
+.bg-light {
+    background-color: var(--background-light) !important;
+}
+
+* {
+    font-family: 'Open Sans', sans-serif;
+    padding: 0;
+    margin: 0;
+    color: white;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+.settings-container {
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to bottom, #051e46, #194578);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.title-text-container {
+    display: flex;
+    justify-content: end;
+    color: white;
+    position: absolute;
+    width: 100%;
+    top: 25%;
+    flex-wrap: wrap;
+}
+
+.line-break {
+    width: 100%;
+}
+
+.push-pull {
+    font-family: 'Oswald', sans-serif;
+    font-size: 8vw;
+    background-color: #ff0099;
+    width: auto;
+    height: auto;
+    opacity: 75%;
+    padding: 0 15rem 0 3rem;
+    color: #ffa9dc;
+    margin-bottom: 1rem;
+}
+
+.gym-corp {
+    background-color: #498fb8;
+    width: auto;
+    height: auto;
+    font-size: 4.5vw;
+    opacity: 75%;
+    font-family: 'Montserrat', sans-serif;
+    padding: 0 11rem 0 3rem;
+        
+}
+
+@keyframes icon-bob {
+    0% { transform: translate(-50%, -112%); }
+  100% { transform: translate(-50%, -108%); }
+    
+}
+
+.down-arrow {
+    animation-name: icon-bob;
+    animation-duration: 2s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    color: white;
+    text-align: center;
+}
+
+.bi-arrow-down {
+    font-size: 5vw;
+}
+
+#facilities {
+    font-size: 2.8vw;
+    font-weight: bold;
+}
+
+
+.box-shadow {
+    box-shadow: 0px 0px 20px 1px rgb(30, 30, 30);       
+}
+
+.login-reg-form-container {
+    width: 100% !important;
+    max-width: 750px !important;
+    background-color: var(--background-light);
+    opacity: 90%;
+}
+
+.btn-primary {
+    font-weight: bold;
+    background-color: var(--btn-color) !important;
+    border-color: var(--btn-color) !important;
+    border-radius: 40px !important;
+    padding: 12px;
+    width: 150px;
+
+}
+
+.btn-size-auto {
+    width: auto;
+    height: auto;
+}
+
+.search-bar {
+    padding: 8px;
+    padding-left: 1.5vw;
+    width: 85%;
+}
+
+.btn-primary:hover {
+    background-color: var(--btn-hover) !important;
+    border-color: var(--btn-hover) !important;
+
+}
+
+.btn-calendar {
+    height:100%;
+}
+
+.central-header {
+    font-size: 2.8vw;
+    font-weight: bold;
+    padding-top: 20px;
+}
+
+.landing-page {
+    width: 100%;
+    height: 100%;
+    background: url('https://img.freepik.com/free-photo/portrait-young-spotive-girl-doing-exercises-with-rope-keeping-body-fit-isolated-blue-background-neon_155003-45631.jpg?w=1480&t=st=1680043756~exp=1680044356~hmac=6c9b060796b1c0e5c73d2b272b501c56cd66f34e81bf9e8061095feaad811b5c');
+    background-size: cover;
+    background-position: center;
+    z-index: -900;
+    padding: 0;
+}
+
+.shopping-basket {
+    /* width: 100%;
+    height: 100%;
+    background-color: #7c9cb6;
+    background-size: cover;
+    background-position: center;
+    z-index: -900;
+    padding: 0;  */
+
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to bottom, #051e46, #194578);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.facilities-container {
+    background-color: var(--background-medium);
+    padding: 8vw;
+    margin: 0 !important;
+}
+
+.facility-text {
+    padding: 0;
+    margin-right: 2rem;
+    font-size: 1.3vw;
+    width: 30%;
+    text-align: justify;
+}
+
+.carousel-inner > .item > img, .carousel-inner > .item > a > img {
+    width: 100%;
+}
+
+
+.membership-container {
+    background-color: var(--background-medium);
+    margin: 0 !important;
+    padding: 3rem 1rem 4rem 1rem;
+    padding: 3vw;
+    padding-left: 6vw;
+    padding-right: 6vw;
+    padding-bottom: 6vw;
+    
+}
+
+.vertical-align-middle {
+    vertical-align: middle !important;
+}
+
+.membership-info {
+    text-align: center;
+    font-size: 1.3vw;
+    background-color: #4f4b73;
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+    margin-left: 3vw;
+    margin-right: 3vw;
+}
+
+
+
+.header {
+    text-align: center;
+    font-size: 2.2vw !important;
+    font-weight: bold;
+}
+
+.second-header{
+    text-align: center;
+    font-size: 1.8vw !important;
+    font-weight: bold;
+}
+.login-reg-container {
+    position: absolute;
+    background-color: transparent !important;
+}
+
+.times-container {
+    background-color: var(--background-dark);
+    padding: 3rem 1rem 4rem 1rem;
+    padding: 3vw;
+}
+
+.calendar-container {
+    background-image: linear-gradient(to bottom, #051e46, #194578);
+    padding: 3rem 1rem 4rem 1rem;
+    padding: 4vw;
+    padding-top: 1vh;
+    height: auto;
+}
+
+.calendar-info {
+    text-align: center;
+    font-size: 1vw;
+    background-color: var(--background-light);
+    padding: 4vw;
+    padding-top: 2vw !important; 
+    margin-left: 1vw;
+    margin-right: 1vw;  
+}
+
+.repeat-info {
+    padding-top: 0vw !important; 
+    margin-left: 15vw !important;
+    margin-right: 15vw !important;
+}
+
+.calendar-days {
+    text-align: left;
+    font-size: 1.5vw !important;
+    font-weight: bold;
+}
+
+.repeat-days {
+    padding-top: 4vw !important;
+}
+
+.basket-container {
+    width: 100% !important;
+    max-width: 750px !important;
+    background-color: #4b7da6;
+    opacity: 90%;
+}
+
+.form-control {
+    border-radius: 22px !important;
+}
+
+.time-header {
+    text-decoration: underline;
+}
+
+.basket-table {
+    width: 100%;
+    font-size: 25px;
+}
+
+.time-info {
+    text-align: center;
+    font-size: 1.3vw;
+    background-color: var(--background-light);
+    padding-top: 1vw;
+    margin-left: 1vw;
+    margin-right: 1vw;
+}
+
+
+.time-info-body {
+    text-align: left;    
+    margin-left: 2vw;
+}
+
+.price {
+    float: right;
+    background-color: var(--background-dark);
+    padding: 10px;
+    margin-right: 1.5vw;
+}
+
+.time-info-list {
+    margin-bottom: 3vh;
+}
+
+li a i {
+    font-size: 2vw;
+    padding-right: 0.2vw;
+}
+
+li a i:hover {
+    color: var(--btn-color);
+
+}
+
+#basket-container {
+    background-color: #4b7da6;
+}
+
+.basket-button {
+    background-color: #1a5189;
+}
+
+.btn-secondary {
+    font-weight: bold;
+    background-color: var(--background-dark) !important;
+    border-color: var(--background-dark);
+    border-radius: 40px !important;
+    padding: 20px;
+    width: 200px;
+}
+
+.btn-secondary:hover {
+    background-color: #010f29 !important;
+    border-color: #010f29 !important;
+}
+
+.payment-btn {
+    background-color: var(--background-dark) !important;
+    color: #ffffff;
+}
+
+.navbar-nav {
+    padding-left: 1vw;
+    padding-right: 1vw;
+}
+
+.navbar {
+    border-bottom: 2px solid var(--btn-color);
+}
+
+.login-reg-bg {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    background: url(https://img.freepik.com/free-photo/young-woman-blue-shirt-playing-tennis-she-hits-ball-with-racket_155003-30153.jpg?w=1480&t=st=1680102201~exp=1680102801~hmac=dc24670c4167f419974aac2c0c18ba191ed0e01c196ac30517cdd47502c3e503);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.event-info {
+    position: relative;
+    display: inline-block;
+}
+
+.event-info .event-info-popup {
+    visibility: hidden;
+    width: 300px;
+    background-color: var(--background-dark);
+    color: white;
+    text-align: center;
+    padding: 3vh;
+    top: 100%;
+    left: 50%;
+    margin-top: 10px;
+    margin-left: -150px; 
+    /* ^ half the width */
+    position: absolute;
+    z-index: 1;
+    border-radius: 6px;
+}
+
+.popup-table {
+    width: 100%;
+    font-size: 15px;
+
+}
+.event-info:hover .event-info-popup {
+    visibility: visible;
+}
+
+/* Below gets arrow on popup */
+.event-info .event-info-popup::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent transparent var(--background-dark) transparent;
+}
+
+.mybookings-container {
+    background-color: var(--background-dark);
+    opacity: 90%;
+}
+
+th {
+    padding-bottom: 1vw !important;
+}
+
+th, td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+
+
+.alert-box {
+    padding: 20px;
+    opacity: 0.9;
+    font-size: medium;
+}
+
+
+.error{
+    background-color: #f44336;
+    color: white;
+}
+
+.success {
+    background-color: #85f56e;
+    color: black;
+}
+
+.closebtn {
+    margin-left: 20px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 30px;
+    line-height: 20px;
+    cursor: pointer;
+
+}
+
+.closebtn:hover {
+    color: black;
+}
+
+
+.manage-users-container {
+    background-color: var(--background-dark);
+    opacity: 90%;
+    font-size: 1.2vw;
+}
+
+.form-error {
+    padding: 20px;
+    opacity: 0.9;
+    font-size: medium;
+    background-color: #f44336;
+    color: white;
+
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0, 0.2);
+    background-color: #051e46;
+    height: 500px;
+    color: white;
+}
+
+.column {
+    float: left;
+    width: 16.5%;
+    margin-bottom: 15px;
+    margin-top: 125px;
+    padding: 5px;
+}
+
+.tc-column {
+    float: left;
+    width: 50%;
+    margin-bottom: 15px;
+    margin-top: 125px;
+    padding: 5px;
+}
+
+
+.team-page {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: -900;
+    padding: 0;
+    background-color:#194578;
+}
+
+.team-title {
+    position: absolute;
+    font-family: 'Oswald', sans-serif;
+    font-size: 6vw;
+    background-color: #ff0099;
+    width: 100%;
+    height: 18%;
+    opacity: 100%;
+    padding: 0 15rem 0 3rem;
+    color: #ffa9dc;
+    z-index: 1000;
+
+}
+
+.img-team {
+    border: 2px;
+    border-radius: 5px;
+    padding: 5px;
+    width: 300px;
+    height: 300px;
+    object-fit: scale-down;
+}
+
+
+.footer-container ul {
+    color: white;
+    list-style-type: none;
+    padding-top: 0.5vw;
+    padding-left: 0;
+    margin-left: 0;
+}
+
+.footer-row {
+    border-top: 3px solid var(--background-light)
+}
+
+.footer-container li {
+    padding-top: 0.8rem;
+}
+
+.footer-container a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer-links-header {
+    font-weight: bold;
+    font-size: 1vw;
+    margin: 0;
+}
+

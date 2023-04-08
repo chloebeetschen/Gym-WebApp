@@ -5,6 +5,7 @@
 #need to run the tests after password regex stuff is merged, the test should still pass 
 
 import unittest
+import logging
 from flask import Flask, current_app, url_for
 from flask_sqlalchemy import SQLAlchemy
 from app import app, db, models 
@@ -13,6 +14,7 @@ from app.views import *
 from app.forms import *
 from flask.testing import FlaskClient 
 from test_config import *
+
 
 class TestCase(unittest.TestCase):
 
@@ -23,80 +25,135 @@ class TestCase(unittest.TestCase):
         self.app = app.test_client()  
         db.create_all() 
 
+        #setting up the log file to record test outputs 
+        self.logger = logging.getLogger('my_logger')
+        handler = logging.FileHandler('test.log')
+        formatter = logging.Formatter('%(message)s')
+        handler.setFormatter(formatter)
+        self.logger.addHandler(handler)
+
        
     #this deletes the test database once testing is complete 
     def tearDown(self):
       db.session.remove()
       db.drop_all()
-  
-      #delete this?
-      #current_app.app_context().pop()
 
+      #closing the log file 
+      for handler in self.logger.handlers:
+        handler.close()
+        self.logger.removeHandler(handler)
+
+
+    #testing that different pages load 
     def test_navBarAll_register(self):
         response = self.app.get(('/register'), follow_redirects=True)
-        self.assertEqual(response.status_code, 200)   
-        print(16)
+        try:
+            self.assertEqual(response.status_code, 200)
+            self.logger.info("register page: P")
+        except AssertionError:
+            self.logger.warning("register page: F")
+            raise
 
     def test_navBarAll_home(self):
         response = self.app.get(('/home'), follow_redirects = True)
-        self.assertEqual(response.status_code, 200)   
-        print(17)
+        try:
+            self.assertEqual(response.status_code, 200)
+            self.logger.info("home page: P")
+        except AssertionError:
+            self.logger.warning("home page: F")
+            raise
 
     def test_navBarAll_login(self):
         response = self.app.get(('/login'), follow_redirects = True)
-        self.assertEqual(response.status_code, 200) 
-        print(18)
+        try:
+            self.assertEqual(response.status_code, 200)
+            self.logger.info("login page: P")
+        except AssertionError:
+            self.logger.warning("login page: F")
+            raise
 
-    #for user type 1  
     def test_navBarType1_myBookings(self):
         response = self.app.get(('/myBookings'), follow_redirects=True)
-        self.assertEqual(response.status_code, 200)
-        print(1)
+        try:
+            self.assertEqual(response.status_code, 200)
+            self.logger.info("myBookings page: P")
+        except AssertionError:
+            self.logger.warning("myBookings page: F")
+            raise
     
     def test_navBarType1_calendar(self):
         response = self.app.get(('/calendar'), follow_redirects=True)
-        self.assertEqual(response.status_code, 200)
-        print(2)
+        try:
+            self.assertEqual(response.status_code, 200)
+            self.logger.info("calendar page: P")
+        except AssertionError:
+            self.logger.warning("calendar page: F")
+            raise
 
 
     def test_navBarType1_settings(self):
         response = self.app.get(('/settings'), follow_redirects = True)
-        self.assertEqual(response.status_code, 200)
-        print(3)
+        try:
+            self.assertEqual(response.status_code, 200)
+            self.logger.info("settings page: P")
+        except AssertionError:
+            self.logger.warning("settings page: F")
+            raise
 
     def test_navBarType1_basket(self):
         response = self.app.get(('/basket'), follow_redirects = True)
-        self.assertEqual(response.status_code, 200)
-        print(4)
+        try:
+            self.assertEqual(response.status_code, 200)
+            self.logger.info("basket page: P")
+        except AssertionError:
+            self.logger.warning("basket page: F")
+            raise
     
     def test_navBarType1_memberships(self):
         response = self.app.get(('/memberships'), follow_redirects = True)
-        self.assertEqual(response.status_code, 200)
-        print(5)   
+        try:
+            self.assertEqual(response.status_code, 200)
+            self.logger.info("memberships page: P")
+        except AssertionError:
+            self.logger.warning("memberships page: F")
+            raise   
 
-    #for user Type 2 - employees 
+    # NOT RUNNING
+    def test_navBarType2_manageUsers(self):
+        response = self.app.get(('/manageUsers'), follow_redirects=True)
+        try:
+            self.assertEqual(response.status_code, 200)
+            self.logger.info("manageUsers page: P")
+        except AssertionError:
+            self.logger.warning("managerUsers page: F")
+            raise  
 
-    #for user type 3 
     def test_navBarType3_addEvent(self):
         response = self.app.get(('/addEvent'), follow_redirects=True)
-        self.assertEqual(response.status_code, 200)  
-        print(6)
+        try:
+            self.assertEqual(response.status_code, 200)
+            self.logger.info("addEvent page: P")
+        except AssertionError:
+            self.logger.warning("addEvent page: F")
+            raise  
 
     def test_navBarType3_addActivity(self):
         response = self.app.get(('/addActivity'), follow_redirects=True)
-        self.assertEqual(response.status_code, 200)  
-        print(7) 
-
-    # NOT RUNNING
-    def test_navBarType3_manageUsers(self):
-        response = self.app.get(('/manageUsers'), follow_redirects=True)
-        self.assertEqual(response.status_code, 200)  
-        print(8)
+        try:
+            self.assertEqual(response.status_code, 200)
+            self.logger.info("addActivity page: P")
+        except AssertionError:
+            self.logger.warning("addActivity page: F")
+            raise  
     
-    def test_navBarType3_manageUsers(self):
+    def test_navBarType3_analysis(self):
         response = self.app.get(('/analysis'), follow_redirects=True)
-        self.assertEqual(response.status_code, 200)
-        print(9)
+        try:
+            self.assertEqual(response.status_code, 200)
+            self.logger.info("analysis page: P")
+        except AssertionError:
+            self.logger.warning("analysis page: F")
+            raise  
 
 
     #registering a user and testing if this updates in the database

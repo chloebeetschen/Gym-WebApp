@@ -204,8 +204,68 @@ class TestCase(unittest.TestCase):
                 except AssertionError:
                     self.logger.warning('registering new user: F')
                     raise
+    
+    #registering the same user twice - should not work as their email already exists in the db
+    def test_registerSame(self):
+        response = self.app.get(('/register'), follow_redirects = True)
+        self.assertEqual(response.status_code, 200)
 
-    #registering a user and testing if this updates in the database
+        # Registering a new user first
+        with app.test_request_context():
+            with app.app_context():
+                data = {
+                    'Name' : 'Hope Brooke',
+                    'DateOfBirth' : datetime.strptime('2002-03-15', '%Y-%m-%d').date(),
+                    'Email' : 'hope.b@gmail.com',
+                    'Password' : 'MichaelScott1',
+                    'ReenterPassword' : 'MichaelScott1',
+                    'Type' : 1
+                    }
+
+                form = RegisterForm(data=data)
+                self.assertTrue(form.validate())
+                if not form.validate():
+                    print(form.errors)
+
+                response = self.app.post('/register', data=data)
+                
+                # Testing if the database is updated when a user registers, for login db
+                user = models.UserDetails.query.filter_by(name= 'Hope Brooke').first()
+
+                # Now try to re-register the same user
+                response = self.app.get(('/register'), follow_redirects = True)
+                self.assertEqual(response.status_code, 200)
+
+                # Registering the same user again
+                with app.test_request_context():
+                    with app.app_context():
+                        data = {
+                        'Name' : 'Hope Brooke',
+                        'DateOfBirth' : datetime.strptime('2002-03-15', '%Y-%m-%d').date(),
+                        'Email' : 'hope.b@gmail.com',
+                        'Password' : 'MichaelScott1',
+                        'ReenterPassword' : 'MichaelScott1',
+                        'Type' : 1
+                        }
+
+                        form = RegisterForm(data=data)
+                        response = self.app.post('/register', data=data)
+
+                        # Counting the number of users registered with name Hope Brooke
+                        user_count = models.UserDetails.query.filter_by(name= 'Hope Brooke').count()
+                        try:
+                            # Should only be 1 user 
+                            self.assertEqual(user_count, 1)
+                            self.logger.info('Unable to register the same user twice: P')
+                        except AssertionError:
+                            self.logger.warning('Unable to register the same user twice: F')
+                        
+
+
+    
+        
+
+    #registering another user and testing if this updates in the database
     def test_register2(self):
         response = self.app.get(('/register'), follow_redirects = True)
         self.assertEqual(response.status_code, 200)

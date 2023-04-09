@@ -465,3 +465,63 @@ INFO | 09/04/2023 19:05:07 | Customer couldnt access analysis page: P
 DEBUG | 09/04/2023 19:05:07 | Login route request
 DEBUG | 09/04/2023 19:05:07 | Login route request
 INFO | 09/04/2023 19:05:07 | Customer couldnt access edit Activity page: P
+INFO | 09/04/2023 19:24:29 | User could not login with missing field: P
+DEBUG | 09/04/2023 19:24:30 | Creating database tables
+DEBUG | 09/04/2023 19:24:32 | Login route request
+DEBUG | 09/04/2023 19:24:32 | Login route request
+INFO | 09/04/2023 19:24:32 | Existing user logged in: P
+INFO | 09/04/2023 19:24:32 | meet the team page: P
+INFO | 09/04/2023 19:24:32 | home page: P
+DEBUG | 09/04/2023 19:24:32 | Login route request
+INFO | 09/04/2023 19:24:32 | login page: P
+DEBUG | 09/04/2023 19:24:33 | Register route request
+INFO | 09/04/2023 19:24:33 | register page: P
+DEBUG | 09/04/2023 19:24:33 | Login route request
+INFO | 09/04/2023 19:24:33 | basket page: P
+DEBUG | 09/04/2023 19:24:33 | Login route request
+INFO | 09/04/2023 19:24:33 | calendar page: P
+DEBUG | 09/04/2023 19:24:33 | Login route request
+INFO | 09/04/2023 19:24:33 | memberships page: P
+DEBUG | 09/04/2023 19:24:34 | Login route request
+INFO | 09/04/2023 19:24:34 | myBookings page: P
+DEBUG | 09/04/2023 19:24:34 | Login route request
+INFO | 09/04/2023 19:24:34 | settings page: P
+DEBUG | 09/04/2023 19:24:34 | Login route request
+INFO | 09/04/2023 19:24:34 | manageUsers page: P
+DEBUG | 09/04/2023 19:24:34 | Login route request
+INFO | 09/04/2023 19:24:34 | addActivity page: P
+DEBUG | 09/04/2023 19:24:34 | Login route request
+INFO | 09/04/2023 19:24:34 | addEvent page: P
+DEBUG | 09/04/2023 19:24:35 | Login route request
+INFO | 09/04/2023 19:24:35 | analysis page: P
+DEBUG | 09/04/2023 19:24:35 | Register route request
+DEBUG | 09/04/2023 19:24:35 | Register route request
+INFO | 09/04/2023 19:24:35 | registering new user: P
+DEBUG | 09/04/2023 19:24:35 | Register route request
+DEBUG | 09/04/2023 19:24:35 | Register route request
+INFO | 09/04/2023 19:24:36 | registering new user number 2: P
+DEBUG | 09/04/2023 19:24:36 | Register route request
+INFO | 09/04/2023 19:24:36 | User not registered: P
+DEBUG | 09/04/2023 19:24:36 | Register route request
+INFO | 09/04/2023 19:24:36 | User not registered 2: P
+DEBUG | 09/04/2023 19:24:36 | Register route request
+DEBUG | 09/04/2023 19:24:36 | Register route request
+DEBUG | 09/04/2023 19:24:37 | Register route request
+DEBUG | 09/04/2023 19:24:37 | Register route request
+INFO | 09/04/2023 19:24:37 | Unable to register the same user twice: P
+INFO | 09/04/2023 19:24:37 | terms and conditions page: P
+DEBUG | 09/04/2023 19:24:37 | Login route request
+DEBUG | 09/04/2023 19:24:37 | Login route request
+INFO | 09/04/2023 19:24:37 | Customer couldnt access edit event page: P
+DEBUG | 09/04/2023 19:24:38 | Login route request
+DEBUG | 09/04/2023 19:24:38 | Login route request
+INFO | 09/04/2023 19:24:38 | Customer couldnt access manage Users page: P
+DEBUG | 09/04/2023 19:24:38 | Login route request
+DEBUG | 09/04/2023 19:24:38 | Login route request
+INFO | 09/04/2023 19:24:38 | Customer couldnt access edit user page: P
+DEBUG | 09/04/2023 19:24:38 | Login route request
+DEBUG | 09/04/2023 19:24:38 | Login route request
+INFO | 09/04/2023 19:24:38 | Customer couldnt access analysis page: P
+DEBUG | 09/04/2023 19:24:38 | Login route request
+DEBUG | 09/04/2023 19:24:38 | Login route request
+INFO | 09/04/2023 19:24:38 | Customer couldnt access edit Activity page: P

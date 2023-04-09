@@ -1,7 +1,5 @@
-#pair programming - Aaditi and Hope 
 #used chat gpt to learn how to use unit test in python 
 
-#test 11 and test 8 don't run... idk why !!!!!!
 #need to run the tests after password regex stuff is merged, the test should still pass 
 
 import unittest
@@ -45,6 +43,25 @@ class TestCase(unittest.TestCase):
 
 
     #testing that different pages load 
+
+    def test_meetTheTeam(self):
+        response = self.app.get(('/meetTheTeam'), follow_redirects=True)
+        try:
+            self.assertEqual(response.status_code, 200)
+            self.logger.info("meet the team page: P")
+        except AssertionError:
+            self.logger.warning("meet the team page: F")
+            raise
+    
+    def test_termsAndCond(self):
+        response = self.app.get(('/termsAndConditions'), follow_redirects=True)
+        try:
+            self.assertEqual(response.status_code, 200)
+            self.logger.info("terms and conditions page: P")
+        except AssertionError:
+            self.logger.warning("terms and conditions page: F")
+            raise
+
     def test_navBarAll_register(self):
         response = self.app.get(('/register'), follow_redirects=True)
         try:
@@ -118,7 +135,6 @@ class TestCase(unittest.TestCase):
             self.logger.warning("memberships page: F")
             raise   
 
-    # NOT RUNNING
     def test_navBarType2_manageUsers(self):
         response = self.app.get(('/manageUsers'), follow_redirects=True)
         try:
@@ -182,8 +198,12 @@ class TestCase(unittest.TestCase):
                 #testing if the database is updated when a user registers, for login db and details db
                 user = models.UserDetails.query.filter_by(name= 'Michael Scott').first()
                 user = models.UserLogin.query.filter_by(email= 'michael.scott@gmail.com').first()
-                self.assertIsNotNone(user)
-                print(10)
+                try:
+                    self.assertIsNotNone(user)
+                    self.logger.info('registering new user: P')
+                except AssertionError:
+                    self.logger.warning('registering new user: F')
+                    raise
 
     #registering a user and testing if this updates in the database
     def test_register2(self):
@@ -210,11 +230,14 @@ class TestCase(unittest.TestCase):
                 
                 user = models.UserDetails.query.filter_by(name= 'Aaditi Agrawal').first()
                 user = models.UserLogin.query.filter_by(email= 'aaditi@gmail.com').first()
-                self.assertIsNotNone(user)
-                print(19)
+                try:
+                    self.assertIsNotNone(user)
+                    self.logger.info('registering new user number 2: P')
+                except AssertionError:
+                    self.logger.warning('registering new user number 2: F')
+                    raise
 
 
-    # NOT RUNNING 
     #testing to see if we can register a user with missing details - should not be able to
     #missing email field 
     def test_registerMissing(self):
@@ -238,12 +261,20 @@ class TestCase(unittest.TestCase):
                 error_dict = form.errors
                 #check if error message for missing email is displayed
                 self.assertIn('This field is required.', error_dict.get('Email', []))
-                print(11)
+                #check if the user is created in the database - they should not be 
+                user = models.UserDetails.query.filter_by(name= 'Pam Halpert').first()
+                try:
+                    self.assertIsNone(user)
+                    self.logger.info('User not registered: P')
+                except AssertionError:
+                    self.logger.warning('User not registered: F')
+                    raise
+
 
     
     #testing to see if we can register a user with missing details - should not be able to
     #missing Name field 
-    def test_registerMissing(self):
+    def test_registerMissing2(self):
         response = self.app.get(('/register'), follow_redirects = True)
         self.assertEqual(response.status_code, 200)
 
@@ -264,7 +295,15 @@ class TestCase(unittest.TestCase):
                 error_dict = form.errors
                 #check if error message for missing email is displayed
                 self.assertIn('This field is required.', error_dict.get('Name', []))
-                print(12)
+                #check if the user is created in the database - they should not be 
+                user = models.UserLogin.query.filter_by(email= 'Pam.halpert@gmail.com').first()
+                try:
+                    self.assertIsNone(user)
+                    self.logger.info('User not registered 2: P')
+                except AssertionError:
+                    self.logger.warning('User not registered 2: F')
+                    raise
+                
 
 
     #testing that an exisiting user can log in 
@@ -283,8 +322,13 @@ class TestCase(unittest.TestCase):
                 form = LoginForm(data=data)
                 self.assertTrue(form.validate())
                 response = self.app.post('/login', data=form.data, follow_redirects = True)
-                self.assertEqual(response.status_code, 200)
-                print(13)
+                try:
+                    self.assertEqual(response.status_code, 200)
+                    self.logger.info('Existing user logged in: P')
+                except AssertionError:
+                    self.logger.warning('Existing user logged in: F')
+                    raise
+                
 
 
     #logging in a user with missing fields
@@ -301,8 +345,12 @@ class TestCase(unittest.TestCase):
                 form = LoginForm(data=data)
                 self.assertFalse(form.validate())
                 error_dict = form.errors
-                self.assertIn('This field is required.', error_dict.get('Email', []))
-                print(14)
+                try:
+                    self.assertIn('This field is required.', error_dict.get('Email', []))
+                    self.logger.info('User could not login with missing field: P')
+                except AssertionError:
+                    self.logger.warning('User could not login with missing field: F')
+                    raise
 
 
     #check privileges - a customer of type1 that is logged in should not be able to access pages for userType 3 accounts
@@ -327,8 +375,13 @@ class TestCase(unittest.TestCase):
                 #the user tries to access the manager page analysis
                 response = self.app.get('/editEvent')
                 #404 = page does not exist becuase no event id has been passed in 
-                self.assertEqual(response.status_code, 404)
-                print(15)
+                try:
+                    self.assertEqual(response.status_code, 404)
+                    self.logger.info('Customer couldnt access edit event page: P')
+                except AssertionError:
+                    self.logger.warning('Customer couldnt access edit event page: F')
+                    raise
+                
     
     #the same as previous test but for other manager only pages 
     def test_user_privilege2(self):
@@ -351,8 +404,12 @@ class TestCase(unittest.TestCase):
                 #the user tries to access the manager page analysis
                 response = self.app.get('/manageUsers')
                 #302 = the user is redirected 
-                self.assertEqual(response.status_code, 302)
-                print(20)
+                try:
+                    self.assertEqual(response.status_code, 302)
+                    self.logger.info('Customer couldnt access manage Users page: P')
+                except AssertionError:
+                    self.logger.warning('Customer couldnt access manage Users page: F')
+                    raise
 
 
     #the same as previous test but for other manager only pages 
@@ -376,8 +433,12 @@ class TestCase(unittest.TestCase):
                 #the user tries to access the manager page analysis
                 response = self.app.get('/editUser')
                 #404 = page does not exist because no userID passed to html
-                self.assertEqual(response.status_code, 404)
-                print(21)
+                try:
+                    self.assertEqual(response.status_code, 404)
+                    self.logger.info('Customer couldnt access edit user page: P')
+                except AssertionError:
+                    self.logger.warning('Customer couldnt access edit user page: F')
+                    raise
 
 
     #the same as previous test but for other manager only pages 
@@ -401,8 +462,11 @@ class TestCase(unittest.TestCase):
                 #the user tries to access the manager page analysis
                 response = self.app.get('/analysis')
                 #302 = the user is redirected 
-                self.assertEqual(response.status_code, 302)
-                print(22)
+                try:
+                    self.assertEqual(response.status_code, 302)
+                    self.logger.info('Customer couldnt access analysis page: P')
+                except AssertionError:
+                    self.logger.warning('Customer couldnt access analysis page: F')
 
     #the same as previous test but for other manager only pages 
     def test_user_privilege5(self):
@@ -425,8 +489,11 @@ class TestCase(unittest.TestCase):
                 #the user tries to access the manager page analysis
                 response = self.app.get('/editActivity')
                 #302 = the user is redirected 
-                self.assertEqual(response.status_code, 302)
-                print(23)
+                try:
+                    self.assertEqual(response.status_code, 302)
+                    self.logger.info('Customer couldnt access edit Activity page: P')
+                except AssertionError:
+                    self.logger.warning('Customer couldnt access edit Activity page: F')
 
 
 

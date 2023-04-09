@@ -1,0 +1,467 @@
+DEBUG | 08/04/2023 23:05:45 | Creating database tables
+DEBUG | 08/04/2023 23:05:49 | Login route request
+DEBUG | 08/04/2023 23:05:49 | Login route request
+INFO | 08/04/2023 23:05:49 | home page: P
+DEBUG | 08/04/2023 23:05:49 | Login route request
+INFO | 08/04/2023 23:05:49 | login page: P
+DEBUG | 08/04/2023 23:05:50 | Register route request
+INFO | 08/04/2023 23:05:50 | register page: P
+DEBUG | 08/04/2023 23:05:50 | Login route request
+INFO | 08/04/2023 23:05:50 | basket page: P
+DEBUG | 08/04/2023 23:05:50 | Login route request
+INFO | 08/04/2023 23:05:50 | calendar page: P
+DEBUG | 08/04/2023 23:05:50 | Login route request
+INFO | 08/04/2023 23:05:50 | memberships page: P
+DEBUG | 08/04/2023 23:05:50 | Login route request
+INFO | 08/04/2023 23:05:50 | myBookings page: P
+DEBUG | 08/04/2023 23:05:51 | Login route request
+INFO | 08/04/2023 23:05:51 | settings page: P
+DEBUG | 08/04/2023 23:05:51 | Login route request
+INFO | 08/04/2023 23:05:51 | manageUsers page: P
+DEBUG | 08/04/2023 23:05:51 | Login route request
+INFO | 08/04/2023 23:05:51 | addActivity page: P
+DEBUG | 08/04/2023 23:05:51 | Login route request
+INFO | 08/04/2023 23:05:51 | addEvent page: P
+DEBUG | 08/04/2023 23:05:52 | Login route request
+INFO | 08/04/2023 23:05:52 | analysis page: P
+DEBUG | 08/04/2023 23:05:52 | Register route request
+DEBUG | 08/04/2023 23:05:52 | Register route request
+INFO | 08/04/2023 23:05:52 | registering new user: P
+DEBUG | 08/04/2023 23:05:53 | Register route request
+DEBUG | 08/04/2023 23:05:53 | Register route request
+DEBUG | 08/04/2023 23:05:54 | Register route request
+DEBUG | 08/04/2023 23:05:54 | Login route request
+DEBUG | 08/04/2023 23:05:54 | Login route request
+DEBUG | 08/04/2023 23:05:54 | Login route request
+DEBUG | 08/04/2023 23:05:54 | Login route request
+DEBUG | 08/04/2023 23:05:54 | Login route request
+DEBUG | 08/04/2023 23:05:54 | Login route request
+DEBUG | 08/04/2023 23:05:55 | Login route request
+DEBUG | 08/04/2023 23:05:55 | Login route request
+DEBUG | 08/04/2023 23:05:55 | Login route request
+DEBUG | 08/04/2023 23:05:55 | Login route request
+DEBUG | 08/04/2023 23:10:36 | Creating database tables
+DEBUG | 08/04/2023 23:10:40 | Login route request
+DEBUG | 08/04/2023 23:10:40 | Login route request
+INFO | 08/04/2023 23:10:40 | home page: P
+DEBUG | 08/04/2023 23:10:40 | Login route request
+INFO | 08/04/2023 23:10:40 | login page: P
+DEBUG | 08/04/2023 23:10:41 | Register route request
+INFO | 08/04/2023 23:10:41 | register page: P
+DEBUG | 08/04/2023 23:10:41 | Login route request
+INFO | 08/04/2023 23:10:41 | basket page: P
+DEBUG | 08/04/2023 23:10:41 | Login route request
+INFO | 08/04/2023 23:10:41 | calendar page: P
+DEBUG | 08/04/2023 23:10:41 | Login route request
+INFO | 08/04/2023 23:10:41 | memberships page: P
+DEBUG | 08/04/2023 23:10:42 | Login route request
+INFO | 08/04/2023 23:10:42 | myBookings page: P
+DEBUG | 08/04/2023 23:10:42 | Login route request
+INFO | 08/04/2023 23:10:42 | settings page: P
+DEBUG | 08/04/2023 23:10:42 | Login route request
+INFO | 08/04/2023 23:10:42 | manageUsers page: P
+DEBUG | 08/04/2023 23:10:42 | Login route request
+INFO | 08/04/2023 23:10:42 | addActivity page: P
+DEBUG | 08/04/2023 23:10:43 | Login route request
+INFO | 08/04/2023 23:10:43 | addEvent page: P
+DEBUG | 08/04/2023 23:10:43 | Login route request
+INFO | 08/04/2023 23:10:43 | analysis page: P
+DEBUG | 08/04/2023 23:10:43 | Register route request
+DEBUG | 08/04/2023 23:10:43 | Register route request
+INFO | 08/04/2023 23:10:44 | registering new user: P
+DEBUG | 08/04/2023 23:10:44 | Register route request
+DEBUG | 08/04/2023 23:10:44 | Register route request
+DEBUG | 08/04/2023 23:10:45 | Register route request
+DEBUG | 08/04/2023 23:10:45 | Register route request
+DEBUG | 08/04/2023 23:10:46 | Login route request
+DEBUG | 08/04/2023 23:10:46 | Login route request
+DEBUG | 08/04/2023 23:10:46 | Login route request
+DEBUG | 08/04/2023 23:10:46 | Login route request
+DEBUG | 08/04/2023 23:10:46 | Login route request
+DEBUG | 08/04/2023 23:10:46 | Login route request
+DEBUG | 08/04/2023 23:10:47 | Login route request
+DEBUG | 08/04/2023 23:10:47 | Login route request
+DEBUG | 08/04/2023 23:10:47 | Login route request
+DEBUG | 08/04/2023 23:10:47 | Login route request
+DEBUG | 09/04/2023 18:29:01 | Creating database tables
+DEBUG | 09/04/2023 18:29:03 | Login route request
+DEBUG | 09/04/2023 18:29:03 | Login route request
+INFO | 09/04/2023 18:29:03 | home page: P
+DEBUG | 09/04/2023 18:29:04 | Login route request
+INFO | 09/04/2023 18:29:04 | login page: P
+DEBUG | 09/04/2023 18:29:04 | Register route request
+INFO | 09/04/2023 18:29:04 | register page: P
+DEBUG | 09/04/2023 18:29:04 | Login route request
+INFO | 09/04/2023 18:29:04 | basket page: P
+DEBUG | 09/04/2023 18:29:04 | Login route request
+INFO | 09/04/2023 18:29:04 | calendar page: P
+DEBUG | 09/04/2023 18:29:05 | Login route request
+INFO | 09/04/2023 18:29:05 | memberships page: P
+DEBUG | 09/04/2023 18:29:05 | Login route request
+INFO | 09/04/2023 18:29:05 | myBookings page: P
+DEBUG | 09/04/2023 18:29:05 | Login route request
+INFO | 09/04/2023 18:29:05 | settings page: P
+DEBUG | 09/04/2023 18:29:05 | Login route request
+INFO | 09/04/2023 18:29:05 | manageUsers page: P
+DEBUG | 09/04/2023 18:29:06 | Login route request
+INFO | 09/04/2023 18:29:06 | addActivity page: P
+DEBUG | 09/04/2023 18:29:06 | Login route request
+INFO | 09/04/2023 18:29:06 | addEvent page: P
+DEBUG | 09/04/2023 18:29:06 | Login route request
+INFO | 09/04/2023 18:29:06 | analysis page: P
+DEBUG | 09/04/2023 18:29:06 | Register route request
+DEBUG | 09/04/2023 18:29:06 | Register route request
+INFO | 09/04/2023 18:29:07 | registering new user: P
+DEBUG | 09/04/2023 18:29:07 | Register route request
+DEBUG | 09/04/2023 18:29:07 | Register route request
+INFO | 09/04/2023 18:29:07 | registering new user number 2: P
+DEBUG | 09/04/2023 18:29:07 | Register route request
+DEBUG | 09/04/2023 18:29:08 | Register route request
+DEBUG | 09/04/2023 18:29:08 | Login route request
+DEBUG | 09/04/2023 18:29:08 | Login route request
+DEBUG | 09/04/2023 18:29:08 | Login route request
+DEBUG | 09/04/2023 18:29:08 | Login route request
+DEBUG | 09/04/2023 18:29:08 | Login route request
+DEBUG | 09/04/2023 18:29:08 | Login route request
+DEBUG | 09/04/2023 18:29:09 | Login route request
+DEBUG | 09/04/2023 18:29:09 | Login route request
+DEBUG | 09/04/2023 18:29:09 | Login route request
+DEBUG | 09/04/2023 18:29:09 | Login route request
+DEBUG | 09/04/2023 18:42:48 | Creating database tables
+DEBUG | 09/04/2023 18:42:50 | Login route request
+DEBUG | 09/04/2023 18:42:50 | Login route request
+INFO | 09/04/2023 18:42:51 | home page: P
+DEBUG | 09/04/2023 18:42:51 | Login route request
+INFO | 09/04/2023 18:42:51 | login page: P
+DEBUG | 09/04/2023 18:42:51 | Register route request
+INFO | 09/04/2023 18:42:51 | register page: P
+DEBUG | 09/04/2023 18:42:51 | Login route request
+INFO | 09/04/2023 18:42:51 | basket page: P
+DEBUG | 09/04/2023 18:42:52 | Login route request
+INFO | 09/04/2023 18:42:52 | calendar page: P
+DEBUG | 09/04/2023 18:42:52 | Login route request
+INFO | 09/04/2023 18:42:52 | memberships page: P
+DEBUG | 09/04/2023 18:42:52 | Login route request
+INFO | 09/04/2023 18:42:52 | myBookings page: P
+DEBUG | 09/04/2023 18:42:52 | Login route request
+INFO | 09/04/2023 18:42:52 | settings page: P
+DEBUG | 09/04/2023 18:42:53 | Login route request
+INFO | 09/04/2023 18:42:53 | manageUsers page: P
+DEBUG | 09/04/2023 18:42:53 | Login route request
+INFO | 09/04/2023 18:42:53 | addActivity page: P
+DEBUG | 09/04/2023 18:42:53 | Login route request
+INFO | 09/04/2023 18:42:53 | addEvent page: P
+DEBUG | 09/04/2023 18:42:53 | Login route request
+INFO | 09/04/2023 18:42:53 | analysis page: P
+DEBUG | 09/04/2023 18:42:53 | Register route request
+DEBUG | 09/04/2023 18:42:54 | Register route request
+INFO | 09/04/2023 18:42:54 | registering new user: P
+DEBUG | 09/04/2023 18:42:54 | Register route request
+DEBUG | 09/04/2023 18:42:54 | Register route request
+INFO | 09/04/2023 18:42:54 | registering new user number 2: P
+DEBUG | 09/04/2023 18:42:55 | Register route request
+DEBUG | 09/04/2023 18:42:55 | Register route request
+DEBUG | 09/04/2023 18:42:55 | Login route request
+DEBUG | 09/04/2023 18:42:55 | Login route request
+DEBUG | 09/04/2023 18:42:55 | Login route request
+DEBUG | 09/04/2023 18:42:55 | Login route request
+DEBUG | 09/04/2023 18:42:56 | Login route request
+DEBUG | 09/04/2023 18:42:56 | Login route request
+DEBUG | 09/04/2023 18:42:56 | Login route request
+DEBUG | 09/04/2023 18:42:56 | Login route request
+DEBUG | 09/04/2023 18:42:56 | Login route request
+DEBUG | 09/04/2023 18:42:56 | Login route request
+DEBUG | 09/04/2023 18:43:26 | Creating database tables
+DEBUG | 09/04/2023 18:43:28 | Login route request
+DEBUG | 09/04/2023 18:43:28 | Login route request
+INFO | 09/04/2023 18:43:28 | home page: P
+DEBUG | 09/04/2023 18:43:28 | Login route request
+INFO | 09/04/2023 18:43:28 | login page: P
+DEBUG | 09/04/2023 18:43:28 | Register route request
+INFO | 09/04/2023 18:43:28 | register page: P
+DEBUG | 09/04/2023 18:43:29 | Login route request
+INFO | 09/04/2023 18:43:29 | basket page: P
+DEBUG | 09/04/2023 18:43:29 | Login route request
+INFO | 09/04/2023 18:43:29 | calendar page: P
+DEBUG | 09/04/2023 18:43:29 | Login route request
+INFO | 09/04/2023 18:43:29 | memberships page: P
+DEBUG | 09/04/2023 18:43:29 | Login route request
+INFO | 09/04/2023 18:43:29 | myBookings page: P
+DEBUG | 09/04/2023 18:43:30 | Login route request
+INFO | 09/04/2023 18:43:30 | settings page: P
+DEBUG | 09/04/2023 18:43:30 | Login route request
+INFO | 09/04/2023 18:43:30 | manageUsers page: P
+DEBUG | 09/04/2023 18:43:30 | Login route request
+INFO | 09/04/2023 18:43:30 | addActivity page: P
+DEBUG | 09/04/2023 18:43:30 | Login route request
+INFO | 09/04/2023 18:43:30 | addEvent page: P
+DEBUG | 09/04/2023 18:43:30 | Login route request
+INFO | 09/04/2023 18:43:30 | analysis page: P
+DEBUG | 09/04/2023 18:43:31 | Register route request
+DEBUG | 09/04/2023 18:43:31 | Register route request
+INFO | 09/04/2023 18:43:31 | registering new user: P
+DEBUG | 09/04/2023 18:43:31 | Register route request
+DEBUG | 09/04/2023 18:43:31 | Register route request
+INFO | 09/04/2023 18:43:32 | registering new user number 2: P
+DEBUG | 09/04/2023 18:43:32 | Register route request
+INFO | 09/04/2023 18:43:32 | User not registered: P
+DEBUG | 09/04/2023 18:43:32 | Register route request
+DEBUG | 09/04/2023 18:43:32 | Login route request
+DEBUG | 09/04/2023 18:43:32 | Login route request
+DEBUG | 09/04/2023 18:43:33 | Login route request
+DEBUG | 09/04/2023 18:43:33 | Login route request
+DEBUG | 09/04/2023 18:43:33 | Login route request
+DEBUG | 09/04/2023 18:43:33 | Login route request
+DEBUG | 09/04/2023 18:43:33 | Login route request
+DEBUG | 09/04/2023 18:43:33 | Login route request
+DEBUG | 09/04/2023 18:43:33 | Login route request
+DEBUG | 09/04/2023 18:43:33 | Login route request
+DEBUG | 09/04/2023 18:45:36 | Creating database tables
+DEBUG | 09/04/2023 18:45:38 | Login route request
+DEBUG | 09/04/2023 18:45:38 | Login route request
+INFO | 09/04/2023 18:45:38 | home page: P
+DEBUG | 09/04/2023 18:45:38 | Login route request
+INFO | 09/04/2023 18:45:38 | login page: P
+DEBUG | 09/04/2023 18:45:39 | Register route request
+INFO | 09/04/2023 18:45:39 | register page: P
+DEBUG | 09/04/2023 18:45:39 | Login route request
+INFO | 09/04/2023 18:45:39 | basket page: P
+DEBUG | 09/04/2023 18:45:39 | Login route request
+INFO | 09/04/2023 18:45:39 | calendar page: P
+DEBUG | 09/04/2023 18:45:39 | Login route request
+INFO | 09/04/2023 18:45:39 | memberships page: P
+DEBUG | 09/04/2023 18:45:40 | Login route request
+INFO | 09/04/2023 18:45:40 | myBookings page: P
+DEBUG | 09/04/2023 18:45:40 | Login route request
+INFO | 09/04/2023 18:45:40 | settings page: P
+DEBUG | 09/04/2023 18:45:40 | Login route request
+INFO | 09/04/2023 18:45:40 | manageUsers page: P
+DEBUG | 09/04/2023 18:45:40 | Login route request
+INFO | 09/04/2023 18:45:40 | addActivity page: P
+DEBUG | 09/04/2023 18:45:40 | Login route request
+INFO | 09/04/2023 18:45:40 | addEvent page: P
+DEBUG | 09/04/2023 18:45:41 | Login route request
+INFO | 09/04/2023 18:45:41 | analysis page: P
+DEBUG | 09/04/2023 18:45:41 | Register route request
+DEBUG | 09/04/2023 18:45:41 | Register route request
+INFO | 09/04/2023 18:45:41 | registering new user: P
+DEBUG | 09/04/2023 18:45:41 | Register route request
+DEBUG | 09/04/2023 18:45:42 | Register route request
+INFO | 09/04/2023 18:45:42 | registering new user number 2: P
+DEBUG | 09/04/2023 18:45:42 | Register route request
+INFO | 09/04/2023 18:45:42 | User not registered: P
+DEBUG | 09/04/2023 18:45:42 | Register route request
+INFO | 09/04/2023 18:45:42 | User not registered 2: P
+DEBUG | 09/04/2023 18:45:43 | Login route request
+DEBUG | 09/04/2023 18:45:43 | Login route request
+DEBUG | 09/04/2023 18:45:43 | Login route request
+DEBUG | 09/04/2023 18:45:43 | Login route request
+DEBUG | 09/04/2023 18:45:43 | Login route request
+DEBUG | 09/04/2023 18:45:43 | Login route request
+DEBUG | 09/04/2023 18:45:43 | Login route request
+DEBUG | 09/04/2023 18:45:43 | Login route request
+DEBUG | 09/04/2023 18:45:44 | Login route request
+DEBUG | 09/04/2023 18:45:44 | Login route request
+DEBUG | 09/04/2023 18:47:44 | Creating database tables
+DEBUG | 09/04/2023 18:47:46 | Login route request
+DEBUG | 09/04/2023 18:47:46 | Login route request
+INFO | 09/04/2023 18:47:46 | Existing user logged in: P
+INFO | 09/04/2023 18:47:46 | home page: P
+DEBUG | 09/04/2023 18:47:46 | Login route request
+INFO | 09/04/2023 18:47:46 | login page: P
+DEBUG | 09/04/2023 18:47:47 | Register route request
+INFO | 09/04/2023 18:47:47 | register page: P
+DEBUG | 09/04/2023 18:47:47 | Login route request
+INFO | 09/04/2023 18:47:47 | basket page: P
+DEBUG | 09/04/2023 18:47:47 | Login route request
+INFO | 09/04/2023 18:47:47 | calendar page: P
+DEBUG | 09/04/2023 18:47:47 | Login route request
+INFO | 09/04/2023 18:47:47 | memberships page: P
+DEBUG | 09/04/2023 18:47:48 | Login route request
+INFO | 09/04/2023 18:47:48 | myBookings page: P
+DEBUG | 09/04/2023 18:47:48 | Login route request
+INFO | 09/04/2023 18:47:48 | settings page: P
+DEBUG | 09/04/2023 18:47:48 | Login route request
+INFO | 09/04/2023 18:47:48 | manageUsers page: P
+DEBUG | 09/04/2023 18:47:48 | Login route request
+INFO | 09/04/2023 18:47:48 | addActivity page: P
+DEBUG | 09/04/2023 18:47:49 | Login route request
+INFO | 09/04/2023 18:47:49 | addEvent page: P
+DEBUG | 09/04/2023 18:47:49 | Login route request
+INFO | 09/04/2023 18:47:49 | analysis page: P
+DEBUG | 09/04/2023 18:47:49 | Register route request
+DEBUG | 09/04/2023 18:47:49 | Register route request
+INFO | 09/04/2023 18:47:50 | registering new user: P
+DEBUG | 09/04/2023 18:47:50 | Register route request
+DEBUG | 09/04/2023 18:47:50 | Register route request
+INFO | 09/04/2023 18:47:50 | registering new user number 2: P
+DEBUG | 09/04/2023 18:47:50 | Register route request
+INFO | 09/04/2023 18:47:50 | User not registered: P
+DEBUG | 09/04/2023 18:47:51 | Register route request
+INFO | 09/04/2023 18:47:51 | User not registered 2: P
+DEBUG | 09/04/2023 18:47:51 | Login route request
+DEBUG | 09/04/2023 18:47:51 | Login route request
+DEBUG | 09/04/2023 18:47:51 | Login route request
+DEBUG | 09/04/2023 18:47:51 | Login route request
+DEBUG | 09/04/2023 18:47:51 | Login route request
+DEBUG | 09/04/2023 18:47:51 | Login route request
+DEBUG | 09/04/2023 18:47:52 | Login route request
+DEBUG | 09/04/2023 18:47:52 | Login route request
+DEBUG | 09/04/2023 18:47:52 | Login route request
+DEBUG | 09/04/2023 18:47:52 | Login route request
+INFO | 09/04/2023 18:50:48 | User could not login with missing field: P
+DEBUG | 09/04/2023 18:50:48 | Creating database tables
+DEBUG | 09/04/2023 18:50:50 | Login route request
+DEBUG | 09/04/2023 18:50:50 | Login route request
+INFO | 09/04/2023 18:50:50 | Existing user logged in: P
+INFO | 09/04/2023 18:50:50 | home page: P
+DEBUG | 09/04/2023 18:50:50 | Login route request
+INFO | 09/04/2023 18:50:50 | login page: P
+DEBUG | 09/04/2023 18:50:51 | Register route request
+INFO | 09/04/2023 18:50:51 | register page: P
+DEBUG | 09/04/2023 18:50:51 | Login route request
+INFO | 09/04/2023 18:50:51 | basket page: P
+DEBUG | 09/04/2023 18:50:51 | Login route request
+INFO | 09/04/2023 18:50:51 | calendar page: P
+DEBUG | 09/04/2023 18:50:51 | Login route request
+INFO | 09/04/2023 18:50:51 | memberships page: P
+DEBUG | 09/04/2023 18:50:51 | Login route request
+INFO | 09/04/2023 18:50:51 | myBookings page: P
+DEBUG | 09/04/2023 18:50:52 | Login route request
+INFO | 09/04/2023 18:50:52 | settings page: P
+DEBUG | 09/04/2023 18:50:52 | Login route request
+INFO | 09/04/2023 18:50:52 | manageUsers page: P
+DEBUG | 09/04/2023 18:50:52 | Login route request
+INFO | 09/04/2023 18:50:52 | addActivity page: P
+DEBUG | 09/04/2023 18:50:52 | Login route request
+INFO | 09/04/2023 18:50:52 | addEvent page: P
+DEBUG | 09/04/2023 18:50:53 | Login route request
+INFO | 09/04/2023 18:50:53 | analysis page: P
+DEBUG | 09/04/2023 18:50:53 | Register route request
+DEBUG | 09/04/2023 18:50:53 | Register route request
+INFO | 09/04/2023 18:50:53 | registering new user: P
+DEBUG | 09/04/2023 18:50:53 | Register route request
+DEBUG | 09/04/2023 18:50:53 | Register route request
+INFO | 09/04/2023 18:50:54 | registering new user number 2: P
+DEBUG | 09/04/2023 18:50:54 | Register route request
+INFO | 09/04/2023 18:50:54 | User not registered: P
+DEBUG | 09/04/2023 18:50:54 | Register route request
+INFO | 09/04/2023 18:50:54 | User not registered 2: P
+DEBUG | 09/04/2023 18:50:55 | Login route request
+DEBUG | 09/04/2023 18:50:55 | Login route request
+DEBUG | 09/04/2023 18:50:55 | Login route request
+DEBUG | 09/04/2023 18:50:55 | Login route request
+DEBUG | 09/04/2023 18:50:55 | Login route request
+DEBUG | 09/04/2023 18:50:55 | Login route request
+DEBUG | 09/04/2023 18:50:55 | Login route request
+DEBUG | 09/04/2023 18:50:55 | Login route request
+DEBUG | 09/04/2023 18:50:56 | Login route request
+DEBUG | 09/04/2023 18:50:56 | Login route request
+INFO | 09/04/2023 19:01:32 | User could not login with missing field: P
+DEBUG | 09/04/2023 19:01:33 | Creating database tables
+DEBUG | 09/04/2023 19:01:34 | Login route request
+DEBUG | 09/04/2023 19:01:34 | Login route request
+INFO | 09/04/2023 19:01:34 | Existing user logged in: P
+INFO | 09/04/2023 19:01:35 | meet the team page: P
+INFO | 09/04/2023 19:01:35 | home page: P
+DEBUG | 09/04/2023 19:01:35 | Login route request
+INFO | 09/04/2023 19:01:35 | login page: P
+DEBUG | 09/04/2023 19:01:35 | Register route request
+INFO | 09/04/2023 19:01:35 | register page: P
+DEBUG | 09/04/2023 19:01:36 | Login route request
+INFO | 09/04/2023 19:01:36 | basket page: P
+DEBUG | 09/04/2023 19:01:36 | Login route request
+INFO | 09/04/2023 19:01:36 | calendar page: P
+DEBUG | 09/04/2023 19:01:36 | Login route request
+INFO | 09/04/2023 19:01:36 | memberships page: P
+DEBUG | 09/04/2023 19:01:36 | Login route request
+INFO | 09/04/2023 19:01:36 | myBookings page: P
+DEBUG | 09/04/2023 19:01:37 | Login route request
+INFO | 09/04/2023 19:01:37 | settings page: P
+DEBUG | 09/04/2023 19:01:37 | Login route request
+INFO | 09/04/2023 19:01:37 | manageUsers page: P
+DEBUG | 09/04/2023 19:01:37 | Login route request
+INFO | 09/04/2023 19:01:37 | addActivity page: P
+DEBUG | 09/04/2023 19:01:37 | Login route request
+INFO | 09/04/2023 19:01:37 | addEvent page: P
+DEBUG | 09/04/2023 19:01:37 | Login route request
+INFO | 09/04/2023 19:01:37 | analysis page: P
+DEBUG | 09/04/2023 19:01:38 | Register route request
+DEBUG | 09/04/2023 19:01:38 | Register route request
+INFO | 09/04/2023 19:01:38 | registering new user: P
+DEBUG | 09/04/2023 19:01:38 | Register route request
+DEBUG | 09/04/2023 19:01:38 | Register route request
+INFO | 09/04/2023 19:01:39 | registering new user number 2: P
+DEBUG | 09/04/2023 19:01:39 | Register route request
+INFO | 09/04/2023 19:01:39 | User not registered: P
+DEBUG | 09/04/2023 19:01:39 | Register route request
+INFO | 09/04/2023 19:01:39 | User not registered 2: P
+INFO | 09/04/2023 19:01:39 | terms and conditions page: P
+DEBUG | 09/04/2023 19:01:39 | Login route request
+DEBUG | 09/04/2023 19:01:39 | Login route request
+INFO | 09/04/2023 19:01:39 | Customer couldnt access edit event page: P
+DEBUG | 09/04/2023 19:01:40 | Login route request
+DEBUG | 09/04/2023 19:01:40 | Login route request
+INFO | 09/04/2023 19:01:40 | Customer couldnt access manage Users page: P
+DEBUG | 09/04/2023 19:01:40 | Login route request
+DEBUG | 09/04/2023 19:01:40 | Login route request
+INFO | 09/04/2023 19:01:40 | Customer couldnt access edit user page: P
+DEBUG | 09/04/2023 19:01:40 | Login route request
+DEBUG | 09/04/2023 19:01:40 | Login route request
+DEBUG | 09/04/2023 19:01:40 | Login route request
+DEBUG | 09/04/2023 19:01:40 | Login route request
+INFO | 09/04/2023 19:04:59 | User could not login with missing field: P
+DEBUG | 09/04/2023 19:04:59 | Creating database tables
+DEBUG | 09/04/2023 19:05:01 | Login route request
+DEBUG | 09/04/2023 19:05:01 | Login route request
+INFO | 09/04/2023 19:05:01 | Existing user logged in: P
+INFO | 09/04/2023 19:05:01 | meet the team page: P
+INFO | 09/04/2023 19:05:02 | home page: P
+DEBUG | 09/04/2023 19:05:02 | Login route request
+INFO | 09/04/2023 19:05:02 | login page: P
+DEBUG | 09/04/2023 19:05:02 | Register route request
+INFO | 09/04/2023 19:05:02 | register page: P
+DEBUG | 09/04/2023 19:05:02 | Login route request
+INFO | 09/04/2023 19:05:02 | basket page: P
+DEBUG | 09/04/2023 19:05:02 | Login route request
+INFO | 09/04/2023 19:05:02 | calendar page: P
+DEBUG | 09/04/2023 19:05:03 | Login route request
+INFO | 09/04/2023 19:05:03 | memberships page: P
+DEBUG | 09/04/2023 19:05:03 | Login route request
+INFO | 09/04/2023 19:05:03 | myBookings page: P
+DEBUG | 09/04/2023 19:05:03 | Login route request
+INFO | 09/04/2023 19:05:03 | settings page: P
+DEBUG | 09/04/2023 19:05:03 | Login route request
+INFO | 09/04/2023 19:05:03 | manageUsers page: P
+DEBUG | 09/04/2023 19:05:04 | Login route request
+INFO | 09/04/2023 19:05:04 | addActivity page: P
+DEBUG | 09/04/2023 19:05:04 | Login route request
+INFO | 09/04/2023 19:05:04 | addEvent page: P
+DEBUG | 09/04/2023 19:05:04 | Login route request
+INFO | 09/04/2023 19:05:04 | analysis page: P
+DEBUG | 09/04/2023 19:05:04 | Register route request
+DEBUG | 09/04/2023 19:05:04 | Register route request
+INFO | 09/04/2023 19:05:05 | registering new user: P
+DEBUG | 09/04/2023 19:05:05 | Register route request
+DEBUG | 09/04/2023 19:05:05 | Register route request
+INFO | 09/04/2023 19:05:05 | registering new user number 2: P
+DEBUG | 09/04/2023 19:05:05 | Register route request
+INFO | 09/04/2023 19:05:05 | User not registered: P
+DEBUG | 09/04/2023 19:05:06 | Register route request
+INFO | 09/04/2023 19:05:06 | User not registered 2: P
+INFO | 09/04/2023 19:05:06 | terms and conditions page: P
+DEBUG | 09/04/2023 19:05:06 | Login route request
+DEBUG | 09/04/2023 19:05:06 | Login route request
+INFO | 09/04/2023 19:05:06 | Customer couldnt access edit event page: P
+DEBUG | 09/04/2023 19:05:06 | Login route request
+DEBUG | 09/04/2023 19:05:06 | Login route request
+INFO | 09/04/2023 19:05:06 | Customer couldnt access manage Users page: P
+DEBUG | 09/04/2023 19:05:07 | Login route request
+DEBUG | 09/04/2023 19:05:07 | Login route request
+INFO | 09/04/2023 19:05:07 | Customer couldnt access edit user page: P
+DEBUG | 09/04/2023 19:05:07 | Login route request
+DEBUG | 09/04/2023 19:05:07 | Login route request
+INFO | 09/04/2023 19:05:07 | Customer couldnt access analysis page: P
+DEBUG | 09/04/2023 19:05:07 | Login route request
+DEBUG | 09/04/2023 19:05:07 | Login route request
+INFO | 09/04/2023 19:05:07 | Customer couldnt access edit Activity page: P

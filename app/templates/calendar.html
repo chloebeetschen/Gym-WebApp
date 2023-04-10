@@ -101,7 +101,7 @@
                         <td>{{eventInfo[i].activityType}}</td>
                         <!-- <td>{{events[i].aCapacity-events[i].aSlotsTaken}}</td> -->
                         {% if isMember == False %}
-                        <td>£{{events[i].aPrice}}</td>
+                        <td>£{{eventPrices[i]}}</td>
                         {% endif %}
                         <!--TODO Popup for event info-->
                         {% if current_user.userType == 3 %}
@@ -195,7 +195,7 @@
                         <td>{{events2[i].aDateTime.strftime("%H:%M")}}</td>
                         <td>{{eventInfo2[i].activityType}}</td>
                         {% if isMember == False %}
-                        <td>£{{events2[i].aPrice}}</td>
+                        <td>£{{eventPrices2[i]}}</td>
                         {% endif %}
                         {% if current_user.userType == 3 %}
                         <td><a href="/editEvent/{{events2[i].id}}"><button type="button"

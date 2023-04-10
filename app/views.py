@@ -204,10 +204,13 @@ def calendarMethod():
 
     # get event type for each event found
     eventInfo = []
+    eventPrices = []
     for i in events:
         # Find the index of day in weeks list
         index = dateWeeks.index((i.aDateTime).date())
         weeksCount[index] +=1
+        roundedPrice = "%0.2f" % i.aPrice
+        eventPrices.append(roundedPrice)
         eventInfo.append(Activity.query.filter_by(id=i.activityId).first())
         # For every event check if user has booked it
         if 'proxyBooking' in session :
@@ -224,10 +227,13 @@ def calendarMethod():
 
     # get event type for each event found
     eventInfo2 = []
+    eventPrices2 = []
     for i in events2:
         # Find the index of day in weeks list
         index = dateWeeks.index((i.aDateTime).date())
         weeksCount[index] +=1
+        roundedPrice = "%0.2f" % i.aPrice
+        eventPrices2.append(roundedPrice)
         eventInfo2.append(Activity.query.filter_by(id=i.activityId).first())
         # For every event check if user has booked it
         if 'proxyBooking' in session :
@@ -254,8 +260,10 @@ def calendarMethod():
                             numEvents2 = len(events2),
                             events    = events,
                             eventInfo = eventInfo,
+                            eventPrices = eventPrices,
                             events2    = events2,
                             eventInfo2 = eventInfo2,
+                            eventPrices2 = eventPrices2,
                             isMember = True,   
                             weeks     = weeks,
                             userBooked1 = userBooked1,
@@ -271,6 +279,8 @@ def calendarMethod():
                             events    = events,
                             eventInfo = eventInfo,
                             events2    = events2,
+                            eventPrices = eventPrices,
+                            eventPrices2 = eventPrices2,
                             eventInfo2 = eventInfo2,
                             isMember = user.isMember,   
                             weeks     = weeks,
@@ -297,7 +307,10 @@ def repeatEvents(id):
     today = datetime.now()
     weeks = [today, (today + timedelta(days=1)), (today + timedelta(days=2)), (today + timedelta(days=3)), (today + timedelta(days=4)), (today + timedelta(days=5)), (today + timedelta(days=6)), (today + timedelta(days=7)), (today + timedelta(days=8)), (today + timedelta(days=9)), (today + timedelta(days=10)), (today + timedelta(days=11)), (today + timedelta(days=12)), (today + timedelta(days=13))]
     userBooked = []
+    eventPrices = []
     for event in events:
+        roundedPrice = "%0.2f" % event.aPrice
+        eventPrices.append(roundedPrice)
         booked = UserBookings.query.filter_by(userId=current_user.id, calendarId=event.id).first()
         if booked is not None:   
             userBooked.append(True)
@@ -309,6 +322,7 @@ def repeatEvents(id):
                             title     = 'Calendar of Constant Events',
                             numEvents = len(events),
                             events    = events,
+                            eventPrices = eventPrices,
                             eventType = eventType,
                             isMember    = user.isMember,
                             weeks     = weeks,

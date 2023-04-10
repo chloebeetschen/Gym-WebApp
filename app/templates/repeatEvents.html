@@ -37,7 +37,7 @@
                         <td>{{events[i].aLocation}}</td>
                         <td>{{events[i].aCapacity-events[i].aSlotsTaken}}</td>
                         {% if isMember == False %}
-                            <td>£{{events[i].aPrice}}</td>
+                            <td>£{{eventPrices[i]}}</td>
                         {% endif %}
                         {% if current_user.userType == 3 %}
                         <td><a href="/editEvent/{{events[i].id}}"><button type="button"

@@ -2,12 +2,22 @@ from flask_wtf import FlaskForm
 from wtforms import PasswordField, EmailField, TextAreaField, SubmitField, SelectField, SelectMultipleField, DateField, DateTimeLocalField
 from wtforms import StringField, BooleanField, IntegerField, FloatField, TimeField
 from wtforms.validators import DataRequired, Length, EqualTo, NumberRange, ValidationError, Optional
+import re
 from datetime import *
 
 # Function to check that a date is in the future
 def validateFutureDate(form, field):
     if field.data < datetime.now():
         raise ValidationError('You must enter a date in the future')
+
+# Email format validation
+# Email should be of the form xxxxxx@xxx.xxx, with at least one '.' after the @
+# Emails should not start or end with a '.'
+def validateEmail(form, field):
+    #regex = re.compile(r'([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+')
+    regex = re.compile(r"^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$" )
+    if not re.match(regex, field.data):
+        raise ValidationError("Not a valid email")
 
 
 # Function to check that registree is old enough to register
@@ -59,7 +69,7 @@ class EventForm(FlaskForm):
 class RegisterForm(FlaskForm):
     Name        = StringField('Name', validators=[DataRequired()], render_kw={"placeholder": "Name"})
     DateOfBirth = DateField('Date of birth', validators=[DataRequired(), validateAge], render_kw={"placeholder": "Date of Birth"})
-    Email       = EmailField('Email', validators=[DataRequired()], render_kw={"placeholder": "Email"})
+    Email       = EmailField('Email', validators=[DataRequired(), validateEmail], render_kw={"placeholder": "Email"})
     Password    = PasswordField('Password', validators=[DataRequired(), Length(min=8, message="Password must be 8 characters or more"), passwordPolicy], render_kw={"placeholder": "Password"})
     ReenterPassword = PasswordField('Reenter Password', validators=[DataRequired(), 
                                                                     EqualTo('Password', message="Passwords must match" )],

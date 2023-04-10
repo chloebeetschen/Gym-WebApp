@@ -73,6 +73,17 @@
 
 <!-- Flashed Messages -->
 <div class="d-flex align-items-center flashed-msg-container justify-content-center">
+	{% for error in form.Email.errors%}
+	<div class="form-error rounded-4 p-5">
+		<span class="closebtn" onclick="this.parentElement.style.display='none';">&times</span>
+		{{ error }}
+	</div>
+	{% endfor %}
+</div>
+
+
+<!-- Flashed Messages -->
+<div class="d-flex align-items-center flashed-msg-container justify-content-center">
 	{% for error in form.ReenterPassword.errors%}
 	<div class="form-error rounded-4 p-5">
 		<span class="closebtn" onclick="this.parentElement.style.display='none';">&times</span>

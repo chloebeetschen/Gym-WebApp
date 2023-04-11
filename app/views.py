@@ -339,6 +339,23 @@ def makeBooking(id): # << id passed here is the calendar id (not user)
     event = Calendar.query.get(id)
     #update number of people on current
     event.aSlotsTaken += 1
+
+    # Check if booking is for a facility with multiple events on
+    if event.aLocation == "Swimming Pool" or event.aLocation == "Sports Hall":
+        # If a team event, set all other swimming pool/sports hall events to full capacity for 2 hours
+        if event.activityId == 1 or event.activityId == 11:
+            firstHour = Calendar.query.filter_by(aDateTime=event.aDateTime, aLocation=event.aLocation).all()
+            secondHour = Calendar.query.filter_by(aDateTime=event.aDateTime+timedelta(hours=1), aLocation=event.aLocation).all()
+            otherEvents = firstHour + secondHour
+            for events in otherEvents:
+                events.aSlotsTaken = events.aCapacity
+        # If not a team event, increase the slots taken for all other swimming pool events at that time
+        else:
+            otherEvents = Calendar.query.filter_by(aDateTime=event.aDateTime, aLocation=event.aLocation).all()
+            for events in otherEvents:
+                if events.aCapacity != events.aSlotsTaken and events != event:
+                    events.aSlotsTaken +=1
+
     #get capactiy of that activity
     eventType = Activity.query.get(event.activityId)
     
@@ -679,10 +696,25 @@ def deleteBooking(id): #id passed in will be  the id of the calendar
     calendarBooking = Calendar.query.filter_by(id=id).first()
     # alter capacity of calendar
     calendarBooking.aSlotsTaken -= 1
-    
+
+    if calendarBooking.aLocation == "Swimming Pool" or calendarBooking.aLocation == "Sports Hall":
+        # First check if a team event
+        if calendarBooking.activityId == 1 or calendarBooking.activityId == 11:
+            # Get all events in same location for the 2 hour period
+            firstHour = Calendar.query.filter_by(aDateTime=calendarBooking.aDateTime, aLocation=calendarBooking.aLocation).all()
+            secondHour = Calendar.query.filter_by(aDateTime=calendarBooking.aDateTime+timedelta(hours=1), aLocation=calendarBooking.aLocation).all()
+            otherEvents = firstHour + secondHour
+            for event in otherEvents:
+                event.aSlotsTaken = 0
+        else:
+            otherEvents = Calendar.query.filter_by(aDateTime=calendarBooking.aDateTime, aLocation=calendarBooking.aLocation).all()
+            for event in otherEvents:
+                if event.aSlotsTaken != 0 and event.activityId != 1 and event.activityId != 11 and event != calendarBooking:
+                    event.aSlotsTaken -=1
+            
     db.session.delete(booking)
     db.session.commit()
-    return redirect('/home')
+    return redirect('/myBookings')
 
 
 #manager add activity 

@@ -525,3 +525,226 @@ INFO | 09/04/2023 19:24:38 | Customer couldnt access analysis page: P
 DEBUG | 09/04/2023 19:24:38 | Login route request
 DEBUG | 09/04/2023 19:24:38 | Login route request
 INFO | 09/04/2023 19:24:38 | Customer couldnt access edit Activity page: P
+INFO | 15/04/2023 20:58:04 |  * Running on http://127.0.0.1:5005/ (Press CTRL+C to quit)
+INFO | 15/04/2023 20:58:04 |  * Restarting with stat
+INFO | 15/04/2023 20:58:41 |  * Running on http://127.0.0.1:5005/ (Press CTRL+C to quit)
+INFO | 15/04/2023 20:58:42 |  * Restarting with stat
+DEBUG | 15/04/2023 21:00:24 | Creating database tables
+INFO | 15/04/2023 21:00:26 | 127.0.0.1 - - [15/Apr/2023 21:00:26] "[32mGET / HTTP/1.1[0m" 302 -
+INFO | 15/04/2023 21:00:26 | 127.0.0.1 - - [15/Apr/2023 21:00:26] "GET /home HTTP/1.1" 200 -
+INFO | 15/04/2023 21:00:26 | 127.0.0.1 - - [15/Apr/2023 21:00:26] "GET /static/styles.css HTTP/1.1" 200 -
+INFO | 15/04/2023 21:00:27 | 127.0.0.1 - - [15/Apr/2023 21:00:27] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO | 15/04/2023 21:01:08 | 127.0.0.1 - - [15/Apr/2023 21:01:08] "GET /meetTheTeam HTTP/1.1" 200 -
+INFO | 15/04/2023 21:01:09 | 127.0.0.1 - - [15/Apr/2023 21:01:09] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 15/04/2023 21:01:09 | 127.0.0.1 - - [15/Apr/2023 21:01:09] "GET /static/images/hope.png HTTP/1.1" 200 -
+INFO | 15/04/2023 21:01:09 | 127.0.0.1 - - [15/Apr/2023 21:01:09] "GET /static/images/gaelle.png HTTP/1.1" 200 -
+INFO | 15/04/2023 21:01:09 | 127.0.0.1 - - [15/Apr/2023 21:01:09] "GET /static/images/aaditi.png HTTP/1.1" 200 -
+INFO | 15/04/2023 21:01:09 | 127.0.0.1 - - [15/Apr/2023 21:01:09] "GET /static/images/archie.png HTTP/1.1" 200 -
+INFO | 15/04/2023 21:01:09 | 127.0.0.1 - - [15/Apr/2023 21:01:09] "GET /static/images/chloe.png HTTP/1.1" 200 -
+INFO | 15/04/2023 21:01:09 | 127.0.0.1 - - [15/Apr/2023 21:01:09] "GET /static/images/toby.png HTTP/1.1" 200 -
+INFO | 15/04/2023 21:01:28 | 127.0.0.1 - - [15/Apr/2023 21:01:28] "GET /termsAndConditions HTTP/1.1" 200 -
+INFO | 15/04/2023 21:01:28 | 127.0.0.1 - - [15/Apr/2023 21:01:28] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 15/04/2023 21:02:02 | 127.0.0.1 - - [15/Apr/2023 21:02:02] "GET /home HTTP/1.1" 200 -
+INFO | 15/04/2023 21:02:02 | 127.0.0.1 - - [15/Apr/2023 21:02:02] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 15/04/2023 21:02:18 | Register route request
+INFO | 15/04/2023 21:02:18 | 127.0.0.1 - - [15/Apr/2023 21:02:18] "GET /register HTTP/1.1" 200 -
+INFO | 15/04/2023 21:02:18 | 127.0.0.1 - - [15/Apr/2023 21:02:18] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 15/04/2023 21:02:40 | Register route request
+INFO | 15/04/2023 21:02:41 | 127.0.0.1 - - [15/Apr/2023 21:02:41] "[32mPOST /register HTTP/1.1[0m" 302 -
+DEBUG | 15/04/2023 21:02:41 | Login route request
+INFO | 15/04/2023 21:02:41 | 127.0.0.1 - - [15/Apr/2023 21:02:41] "GET /login HTTP/1.1" 200 -
+INFO | 15/04/2023 21:02:41 | 127.0.0.1 - - [15/Apr/2023 21:02:41] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 15/04/2023 21:02:52 | Login route request
+INFO | 15/04/2023 21:02:53 | 127.0.0.1 - - [15/Apr/2023 21:02:53] "[32mPOST /login HTTP/1.1[0m" 302 -
+INFO | 15/04/2023 21:02:53 | 127.0.0.1 - - [15/Apr/2023 21:02:53] "GET /home HTTP/1.1" 200 -
+INFO | 15/04/2023 21:02:53 | 127.0.0.1 - - [15/Apr/2023 21:02:53] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 15/04/2023 21:03:58 | Calendar route request
+INFO | 15/04/2023 21:03:58 | 127.0.0.1 - - [15/Apr/2023 21:03:58] "GET /calendar HTTP/1.1" 200 -
+INFO | 15/04/2023 21:03:58 | 127.0.0.1 - - [15/Apr/2023 21:03:58] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 15/04/2023 21:04:32 | Repeat events (with id: 2) route request
+INFO | 15/04/2023 21:04:33 | 127.0.0.1 - - [15/Apr/2023 21:04:33] "GET /repeatEvents/2 HTTP/1.1" 200 -
+INFO | 15/04/2023 21:04:33 | 127.0.0.1 - - [15/Apr/2023 21:04:33] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 15/04/2023 21:04:56 | Repeat events (with id: 5) route request
+INFO | 15/04/2023 21:04:57 | 127.0.0.1 - - [15/Apr/2023 21:04:57] "GET /repeatEvents/5 HTTP/1.1" 200 -
+INFO | 15/04/2023 21:04:57 | 127.0.0.1 - - [15/Apr/2023 21:04:57] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 15/04/2023 21:05:03 | My bookings route request
+INFO | 15/04/2023 21:05:03 | 127.0.0.1 - - [15/Apr/2023 21:05:03] "GET /myBookings HTTP/1.1" 200 -
+INFO | 15/04/2023 21:05:03 | 127.0.0.1 - - [15/Apr/2023 21:05:03] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 15/04/2023 21:05:08 | Calendar route request
+INFO | 15/04/2023 21:05:08 | 127.0.0.1 - - [15/Apr/2023 21:05:08] "GET /calendar HTTP/1.1" 200 -
+INFO | 15/04/2023 21:05:08 | 127.0.0.1 - - [15/Apr/2023 21:05:08] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 15/04/2023 21:05:12 | Add basket (with id: 105) route request
+INFO | 15/04/2023 21:05:12 | 127.0.0.1 - - [15/Apr/2023 21:05:12] "[32mGET /addBasket/105 HTTP/1.1[0m" 302 -
+DEBUG | 15/04/2023 21:05:12 | Calendar route request
+INFO | 15/04/2023 21:05:12 | 127.0.0.1 - - [15/Apr/2023 21:05:12] "GET /calendar HTTP/1.1" 200 -
+INFO | 15/04/2023 21:05:12 | 127.0.0.1 - - [15/Apr/2023 21:05:12] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 15/04/2023 21:05:17 | My bookings route request
+INFO | 15/04/2023 21:05:17 | 127.0.0.1 - - [15/Apr/2023 21:05:17] "GET /myBookings HTTP/1.1" 200 -
+INFO | 15/04/2023 21:05:17 | 127.0.0.1 - - [15/Apr/2023 21:05:17] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 15/04/2023 21:05:21 | Basket route request
+INFO | 15/04/2023 21:05:21 | 127.0.0.1 - - [15/Apr/2023 21:05:21] "GET /basket HTTP/1.1" 200 -
+INFO | 15/04/2023 21:05:21 | 127.0.0.1 - - [15/Apr/2023 21:05:21] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 15/04/2023 21:07:18 | message='Request to Stripe api' method=post path=https://api.stripe.com/v1/customers
+DEBUG | 15/04/2023 21:07:18 | api_version=None message='Post details' post_data=email=aaditi2%40gmail.com&source=tok_1MxFNPLpcMacjDf9HbbVj3AN
+DEBUG | 15/04/2023 21:07:18 | Starting new HTTPS connection (1): api.stripe.com:443
+DEBUG | 15/04/2023 21:07:18 | https://api.stripe.com:443 "POST /v1/customers HTTP/1.1" 200 626
+INFO | 15/04/2023 21:07:18 | message='Stripe API response' path=https://api.stripe.com/v1/customers response_code=200
+DEBUG | 15/04/2023 21:07:18 | body='{\n  "id": "cus_Nigk4P6vaxilo7",\n  "object": "customer",\n  "address": null,\n  "balance": 0,\n  "created": 1681589238,\n  "currency": null,\n  "default_source": "card_1MxFNPLpcMacjDf92O2koWaE",\n  "delinquent": false,\n  "description": null,\n  "discount": null,\n  "email": "aaditi2@gmail.com",\n  "invoice_prefix": "E6D3C9CE",\n  "invoice_settings": {\n    "custom_fields": null,\n    "default_payment_method": null,\n    "footer": null,\n    "rendering_options": null\n  },\n  "livemode": false,\n  "metadata": {},\n  "name": null,\n  "phone": null,\n  "preferred_locales": [],\n  "shipping": null,\n  "tax_exempt": "none",\n  "test_clock": null\n}' message='API response body'
+DEBUG | 15/04/2023 21:07:18 | link=https://dashboard.stripe.com/test/logs/req_QHXnol7rvnCNSB message='Dashboard link for request'
+INFO | 15/04/2023 21:07:18 | message='Request to Stripe api' method=post path=https://api.stripe.com/v1/charges
+DEBUG | 15/04/2023 21:07:18 | api_version=None message='Post details' post_data=customer=cus_Nigk4P6vaxilo7&amount=500&currency=GBP&description=Push+and+Pull+Payment
+DEBUG | 15/04/2023 21:07:19 | https://api.stripe.com:443 "POST /v1/charges HTTP/1.1" 200 3007
+INFO | 15/04/2023 21:07:19 | message='Stripe API response' path=https://api.stripe.com/v1/charges response_code=200
+DEBUG | 15/04/2023 21:07:19 | body='{\n  "id": "ch_3MxFNTLpcMacjDf90Jj1Zm3t",\n  "object": "charge",\n  "amount": 500,\n  "amount_captured": 500,\n  "amount_refunded": 0,\n  "application": null,\n  "application_fee": null,\n  "application_fee_amount": null,\n  "balance_transaction": "txn_3MxFNTLpcMacjDf909Yr1Vwb",\n  "billing_details": {\n    "address": {\n      "city": null,\n      "country": null,\n      "line1": null,\n      "line2": null,\n      "postal_code": null,\n      "state": null\n    },\n    "email": null,\n    "name": "aaditi@gmail.com",\n    "phone": null\n  },\n  "calculated_statement_descriptor": "PROJECT SQUAD 6",\n  "captured": true,\n  "created": 1681589239,\n  "currency": "gbp",\n  "customer": "cus_Nigk4P6vaxilo7",\n  "description": "Push and Pull Payment",\n  "destination": null,\n  "dispute": null,\n  "disputed": false,\n  "failure_balance_transaction": null,\n  "failure_code": null,\n  "failure_message": null,\n  "fraud_details": {},\n  "invoice": null,\n  "livemode": false,\n  "metadata": {},\n  "on_behalf_of": null,\n  "order": null,\n  "outcome": {\n    "network_status": "approved_by_network",\n    "reason": null,\n    "risk_level": "normal",\n    "risk_score": 1,\n    "seller_message": "Payment complete.",\n    "type": "authorized"\n  },\n  "paid": true,\n  "payment_intent": null,\n  "payment_method": "card_1MxFNPLpcMacjDf92O2koWaE",\n  "payment_method_details": {\n    "card": {\n      "brand": "visa",\n      "checks": {\n        "address_line1_check": null,\n        "address_postal_code_check": null,\n        "cvc_check": "pass"\n      },\n      "country": "US",\n      "exp_month": 11,\n      "exp_year": 2025,\n      "fingerprint": "Tc1127UmFfqm8qTb",\n      "funding": "credit",\n      "installments": null,\n      "last4": "4242",\n      "mandate": null,\n      "network": "visa",\n      "network_token": {\n        "used": false\n      },\n      "three_d_secure": null,\n      "wallet": null\n    },\n    "type": "card"\n  },\n  "receipt_email": null,\n  "receipt_number": null,\n  "receipt_url": "https://pay.stripe.com/receipts/payment/CAcaFwoVYWNjdF8xTXFGWTJMcGNNYWNqRGY5KPeH7KEGMgZAkCeUS8c6LBalQuQiJFBjp5vBFCEfqYXKzj6qHzKoTL8VDPRhD39IPIAWSCKmxm0S6Y_Z",\n  "refunded": false,\n  "review": null,\n  "shipping": null,\n  "source": {\n    "id": "card_1MxFNPLpcMacjDf92O2koWaE",\n    "object": "card",\n    "address_city": null,\n    "address_country": null,\n    "address_line1": null,\n    "address_line1_check": null,\n    "address_line2": null,\n    "address_state": null,\n    "address_zip": null,\n    "address_zip_check": null,\n    "brand": "Visa",\n    "country": "US",\n    "customer": "cus_Nigk4P6vaxilo7",\n    "cvc_check": "pass",\n    "dynamic_last4": null,\n    "exp_month": 11,\n    "exp_year": 2025,\n    "fingerprint": "Tc1127UmFfqm8qTb",\n    "funding": "credit",\n    "last4": "4242",\n    "metadata": {},\n    "name": "aaditi@gmail.com",\n    "tokenization_method": null,\n    "wallet": null\n  },\n  "source_transfer": null,\n  "statement_descriptor": null,\n  "statement_descriptor_suffix": null,\n  "status": "succeeded",\n  "transfer_data": null,\n  "transfer_group": null\n}' message='API response body'
+DEBUG | 15/04/2023 21:07:19 | link=https://dashboard.stripe.com/test/logs/req_bnv1yJ7knOMWth message='Dashboard link for request'
+INFO | 15/04/2023 21:07:19 | 127.0.0.1 - - [15/Apr/2023 21:07:19] "[32mPOST /checkout HTTP/1.1[0m" 302 -
+DEBUG | 15/04/2023 21:07:19 | My bookings route request
+INFO | 15/04/2023 21:07:19 | 127.0.0.1 - - [15/Apr/2023 21:07:19] "GET /myBookings HTTP/1.1" 200 -
+INFO | 15/04/2023 21:07:20 | 127.0.0.1 - - [15/Apr/2023 21:07:20] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 15/04/2023 21:07:38 | Calendar route request
+INFO | 15/04/2023 21:07:38 | 127.0.0.1 - - [15/Apr/2023 21:07:38] "GET /calendar HTTP/1.1" 200 -
+INFO | 15/04/2023 21:07:38 | 127.0.0.1 - - [15/Apr/2023 21:07:38] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 15/04/2023 21:07:59 | Repeat events (with id: 3) route request
+INFO | 15/04/2023 21:08:00 | 127.0.0.1 - - [15/Apr/2023 21:08:00] "GET /repeatEvents/3 HTTP/1.1" 200 -
+INFO | 15/04/2023 21:08:00 | 127.0.0.1 - - [15/Apr/2023 21:08:00] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 15/04/2023 21:08:10 | Calendar route request
+INFO | 15/04/2023 21:08:10 | 127.0.0.1 - - [15/Apr/2023 21:08:10] "GET /calendar HTTP/1.1" 200 -
+INFO | 15/04/2023 21:08:10 | 127.0.0.1 - - [15/Apr/2023 21:08:10] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 15/04/2023 21:08:40 | Add basket (with id: 104) route request
+INFO | 15/04/2023 21:08:40 | 127.0.0.1 - - [15/Apr/2023 21:08:40] "[32mGET /addBasket/104 HTTP/1.1[0m" 302 -
+DEBUG | 15/04/2023 21:08:40 | Calendar route request
+INFO | 15/04/2023 21:08:40 | 127.0.0.1 - - [15/Apr/2023 21:08:40] "GET /calendar HTTP/1.1" 200 -
+INFO | 15/04/2023 21:08:40 | 127.0.0.1 - - [15/Apr/2023 21:08:40] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 15/04/2023 21:08:43 | Basket route request
+INFO | 15/04/2023 21:08:43 | 127.0.0.1 - - [15/Apr/2023 21:08:43] "GET /basket HTTP/1.1" 200 -
+INFO | 15/04/2023 21:08:43 | 127.0.0.1 - - [15/Apr/2023 21:08:43] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 15/04/2023 21:09:06 | message='Request to Stripe api' method=post path=https://api.stripe.com/v1/charges
+DEBUG | 15/04/2023 21:09:06 | api_version=None message='Post details' post_data=customer=cus_Nigk4P6vaxilo7&amount=8000&currency=GBP&description=Push+and+Pull+Payment
+DEBUG | 15/04/2023 21:09:06 | Starting new HTTPS connection (1): api.stripe.com:443
+DEBUG | 15/04/2023 21:09:07 | https://api.stripe.com:443 "POST /v1/charges HTTP/1.1" 200 3010
+INFO | 15/04/2023 21:09:07 | message='Stripe API response' path=https://api.stripe.com/v1/charges response_code=200
+DEBUG | 15/04/2023 21:09:07 | body='{\n  "id": "ch_3MxFPCLpcMacjDf91ORte0eR",\n  "object": "charge",\n  "amount": 8000,\n  "amount_captured": 8000,\n  "amount_refunded": 0,\n  "application": null,\n  "application_fee": null,\n  "application_fee_amount": null,\n  "balance_transaction": "txn_3MxFPCLpcMacjDf91stAPGj1",\n  "billing_details": {\n    "address": {\n      "city": null,\n      "country": null,\n      "line1": null,\n      "line2": null,\n      "postal_code": null,\n      "state": null\n    },\n    "email": null,\n    "name": "aaditi@gmail.com",\n    "phone": null\n  },\n  "calculated_statement_descriptor": "PROJECT SQUAD 6",\n  "captured": true,\n  "created": 1681589346,\n  "currency": "gbp",\n  "customer": "cus_Nigk4P6vaxilo7",\n  "description": "Push and Pull Payment",\n  "destination": null,\n  "dispute": null,\n  "disputed": false,\n  "failure_balance_transaction": null,\n  "failure_code": null,\n  "failure_message": null,\n  "fraud_details": {},\n  "invoice": null,\n  "livemode": false,\n  "metadata": {},\n  "on_behalf_of": null,\n  "order": null,\n  "outcome": {\n    "network_status": "approved_by_network",\n    "reason": null,\n    "risk_level": "normal",\n    "risk_score": 49,\n    "seller_message": "Payment complete.",\n    "type": "authorized"\n  },\n  "paid": true,\n  "payment_intent": null,\n  "payment_method": "card_1MxFNPLpcMacjDf92O2koWaE",\n  "payment_method_details": {\n    "card": {\n      "brand": "visa",\n      "checks": {\n        "address_line1_check": null,\n        "address_postal_code_check": null,\n        "cvc_check": "pass"\n      },\n      "country": "US",\n      "exp_month": 11,\n      "exp_year": 2025,\n      "fingerprint": "Tc1127UmFfqm8qTb",\n      "funding": "credit",\n      "installments": null,\n      "last4": "4242",\n      "mandate": null,\n      "network": "visa",\n      "network_token": {\n        "used": false\n      },\n      "three_d_secure": null,\n      "wallet": null\n    },\n    "type": "card"\n  },\n  "receipt_email": null,\n  "receipt_number": null,\n  "receipt_url": "https://pay.stripe.com/receipts/payment/CAcaFwoVYWNjdF8xTXFGWTJMcGNNYWNqRGY5KOOI7KEGMgbGfA7t2Ok6LBZMfAsUnyjPuQQz5eiRuKuNKxKCqtSHfaUmxlxoi1MtprieX-XtDZXgs7Pn",\n  "refunded": false,\n  "review": null,\n  "shipping": null,\n  "source": {\n    "id": "card_1MxFNPLpcMacjDf92O2koWaE",\n    "object": "card",\n    "address_city": null,\n    "address_country": null,\n    "address_line1": null,\n    "address_line1_check": null,\n    "address_line2": null,\n    "address_state": null,\n    "address_zip": null,\n    "address_zip_check": null,\n    "brand": "Visa",\n    "country": "US",\n    "customer": "cus_Nigk4P6vaxilo7",\n    "cvc_check": "pass",\n    "dynamic_last4": null,\n    "exp_month": 11,\n    "exp_year": 2025,\n    "fingerprint": "Tc1127UmFfqm8qTb",\n    "funding": "credit",\n    "last4": "4242",\n    "metadata": {},\n    "name": "aaditi@gmail.com",\n    "tokenization_method": null,\n    "wallet": null\n  },\n  "source_transfer": null,\n  "statement_descriptor": null,\n  "statement_descriptor_suffix": null,\n  "status": "succeeded",\n  "transfer_data": null,\n  "transfer_group": null\n}' message='API response body'
+DEBUG | 15/04/2023 21:09:07 | link=https://dashboard.stripe.com/test/logs/req_yOiOCch4JZtnm4 message='Dashboard link for request'
+INFO | 15/04/2023 21:09:07 | 127.0.0.1 - - [15/Apr/2023 21:09:07] "[32mPOST /checkout HTTP/1.1[0m" 302 -
+DEBUG | 15/04/2023 21:09:07 | My bookings route request
+INFO | 15/04/2023 21:09:07 | 127.0.0.1 - - [15/Apr/2023 21:09:07] "GET /myBookings HTTP/1.1" 200 -
+INFO | 15/04/2023 21:09:07 | 127.0.0.1 - - [15/Apr/2023 21:09:07] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 15/04/2023 21:09:14 | Calendar route request
+INFO | 15/04/2023 21:09:14 | 127.0.0.1 - - [15/Apr/2023 21:09:14] "GET /calendar HTTP/1.1" 200 -
+INFO | 15/04/2023 21:09:14 | 127.0.0.1 - - [15/Apr/2023 21:09:14] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 15/04/2023 21:09:15 | Repeat events (with id: 3) route request
+INFO | 15/04/2023 21:09:16 | 127.0.0.1 - - [15/Apr/2023 21:09:16] "GET /repeatEvents/3 HTTP/1.1" 200 -
+INFO | 15/04/2023 21:09:17 | 127.0.0.1 - - [15/Apr/2023 21:09:17] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 15/04/2023 21:09:41 | Settings route request
+INFO | 15/04/2023 21:09:41 | 127.0.0.1 - - [15/Apr/2023 21:09:41] "GET /settings HTTP/1.1" 200 -
+INFO | 15/04/2023 21:09:41 | 127.0.0.1 - - [15/Apr/2023 21:09:41] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 15/04/2023 21:10:11 | Logout route request
+INFO | 15/04/2023 21:10:11 | 127.0.0.1 - - [15/Apr/2023 21:10:11] "[32mGET /logout HTTP/1.1[0m" 302 -
+DEBUG | 15/04/2023 21:10:11 | Login route request
+INFO | 15/04/2023 21:10:11 | 127.0.0.1 - - [15/Apr/2023 21:10:11] "GET /login HTTP/1.1" 200 -
+INFO | 15/04/2023 21:10:11 | 127.0.0.1 - - [15/Apr/2023 21:10:11] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 15/04/2023 21:10:30 | Login route request
+INFO | 15/04/2023 21:10:30 | 127.0.0.1 - - [15/Apr/2023 21:10:30] "[32mPOST /login HTTP/1.1[0m" 302 -
+DEBUG | 15/04/2023 21:10:30 | Calendar route request
+INFO | 15/04/2023 21:10:31 | 127.0.0.1 - - [15/Apr/2023 21:10:31] "GET /calendar HTTP/1.1" 200 -
+INFO | 15/04/2023 21:10:31 | 127.0.0.1 - - [15/Apr/2023 21:10:31] "GET /static/managerStyles.css HTTP/1.1" 200 -
+DEBUG | 15/04/2023 21:10:43 | Edit event (with id: 105) route request
+INFO | 15/04/2023 21:10:43 | 127.0.0.1 - - [15/Apr/2023 21:10:43] "GET /editEvent/105 HTTP/1.1" 200 -
+INFO | 15/04/2023 21:10:43 | 127.0.0.1 - - [15/Apr/2023 21:10:43] "[36mGET /static/managerStyles.css HTTP/1.1[0m" 304 -
+DEBUG | 15/04/2023 21:11:31 | Edit event (with id: 105) route request
+INFO | 15/04/2023 21:11:31 | 127.0.0.1 - - [15/Apr/2023 21:11:31] "[32mPOST /editEvent/105 HTTP/1.1[0m" 302 -
+DEBUG | 15/04/2023 21:11:31 | Calendar route request
+INFO | 15/04/2023 21:11:32 | 127.0.0.1 - - [15/Apr/2023 21:11:32] "GET /calendar HTTP/1.1" 200 -
+INFO | 15/04/2023 21:11:32 | 127.0.0.1 - - [15/Apr/2023 21:11:32] "[36mGET /static/managerStyles.css HTTP/1.1[0m" 304 -
+DEBUG | 15/04/2023 21:11:44 | Add event route request
+INFO | 15/04/2023 21:11:44 | 127.0.0.1 - - [15/Apr/2023 21:11:44] "GET /addEvent HTTP/1.1" 200 -
+INFO | 15/04/2023 21:11:44 | 127.0.0.1 - - [15/Apr/2023 21:11:44] "[36mGET /static/managerStyles.css HTTP/1.1[0m" 304 -
+DEBUG | 15/04/2023 21:11:51 | Add activity route request
+INFO | 15/04/2023 21:11:51 | 127.0.0.1 - - [15/Apr/2023 21:11:51] "GET /addActivity HTTP/1.1" 200 -
+INFO | 15/04/2023 21:11:51 | 127.0.0.1 - - [15/Apr/2023 21:11:51] "[36mGET /static/managerStyles.css HTTP/1.1[0m" 304 -
+DEBUG | 15/04/2023 21:11:55 | Add activity route request
+INFO | 15/04/2023 21:11:55 | 127.0.0.1 - - [15/Apr/2023 21:11:55] "POST /addActivity HTTP/1.1" 200 -
+INFO | 15/04/2023 21:11:55 | 127.0.0.1 - - [15/Apr/2023 21:11:55] "[36mGET /static/managerStyles.css HTTP/1.1[0m" 304 -
+DEBUG | 15/04/2023 21:11:58 | Add event route request
+INFO | 15/04/2023 21:11:58 | 127.0.0.1 - - [15/Apr/2023 21:11:58] "GET /addEvent HTTP/1.1" 200 -
+INFO | 15/04/2023 21:11:58 | 127.0.0.1 - - [15/Apr/2023 21:11:58] "[36mGET /static/managerStyles.css HTTP/1.1[0m" 304 -
+DEBUG | 15/04/2023 21:12:35 | Add event route request
+INFO | 15/04/2023 21:12:36 | 127.0.0.1 - - [15/Apr/2023 21:12:36] "POST /addEvent HTTP/1.1" 200 -
+INFO | 15/04/2023 21:12:36 | 127.0.0.1 - - [15/Apr/2023 21:12:36] "[36mGET /static/managerStyles.css HTTP/1.1[0m" 304 -
+DEBUG | 15/04/2023 21:12:38 | Calendar route request
+INFO | 15/04/2023 21:12:39 | 127.0.0.1 - - [15/Apr/2023 21:12:39] "GET /calendar HTTP/1.1" 200 -
+INFO | 15/04/2023 21:12:39 | 127.0.0.1 - - [15/Apr/2023 21:12:39] "[36mGET /static/managerStyles.css HTTP/1.1[0m" 304 -
+DEBUG | 15/04/2023 21:12:47 | Edit activity route request
+INFO | 15/04/2023 21:12:48 | 127.0.0.1 - - [15/Apr/2023 21:12:48] "GET /editActivity HTTP/1.1" 200 -
+INFO | 15/04/2023 21:12:48 | 127.0.0.1 - - [15/Apr/2023 21:12:48] "[36mGET /static/managerStyles.css HTTP/1.1[0m" 304 -
+DEBUG | 15/04/2023 21:12:54 | Edit activity route request
+INFO | 15/04/2023 21:12:54 | 127.0.0.1 - - [15/Apr/2023 21:12:54] "POST /editActivity HTTP/1.1" 200 -
+INFO | 15/04/2023 21:12:54 | 127.0.0.1 - - [15/Apr/2023 21:12:54] "[36mGET /static/managerStyles.css HTTP/1.1[0m" 304 -
+DEBUG | 15/04/2023 21:12:57 | Calendar route request
+INFO | 15/04/2023 21:12:58 | 127.0.0.1 - - [15/Apr/2023 21:12:58] "GET /calendar HTTP/1.1" 200 -
+INFO | 15/04/2023 21:12:58 | 127.0.0.1 - - [15/Apr/2023 21:12:58] "[36mGET /static/managerStyles.css HTTP/1.1[0m" 304 -
+DEBUG | 15/04/2023 21:13:04 | Manage users route request
+INFO | 15/04/2023 21:13:04 | 127.0.0.1 - - [15/Apr/2023 21:13:04] "GET /manageUsers HTTP/1.1" 200 -
+INFO | 15/04/2023 21:13:04 | 127.0.0.1 - - [15/Apr/2023 21:13:04] "[36mGET /static/managerStyles.css HTTP/1.1[0m" 304 -
+DEBUG | 15/04/2023 21:13:10 | Manage users route request
+INFO | 15/04/2023 21:13:10 | 127.0.0.1 - - [15/Apr/2023 21:13:10] "[32mPOST /manageUsers HTTP/1.1[0m" 302 -
+INFO | 15/04/2023 21:13:10 | 127.0.0.1 - - [15/Apr/2023 21:13:10] "GET /searchResults/aaditi HTTP/1.1" 200 -
+INFO | 15/04/2023 21:13:10 | 127.0.0.1 - - [15/Apr/2023 21:13:10] "[36mGET /static/managerStyles.css HTTP/1.1[0m" 304 -
+DEBUG | 15/04/2023 21:13:12 | Edit user (with id: 2) route request
+INFO | 15/04/2023 21:13:13 | 127.0.0.1 - - [15/Apr/2023 21:13:13] "GET /editUser/2 HTTP/1.1" 200 -
+INFO | 15/04/2023 21:13:13 | 127.0.0.1 - - [15/Apr/2023 21:13:13] "[36mGET /static/managerStyles.css HTTP/1.1[0m" 304 -
+DEBUG | 15/04/2023 21:13:36 | Edit user (with id: 2) route request
+INFO | 15/04/2023 21:13:36 | 127.0.0.1 - - [15/Apr/2023 21:13:36] "[32mPOST /editUser/2 HTTP/1.1[0m" 302 -
+DEBUG | 15/04/2023 21:13:36 | Manage users route request
+INFO | 15/04/2023 21:13:36 | 127.0.0.1 - - [15/Apr/2023 21:13:36] "GET /manageUsers HTTP/1.1" 200 -
+INFO | 15/04/2023 21:13:36 | 127.0.0.1 - - [15/Apr/2023 21:13:36] "[36mGET /static/managerStyles.css HTTP/1.1[0m" 304 -
+INFO | 15/04/2023 21:13:52 | 127.0.0.1 - - [15/Apr/2023 21:13:52] "GET /analysis HTTP/1.1" 200 -
+INFO | 15/04/2023 21:13:52 | 127.0.0.1 - - [15/Apr/2023 21:13:52] "[36mGET /static/managerStyles.css HTTP/1.1[0m" 304 -
+DEBUG | 15/04/2023 21:13:53 | Manage users route request
+INFO | 15/04/2023 21:13:53 | 127.0.0.1 - - [15/Apr/2023 21:13:53] "GET /manageUsers HTTP/1.1" 200 -
+INFO | 15/04/2023 21:13:54 | 127.0.0.1 - - [15/Apr/2023 21:13:54] "[36mGET /static/managerStyles.css HTTP/1.1[0m" 304 -
+INFO | 15/04/2023 21:14:08 | 127.0.0.1 - - [15/Apr/2023 21:14:08] "GET /analysis HTTP/1.1" 200 -
+INFO | 15/04/2023 21:14:08 | 127.0.0.1 - - [15/Apr/2023 21:14:08] "[36mGET /static/managerStyles.css HTTP/1.1[0m" 304 -
+INFO | 15/04/2023 21:14:50 | 127.0.0.1 - - [15/Apr/2023 21:14:50] "[32mPOST /analysis HTTP/1.1[0m" 302 -
+INFO | 15/04/2023 21:14:50 | 127.0.0.1 - - [15/Apr/2023 21:14:50] "GET /analysisGraphs HTTP/1.1" 200 -
+INFO | 15/04/2023 21:14:51 | 127.0.0.1 - - [15/Apr/2023 21:14:51] "[36mGET /static/managerStyles.css HTTP/1.1[0m" 304 -
+INFO | 15/04/2023 21:16:09 | 127.0.0.1 - - [15/Apr/2023 21:16:09] "GET /changeDiscount HTTP/1.1" 200 -
+INFO | 15/04/2023 21:16:09 | 127.0.0.1 - - [15/Apr/2023 21:16:09] "[36mGET /static/managerStyles.css HTTP/1.1[0m" 304 -
+INFO | 15/04/2023 21:16:14 | 127.0.0.1 - - [15/Apr/2023 21:16:14] "[32mPOST /changeDiscount HTTP/1.1[0m" 302 -
+INFO | 15/04/2023 21:16:14 | 127.0.0.1 - - [15/Apr/2023 21:16:14] "[32mGET /home HTTP/1.1[0m" 302 -
+DEBUG | 15/04/2023 21:16:14 | Calendar route request
+INFO | 15/04/2023 21:16:15 | 127.0.0.1 - - [15/Apr/2023 21:16:15] "GET /calendar HTTP/1.1" 200 -
+INFO | 15/04/2023 21:16:15 | 127.0.0.1 - - [15/Apr/2023 21:16:15] "[36mGET /static/managerStyles.css HTTP/1.1[0m" 304 -
+DEBUG | 15/04/2023 21:16:23 | Manage users route request
+INFO | 15/04/2023 21:16:23 | 127.0.0.1 - - [15/Apr/2023 21:16:23] "GET /manageUsers HTTP/1.1" 200 -
+INFO | 15/04/2023 21:16:23 | 127.0.0.1 - - [15/Apr/2023 21:16:23] "[36mGET /static/managerStyles.css HTTP/1.1[0m" 304 -
+DEBUG | 15/04/2023 21:16:25 | Edit user (with id: 2) route request
+INFO | 15/04/2023 21:16:25 | 127.0.0.1 - - [15/Apr/2023 21:16:25] "GET /editUser/2 HTTP/1.1" 200 -
+INFO | 15/04/2023 21:16:25 | 127.0.0.1 - - [15/Apr/2023 21:16:25] "[36mGET /static/managerStyles.css HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 19:50:41 |  * Running on http://127.0.0.1:5005/ (Press CTRL+C to quit)
+INFO | 16/04/2023 19:50:41 |  * Restarting with stat
+DEBUG | 16/04/2023 19:51:18 | Creating database tables
+INFO | 16/04/2023 19:51:19 | 127.0.0.1 - - [16/Apr/2023 19:51:19] "[32mGET / HTTP/1.1[0m" 302 -
+INFO | 16/04/2023 19:51:19 | 127.0.0.1 - - [16/Apr/2023 19:51:19] "GET /home HTTP/1.1" 200 -
+INFO | 16/04/2023 19:51:19 | 127.0.0.1 - - [16/Apr/2023 19:51:19] "GET /static/styles.css HTTP/1.1" 200 -
+INFO | 16/04/2023 19:51:20 | 127.0.0.1 - - [16/Apr/2023 19:51:20] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO | 16/04/2023 19:51:23 | 127.0.0.1 - - [16/Apr/2023 19:51:23] "GET /termsAndConditions HTTP/1.1" 200 -
+INFO | 16/04/2023 19:51:23 | 127.0.0.1 - - [16/Apr/2023 19:51:23] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 19:51:49 | 127.0.0.1 - - [16/Apr/2023 19:51:49] "GET /meetTheTeam HTTP/1.1" 200 -
+INFO | 16/04/2023 19:51:49 | 127.0.0.1 - - [16/Apr/2023 19:51:49] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 19:51:49 | 127.0.0.1 - - [16/Apr/2023 19:51:49] "GET /static/images/aaditi.png HTTP/1.1" 200 -
+INFO | 16/04/2023 19:51:49 | 127.0.0.1 - - [16/Apr/2023 19:51:49] "GET /static/images/archie.png HTTP/1.1" 200 -
+INFO | 16/04/2023 19:51:49 | 127.0.0.1 - - [16/Apr/2023 19:51:49] "GET /static/images/hope.png HTTP/1.1" 200 -
+INFO | 16/04/2023 19:51:49 | 127.0.0.1 - - [16/Apr/2023 19:51:49] "GET /static/images/gaelle.png HTTP/1.1" 200 -
+INFO | 16/04/2023 19:51:49 | 127.0.0.1 - - [16/Apr/2023 19:51:49] "GET /static/images/chloe.png HTTP/1.1" 200 -
+INFO | 16/04/2023 19:51:49 | 127.0.0.1 - - [16/Apr/2023 19:51:49] "GET /static/images/toby.png HTTP/1.1" 200 -
+INFO | 16/04/2023 19:53:30 | 127.0.0.1 - - [16/Apr/2023 19:53:30] "GET /home HTTP/1.1" 200 -
+INFO | 16/04/2023 19:53:30 | 127.0.0.1 - - [16/Apr/2023 19:53:30] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 20:03:53 |  * Detected change in '/home/cserv1_a/soc_msc/sc21aa/project-squad6/unit_testing.py', reloading
+INFO | 16/04/2023 20:03:53 |  * Restarting with stat
+INFO | 16/04/2023 20:07:13 | 127.0.0.1 - - [16/Apr/2023 20:07:13] "GET /home HTTP/1.1" 200 -
+INFO | 16/04/2023 20:07:13 | 127.0.0.1 - - [16/Apr/2023 20:07:13] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 20:07:17 | 127.0.0.1 - - [16/Apr/2023 20:07:17] "GET /home HTTP/1.1" 200 -
+INFO | 16/04/2023 20:07:17 | 127.0.0.1 - - [16/Apr/2023 20:07:17] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 20:07:20 | 127.0.0.1 - - [16/Apr/2023 20:07:20] "GET /home HTTP/1.1" 200 -
+INFO | 16/04/2023 20:07:20 | 127.0.0.1 - - [16/Apr/2023 20:07:20] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -

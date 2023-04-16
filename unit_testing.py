@@ -16,14 +16,14 @@ from test_config import *
 
 class TestCase(unittest.TestCase):
 
-    #this is setting up a test database 
+    # This is setting up a test database 
     def setUp(self):
         app.config.from_object('test_config')
 
         self.app = app.test_client()  
         db.create_all() 
 
-        #setting up the log file to record test outputs 
+        # Setting up the log file to record test outputs 
         self.logger = logging.getLogger('my_logger')
         handler = logging.FileHandler('test.log')
         formatter = logging.Formatter('%(message)s')
@@ -31,7 +31,7 @@ class TestCase(unittest.TestCase):
         self.logger.addHandler(handler)
 
        
-    #this deletes the test database once testing is complete 
+    # This deletes the test database once testing is complete 
     def tearDown(self):
       db.session.remove()
       db.drop_all()
@@ -42,7 +42,7 @@ class TestCase(unittest.TestCase):
         self.logger.removeHandler(handler)
 
 
-    #testing that different pages load 
+    # Testing that different pages load 
 
     def test_meetTheTeam(self):
         response = self.app.get(('/meetTheTeam'), follow_redirects=True)
@@ -106,7 +106,6 @@ class TestCase(unittest.TestCase):
         except AssertionError:
             self.logger.warning("calendar page: F")
             raise
-
 
     def test_navBarType1_settings(self):
         response = self.app.get(('/settings'), follow_redirects = True)
@@ -172,7 +171,7 @@ class TestCase(unittest.TestCase):
             raise  
 
 
-    #registering a user and testing if this updates in the database
+    # Registering a user and testing if this updates in the database
     def test_register(self):
         response = self.app.get(('/register'), follow_redirects = True)
         self.assertEqual(response.status_code, 200)
@@ -195,7 +194,7 @@ class TestCase(unittest.TestCase):
 
                 response = self.app.post('/register', data=data)
                 
-                #testing if the database is updated when a user registers, for login db and details db
+                # Testing if the database is updated when a user registers, for login db and details db
                 user = models.UserDetails.query.filter_by(name= 'Michael Scott').first()
                 user = models.UserLogin.query.filter_by(email= 'michael.scott@gmail.com').first()
                 try:
@@ -204,8 +203,9 @@ class TestCase(unittest.TestCase):
                 except AssertionError:
                     self.logger.warning('registering new user: F')
                     raise
+
     
-    #registering the same user twice - should not work as their email already exists in the db
+    # Registering the same user twice - should not work as their email already exists in the db
     def test_registerSame(self):
         response = self.app.get(('/register'), follow_redirects = True)
         self.assertEqual(response.status_code, 200)
@@ -261,11 +261,7 @@ class TestCase(unittest.TestCase):
                             self.logger.warning('Unable to register the same user twice: F')
                         
 
-
-    
-        
-
-    #registering another user and testing if this updates in the database
+    # Registering another user and testing if this updates in the database
     def test_register2(self):
         response = self.app.get(('/register'), follow_redirects = True)
         self.assertEqual(response.status_code, 200)
@@ -298,8 +294,8 @@ class TestCase(unittest.TestCase):
                     raise
 
 
-    #testing to see if we can register a user with missing details - should not be able to
-    #missing email field 
+    # Testing to see if we can register a user with missing details - should not be able to
+    # Missing email field 
     def test_registerMissing(self):
         response = self.app.get(('/register'), follow_redirects = True)
         self.assertEqual(response.status_code, 200)
@@ -316,12 +312,12 @@ class TestCase(unittest.TestCase):
                 }
 
                 form = RegisterForm(data=data)
-                #form should not be valid since there is missing data
+                # Form should not be valid since there is missing data
                 self.assertFalse(form.validate())
                 error_dict = form.errors
-                #check if error message for missing email is displayed
+                # Check if error message for missing email is displayed
                 self.assertIn('This field is required.', error_dict.get('Email', []))
-                #check if the user is created in the database - they should not be 
+                # Check if the user is created in the database - they should not be 
                 user = models.UserDetails.query.filter_by(name= 'Pam Halpert').first()
                 try:
                     self.assertIsNone(user)
@@ -332,8 +328,8 @@ class TestCase(unittest.TestCase):
 
 
     
-    #testing to see if we can register a user with missing details - should not be able to
-    #missing Name field 
+    # Testing to see if we can register a user with missing details - should not be able to
+    # Missing Name field 
     def test_registerMissing2(self):
         response = self.app.get(('/register'), follow_redirects = True)
         self.assertEqual(response.status_code, 200)
@@ -350,12 +346,12 @@ class TestCase(unittest.TestCase):
                 }
 
                 form = RegisterForm(data=data)
-                #form should not be valid since there is missing data
+                # Form should not be valid since there is missing data
                 self.assertFalse(form.validate())
                 error_dict = form.errors
-                #check if error message for missing email is displayed
+                # Check if error message for missing email is displayed
                 self.assertIn('This field is required.', error_dict.get('Name', []))
-                #check if the user is created in the database - they should not be 
+                # Check if the user is created in the database - they should not be 
                 user = models.UserLogin.query.filter_by(email= 'Pam.halpert@gmail.com').first()
                 try:
                     self.assertIsNone(user)
@@ -366,9 +362,9 @@ class TestCase(unittest.TestCase):
                 
 
 
-    #testing that an exisiting user can log in 
+    # Testing that an exisiting user can log in 
     def test_login(self):
-        #using the login details of an already registered user
+        # Using the login details of an already registered user
         response = self.app.get(('/login'), follow_redirects = True)
         self.assertEqual(response.status_code, 200)
         with app.test_request_context():
@@ -391,8 +387,8 @@ class TestCase(unittest.TestCase):
                 
 
 
-    #logging in a user with missing fields
-    #an error message should be displayed to the user 
+    # Logging in a user with missing fields
+    # An error message should be displayed to the user 
     def test_invalid_login(self):
         with app.test_request_context():
             with app.app_context():
@@ -413,10 +409,10 @@ class TestCase(unittest.TestCase):
                     raise
 
 
-    #check privileges - a customer of type1 that is logged in should not be able to access pages for userType 3 accounts
-    #testing that an exisiting user can log in 
+    # Check privileges - a customer of type1 that is logged in should not be able to access pages for userType 3 accounts
+    # Testing that an exisiting user can log in 
     def test_user_privilege1(self):
-        #using the login details of an already registered user
+        # Using the login details of an already registered user
         response = self.app.get(('/login'), follow_redirects = True)
         self.assertEqual(response.status_code, 200)
         with app.test_request_context():
@@ -432,9 +428,9 @@ class TestCase(unittest.TestCase):
                 response = self.app.post('/login', data=form.data, follow_redirects = True)
                 self.assertEqual(response.status_code, 200)
         
-                #the user tries to access the manager page analysis
+                # The user tries to access the manager page analysis
                 response = self.app.get('/editEvent')
-                #404 = page does not exist becuase no event id has been passed in 
+                # 404 = page does not exist becuase no event id has been passed in 
                 try:
                     self.assertEqual(response.status_code, 404)
                     self.logger.info('Customer couldnt access edit event page: P')
@@ -443,9 +439,9 @@ class TestCase(unittest.TestCase):
                     raise
                 
     
-    #the same as previous test but for other manager only pages 
+    # The same as previous test but for other manager only pages 
     def test_user_privilege2(self):
-        #using the login details of an already registered user
+        # Using the login details of an already registered user
         response = self.app.get(('/login'), follow_redirects = True)
         self.assertEqual(response.status_code, 200)
         with app.test_request_context():
@@ -461,9 +457,9 @@ class TestCase(unittest.TestCase):
                 response = self.app.post('/login', data=form.data, follow_redirects = True)
                 self.assertEqual(response.status_code, 200)
         
-                #the user tries to access the manager page analysis
+                # The user tries to access the manager page analysis
                 response = self.app.get('/manageUsers')
-                #302 = the user is redirected 
+                # 302 = the user is redirected 
                 try:
                     self.assertEqual(response.status_code, 302)
                     self.logger.info('Customer couldnt access manage Users page: P')
@@ -472,9 +468,9 @@ class TestCase(unittest.TestCase):
                     raise
 
 
-    #the same as previous test but for other manager only pages 
+    # The same as previous test but for other manager only pages 
     def test_user_privilege3(self):
-        #using the login details of an already registered user
+        # Using the login details of an already registered user
         response = self.app.get(('/login'), follow_redirects = True)
         self.assertEqual(response.status_code, 200)
         with app.test_request_context():
@@ -490,9 +486,9 @@ class TestCase(unittest.TestCase):
                 response = self.app.post('/login', data=form.data, follow_redirects = True)
                 self.assertEqual(response.status_code, 200)
         
-                #the user tries to access the manager page analysis
+                # The user tries to access the manager page analysis
                 response = self.app.get('/editUser')
-                #404 = page does not exist because no userID passed to html
+                # 404 = page does not exist because no userID passed to html
                 try:
                     self.assertEqual(response.status_code, 404)
                     self.logger.info('Customer couldnt access edit user page: P')
@@ -501,9 +497,9 @@ class TestCase(unittest.TestCase):
                     raise
 
 
-    #the same as previous test but for other manager only pages 
+    # The same as previous test but for other manager only pages 
     def test_user_privilege4(self):
-        #using the login details of an already registered user
+        # Using the login details of an already registered user
         response = self.app.get(('/login'), follow_redirects = True)
         self.assertEqual(response.status_code, 200)
         with app.test_request_context():
@@ -519,18 +515,18 @@ class TestCase(unittest.TestCase):
                 response = self.app.post('/login', data=form.data, follow_redirects = True)
                 self.assertEqual(response.status_code, 200)
         
-                #the user tries to access the manager page analysis
+                # The user tries to access the manager page analysis
                 response = self.app.get('/analysis')
-                #302 = the user is redirected 
+                # 302 = the user is redirected 
                 try:
                     self.assertEqual(response.status_code, 302)
                     self.logger.info('Customer couldnt access analysis page: P')
                 except AssertionError:
                     self.logger.warning('Customer couldnt access analysis page: F')
 
-    #the same as previous test but for other manager only pages 
+    # The same as previous test but for other manager only pages 
     def test_user_privilege5(self):
-        #using the login details of an already registered user
+        # Using the login details of an already registered user
         response = self.app.get(('/login'), follow_redirects = True)
         self.assertEqual(response.status_code, 200)
         with app.test_request_context():
@@ -546,14 +542,16 @@ class TestCase(unittest.TestCase):
                 response = self.app.post('/login', data=form.data, follow_redirects = True)
                 self.assertEqual(response.status_code, 200)
         
-                #the user tries to access the manager page analysis
+                # The user tries to access the manager page analysis
                 response = self.app.get('/editActivity')
-                #302 = the user is redirected 
+                # 302 = the user is redirected 
                 try:
                     self.assertEqual(response.status_code, 302)
                     self.logger.info('Customer couldnt access edit Activity page: P')
                 except AssertionError:
                     self.logger.warning('Customer couldnt access edit Activity page: F')
+
+    
 
 
 

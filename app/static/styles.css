@@ -513,6 +513,7 @@ th, td {
     color: white;
 }
 
+
 .column {
     float: left;
     width: 16.5%;
@@ -591,3 +592,12 @@ th, td {
     margin: 0;
 }
 
+
+@media screen and (max-width: 1000px) {
+    .column {
+        width: 100%;
+    }
+    .tc-column {
+        width: 100%;
+    }
+}

@@ -811,3 +811,177 @@ INFO | 16/04/2023 20:36:38 | 127.0.0.1 - - [16/Apr/2023 20:36:38] "GET /static/s
 INFO | 16/04/2023 20:36:38 | 127.0.0.1 - - [16/Apr/2023 20:36:38] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
 INFO | 16/04/2023 20:36:40 | 127.0.0.1 - - [16/Apr/2023 20:36:40] "GET /home HTTP/1.1" 200 -
 INFO | 16/04/2023 20:36:40 | 127.0.0.1 - - [16/Apr/2023 20:36:40] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 20:39:21 |  * Running on http://127.0.0.1:5005/ (Press CTRL+C to quit)
+INFO | 16/04/2023 20:39:21 |  * Restarting with stat
+DEBUG | 16/04/2023 20:39:26 | Creating database tables
+INFO | 16/04/2023 20:39:27 | 127.0.0.1 - - [16/Apr/2023 20:39:27] "GET /home HTTP/1.1" 200 -
+INFO | 16/04/2023 20:39:27 | 127.0.0.1 - - [16/Apr/2023 20:39:27] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 20:42:24 |  * Detected change in '/home/cserv1_a/soc_msc/sc21aa/project-squad6/unit_testing.py', reloading
+INFO | 16/04/2023 20:42:24 |  * Restarting with stat
+INFO | 16/04/2023 20:46:52 | 127.0.0.1 - - [16/Apr/2023 20:46:52] "GET /meetTheTeam HTTP/1.1" 200 -
+INFO | 16/04/2023 20:46:52 | 127.0.0.1 - - [16/Apr/2023 20:46:52] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 20:46:52 | 127.0.0.1 - - [16/Apr/2023 20:46:52] "GET /static/images/hope.png HTTP/1.1" 200 -
+INFO | 16/04/2023 20:46:52 | 127.0.0.1 - - [16/Apr/2023 20:46:52] "GET /static/images/aaditi.png HTTP/1.1" 200 -
+INFO | 16/04/2023 20:46:52 | 127.0.0.1 - - [16/Apr/2023 20:46:52] "GET /static/images/chloe.png HTTP/1.1" 200 -
+INFO | 16/04/2023 20:46:52 | 127.0.0.1 - - [16/Apr/2023 20:46:52] "GET /static/images/archie.png HTTP/1.1" 200 -
+INFO | 16/04/2023 20:46:52 | 127.0.0.1 - - [16/Apr/2023 20:46:52] "GET /static/images/gaelle.png HTTP/1.1" 200 -
+INFO | 16/04/2023 20:46:52 | 127.0.0.1 - - [16/Apr/2023 20:46:52] "GET /static/images/toby.png HTTP/1.1" 200 -
+INFO | 16/04/2023 20:50:34 | 127.0.0.1 - - [16/Apr/2023 20:50:34] "GET /meetTheTeam HTTP/1.1" 200 -
+INFO | 16/04/2023 20:50:34 | 127.0.0.1 - - [16/Apr/2023 20:50:34] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 20:50:34 | 127.0.0.1 - - [16/Apr/2023 20:50:34] "[36mGET /static/images/hope.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 20:50:34 | 127.0.0.1 - - [16/Apr/2023 20:50:34] "[36mGET /static/images/archie.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 20:50:34 | 127.0.0.1 - - [16/Apr/2023 20:50:34] "[36mGET /static/images/aaditi.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 20:50:34 | 127.0.0.1 - - [16/Apr/2023 20:50:34] "[36mGET /static/images/chloe.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 20:50:34 | 127.0.0.1 - - [16/Apr/2023 20:50:34] "[36mGET /static/images/gaelle.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 20:50:34 | 127.0.0.1 - - [16/Apr/2023 20:50:34] "[36mGET /static/images/toby.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 20:52:19 | 127.0.0.1 - - [16/Apr/2023 20:52:19] "GET /meetTheTeam HTTP/1.1" 200 -
+INFO | 16/04/2023 20:52:19 | 127.0.0.1 - - [16/Apr/2023 20:52:19] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 20:52:19 | 127.0.0.1 - - [16/Apr/2023 20:52:19] "[36mGET /static/images/aaditi.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 20:52:19 | 127.0.0.1 - - [16/Apr/2023 20:52:19] "[36mGET /static/images/hope.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 20:52:19 | 127.0.0.1 - - [16/Apr/2023 20:52:19] "[36mGET /static/images/chloe.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 20:52:19 | 127.0.0.1 - - [16/Apr/2023 20:52:19] "[36mGET /static/images/archie.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 20:52:19 | 127.0.0.1 - - [16/Apr/2023 20:52:19] "[36mGET /static/images/gaelle.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 20:52:19 | 127.0.0.1 - - [16/Apr/2023 20:52:19] "[36mGET /static/images/toby.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:04:18 | 127.0.0.1 - - [16/Apr/2023 21:04:18] "GET /meetTheTeam HTTP/1.1" 200 -
+INFO | 16/04/2023 21:04:18 | 127.0.0.1 - - [16/Apr/2023 21:04:18] "GET /static/styles.css HTTP/1.1" 200 -
+INFO | 16/04/2023 21:04:18 | 127.0.0.1 - - [16/Apr/2023 21:04:18] "[36mGET /static/images/hope.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:04:18 | 127.0.0.1 - - [16/Apr/2023 21:04:18] "[36mGET /static/images/aaditi.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:04:18 | 127.0.0.1 - - [16/Apr/2023 21:04:18] "[36mGET /static/images/archie.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:04:18 | 127.0.0.1 - - [16/Apr/2023 21:04:18] "[36mGET /static/images/chloe.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:04:18 | 127.0.0.1 - - [16/Apr/2023 21:04:18] "[36mGET /static/images/gaelle.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:04:18 | 127.0.0.1 - - [16/Apr/2023 21:04:18] "[36mGET /static/images/toby.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:05:40 | 127.0.0.1 - - [16/Apr/2023 21:05:40] "[32mGET / HTTP/1.1[0m" 302 -
+INFO | 16/04/2023 21:05:40 | 127.0.0.1 - - [16/Apr/2023 21:05:40] "GET /home HTTP/1.1" 200 -
+INFO | 16/04/2023 21:05:40 | 127.0.0.1 - - [16/Apr/2023 21:05:40] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:05:43 | 127.0.0.1 - - [16/Apr/2023 21:05:43] "GET /meetTheTeam HTTP/1.1" 200 -
+INFO | 16/04/2023 21:05:43 | 127.0.0.1 - - [16/Apr/2023 21:05:43] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:05:43 | 127.0.0.1 - - [16/Apr/2023 21:05:43] "[36mGET /static/images/toby.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:05:43 | 127.0.0.1 - - [16/Apr/2023 21:05:43] "[36mGET /static/images/hope.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:05:43 | 127.0.0.1 - - [16/Apr/2023 21:05:43] "[36mGET /static/images/aaditi.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:05:43 | 127.0.0.1 - - [16/Apr/2023 21:05:43] "[36mGET /static/images/archie.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:05:43 | 127.0.0.1 - - [16/Apr/2023 21:05:43] "[36mGET /static/images/chloe.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:05:43 | 127.0.0.1 - - [16/Apr/2023 21:05:43] "[36mGET /static/images/gaelle.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:05:57 | 127.0.0.1 - - [16/Apr/2023 21:05:57] "[32mGET / HTTP/1.1[0m" 302 -
+INFO | 16/04/2023 21:05:57 | 127.0.0.1 - - [16/Apr/2023 21:05:57] "GET /home HTTP/1.1" 200 -
+INFO | 16/04/2023 21:05:58 | 127.0.0.1 - - [16/Apr/2023 21:05:58] "GET /static/styles.css HTTP/1.1" 200 -
+INFO | 16/04/2023 21:05:58 | 127.0.0.1 - - [16/Apr/2023 21:05:58] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO | 16/04/2023 21:06:14 | 127.0.0.1 - - [16/Apr/2023 21:06:14] "GET /meetTheTeam HTTP/1.1" 200 -
+INFO | 16/04/2023 21:06:14 | 127.0.0.1 - - [16/Apr/2023 21:06:14] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:06:14 | 127.0.0.1 - - [16/Apr/2023 21:06:14] "GET /static/images/hope.png HTTP/1.1" 200 -
+INFO | 16/04/2023 21:06:14 | 127.0.0.1 - - [16/Apr/2023 21:06:14] "GET /static/images/aaditi.png HTTP/1.1" 200 -
+INFO | 16/04/2023 21:06:14 | 127.0.0.1 - - [16/Apr/2023 21:06:14] "GET /static/images/archie.png HTTP/1.1" 200 -
+INFO | 16/04/2023 21:06:14 | 127.0.0.1 - - [16/Apr/2023 21:06:14] "GET /static/images/chloe.png HTTP/1.1" 200 -
+INFO | 16/04/2023 21:06:14 | 127.0.0.1 - - [16/Apr/2023 21:06:14] "GET /static/images/gaelle.png HTTP/1.1" 200 -
+INFO | 16/04/2023 21:06:14 | 127.0.0.1 - - [16/Apr/2023 21:06:14] "GET /static/images/toby.png HTTP/1.1" 200 -
+INFO | 16/04/2023 21:06:40 | 127.0.0.1 - - [16/Apr/2023 21:06:40] "GET /meetTheTeam HTTP/1.1" 200 -
+INFO | 16/04/2023 21:06:40 | 127.0.0.1 - - [16/Apr/2023 21:06:40] "GET /static/styles.css HTTP/1.1" 200 -
+INFO | 16/04/2023 21:06:40 | 127.0.0.1 - - [16/Apr/2023 21:06:40] "[36mGET /static/images/hope.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:06:40 | 127.0.0.1 - - [16/Apr/2023 21:06:40] "[36mGET /static/images/aaditi.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:06:40 | 127.0.0.1 - - [16/Apr/2023 21:06:40] "[36mGET /static/images/chloe.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:06:40 | 127.0.0.1 - - [16/Apr/2023 21:06:40] "[36mGET /static/images/archie.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:06:40 | 127.0.0.1 - - [16/Apr/2023 21:06:40] "[36mGET /static/images/gaelle.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:06:40 | 127.0.0.1 - - [16/Apr/2023 21:06:40] "[36mGET /static/images/toby.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:08:42 | 127.0.0.1 - - [16/Apr/2023 21:08:42] "GET /home HTTP/1.1" 200 -
+INFO | 16/04/2023 21:08:42 | 127.0.0.1 - - [16/Apr/2023 21:08:42] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:08:46 | 127.0.0.1 - - [16/Apr/2023 21:08:46] "GET /termsAndConditions HTTP/1.1" 200 -
+INFO | 16/04/2023 21:08:46 | 127.0.0.1 - - [16/Apr/2023 21:08:46] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:09:33 | 127.0.0.1 - - [16/Apr/2023 21:09:33] "GET /termsAndConditions HTTP/1.1" 200 -
+INFO | 16/04/2023 21:09:33 | 127.0.0.1 - - [16/Apr/2023 21:09:33] "GET /static/styles.css HTTP/1.1" 200 -
+INFO | 16/04/2023 21:10:37 | 127.0.0.1 - - [16/Apr/2023 21:10:37] "GET /termsAndConditions HTTP/1.1" 200 -
+INFO | 16/04/2023 21:10:37 | 127.0.0.1 - - [16/Apr/2023 21:10:37] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:10:53 | 127.0.0.1 - - [16/Apr/2023 21:10:53] "GET /termsAndConditions HTTP/1.1" 200 -
+INFO | 16/04/2023 21:10:53 | 127.0.0.1 - - [16/Apr/2023 21:10:53] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:19:32 | 127.0.0.1 - - [16/Apr/2023 21:19:32] "GET /termsAndConditions HTTP/1.1" 200 -
+INFO | 16/04/2023 21:19:32 | 127.0.0.1 - - [16/Apr/2023 21:19:32] "GET /static/styles.css HTTP/1.1" 200 -
+INFO | 16/04/2023 21:19:39 | 127.0.0.1 - - [16/Apr/2023 21:19:39] "GET /meetTheTeam HTTP/1.1" 200 -
+INFO | 16/04/2023 21:19:39 | 127.0.0.1 - - [16/Apr/2023 21:19:39] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:19:39 | 127.0.0.1 - - [16/Apr/2023 21:19:39] "[36mGET /static/images/hope.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:19:39 | 127.0.0.1 - - [16/Apr/2023 21:19:39] "[36mGET /static/images/aaditi.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:19:39 | 127.0.0.1 - - [16/Apr/2023 21:19:39] "[36mGET /static/images/chloe.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:19:39 | 127.0.0.1 - - [16/Apr/2023 21:19:39] "[36mGET /static/images/archie.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:19:39 | 127.0.0.1 - - [16/Apr/2023 21:19:39] "[36mGET /static/images/gaelle.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:19:39 | 127.0.0.1 - - [16/Apr/2023 21:19:39] "[36mGET /static/images/toby.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:23:11 | 127.0.0.1 - - [16/Apr/2023 21:23:11] "GET /home HTTP/1.1" 200 -
+INFO | 16/04/2023 21:23:12 | 127.0.0.1 - - [16/Apr/2023 21:23:12] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 16/04/2023 21:24:53 | Register route request
+INFO | 16/04/2023 21:24:53 | 127.0.0.1 - - [16/Apr/2023 21:24:53] "GET /register HTTP/1.1" 200 -
+INFO | 16/04/2023 21:24:53 | 127.0.0.1 - - [16/Apr/2023 21:24:53] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 16/04/2023 21:25:10 | Register route request
+INFO | 16/04/2023 21:25:11 | 127.0.0.1 - - [16/Apr/2023 21:25:11] "[32mPOST /register HTTP/1.1[0m" 302 -
+DEBUG | 16/04/2023 21:25:11 | Login route request
+INFO | 16/04/2023 21:25:11 | 127.0.0.1 - - [16/Apr/2023 21:25:11] "GET /login HTTP/1.1" 200 -
+INFO | 16/04/2023 21:25:11 | 127.0.0.1 - - [16/Apr/2023 21:25:11] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 16/04/2023 21:25:21 | Login route request
+INFO | 16/04/2023 21:25:21 | 127.0.0.1 - - [16/Apr/2023 21:25:21] "[32mPOST /login HTTP/1.1[0m" 302 -
+INFO | 16/04/2023 21:25:21 | 127.0.0.1 - - [16/Apr/2023 21:25:21] "GET /home HTTP/1.1" 200 -
+INFO | 16/04/2023 21:25:21 | 127.0.0.1 - - [16/Apr/2023 21:25:21] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 16/04/2023 21:25:55 | Settings route request
+INFO | 16/04/2023 21:25:55 | 127.0.0.1 - - [16/Apr/2023 21:25:55] "GET /settings HTTP/1.1" 200 -
+INFO | 16/04/2023 21:25:55 | 127.0.0.1 - - [16/Apr/2023 21:25:55] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:26:17 | 127.0.0.1 - - [16/Apr/2023 21:26:17] "GET /termsAndConditions HTTP/1.1" 200 -
+INFO | 16/04/2023 21:26:17 | 127.0.0.1 - - [16/Apr/2023 21:26:17] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:26:30 | 127.0.0.1 - - [16/Apr/2023 21:26:30] "GET /home HTTP/1.1" 200 -
+INFO | 16/04/2023 21:26:31 | 127.0.0.1 - - [16/Apr/2023 21:26:31] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:26:34 | 127.0.0.1 - - [16/Apr/2023 21:26:34] "GET /meetTheTeam HTTP/1.1" 200 -
+INFO | 16/04/2023 21:26:35 | 127.0.0.1 - - [16/Apr/2023 21:26:35] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:26:35 | 127.0.0.1 - - [16/Apr/2023 21:26:35] "[36mGET /static/images/hope.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:26:35 | 127.0.0.1 - - [16/Apr/2023 21:26:35] "[36mGET /static/images/aaditi.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:26:35 | 127.0.0.1 - - [16/Apr/2023 21:26:35] "[36mGET /static/images/archie.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:26:35 | 127.0.0.1 - - [16/Apr/2023 21:26:35] "[36mGET /static/images/chloe.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:26:35 | 127.0.0.1 - - [16/Apr/2023 21:26:35] "[36mGET /static/images/gaelle.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:26:35 | 127.0.0.1 - - [16/Apr/2023 21:26:35] "[36mGET /static/images/toby.png HTTP/1.1[0m" 304 -
+DEBUG | 16/04/2023 21:27:03 | Settings route request
+INFO | 16/04/2023 21:27:03 | 127.0.0.1 - - [16/Apr/2023 21:27:03] "GET /settings HTTP/1.1" 200 -
+INFO | 16/04/2023 21:27:03 | 127.0.0.1 - - [16/Apr/2023 21:27:03] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:27:19 | 127.0.0.1 - - [16/Apr/2023 21:27:19] "GET /home HTTP/1.1" 200 -
+INFO | 16/04/2023 21:27:19 | 127.0.0.1 - - [16/Apr/2023 21:27:19] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:27:22 | 127.0.0.1 - - [16/Apr/2023 21:27:22] "GET /meetTheTeam HTTP/1.1" 200 -
+INFO | 16/04/2023 21:27:22 | 127.0.0.1 - - [16/Apr/2023 21:27:22] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:27:22 | 127.0.0.1 - - [16/Apr/2023 21:27:22] "[36mGET /static/images/hope.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:27:22 | 127.0.0.1 - - [16/Apr/2023 21:27:22] "[36mGET /static/images/archie.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:27:22 | 127.0.0.1 - - [16/Apr/2023 21:27:22] "[36mGET /static/images/aaditi.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:27:22 | 127.0.0.1 - - [16/Apr/2023 21:27:22] "[36mGET /static/images/chloe.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:27:22 | 127.0.0.1 - - [16/Apr/2023 21:27:22] "[36mGET /static/images/gaelle.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:27:22 | 127.0.0.1 - - [16/Apr/2023 21:27:22] "[36mGET /static/images/toby.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:27:50 | 127.0.0.1 - - [16/Apr/2023 21:27:50] "GET /termsAndConditions HTTP/1.1" 200 -
+INFO | 16/04/2023 21:27:50 | 127.0.0.1 - - [16/Apr/2023 21:27:50] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 16/04/2023 21:37:01 | Logout route request
+INFO | 16/04/2023 21:37:01 | 127.0.0.1 - - [16/Apr/2023 21:37:01] "[32mGET /logout HTTP/1.1[0m" 302 -
+DEBUG | 16/04/2023 21:37:01 | Login route request
+INFO | 16/04/2023 21:37:01 | 127.0.0.1 - - [16/Apr/2023 21:37:01] "GET /login HTTP/1.1" 200 -
+INFO | 16/04/2023 21:37:01 | 127.0.0.1 - - [16/Apr/2023 21:37:01] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:37:05 | 127.0.0.1 - - [16/Apr/2023 21:37:05] "GET /meetTheTeam HTTP/1.1" 200 -
+INFO | 16/04/2023 21:37:05 | 127.0.0.1 - - [16/Apr/2023 21:37:05] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:37:05 | 127.0.0.1 - - [16/Apr/2023 21:37:05] "[36mGET /static/images/hope.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:37:05 | 127.0.0.1 - - [16/Apr/2023 21:37:05] "[36mGET /static/images/aaditi.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:37:05 | 127.0.0.1 - - [16/Apr/2023 21:37:05] "[36mGET /static/images/archie.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:37:05 | 127.0.0.1 - - [16/Apr/2023 21:37:05] "[36mGET /static/images/gaelle.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:37:05 | 127.0.0.1 - - [16/Apr/2023 21:37:05] "[36mGET /static/images/chloe.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:37:05 | 127.0.0.1 - - [16/Apr/2023 21:37:05] "[36mGET /static/images/toby.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 21:38:30 | 127.0.0.1 - - [16/Apr/2023 21:38:30] "GET /termsAndConditions HTTP/1.1" 200 -
+INFO | 16/04/2023 21:38:30 | 127.0.0.1 - - [16/Apr/2023 21:38:30] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 23:00:49 |  * Running on http://127.0.0.1:5005/ (Press CTRL+C to quit)
+INFO | 16/04/2023 23:00:49 |  * Restarting with stat
+DEBUG | 16/04/2023 23:02:15 | Creating database tables
+INFO | 16/04/2023 23:02:16 | 127.0.0.1 - - [16/Apr/2023 23:02:16] "[32mGET / HTTP/1.1[0m" 302 -
+INFO | 16/04/2023 23:02:16 | 127.0.0.1 - - [16/Apr/2023 23:02:16] "GET /home HTTP/1.1" 200 -
+INFO | 16/04/2023 23:02:16 | 127.0.0.1 - - [16/Apr/2023 23:02:16] "GET /static/styles.css HTTP/1.1" 200 -
+INFO | 16/04/2023 23:02:16 | 127.0.0.1 - - [16/Apr/2023 23:02:16] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO | 16/04/2023 23:02:19 | 127.0.0.1 - - [16/Apr/2023 23:02:19] "GET /meetTheTeam HTTP/1.1" 200 -
+INFO | 16/04/2023 23:02:19 | 127.0.0.1 - - [16/Apr/2023 23:02:19] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 23:02:19 | 127.0.0.1 - - [16/Apr/2023 23:02:19] "GET /static/images/aaditi.png HTTP/1.1" 200 -
+INFO | 16/04/2023 23:02:19 | 127.0.0.1 - - [16/Apr/2023 23:02:19] "GET /static/images/hope.png HTTP/1.1" 200 -
+INFO | 16/04/2023 23:02:19 | 127.0.0.1 - - [16/Apr/2023 23:02:19] "GET /static/images/archie.png HTTP/1.1" 200 -
+INFO | 16/04/2023 23:02:19 | 127.0.0.1 - - [16/Apr/2023 23:02:19] "GET /static/images/chloe.png HTTP/1.1" 200 -
+INFO | 16/04/2023 23:02:19 | 127.0.0.1 - - [16/Apr/2023 23:02:19] "GET /static/images/toby.png HTTP/1.1" 200 -
+INFO | 16/04/2023 23:02:19 | 127.0.0.1 - - [16/Apr/2023 23:02:19] "GET /static/images/gaelle.png HTTP/1.1" 200 -
+INFO | 16/04/2023 23:04:23 | 127.0.0.1 - - [16/Apr/2023 23:04:23] "GET /meetTheTeam HTTP/1.1" 200 -
+INFO | 16/04/2023 23:04:23 | 127.0.0.1 - - [16/Apr/2023 23:04:23] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 23:04:23 | 127.0.0.1 - - [16/Apr/2023 23:04:23] "[36mGET /static/images/hope.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 23:04:23 | 127.0.0.1 - - [16/Apr/2023 23:04:23] "[36mGET /static/images/aaditi.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 23:04:23 | 127.0.0.1 - - [16/Apr/2023 23:04:23] "[36mGET /static/images/archie.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 23:04:23 | 127.0.0.1 - - [16/Apr/2023 23:04:23] "[36mGET /static/images/chloe.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 23:04:23 | 127.0.0.1 - - [16/Apr/2023 23:04:23] "[36mGET /static/images/gaelle.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 23:04:23 | 127.0.0.1 - - [16/Apr/2023 23:04:23] "[36mGET /static/images/toby.png HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 23:04:28 | 127.0.0.1 - - [16/Apr/2023 23:04:28] "GET /termsAndConditions HTTP/1.1" 200 -
+INFO | 16/04/2023 23:04:28 | 127.0.0.1 - - [16/Apr/2023 23:04:28] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -

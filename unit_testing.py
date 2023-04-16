@@ -551,7 +551,7 @@ class TestCase(unittest.TestCase):
                 except AssertionError:
                     self.logger.warning('Customer couldnt access edit Activity page: F')
 
-
+    # bug IN SETTINGS PAGE
     # If a user tries to update their details in the setting page
     # The changes should be reflected in the userDetails database
     def test_userDetail_update(self):

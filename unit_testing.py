@@ -534,7 +534,7 @@ class TestCase(unittest.TestCase):
 
                 data = {
                     'Email' : 'aaditi@gmail.com',
-                    'Password' : 'MichaelScott1',
+                    'Password' : 'MichaelScott1'
                 }
 
                 form = LoginForm(data=data)
@@ -551,7 +551,35 @@ class TestCase(unittest.TestCase):
                 except AssertionError:
                     self.logger.warning('Customer couldnt access edit Activity page: F')
 
-    
+
+    # If a user tries to update their details in the setting page
+    # The changes should be reflected in the userDetails database
+    def test_userDetail_update(self):
+        # First log in a user 
+        response = self.app.get(('/login'), follow_redirects = True)
+        self.assertEqual(response.status_code, 200)
+        with app.test_request_context():
+            with app.app_context():
+
+                data = {
+                    'Email' : 'aaditi@gmail.com',
+                    'Password' : 'MichaelScott1'
+                }
+                form = LoginForm(data=data)
+                self.assertTrue(form.validate())
+                response = self.app.post('/login', data=form.data, follow_redirects=True)
+                self.assertEqual(response.status_code, 200)
+                
+                # Navigate to settings page
+                response = self.app.get(('/setting'), follow_redirects = True)
+                self.assertEqual(response.status_code, 200)
+
+                # The user wants to change their name
+                data1 = {
+
+                }
+        # Submit flask form 
+        # Check the database is updated 
 
 
 

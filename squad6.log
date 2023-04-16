@@ -748,3 +748,66 @@ INFO | 16/04/2023 20:07:17 | 127.0.0.1 - - [16/Apr/2023 20:07:17] "GET /home HTT
 INFO | 16/04/2023 20:07:17 | 127.0.0.1 - - [16/Apr/2023 20:07:17] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
 INFO | 16/04/2023 20:07:20 | 127.0.0.1 - - [16/Apr/2023 20:07:20] "GET /home HTTP/1.1" 200 -
 INFO | 16/04/2023 20:07:20 | 127.0.0.1 - - [16/Apr/2023 20:07:20] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 20:17:07 |  * Running on http://127.0.0.1:5005/ (Press CTRL+C to quit)
+INFO | 16/04/2023 20:17:07 |  * Restarting with stat
+INFO | 16/04/2023 20:26:11 |  * Detected change in '/home/cserv1_a/soc_msc/sc21aa/project-squad6/unit_testing.py', reloading
+INFO | 16/04/2023 20:26:12 |  * Restarting with stat
+INFO | 16/04/2023 20:26:55 |  * Detected change in '/home/cserv1_a/soc_msc/sc21aa/project-squad6/unit_testing.py', reloading
+INFO | 16/04/2023 20:26:55 |  * Restarting with stat
+INFO | 16/04/2023 20:26:58 |  * Detected change in '/home/cserv1_a/soc_msc/sc21aa/project-squad6/unit_testing.py', reloading
+INFO | 16/04/2023 20:26:58 |  * Restarting with stat
+DEBUG | 16/04/2023 20:27:19 | Creating database tables
+INFO | 16/04/2023 20:27:20 | 127.0.0.1 - - [16/Apr/2023 20:27:20] "[32mGET / HTTP/1.1[0m" 302 -
+INFO | 16/04/2023 20:27:20 | 127.0.0.1 - - [16/Apr/2023 20:27:20] "GET /home HTTP/1.1" 200 -
+INFO | 16/04/2023 20:27:20 | 127.0.0.1 - - [16/Apr/2023 20:27:20] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 16/04/2023 20:27:24 | Register route request
+INFO | 16/04/2023 20:27:24 | 127.0.0.1 - - [16/Apr/2023 20:27:24] "GET /register HTTP/1.1" 200 -
+INFO | 16/04/2023 20:27:24 | 127.0.0.1 - - [16/Apr/2023 20:27:24] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 16/04/2023 20:27:39 | Register route request
+INFO | 16/04/2023 20:27:39 | 127.0.0.1 - - [16/Apr/2023 20:27:39] "[32mPOST /register HTTP/1.1[0m" 302 -
+DEBUG | 16/04/2023 20:27:39 | Login route request
+INFO | 16/04/2023 20:27:39 | 127.0.0.1 - - [16/Apr/2023 20:27:39] "GET /login HTTP/1.1" 200 -
+INFO | 16/04/2023 20:27:40 | 127.0.0.1 - - [16/Apr/2023 20:27:40] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 16/04/2023 20:27:45 | Login route request
+INFO | 16/04/2023 20:27:46 | 127.0.0.1 - - [16/Apr/2023 20:27:46] "[32mPOST /login HTTP/1.1[0m" 302 -
+INFO | 16/04/2023 20:27:46 | 127.0.0.1 - - [16/Apr/2023 20:27:46] "GET /home HTTP/1.1" 200 -
+INFO | 16/04/2023 20:27:46 | 127.0.0.1 - - [16/Apr/2023 20:27:46] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 16/04/2023 20:27:48 | Settings route request
+INFO | 16/04/2023 20:27:48 | 127.0.0.1 - - [16/Apr/2023 20:27:48] "GET /settings HTTP/1.1" 200 -
+INFO | 16/04/2023 20:27:48 | 127.0.0.1 - - [16/Apr/2023 20:27:48] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 20:28:21 | 127.0.0.1 - - [16/Apr/2023 20:28:21] "GET /home HTTP/1.1" 200 -
+INFO | 16/04/2023 20:28:21 | 127.0.0.1 - - [16/Apr/2023 20:28:21] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 16/04/2023 20:28:24 | Monthly membership route request
+INFO | 16/04/2023 20:28:24 | 127.0.0.1 - - [16/Apr/2023 20:28:24] "[32mGET /memberships/monthly HTTP/1.1[0m" 302 -
+DEBUG | 16/04/2023 20:28:24 | Basket route request
+INFO | 16/04/2023 20:28:24 | 127.0.0.1 - - [16/Apr/2023 20:28:24] "GET /basket HTTP/1.1" 200 -
+INFO | 16/04/2023 20:28:24 | 127.0.0.1 - - [16/Apr/2023 20:28:24] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 20:28:44 | message='Request to Stripe api' method=post path=https://api.stripe.com/v1/customers
+DEBUG | 16/04/2023 20:28:44 | api_version=None message='Post details' post_data=email=aaditi%40gmail.com&source=tok_1MxbFeLpcMacjDf9TfXWVYfr
+DEBUG | 16/04/2023 20:28:45 | Starting new HTTPS connection (1): api.stripe.com:443
+DEBUG | 16/04/2023 20:28:45 | https://api.stripe.com:443 "POST /v1/customers HTTP/1.1" 200 625
+INFO | 16/04/2023 20:28:45 | message='Stripe API response' path=https://api.stripe.com/v1/customers response_code=200
+DEBUG | 16/04/2023 20:28:45 | body='{\n  "id": "cus_Nj3M29JENz8XWR",\n  "object": "customer",\n  "address": null,\n  "balance": 0,\n  "created": 1681673325,\n  "currency": null,\n  "default_source": "card_1MxbFeLpcMacjDf9PqOj0Ysy",\n  "delinquent": false,\n  "description": null,\n  "discount": null,\n  "email": "aaditi@gmail.com",\n  "invoice_prefix": "D4A80F51",\n  "invoice_settings": {\n    "custom_fields": null,\n    "default_payment_method": null,\n    "footer": null,\n    "rendering_options": null\n  },\n  "livemode": false,\n  "metadata": {},\n  "name": null,\n  "phone": null,\n  "preferred_locales": [],\n  "shipping": null,\n  "tax_exempt": "none",\n  "test_clock": null\n}' message='API response body'
+DEBUG | 16/04/2023 20:28:45 | link=https://dashboard.stripe.com/test/logs/req_5Feoo8Vt31ODVV message='Dashboard link for request'
+INFO | 16/04/2023 20:28:45 | message='Request to Stripe api' method=post path=https://api.stripe.com/v1/charges
+DEBUG | 16/04/2023 20:28:45 | api_version=None message='Post details' post_data=customer=cus_Nj3M29JENz8XWR&amount=3500&currency=GBP&description=Push+and+Pull+Payment
+DEBUG | 16/04/2023 20:28:46 | https://api.stripe.com:443 "POST /v1/charges HTTP/1.1" 200 3010
+INFO | 16/04/2023 20:28:46 | message='Stripe API response' path=https://api.stripe.com/v1/charges response_code=200
+DEBUG | 16/04/2023 20:28:46 | body='{\n  "id": "ch_3MxbFhLpcMacjDf91gS7LvPN",\n  "object": "charge",\n  "amount": 3500,\n  "amount_captured": 3500,\n  "amount_refunded": 0,\n  "application": null,\n  "application_fee": null,\n  "application_fee_amount": null,\n  "balance_transaction": "txn_3MxbFhLpcMacjDf91EnqdagP",\n  "billing_details": {\n    "address": {\n      "city": null,\n      "country": null,\n      "line1": null,\n      "line2": null,\n      "postal_code": null,\n      "state": null\n    },\n    "email": null,\n    "name": "aaditi@gmail.com",\n    "phone": null\n  },\n  "calculated_statement_descriptor": "PROJECT SQUAD 6",\n  "captured": true,\n  "created": 1681673325,\n  "currency": "gbp",\n  "customer": "cus_Nj3M29JENz8XWR",\n  "description": "Push and Pull Payment",\n  "destination": null,\n  "dispute": null,\n  "disputed": false,\n  "failure_balance_transaction": null,\n  "failure_code": null,\n  "failure_message": null,\n  "fraud_details": {},\n  "invoice": null,\n  "livemode": false,\n  "metadata": {},\n  "on_behalf_of": null,\n  "order": null,\n  "outcome": {\n    "network_status": "approved_by_network",\n    "reason": null,\n    "risk_level": "normal",\n    "risk_score": 18,\n    "seller_message": "Payment complete.",\n    "type": "authorized"\n  },\n  "paid": true,\n  "payment_intent": null,\n  "payment_method": "card_1MxbFeLpcMacjDf9PqOj0Ysy",\n  "payment_method_details": {\n    "card": {\n      "brand": "visa",\n      "checks": {\n        "address_line1_check": null,\n        "address_postal_code_check": null,\n        "cvc_check": "pass"\n      },\n      "country": "US",\n      "exp_month": 10,\n      "exp_year": 2023,\n      "fingerprint": "Tc1127UmFfqm8qTb",\n      "funding": "credit",\n      "installments": null,\n      "last4": "4242",\n      "mandate": null,\n      "network": "visa",\n      "network_token": {\n        "used": false\n      },\n      "three_d_secure": null,\n      "wallet": null\n    },\n    "type": "card"\n  },\n  "receipt_email": null,\n  "receipt_number": null,\n  "receipt_url": "https://pay.stripe.com/receipts/payment/CAcaFwoVYWNjdF8xTXFGWTJMcGNNYWNqRGY5KO6Y8aEGMgZlxeSdS8g6LBaeO5H_Rt5Ir2Rjf_UIy6dFZclo9ki7_C6MPUCNTyQ5OcGe8fPhzj_bN4a7",\n  "refunded": false,\n  "review": null,\n  "shipping": null,\n  "source": {\n    "id": "card_1MxbFeLpcMacjDf9PqOj0Ysy",\n    "object": "card",\n    "address_city": null,\n    "address_country": null,\n    "address_line1": null,\n    "address_line1_check": null,\n    "address_line2": null,\n    "address_state": null,\n    "address_zip": null,\n    "address_zip_check": null,\n    "brand": "Visa",\n    "country": "US",\n    "customer": "cus_Nj3M29JENz8XWR",\n    "cvc_check": "pass",\n    "dynamic_last4": null,\n    "exp_month": 10,\n    "exp_year": 2023,\n    "fingerprint": "Tc1127UmFfqm8qTb",\n    "funding": "credit",\n    "last4": "4242",\n    "metadata": {},\n    "name": "aaditi@gmail.com",\n    "tokenization_method": null,\n    "wallet": null\n  },\n  "source_transfer": null,\n  "statement_descriptor": null,\n  "statement_descriptor_suffix": null,\n  "status": "succeeded",\n  "transfer_data": null,\n  "transfer_group": null\n}' message='API response body'
+DEBUG | 16/04/2023 20:28:46 | link=https://dashboard.stripe.com/test/logs/req_BDsyKHGDqkL6qg message='Dashboard link for request'
+INFO | 16/04/2023 20:28:46 | 127.0.0.1 - - [16/Apr/2023 20:28:46] "[32mPOST /checkout HTTP/1.1[0m" 302 -
+DEBUG | 16/04/2023 20:28:46 | My bookings route request
+INFO | 16/04/2023 20:28:46 | 127.0.0.1 - - [16/Apr/2023 20:28:46] "GET /myBookings HTTP/1.1" 200 -
+INFO | 16/04/2023 20:28:46 | 127.0.0.1 - - [16/Apr/2023 20:28:46] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+DEBUG | 16/04/2023 20:28:50 | Settings route request
+INFO | 16/04/2023 20:28:50 | 127.0.0.1 - - [16/Apr/2023 20:28:50] "GET /settings HTTP/1.1" 200 -
+INFO | 16/04/2023 20:28:50 | 127.0.0.1 - - [16/Apr/2023 20:28:50] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO | 16/04/2023 20:34:30 |  * Running on http://127.0.0.1:5005/ (Press CTRL+C to quit)
+INFO | 16/04/2023 20:34:30 |  * Restarting with stat
+DEBUG | 16/04/2023 20:36:36 | Creating database tables
+INFO | 16/04/2023 20:36:37 | 127.0.0.1 - - [16/Apr/2023 20:36:37] "[32mGET / HTTP/1.1[0m" 302 -
+INFO | 16/04/2023 20:36:38 | 127.0.0.1 - - [16/Apr/2023 20:36:38] "GET /home HTTP/1.1" 200 -
+INFO | 16/04/2023 20:36:38 | 127.0.0.1 - - [16/Apr/2023 20:36:38] "GET /static/styles.css HTTP/1.1" 200 -
+INFO | 16/04/2023 20:36:38 | 127.0.0.1 - - [16/Apr/2023 20:36:38] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO | 16/04/2023 20:36:40 | 127.0.0.1 - - [16/Apr/2023 20:36:40] "GET /home HTTP/1.1" 200 -
+INFO | 16/04/2023 20:36:40 | 127.0.0.1 - - [16/Apr/2023 20:36:40] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -

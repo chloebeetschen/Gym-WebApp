@@ -19,4 +19,5 @@ else
   export FLASK_DEBUG=1
 fi
 
-flask run --port=5005
+flask run --port=5002
+

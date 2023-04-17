@@ -194,7 +194,7 @@ def calendarMethod():
     w2 = datetime.now()+timedelta(days=13)
     
     # get all events in order of date and time w1 and w2
-    events = Calendar.query.filter(Calendar.aDateTime >= date.today()).filter(Calendar.aIsRepeat==False).filter(Calendar.aDateTime < w1).order_by(Calendar.aDateTime).all()
+    events1 = Calendar.query.filter(Calendar.aDateTime >= datetime.now()).filter(Calendar.aIsRepeat==False).filter(Calendar.aDateTime < w1).order_by(Calendar.aDateTime).all()
     events2 = Calendar.query.filter(Calendar.aDateTime >= w1).filter(Calendar.aDateTime < w2).filter(Calendar.aIsRepeat==False).order_by(Calendar.aDateTime).all()
 
     userBooked1 = []
@@ -205,7 +205,7 @@ def calendarMethod():
     # get event type for each event found
     eventInfo = []
     eventPrices = []
-    for i in events:
+    for i in events1:
         # Find the index of day in weeks list
         index = dateWeeks.index((i.aDateTime).date())
         weeksCount[index] +=1
@@ -246,6 +246,17 @@ def calendarMethod():
         else:
             userBooked2.append(False)
 
+    
+    # To turn results into dictionary for the calendar
+
+    events = []
+    for num in range(len(events1)):
+        e1 = {'type':eventInfo[num].activityType, 'time':events1[num].aDateTime.strftime("%Y-%m-%d")}
+        events.append(e1)
+    for num2 in range(len(events2)):
+        e2 = {'type':eventInfo2[num].activityType, 'time':events2[num].aDateTime.strftime("%Y-%m-%d")}
+        events.append(e2)
+
 
     if 'proxyBooking' in session :
         for id in session['proxyBooking']:
@@ -256,9 +267,9 @@ def calendarMethod():
     if 'proxyBooking' in session:
         return render_template('calendar.html',
                             title     = 'Calendar',
-                            numEvents = len(events),
+                            numEvents = len(events1),
                             numEvents2 = len(events2),
-                            events    = events,
+                            events1    = events1,
                             eventInfo = eventInfo,
                             eventPrices = eventPrices,
                             events2    = events2,
@@ -269,14 +280,15 @@ def calendarMethod():
                             userBooked1 = userBooked1,
                             userBooked2 = userBooked2,
                             proxyBooking = True,
-                            weeksCount = weeksCount
+                            weeksCount = weeksCount,
+                            events = events
                             )
     else:
         return render_template('calendar.html',
                             title     = 'Calendar',
-                            numEvents = len(events),
+                            numEvents = len(events1),
                             numEvents2 = len(events2),
-                            events    = events,
+                            events1    = events1,
                             eventInfo = eventInfo,
                             events2    = events2,
                             eventPrices = eventPrices,
@@ -286,7 +298,8 @@ def calendarMethod():
                             weeks     = weeks,
                             userBooked1 = userBooked1,
                             userBooked2 = userBooked2,
-                            weeksCount=weeksCount
+                            weeksCount=weeksCount,
+                            events = events
                             )
 
 @app.route('/calendar/<id>', methods=['GET', 'POST'])

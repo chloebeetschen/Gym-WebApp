@@ -1,4 +1,6 @@
 <!-- Template for calender frontend -->
+<!--https://www.youtube.com/watch?v=VXW2A4Q81Ok-->
+<!--https://leimao.github.io/blog/JavaScript-FullCalendar/-->
 {% extends "base.html" %}
 {% block content %}
 
@@ -18,255 +20,34 @@
     {% endwith %}
 </div>
 
-
-    <div class="row m-0 p-0 mb-4 text-center">
-        <!--Basic Header-->
-        <p class="header p-0 m-0 pt-0 mb-0">Calendar</p>
-        <p class="mb-4 text-center">If you would like to book one of our sessions that is open all day please choose
-            from below.</p>
-        <!-- <div class="col"></div>
-        <div class="col"></div> -->
-        <div class="d-flex justify-content-center">
-            <div class="col">
-                <a href="/repeatEvents/2"><button type="button" class="btn btn-primary btn-calendar">Lane
-                        Swimming</button></a>
-            </div>
-            <div class="col">
-                <a href="/repeatEvents/4"><button type="button" class="btn  btn-primary btn-calendar">General Use
-                        Swimming</button></a>
-            </div>
-            <div class="col">
-                <a href="/repeatEvents/3"><button type="button" class="btn  btn-primary btn-calendar">Swimming
-                        Lessons</button></a>
-            </div>
-            <div class="col">
-                <a href="/repeatEvents/5"><button type="button" class="btn  btn-primary btn-calendar">Gym</button></a>
-            </div>
-            <div class="col">
-                <a href="/repeatEvents/7"><button type="button" class="btn  btn-primary btn-calendar">Climbing</button></a>
-            </div>
-            <div class="col">
-                <a href="/repeatEvents/6"><button type="button" class="btn  btn-primary btn-calendar">Squash</button></a>
-            </div>
-            <div class="col">
-                <a href="/repeatEvents/12"><button type="button" class="btn  btn-primary btn-calendar">Sports Hall
-                        Session</button></a>
-            </div>
-        </div>
-        
-        <!-- <div class="col"></div>
-        <div class="col"></div> -->
-    </div>
-
-    <!--Basic table to hold calendar information-->
-    <div class="row">
-        <div class="col calendar-info rounded-5 box-shadow">
-            <!-- Table for whole week -->
-            <!-- <table class="table">
-
-            <thead>-->
-            <div class=" mt-0 pt-0 border-bottom">
-                <p class="header"> WEEK 1</p>
-            </div>
-
-            <!-- </thead>
-
-            <tbody> -->
-
-            {% for j in range(0, 7) %}
-            <!-- <tr> -->
-            <table class="table table-responsive">
-                <p class="mb-0 mt-5 calendar-days">{{weeks[j].strftime("%A")}} - {{weeks[j].strftime("%d/%m/%y")}}</p>
-                <thead>
-                    {% if weeksCount[j] == 0 %}
-                    <th class="text-start pb-5 fw-light">There are no sessions on this day. </th>
-
-                    {% else %}
-                    <th>Time</th>
-                    <th>Activity</th>
-                    <!-- <th>Spaces</th> -->
-                    {% if isMember == False %}
-                    <th>Price</th>
-                    {% endif %}
-                    <th></th>
-                    <th></th>
-                    {% endif %}
-                </thead>
-                <tbody>
-                    {% for i in range(numEvents) %}
-                    {% if events[i].aDateTime.weekday() == weeks[j].weekday() %}
-                    <tr>
-                        <!--display event and event info in the tables-->
-                        <td>{{events[i].aDateTime.strftime("%H:%M")}}</td>
-                        <td>{{eventInfo[i].activityType}}</td>
-                        <!-- <td>{{events[i].aCapacity-events[i].aSlotsTaken}}</td> -->
-                        {% if isMember == False %}
-                        <td>£{{eventPrices[i]}}</td>
-                        {% endif %}
-                        <!--TODO Popup for event info-->
-                        {% if current_user.userType == 3 %}
-                        <td><a href="/editEvent/{{events[i].id}}"><button type="button"
-                                    class="btn btn-responsive-calendar btn-primary">Edit/View Event</button></td>
-                        {% else %}
-                        <td><button type="button" class="btn btn-primary btn-responsive-calendar btn-block event-info">Event Info
-                                <!-- Popup for event info -->
-                                <span class="event-info-popup">
-                                    <div class="table-responsive">
-                                        <table class="table popup-table">
-                                            <tr>
-                                                <td> Duration </td>
-                                                <td class="fw-light"> {{ events[i].aDuration }} hour(s)</td>
-                                            </tr>
-                                            <tr>
-                                                <td> Location </td>
-                                                <td class="fw-light"> {{ events[i].aLocation }} </td>
-                                            </tr>
-                                            <tr>
-                                                <td> Staff </td>
-                                                <td class="fw-light"> {{ events[i].aStaffName }} </td>
-                                            </tr>
-                                            <tr>
-                                                <td> Spaces Left </td>
-                                                <td class="fw-light"> {{events[i].aCapacity-events[i].aSlotsTaken}} </td>
-                                            </tr>
-                                
-                                        </table>
-                                    </div>
-                                </span>
-                            </button></td>
-                        {% endif %}
-                        <!--If statement to see if acitivity is full and whether or not to dispay bookable button-->
-                        {% if current_user.userType != 3 %}
-                        <td>
-                            {% if userBooked1[i]==True %}
-                            <a href=""></a><button type="button" class="btn btn-responsive-calendar btn-primary disabled">Booked</button></a>
-                            {% elif events[i].aSlotsTaken == events[i].aCapacity %}
-                            <a href=""></a><button type="button" class="btn btn-responsive-calendar btn-primary disabled">Full</button></a>
-                            {% else %}
-                            {% if isMember == False %}
-                            <a href="/addBasket/{{events[i].id}}"><button type="button" class="btn btn-responsive-calendar btn-primary">Add to
-                                    Basket</button>
-                                {% else %}
-                                <a href="/makeBooking/{{events[i].id}}"><button type="button"
-                                        class="btn btn-primary btn-responsive-calendar">Book</button>
-                                    {% endif %}
-                                    {% endif %}
-                        </td>
-                        {% endif %}
-                    </tr>
-                    {% endif %}
-                    {% endfor %}
-                    <tr>
-                        <br>
-                    </tr>
-                </tbody>
-            </table>
-            {% endfor %}
-        </div>
-
-        <div class="col calendar-info rounded-5 box-shadow">
-            <div class=" mt-0 pt-0 border-bottom">
-                <p class="header"> WEEK 2</p>
-            </div>
-
-            {% for j in range(0, 7) %}
-            <table class="table table-responsive">
-                <p class="mb-0 mt-5 calendar-days">{{weeks[j+7].strftime("%A")}} - {{weeks[j+7].strftime("%d/%m/%y")}}
-                </p>
-                <thead>
-                    <thead>
-                        {% if weeksCount[j+7] == 0 %}
-                        <th class="text-start pb-5 fw-light">There are no sessions on this day. </th>
-                        {% else %}
-                        <th>Time</th>
-                        <th>Activity</th>
-                        {% if isMember == False %}
-                        <th>Price</th>
-                        {% endif %}
-                        <th></th>
-                        <th></th>
-                        {% endif %}
-                    </thead>
-                <tbody>
-                    {% for i in range( numEvents2 ) %}
-                    {% if events2[i].aDateTime.weekday() == weeks[j+7].weekday() %}
-                    <tr>
-                        <!--display event and event info in the tables-->
-                        <td>{{events2[i].aDateTime.strftime("%H:%M")}}</td>
-                        <td>{{eventInfo2[i].activityType}}</td>
-                        {% if isMember == False %}
-                        <td>£{{eventPrices2[i]}}</td>
-                        {% endif %}
-                        {% if current_user.userType == 3 %}
-                        <td><a href="/editEvent/{{events2[i].id}}"><button type="button"
-                                    class="btn btn-responsive-calendar btn-primary">Edit/View Event</button></td>
-                        {% else %}
-                        <td><button type="button" class="btn btn-responsive-calendar btn-primary event-info">Event Info
-                                <!-- Popup for event info -->
-                                <span class="event-info-popup">
-                                    <div class="table-responsive">
-                                        <table class="table popup-table">
-                                            <tr>
-                                                <td> Duration </td>
-                                                <td class="fw-light"> {{ events2[i].aDuration }} hour(s) </td>
-                                            </tr>
-                                            <tr>
-                                                <td> Location </td>
-                                                <td class="fw-light"> {{ events2[i].aLocation }} </td>
-                                            </tr>
-                                            <tr>
-                                                <td> Staff </td>
-                                                <td class="fw-light"> {{ events2[i].aStaffName }} </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Spaces Left</td>
-                                                <td class="fw-light">{{events2[i].aCapacity-events2[i].aSlotsTaken}}</td>
-                                            </tr>
-                                
-                                        </table>
-                                    </div>
-                                </span>
-                            </button></td>
-                        {% endif %}
-                        <!--If statement to see if acitivity is full and whether or not to dispay bookable button-->
-                        {% if current_user.userType != 3 %}
-                        <td>
-                            {% if userBooked2[i]==True %}
-                            <a href=""></a><button type="button" class="btn btn-responsive-calendar btn-primary disabled"> Booked</button></a>
-                            {% elif events2[i].aSlotsTaken == events2[i].aCapacity %}
-                            <a href=""></a><button type="button" class="btn btn-responsive-calendar btn-primary disabled"> Full</button></a>
-                            {% else %}
-                                {% if isMember == False %}
-                                <a href="/addBasket/{{events2[i].id}}"><button type="button" class="btn btn-responsive-calendar btn-primary">Add to
-                                    Basket</button>
-                                {% else %}
-                                <a href="/makeBooking/{{events2[i].id}}"><button type="button"
-                                        class="btn btn-responsive-calendar btn-primary">Book</button>
-
-                                {% endif %}
-                            {% endif %}
-
-                        </td>
-                        {% endif %}
-                    </tr>
-                    {% endif %}
-                    {% endfor %}
-                    <tr>
-                        <br>
-                    </tr>
-                </tbody>
-            </table>
-            {% endfor %}
-        </div>
-    </div>
+<div id="calendar">
 
 </div>
 
+
+
 <script>
-    const disabledBtns = document.getElementsByClassName("disabled");
-    for (let i = 0; i < disabledBtns.length; i++) {
-        disabledBtns[i].disabled = true;
-    }
-    document.getElementById('disabled').disabled = true;
+    let cElem = document.getElementById('calendar');
+
+    let calendar = new FullCalendar.Calendar(cElem, { 
+        headerToolbar: {
+            left: 'prevYear,prev,next,nextYear today',
+            center: 'title',
+            right: 'dayGridMonth,dayGridWeek,dayGridDay'
+        },
+        navLinks: true, // can click day/week names to navigate views
+        editable: true,
+        dayMaxEvents: true, // allow "more" link when too many events
+        events: [
+            {% for i in events %}
+            {
+                title : '{{i.type}}',
+                start : '{{i.time}}',
+            },
+            {% endfor %}
+        ]   
+    });
+
+    calendar.render();
 </script>
 {% endblock %}

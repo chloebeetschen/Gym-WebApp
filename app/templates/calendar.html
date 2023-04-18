@@ -20,34 +20,101 @@
     {% endwith %}
 </div>
 
-<div id="calendar">
-
+<div class="row m-0 p-0 mb-4 text-center">
+    <!--Basic Header-->
+    <p class="header p-0 m-0 pt-0 mb-0">Calendar</p>
+    <p class="mb-4 text-center">If you would like to book one of our sessions that is open all day please choose
+        from below.</p>
+    <!-- <div class="col"></div>
+    <div class="col"></div> -->
+    <div class="d-flex justify-content-center">
+        <div class="col">
+            <a href="/repeatEvents/2"><button type="button" class="btn btn-primary btn-calendar">Lane
+                    Swimming</button></a>
+        </div>
+        <div class="col">
+            <a href="/repeatEvents/4"><button type="button" class="btn  btn-primary btn-calendar">General Use
+                    Swimming</button></a>
+        </div>
+        <div class="col">
+            <a href="/repeatEvents/3"><button type="button" class="btn  btn-primary btn-calendar">Swimming
+                    Lessons</button></a>
+        </div>
+        <div class="col">
+            <a href="/repeatEvents/5"><button type="button" class="btn  btn-primary btn-calendar">Gym</button></a>
+        </div>
+        <div class="col">
+            <a href="/repeatEvents/7"><button type="button" class="btn  btn-primary btn-calendar">Climbing</button></a>
+        </div>
+        <div class="col">
+            <a href="/repeatEvents/6"><button type="button" class="btn  btn-primary btn-calendar">Squash</button></a>
+        </div>
+        <div class="col">
+            <a href="/repeatEvents/12"><button type="button" class="btn  btn-primary btn-calendar">Sports Hall
+                    Session</button></a>
+        </div>
+    </div>
+    
+    <!-- <div class="col"></div>
+    <div class="col"></div> -->
 </div>
+<div id="calendar"></div>
 
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar@6.1.5/index.global.min.css"></link>
+<script src='https://cdn.jsdelivr.net/npm/@fullcalendar@6.1.5/index.global.min.js'></script>
+
+<script src='https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.5/index.global.min.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@6.1.5/index.global.min.js'></script>
 
 <script>
-    let cElem = document.getElementById('calendar');
+    document.addEventListener('DOMContentLoaded', function(){
 
-    let calendar = new FullCalendar.Calendar(cElem, { 
-        headerToolbar: {
-            left: 'prevYear,prev,next,nextYear today',
-            center: 'title',
-            right: 'dayGridMonth,dayGridWeek,dayGridDay'
-        },
-        navLinks: true, // can click day/week names to navigate views
-        editable: true,
-        dayMaxEvents: true, // allow "more" link when too many events
-        events: [
-            {% for i in events %}
-            {
-                title : '{{i.type}}',
-                start : '{{i.time}}',
+        let cElem = document.getElementById('calendar');
+
+        let calendar = new FullCalendar.Calendar(cElem, { 
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay'
             },
-            {% endfor %}
-        ]   
-    });
+            slotEventOverlap: false,
+            navLinks: true, 
+            editable: false,
+            dayMaxEvents: true,
+            businessHours: {
+                daysOfWeek: [0,1,2,3,4,5,6],
+                startTime: '8:00',
+                endTime: '22:00',
+            },
+            displayEventTime: true,
+            eventTimeFormat: {
+                hour: 'numeric',
+                minute: '2-digit',
+                meridiem: true,
+            },
+            selectable: true,
+            //https://github.com/fullcalendar/fullcalendar-docs/blob/main/_docs-v6/event-display/event-tooltip-demo.html
+            //https://fullcalendar.io/
+            
+            events: [
+                {% for i in range(numEvents) %}
+                    {
+                        title : '{{eventInfo[i].activityType}}',
+                        start : '{{events1[i].aDateTime}}',
+                        content: '£{{events1[i].aPrice}} - {{events1[i].aDuration}} hour(s) - Spaces: {{events1[i].aCapacity-events1[i].aSlotsTaken}}',
+                    },
+                {% endfor %}
+                {% for i in range(numEvents2) %}
+                    {
+                        title : '{{eventInfo2[i].activityType}}',
+                        start : '{{events2[i].aDateTime}}',
+                    },
+                {% endfor %}
+            ]
+        });
 
-    calendar.render();
+        calendar.render();
+    });
 </script>
 {% endblock %}

@@ -246,17 +246,6 @@ def calendarMethod():
         else:
             userBooked2.append(False)
 
-    
-    # To turn results into dictionary for the calendar
-
-    events = []
-    for num in range(len(events1)):
-        e1 = {'type':eventInfo[num].activityType, 'time':events1[num].aDateTime.strftime("%Y-%m-%d")}
-        events.append(e1)
-    for num2 in range(len(events2)):
-        e2 = {'type':eventInfo2[num].activityType, 'time':events2[num].aDateTime.strftime("%Y-%m-%d")}
-        events.append(e2)
-
 
     if 'proxyBooking' in session :
         for id in session['proxyBooking']:
@@ -280,8 +269,7 @@ def calendarMethod():
                             userBooked1 = userBooked1,
                             userBooked2 = userBooked2,
                             proxyBooking = True,
-                            weeksCount = weeksCount,
-                            events = events
+                            weeksCount = weeksCount
                             )
     else:
         return render_template('calendar.html',
@@ -298,8 +286,7 @@ def calendarMethod():
                             weeks     = weeks,
                             userBooked1 = userBooked1,
                             userBooked2 = userBooked2,
-                            weeksCount=weeksCount,
-                            events = events
+                            weeksCount=weeksCount
                             )
 
 @app.route('/calendar/<id>', methods=['GET', 'POST'])
@@ -314,7 +301,7 @@ def proxyCustomerBooking(id):
 @login_required
 def repeatEvents(id):
     logging.debug("Repeat events (with id: %s) route request", id)
-    week = datetime.now()+timedelta(days=7)
+    week = datetime.now()+timedelta(days=14)
     events = Calendar.query.filter(Calendar.aDateTime >= date.today()).filter(Calendar.aDateTime < week).filter_by(activityId = id).all()
     eventType = (Activity.query.get(id)).activityType
     today = datetime.now()

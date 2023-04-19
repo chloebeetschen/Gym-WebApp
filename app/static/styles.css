@@ -268,7 +268,7 @@ html, body {
 }
 
 #calendar {
-    padding-top: 1vw;
+    padding-top: 2vw;
 }
 
 .calendar-info {
@@ -600,7 +600,6 @@ th, td {
     background-color: var(--background-light);
     position: absolute;
     transform: translate(0, -55%);
-    padding: 2vw;
     z-index: 999;
     border-radius: 15px;
     width: 105%;

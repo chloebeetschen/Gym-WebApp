@@ -118,6 +118,8 @@
         calendar.render();
 
         let eventDivs = document.getElementsByClassName('fc-daygrid-event-harness')
+        // Classes for the info pop up
+        const popUpClasses = ['event-info-div', 'rounded-4', 'p-2']
         
         // Loop through the event divs and add in their respective details
         let i = 0
@@ -125,7 +127,7 @@
 
         {% for i in range(numEvents) %}
             infoDiv = document.createElement('div')
-            infoDiv.classList.add('event-info-div')
+            infoDiv.classList.add(...popUpClasses)
 
             priceP = document.createElement('p')
             priceP.textContent = 'Price: £{{ events1[i].aPrice }}'
@@ -145,7 +147,7 @@
         i = 0
         {% for i in range(numEvents2) %}
             infoDiv = document.createElement('div')
-            infoDiv.classList.add('event-info-div')
+            infoDiv.classList.add(...popUpClasses)
 
             priceP = document.createElement('p')
             priceP.textContent = 'Price: £{{ events2[i].aPrice }}'

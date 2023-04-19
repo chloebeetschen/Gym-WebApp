@@ -33,6 +33,7 @@
     padding: 0;
     margin: 0;
     color: white;
+    box-sizing: border-box;
 }
 
 html, body {
@@ -261,10 +262,13 @@ html, body {
 
 .calendar-container {
     background-image: linear-gradient(to bottom, #051e46, #194578);
-    padding: 3rem 1rem 4rem 1rem;
     padding: 4vw;
     padding-top: 1vh;
     height: auto;
+}
+
+#calendar {
+    padding-top: 1vw;
 }
 
 .calendar-info {
@@ -591,7 +595,33 @@ th, td {
     margin: 0;
 }
 
+.event-info-div {
+    display: none;
+    background-color: var(--background-light);
+    position: absolute;
+    transform: translate(0, -55%);
+    padding: 2vw;
+    z-index: 999;
+    border-radius: 15px;
+    width: 105%;
 
+}
+
+.event-info-div p {
+    margin: 0;
+    padding-top: 0.5vw;
+    padding-bottom: 0.5vw;
+}
+
+.event-info-div p:nth-child(2),
+.event-info-div p:nth-child(3) {
+    border-top: 1px solid white;
+}
+
+.fc-daygrid-event-harness:hover > .event-info-div {
+    display: block;
+
+}
 
 
 .popper,

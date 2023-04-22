@@ -498,29 +498,33 @@ def checkout():
     user = models.UserDetails.query.filter_by(id=current_user.id).first()
     paymentId = user.paymentId
 
-    if paymentId == None:
-        customer = stripe.Customer.create(
-            email=current_user.email,
-            source=request.form['stripeToken']
-        )
+    try:
+        if paymentId == None:
+            customer = stripe.Customer.create(
+                email=current_user.email,
+                source=request.form['stripeToken']
+            )
 
-        stripe.Charge.create(
-            customer=customer.id,
-            amount=int(session['basketTotal']) * 100,
-            currency='GBP',
-            description='Push and Pull Payment'
-        )
-        # Save payment details for later
-        user.paymentId = customer.id
-        db.session.add(user)
-        db.session.commit()
-    else:
-        stripe.Charge.create(
-            customer=paymentId,
-            amount=int(session['basketTotal']) * 100,
-            currency='GBP',
-            description='Push and Pull Payment'
-        )
+            stripe.Charge.create(
+                customer=customer.id,
+                amount=int(session['basketTotal']) * 100,
+                currency='GBP',
+                description='Push and Pull Payment'
+            )
+            # Save payment details for later
+            user.paymentId = customer.id
+            db.session.add(user)
+            db.session.commit()
+        else:
+            stripe.Charge.create(
+                customer=paymentId,
+                amount=int(session['basketTotal']) * 100,
+                currency='GBP',
+                description='Push and Pull Payment'
+            )
+    except stripe.error.CardError as cardError:
+        flash('Card was declined', 'error')
+        return redirect('/basket')
 
     if 'membership' in session:
         usersDetails = UserDetails.query.get(current_user.id)

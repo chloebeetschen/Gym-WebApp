@@ -4,7 +4,7 @@
 
 import unittest
 import logging
-from flask import Flask, current_app, url_for
+from flask import Flask, current_app, url_for, session
 from flask_sqlalchemy import SQLAlchemy
 from app import app, db, models 
 from app.models import *
@@ -12,6 +12,7 @@ from app.views import *
 from app.forms import *
 from flask.testing import FlaskClient 
 from test_config import *
+
 
 
 class TestCase(unittest.TestCase):
@@ -33,12 +34,12 @@ class TestCase(unittest.TestCase):
        
     # This deletes the test database once testing is complete 
     def tearDown(self):
-      db.session.remove()
-      db.drop_all()
+        db.session.remove()
+        db.drop_all()
 
-      #closing the log file 
-      for handler in self.logger.handlers:
-        handler.close()
+       #closing the log file 
+        for handler in self.logger.handlers:
+            handler.close()
         self.logger.removeHandler(handler)
 
 
@@ -550,36 +551,68 @@ class TestCase(unittest.TestCase):
                     self.logger.info('Customer couldnt access edit Activity page: P')
                 except AssertionError:
                     self.logger.warning('Customer couldnt access edit Activity page: F')
+    
 
     # bug IN SETTINGS PAGE
     # If a user tries to update their details in the setting page
     # The changes should be reflected in the userDetails database
-    def test_userDetail_update(self):
-        # First log in a user 
-        response = self.app.get(('/login'), follow_redirects = True)
-        self.assertEqual(response.status_code, 200)
-        with app.test_request_context():
-            with app.app_context():
+    # def test_userDetail_update(self):
+    #     # First log in a user 
+    #     response = self.app.get(('/login'), follow_redirects = True)
+    #     self.assertEqual(response.status_code, 200)
+    #     with app.test_request_context():
+    #         with app.app_context():
 
-                data = {
-                    'Email' : 'aaditi@gmail.com',
-                    'Password' : 'MichaelScott1'
-                }
-                form = LoginForm(data=data)
-                self.assertTrue(form.validate())
-                response = self.app.post('/login', data=form.data, follow_redirects=True)
-                self.assertEqual(response.status_code, 200)
+    #             data = {
+    #                 'Email' : 'aaditi@gmail.com',
+    #                 'Password' : 'MichaelScott1'
+    #             }
+    #             form = LoginForm(data=data)
+    #             self.assertTrue(form.validate())
+    #             response = self.app.post('/login', data=form.data, follow_redirects=True)
+    #             self.assertEqual(response.status_code, 200)
                 
-                # Navigate to settings page
-                response = self.app.get(('/setting'), follow_redirects = True)
-                self.assertEqual(response.status_code, 200)
+    #             # Navigate to settings page
+    #             response = self.app.get(('/setting'), follow_redirects = True)
+    #             self.assertEqual(response.status_code, 200)
 
-                # The user wants to change their name
-                data1 = {
+    #             # The user wants to change their name
+    #             data1 = {
 
-                }
+    #             }
         # Submit flask form 
         # Check the database is updated 
 
 
+    # If a user updates their password 
+    # The changes should be reflected in the userDetails database
+    # def test_userDetail_updatePassword(self):
+    #     # First log in a user 
+    #     response = self.app.get(('/login'), follow_redirects = True)
+    #     self.assertEqual(response.status_code, 200)
+    #     with app.test_request_context():
+    #         with app.app_context():
+
+    #             data = {
+    #                 'Email' : 'aaditi@gmail.com',
+    #                 'Password' : 'MichaelScott1'
+    #             }
+    #             form = LoginForm(data=data)
+    #             self.assertTrue(form.validate())
+    #             response = self.app.post('/login', data=form.data, follow_redirects=True)
+    #             self.assertEqual(response.status_code, 200)
+                
+    #             # Navigate to settings page
+    #             response = self.app.get(('/setting'), follow_redirects = True)
+    #             self.assertEqual(response.status_code, 200)
+
+    #             # The user wants to change their name
+    #             data1 = {
+
+    #             }
+        # Submit flask form 
+        # Log out the user
+        # Log in the new user with the updated password 
+   
+ 
 

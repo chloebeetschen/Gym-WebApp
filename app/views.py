@@ -284,7 +284,7 @@ def calendarMethod():
 def proxyCustomerBooking(id):
     logging.debug("Book for a customer request")
     session['proxyBooking'] = [id]
-    return redirect('/manageUsers')
+    return redirect('/calendar')
 
 #calendar of all repeat sessions
 @app.route('/repeatEvents/<id>', methods=['GET', 'POST'])
@@ -565,13 +565,13 @@ def deleteActivity():
     return redirect('/editActivity')
 
 
-#this is for the my bookings page
+# This is for the my bookings page
 @app.route('/myBookings', methods=['GET', 'POST'])
 @login_required
 def myBookings():
     logging.debug("My bookings route request")
     today = datetime.now()
-    #need a parameter id for the user that is logged in (can be done once cookies is enabled)
+    # Need a parameter id for the user that is logged in (can be done once cookies is enabled)
     
     # Deletes a user's booking if the time has elapsed
     bookings = UserBookings.query.filter_by(userId=current_user.id).all()
@@ -1163,7 +1163,7 @@ def editUser(id):
 @login_required
 def deleteUser(id): 
     logging.debug("Delete user (with id: %s) route request", id)
-    # First check the user is a manager
+    # First check the user is not a manager
     if current_user.userType != 3:
         return redirect('/home')
 

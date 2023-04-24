@@ -118,12 +118,15 @@
         calendar.render();
 
         let eventDivs = document.getElementsByClassName('fc-daygrid-event-harness')
-        // Classes for the info pop up
-        const popUpClasses = ['event-info-div', 'rounded-4', 'p-2']
-        
+        // Classes for the info pop up and booking button
+        const popUpClasses  = ['event-info-div', 'rounded-4', 'p-2']
+        const buttonClasses = ['btn', 'btn-responsive-calendar', 'btn-primary']
+
         // Loop through the event divs and add in their respective details
         let i = 0
-        let infoDiv, priceP, durationP, slotsLeftP
+        let infoDiv, priceP, durationP, slotsLeftP, bookBtn
+        let bookBtnContent = "Book"
+
 
         {% for i in range(numEvents) %}
             infoDiv = document.createElement('div')
@@ -141,6 +144,31 @@
             slotsLeftP.textContent = 'Spaces: {{events1[i].aCapacity-events1[i].aSlotsTaken}}'
             infoDiv.appendChild(slotsLeftP)
 
+
+            // Also want to add the book button
+            bookBtn = document.createElement('a')
+            bookBtn.classList.add(...buttonClasses)
+            bookBtn.nodeType = 'button'
+            {% if userBooked1[i]==True %}
+                bookBtn.href = '#'
+                bookBtnContent = "Booked"
+                bookBtn.classList.add('disabled')
+            {% elif events1[i].aSlotsTaken < events1[i].aCapacity %}
+                {% if isMember %}
+                    bookBtn.href = '/makeBooking/{{ events1[i].id }}'
+                    bookBtnContent = "Book"
+                {% else %}
+                    bookBtn.href = '/addBasket/{{ events1[i].id }}'
+                    bookBtnContent = "Add to basket"
+                {% endif %}
+            {% else %}
+                bookBtn.href = '#'
+                bookBtnContent = "Full"
+                bookBtn.classList.add('disabled')
+            {% endif %}
+
+            bookBtn.textContent = bookBtnContent
+            infoDiv.appendChild(bookBtn)
             eventDivs[i].appendChild(infoDiv)
             i ++
         {% endfor %}

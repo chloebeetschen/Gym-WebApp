@@ -595,16 +595,6 @@ th, td {
     margin: 0;
 }
 
-.event-info-div {
-    display: none;
-    background-color: var(--background-light);
-    position: absolute;
-    transform: translate(0, -55%);
-    z-index: 999;
-    border-radius: 15px;
-    width: 105%;
-
-}
 
 .event-info-div p {
     margin: 0;
@@ -617,9 +607,25 @@ th, td {
     border-top: 1px solid white;
 }
 
-.fc-daygrid-event-harness:hover > .event-info-div {
-    display: block;
+.event-info-div {
+    opacity: 0;
+    visibility: hidden;
+    background-color: var(--background-light);
+    position: absolute;
+    transform: translate(0, -55%);
+    z-index: 999;
+    border-radius: 15px;
+    width: 105%;
+    transition: all 0.1s ease-out 0.4s;
+}
 
+.fc-daygrid-event-harness {
+    cursor: pointer;
+}
+
+.fc-daygrid-event-harness:hover > .event-info-div {
+    opacity: 1;
+    visibility: visible;
 }
 
 

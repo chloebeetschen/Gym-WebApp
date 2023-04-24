@@ -132,6 +132,10 @@
             infoDiv = document.createElement('div')
             infoDiv.classList.add(...popUpClasses)
 
+            titleP = document.createElement('h3')
+            titleP.textContent = '{{ eventInfo[i].activityType }}'
+            infoDiv.appendChild(titleP)
+
             priceP = document.createElement('p')
             priceP.textContent = 'Price: £{{ events1[i].aPrice }}'
             infoDiv.appendChild(priceP)
@@ -177,6 +181,10 @@
             infoDiv = document.createElement('div')
             infoDiv.classList.add(...popUpClasses)
 
+            titleP = document.createElement('h3')
+            titleP.textContent = '{{ eventInfo2[i].activityType }}'
+            infoDiv.appendChild(titleP)
+
             priceP = document.createElement('p')
             priceP.textContent = 'Price: £{{ events2[i].aPrice }}'
             infoDiv.appendChild(priceP)
@@ -188,6 +196,32 @@
             slotsLeftP = document.createElement('p')
             slotsLeftP.textContent = 'Spaces: {{events2[i].aCapacity-events2[i].aSlotsTaken}}'
             infoDiv.appendChild(slotsLeftP)
+
+            // Also want to add the book button
+            bookBtn = document.createElement('a')
+            bookBtn.classList.add(...buttonClasses)
+            bookBtn.nodeType = 'button'
+            {% if userBooked1[i]==True %}
+                bookBtn.href = '#'
+                bookBtnContent = "Booked"
+                bookBtn.classList.add('disabled')
+            {% elif events2[i].aSlotsTaken < events2[i].aCapacity %}
+                {% if isMember %}
+                    bookBtn.href = '/makeBooking/{{ events2[i].id }}'
+                    bookBtnContent = "Book"
+                {% else %}
+                    bookBtn.href = '/addBasket/{{ events2[i].id }}'
+                    bookBtnContent = "Add to basket"
+                {% endif %}
+            {% else %}
+                bookBtn.href = '#'
+                bookBtnContent = "Full"
+                bookBtn.classList.add('disabled')
+            {% endif %}
+
+            bookBtn.textContent = bookBtnContent
+            infoDiv.appendChild(bookBtn)
+            eventDivs[i].appendChild(infoDiv)
 
             eventDivs[ {{numEvents}} + i ].appendChild(infoDiv)
             i ++

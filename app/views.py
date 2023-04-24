@@ -1281,8 +1281,8 @@ def editUser(id):
 @login_required
 def deleteUser(id): 
     logging.debug("Delete user (with id: %s) route request", id)
-    # First check the user is a manager
-    if current_user.userType != 3:
+    # First check the user is a manager or employee
+    if current_user.userType != 1:
         return redirect('/home')
 
     cUserLogin   = models.UserLogin.query.get(id)

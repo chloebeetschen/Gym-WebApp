@@ -1,8 +1,0 @@
-1680120691989	geckodriver	INFO	Listening on 127.0.0.1:43791
-XPCOMGlueLoad error for file /usr/lib64/firefox/libxul.so:
-/uollinapps/AppsData/src/vscode/1.71.2-1663191299.el7/lib64/libnss3.so: version `NSS_3.79' not found (required by /usr/lib64/firefox/libxul.so)
-Couldn't load XPCOM.
-1680120693072	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-no-remote" "-profile" "/tmp/rust_mozprofilerljwXE"
-XPCOMGlueLoad error for file /usr/lib64/firefox/libxul.so:
-/uollinapps/AppsData/src/vscode/1.71.2-1663191299.el7/lib64/libnss3.so: version `NSS_3.79' not found (required by /usr/lib64/firefox/libxul.so)
-Couldn't load XPCOM.

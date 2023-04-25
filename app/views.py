@@ -138,10 +138,8 @@ def addToDB():
     twoWeeks = today+timedelta(days=14)
 
     while today < twoWeeks:
-        print("day:")
 
         timeStart = datetime.combine(today, time(8,00))
-        print(timeStart)
         # Check if each day has any activities:
         dayExists = Calendar.query.filter(Calendar.aDateTime >= timeStart).first()
 
@@ -1033,10 +1031,10 @@ def settings():
             return redirect(url_for('settings'))
 
         cUserLogin   = models.UserLogin.query.get(current_user.id)
-
         # Only update the user's details that they have changed
         if form.Name.data:
             cUserDetails.name    = form.Name.data
+        
         if form.NewPasswordx2.data:
             cUserLogin.password  = bcrypt.generate_password_hash(form.NewPassword.data)
 

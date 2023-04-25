@@ -85,7 +85,7 @@ class SettingsForm(FlaskForm):
     Name          = StringField('Name', render_kw={"placeholder": "Name"})
     Password      = PasswordField('Old Password', validators=[DataRequired()], render_kw={"placeholder": "Password"})
     NewPassword   = PasswordField('New Password', validators=[Optional(), passwordPolicy, Length(min=8, message="Password must be 8 characters or more")], render_kw={"placeholder": "New Password"})
-    NewPasswordx2 = PasswordField('Reenter New Password', validators=[EqualTo('NewPassword', message="Passwords must match")], render_kw={"placeholder": "Reenter New Password"})
+    NewPasswordx2 = PasswordField('Reenter New Password', validators=[Optional(), EqualTo('NewPassword', message="Passwords must match")], render_kw={"placeholder": "Reenter New Password"})
 
 class ManagerForm(FlaskForm):
     Name          = StringField('Name', render_kw={"placeholder": "Name"})

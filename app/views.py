@@ -318,15 +318,28 @@ def repeatEvents(id):
             userBooked.append(False)
     user = UserDetails.query.filter_by(id=current_user.id).first()
 
-    return render_template('repeatEvents.html',
-                            title     = 'Calendar of Constant Events',
+    if 'proxyBooking' in session:
+        return render_template('repeatEvents.html',
+                            title     = 'Calendar',
                             numEvents = len(events),
-                            events    = events,
-                            eventPrices = eventPrices,
+                            events  = events,
                             eventType = eventType,
-                            isMember    = user.isMember,
+                            eventPrices = eventPrices,
+                            isMember = True,   
                             weeks     = weeks,
-                            userBooked = userBooked)
+                            userBooked = userBooked,
+                            proxyBooking = True,
+                            )
+    else:
+        return render_template('repeatEvents.html',
+                            title     = 'Calendar',
+                            numEvents = len(events),
+                            events  = events,
+                            eventType = eventType,
+                            isMember = user.isMember,   
+                            weeks     = weeks,
+                            userBooked = userBooked,
+                            )
 
 #this is a book event button for the calendar
 @app.route('/makeBooking/<id>', methods=['GET'])

@@ -132,7 +132,7 @@
             infoDiv = document.createElement('div')
             infoDiv.classList.add(...popUpClasses)
 
-            titleP = document.createElement('h3')
+            titleP = document.createElement('p')
             titleP.textContent = '{{ eventInfo[i].activityType }}'
             infoDiv.appendChild(titleP)
 
@@ -181,7 +181,7 @@
             infoDiv = document.createElement('div')
             infoDiv.classList.add(...popUpClasses)
 
-            titleP = document.createElement('h3')
+            titleP = document.createElement('p')
             titleP.textContent = '{{ eventInfo2[i].activityType }}'
             infoDiv.appendChild(titleP)
 
@@ -201,7 +201,7 @@
             bookBtn = document.createElement('a')
             bookBtn.classList.add(...buttonClasses)
             bookBtn.nodeType = 'button'
-            {% if userBooked1[i]==True %}
+            {% if userBooked2[i]==True %}
                 bookBtn.href = '#'
                 bookBtnContent = "Booked"
                 bookBtn.classList.add('disabled')

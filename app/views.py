@@ -32,7 +32,6 @@ def deleteSessions():
 
 @app.before_first_request
 def addToDB():
-    print("before first request")
     db.create_all()
 
     aDiscountExists = models.DiscountAmount.query.filter_by(discountAmount=15).first()
@@ -144,7 +143,6 @@ def addToDB():
         dayExists = Calendar.query.filter(Calendar.aDateTime >= timeStart).first()
 
         if( dayExists == None):
-            print("nothing")
             # repeat activities:
             #all activities in the while loop occur every day of the week
             while timeStart < datetime.combine(today, time(22,00)):
@@ -969,7 +967,6 @@ def register():
     form = RegisterForm()
 
     if form.validate_on_submit():
-        print("submitted")
         # Check that the email hasn't been used already.
         usedEmail = models.UserLogin.query.filter_by(email=form.Email.data).first()
         if usedEmail:
@@ -1092,7 +1089,6 @@ def analysis():
         thisWeek.append( (today-timedelta(days=day)).strftime("%d/%m"))
         
         for booking in bookings:
-            print(booking)
             event = Calendar.query.filter_by(id=booking.calendarId).first()
             if event.aDateTime.date() == today-timedelta(days=day):
                 user = UserDetails.query.filter_by(id=booking.userId).first()

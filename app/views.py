@@ -40,12 +40,6 @@ def addToDB():
         db.session.add(amount)
         db.session.commit()
 
-        # aDiscountExists = models.DiscountAmount.query.filter_by(discountAmount=15).first()
-        # if (aDiscountExists == None):
-        #     amount = models.DiscountAmount(discountAmount=15)
-        #     db.session.add(amount)
-        #     db.session.commit()
-
     # Checks to see if the data has already been populated
     aExists = Activity.query.filter_by(activityType="Swimming (Team Events)").first()
 
@@ -218,7 +212,7 @@ def addToDB():
         db.session.add(newUser)
         db.session.add(newUserDetails)
 
-        db.session.commit()
+    db.session.commit()
 
 
 @loginManager.user_loader

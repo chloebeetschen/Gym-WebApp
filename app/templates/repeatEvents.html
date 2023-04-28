@@ -107,12 +107,16 @@
                 {% for i in range(numEvents) %}
                     {
                         start : '{{events[i].aDateTime}}',
-                        {% if isMember == True %}
-                            title : 'Spaces: {{events[i].aCapacity-events[i].aSlotsTaken}} ',
-                            url : '/makeBooking/{{ events[i].id }}',
+                        {% if events[i].aSlotsTaken != events[i].aCapacity %}
+                            {% if isMember == True %}
+                                title : 'Spaces: {{events[i].aCapacity-events[i].aSlotsTaken}} ',
+                                url : '/makeBooking/{{ events[i].id }}',
+                            {% else %}
+                                title : '£{{events[i].aPrice}} - Spaces: {{events[i].aCapacity-events[i].aSlotsTaken}}',
+                                url : '/addBasket/{{ events[i].id }}',
+                            {% endif %}
                         {% else %}
-                            title : '£{{events[i].aPrice}} - Spaces: {{events[i].aCapacity-events[i].aSlotsTaken}}',
-                            url : '/addBasket/{{ events[i].id }}',
+                            title: 'Full'
                         {% endif %}
                     },
                 {% endfor %}

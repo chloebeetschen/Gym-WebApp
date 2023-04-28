@@ -25,20 +25,15 @@
         <p class="header p-0 m-0 pt-0 mb-0">Calendar</p>
         <p class="mb-4 text-center">If you would like to book one of our sessions that is open all day please choose
             from below.</p>
-        <!-- <div class="col"></div>
-        <div class="col"></div> -->
         <div class="d-flex justify-content-center">
             <div class="col">
-                <a href="/repeatEvents/2"><button type="button" class="btn btn-primary btn-calendar">Lane
-                        Swimming</button></a>
+                <a href="/repeatEvents/2"><button type="button" class="btn btn-primary btn-calendar">Lane Swimming</button></a>
             </div>
             <div class="col">
-                <a href="/repeatEvents/4"><button type="button" class="btn  btn-primary btn-calendar">General Use
-                        Swimming</button></a>
+                <a href="/repeatEvents/4"><button type="button" class="btn  btn-primary btn-calendar">General Use Swimming</button></a>
             </div>
             <div class="col">
-                <a href="/repeatEvents/3"><button type="button" class="btn  btn-primary btn-calendar">Swimming
-                        Lessons</button></a>
+                <a href="/repeatEvents/3"><button type="button" class="btn  btn-primary btn-calendar">Swimming Lessons</button></a>
             </div>
             <div class="col">
                 <a href="/repeatEvents/5"><button type="button" class="btn  btn-primary btn-calendar">Gym</button></a>
@@ -50,14 +45,14 @@
                 <a href="/repeatEvents/6"><button type="button" class="btn  btn-primary btn-calendar">Squash</button></a>
             </div>
             <div class="col">
-                <a href="/repeatEvents/12"><button type="button" class="btn  btn-primary btn-calendar">Sports Hall
-                        Session</button></a>
+                <a href="/repeatEvents/12"><button type="button" class="btn  btn-primary btn-calendar">Sports Hall Session</button></a>
             </div>
         </div>
         
         <!-- <div class="col"></div>
         <div class="col"></div> -->
         <div id="calendar"></div>
+
     </div>
 </div>
 
@@ -132,6 +127,7 @@
             priceP = document.createElement('p')
             priceP.textContent = 'Price: £{{ events1[i].aPrice }}'
             infoDiv.appendChild(priceP)
+
 
             durationP = document.createElement('p')
             durationP.textContent = '{{ events1[i].aDuration }} hour(s)'

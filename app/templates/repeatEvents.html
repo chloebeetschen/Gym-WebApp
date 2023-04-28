@@ -21,6 +21,7 @@
     <div class="row m-0 p-0 mb-4 text-center">
     <!--Basic Header-->
     <p class="header p-0 m-0 pt-0 mb-0">Calendar</p>
+    <p class="header p-0 m-0 pt-0 mb-0">Please click on an event to book it/add to basket</p>
     <p class="mb-4 text-center">If you would like to book one of our sessions that is open all day please choose
         from below.</p>
     <!-- <div class="col"></div>
@@ -53,8 +54,6 @@
         </div>
     </div>
     
-    <!-- <div class="col"></div>
-    <div class="col"></div> -->
 </div>
 
 <div id="calendar2"></div>
@@ -109,7 +108,7 @@
                         start : '{{events[i].aDateTime}}',
                         {% if events[i].aSlotsTaken != events[i].aCapacity %}
                             {% if isMember == True %}
-                                title : 'Spaces: {{events[i].aCapacity-events[i].aSlotsTaken}} ',
+                                title : 'Book! Spaces: {{events[i].aCapacity-events[i].aSlotsTaken}} ',
                                 url : '/makeBooking/{{ events[i].id }}',
                             {% else %}
                                 title : '£{{events[i].aPrice}} - Spaces: {{events[i].aCapacity-events[i].aSlotsTaken}}',

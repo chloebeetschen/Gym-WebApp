@@ -12,6 +12,7 @@ from flask_bcrypt import Bcrypt
 import stripe
 import logging
 
+# Initialisies hashing
 bcrypt = Bcrypt(app)
 
 # Register tables with flask admin
@@ -25,11 +26,13 @@ loginManager = LoginManager()
 loginManager.init_app(app)
 loginManager.login_view = "login"
 
+# Deletes any sessions when the server starts up
 @app.before_first_request
 def deleteSessions():
     for key in list(session.keys()):
         session.pop(key)
 
+# Prepopulates the database with users, activities, discount amounts and more
 @app.before_first_request
 def addToDB():
     db.create_all()
@@ -223,6 +226,7 @@ def loadUser(userId):
 def index():
     return redirect(url_for('home'))
 
+# Changes discount amount by querying existing sessions
 @app.route('/changeDiscount', methods=['GET', 'POST'])
 @login_required
 def changeDiscount():
@@ -275,6 +279,7 @@ def calendarMethod():
         eventPrices.append(roundedPrice)
         eventInfo.append(Activity.query.filter_by(id=i.activityId).first())
         # For every event check if user has booked it
+        # Proxy booking here refers to a session which hold a user's id, which an employee is making a booking for
         if 'proxyBooking' in session :
             for id in session['proxyBooking']:
                 booked = UserBookings.query.filter_by(userId=id, calendarId=i.id).first()
@@ -298,6 +303,7 @@ def calendarMethod():
         eventPrices2.append(roundedPrice)
         eventInfo2.append(Activity.query.filter_by(id=i.activityId).first())
         # For every event check if user has booked it
+        # Proxy booking here refers to a session which hold a user's id, which an employee is making a booking for
         if 'proxyBooking' in session :
             for id in session['proxyBooking']:
                 booked = UserBookings.query.filter_by(userId=id, calendarId=i.id).first()
@@ -308,13 +314,15 @@ def calendarMethod():
         else:
             userBooked2.append(False)
 
-
+    # Proxy booking here refers to a session which hold a user's id, which an employee is making a booking for
     if 'proxyBooking' in session :
         for id in session['proxyBooking']:
             user = UserDetails.query.filter_by(id=id).first()
     else:
         user = UserDetails.query.filter_by(id=current_user.id).first()
 
+    # If a proxy booking is occuring, then the booking is put through as a member (i.e. free), as the assumption is
+    # that the employee taking the booking is charging the customer over the phone
     if 'proxyBooking' in session:
         return render_template('calendar.html',
                             title     = 'Calendar',
@@ -351,6 +359,7 @@ def calendarMethod():
                             weeksCount=weeksCount
                             )
 
+# Sets up the proxyBooking session to hold a user's id that the booking is occuring for, then redirects to calendar to complete booking
 @app.route('/calendar/<id>', methods=['GET', 'POST'])
 @login_required
 def proxyCustomerBooking(id):
@@ -380,6 +389,7 @@ def repeatEvents(id):
             userBooked.append(False)
     user = UserDetails.query.filter_by(id=current_user.id).first()
 
+    # The same logic applies here - see above explanation in '/calendar' for further details 
     if 'proxyBooking' in session:
         return render_template('repeatEvents.html',
                             title     = 'Calendar',
@@ -471,7 +481,8 @@ def addBasket(id):
     # Redirect back to calendar
     return redirect('/calendar')
 
-
+# Loops through sessions in order to display items which should be held in the basket
+# The information in these sessions is then queried with the database to display the correct booking/ get the right info
 @app.route('/basket', methods=['GET', 'POST'])
 @login_required
 def basket():
@@ -566,13 +577,16 @@ def basket():
                             roundedTotal=roundedTotal, totalPrice = totalPrice,
                             roundedDiscount=roundedDiscount, key=stripe_keys['publicKey'])
 
+# Currently does not save a user's details for future reference (i am working on it)
 @app.route('/checkout', methods=['POST'])
 @login_required
 def checkout():
     
+    # Get the Strip customer ID if on the database to preopulate their card field with a saved card
     user = models.UserDetails.query.filter_by(id=current_user.id).first()
     paymentId = user.paymentId
-
+    
+    # Attempts payments using the Stripe API
     try:
         if paymentId == None:
             customer = stripe.Customer.create(
@@ -597,6 +611,7 @@ def checkout():
                 currency='GBP',
                 description='Push and Pull Payment'
             )
+    # If the user's payment has declined, flash an error message
     except stripe.error.CardError as cardError:
         flash('Card was declined', 'error')
         return redirect('/basket')
@@ -709,13 +724,15 @@ def myBookings():
                             today=today, numEvents=len(bookings),
                             events = events, eventInfo = eventInfo)
 
-
+# Allows a manager to edit a users bookings by passing the id of the customer which a booking is being attempted for.
+# This allows an employee to cancel sessions/book sessions without having to pay
 @app.route('/proxyEdit/<id>', methods=['GET', 'POST'])
 @login_required
 def proxyEdit(id):
     session['proxyEdit'] = [id]
     return redirect(url_for('userBookings', id=id))
 
+# Renders myBookings of a user that an emmployee is proxyEditing
 @app.route('/userBookings/<id>', methods=['GET', 'POST'])
 @login_required
 def userBookings(id):    
@@ -961,6 +978,7 @@ def login():
 
     return render_template('login.html', form=form, title='Login')
 
+# Logs the user out innit
 @app.route('/logout', methods=['GET', 'POST'])
 @login_required
 def logout():
@@ -971,7 +989,7 @@ def logout():
         session.pop(key)
     return redirect(url_for('login'))
 
-
+# Registers a user, and performs validation on input fields
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     logging.debug("Register route request")
@@ -1010,21 +1028,21 @@ def register():
 
     return render_template('register.html', form=form, title="Register")
 
-
+# Home is where the heart is
 @app.route('/home', methods=['GET', 'POST'])
 def home():
     isMember = False
     if current_user.is_authenticated:
         userDetail = UserDetails.query.get(current_user.id)
+        # Prevents the user from being show the purchase membership section
         if userDetail.isMember == True:
             isMember = True
+        # Redirects the user if they are a manager to the manager interface
         if current_user.userType == 3:
             return redirect('/calendar')
     return render_template('home.html', title='Home',
                             logged=current_user.is_authenticated,
                             isMember=isMember)
-
-
 
 @app.route('/settings', methods=['GET', 'POST'])
 @login_required
@@ -1435,6 +1453,7 @@ def searchResults(search):
                             numUsers = len(results),
                             userType = current_user.userType)
 
+# Allows an employee to change the membership of a users remotely
 @app.route('/proxyChangeMembership/<id>', methods=['GET', 'POST'])
 @login_required
 def proxyChangeMembership(id):

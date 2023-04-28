@@ -43,7 +43,7 @@ html, body {
 
 .settings-container {
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
     background-image: linear-gradient(to bottom, #051e46, #194578);
     display: flex;
     justify-content: center;
@@ -449,6 +449,8 @@ li a i:hover {
 .mybookings-container {
     background-color: var(--background-dark);
     opacity: 90%;
+    margin-top: 20vh;
+    margin-bottom: 20vh;
 }
 
 th {
@@ -502,9 +504,13 @@ th, td {
 
 
 .manage-users-container {
-    background-color: var(--background-dark);
+    background-color: var(--background-light);
     opacity: 90%;
     font-size: 1.2vw;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    
+
 }
 
 .form-error {

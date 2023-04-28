@@ -5,6 +5,21 @@
 <!--Basic Header-->
 <h1>Edit Event (Manager)</h1>
 
+<!-- Flashed Messages -->
+<div class="d-flex align-items-center flashed-msg-container justify-content-center">
+    {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+        {% for category, message in messages %}
+            <div class="{{ category }} alert-box rounded-4 p-5">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times</span>
+            {{ message }}
+            </div>
+        {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
+
+
 <h3>
     Selected Event: <br> {{eventType}} @ {{event.aDateTime}} for {{event.aDuration}}hours
 </h3>
@@ -29,7 +44,9 @@
     
     </p>
     {% for error in form.aDateTime.errors %}
+    <div class="alert alert-danger" role="alert">
         [{{ error }}]
+      </div>
     {% endfor %}
 
 
@@ -40,7 +57,9 @@
     
     </p>
     {% for error in form.aDuration.errors %}
+    <div class="alert alert-danger" role="alert">
         [{{ error }}]
+      </div>
     {% endfor %}
 
     <!-- Staff member -->
@@ -48,24 +67,44 @@
         Staff Member <br>
         {{ form.aStaffName(class='form-control')}}
     </p>
+    {% for error in form.aStaffName.errors %}
+    <div class="alert alert-danger" role="alert">
+        [{{ error }}]
+      </div>
+    {% endfor %}
 
     <!-- Location -->
     <p>
         Location <br>
         {{ form.aLocation(class='form-control')}}
     </p>
+    {% for error in form.aLocation.errors %}
+    <div class="alert alert-danger" role="alert">
+        [{{ error }}]
+      </div>
+    {% endfor %}
 
     <!-- Price -->
     <p>
         Price <br>
         {{ form.aPrice(class='form-control')}}
     </p>
+    {% for error in form.aPrice.errors %}
+    <div class="alert alert-danger" role="alert">
+        [{{ error }}]
+      </div>
+    {% endfor %}
     
     <!-- Capacity -->
     <p>
         Capacity <br>
         {{ form.aCapacity(class='form-control')}}
     </p>
+    {% for error in form.aCapacity.errors %}
+    <div class="alert alert-danger" role="alert">
+        [{{ error }}]
+      </div>
+    {% endfor %}
 
     <p><input type="submit" class="btn btn-primary" value="Edit Event"></p>
 </form>
@@ -75,6 +114,6 @@
     Delete the chosen event and <em> all
     associated user bookings. </em>
 </h4>
-<a href="/deleteEvent/{{event.id}}"><button type="button" lass="btn btn-primary">Delete</button>
+<a href="/deleteEvent/{{event.id}}"><button type="button" class="btn btn-primary">Delete</button>
 
 {% endblock %}

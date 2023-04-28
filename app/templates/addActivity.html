@@ -2,8 +2,24 @@
 {% extends "base.html" %}
 
 {% block content %}
+
 <!--Basic Header-->
-<h1>Add Activity (Manager)</h1>
+<h1>Add Activity</h1>
+
+<!-- Flashed Messages -->
+<div class="d-flex align-items-center flashed-msg-container justify-content-center">
+    {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+        {% for category, message in messages %}
+            <div class="{{ category }} alert-box rounded-4 p-5">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times</span>
+            {{ message }}
+            </div>
+        {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
+
 
 <!--Form for manager to create a new activity-->
 <form method="post" name="addActivity">
@@ -14,7 +30,9 @@
         {{ form.aType(class='form-control')}}
     </p>
     {% for error in form.aType.errors %}
+    <div class="alert alert-danger" role="alert">
         [{{ error }}]
+    </div>
     {% endfor %}
 
     <p><input type="submit" class="btn btn-primary" value="Add Activity"></p>

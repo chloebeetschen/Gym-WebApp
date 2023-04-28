@@ -1,0 +1,40 @@
+/* manager style sheet*/
+
+.flashed-msg-container {
+    position: absolute !important;
+    top: 15% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 1000 !important;
+    font-size: 3vw !important;
+}
+
+.alert-box {
+    padding: 20px;
+    opacity: 0.9;
+    font-size: medium;
+}
+
+.error {
+    background-color: #f44336;
+    color: white;
+}
+
+.success {
+    background-color: #85f56e;
+    color: black;
+}
+
+.closebtn {
+    margin-left: 20px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 30px;
+    line-height: 20px;
+    cursor: pointer;
+}
+
+.closebtn:hover {
+    color: black;
+}

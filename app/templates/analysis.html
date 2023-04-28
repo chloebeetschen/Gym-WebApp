@@ -1,0 +1,176 @@
+<!-- Template for manager analysis -->
+{% extends "base.html" %}
+
+{% block content %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+<!--Basic Header-->
+<h1>Analysis</h1>
+
+
+<!-- Flashed Messages -->
+<div class="d-flex align-items-center flashed-msg-container justify-content-center">
+    {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+        {% for category, message in messages %}
+            <div class="{{ category }} alert-box rounded-4 p-5">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times</span>
+            {{ message }}
+            </div>
+        {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
+
+
+<h5>Pick a date, and an activity or facility to view usage and sales data</h5>
+<form method="post" name="analysis" >
+    {{ form.hidden_tag() }}
+
+    <input type = "hidden" name="form_id" value="form1">
+    <!--Date of activity-->
+    <p class="mt-4">
+        Date <br>
+        {{ form.DateOf(class='form-control')}}
+        
+    </p>
+    {% for error in form.DateOf.errors %}
+        [{{ error }}]
+    {% endfor %}
+
+    <!-- Facility -->
+    <label for="facilities">Choose Facility</label>
+    {% if facilities == none %}
+        <p>There are currently no facilities.</p>
+    {% else %}
+        <select name="facility" class="form-control" id="facilities">
+        <option label=" "></option>
+        {% for facility in facilities %}
+            <option value="{{facility[0]}}">{{ facility[0] }}</option>
+        {% endfor %}
+        </select>
+    {% endif %}
+    
+
+    <!--Type (Name of Activity)-->
+    <label for="activities">Choose Activity</label>
+    {% if activities == none %}
+        <p>There are currently no activites.</p>
+    {% else %}
+        <select name="activity" class="form-control" id="activities">
+        <option label=" "></option>
+        {% for activity in activities %}
+            <option value="{{activity.activityType}}">{{ activity.activityType }}</option>
+        {% endfor %}
+        </select>
+    {% endif %}
+    
+<br>
+    <input type="submit" class="btn btn-primary" value="Submit">
+    
+</form>
+<br>
+
+<script>
+    var facility = document.getElementById('facilities')
+    var activity = document.getElementById('activities')
+
+    facility.addEventListener('input', ()=> {
+        if(facility.value !== ''){
+            activity.setAttribute('disabled', 'disabled');
+        } else {
+            activity.removeAttribute('disabled');
+        }
+    });
+
+    activity.addEventListener('input', ()=> {
+        if(activity.value !== ''){
+            facility.setAttribute('disabled', 'disabled');
+        } else {
+            facility.removeAttribute('disabled');
+        }
+    });
+
+</script>
+
+<hr>
+
+<h2> Analysis for all bookings this week</h2>
+<h3> Week of {{ thisWeek[0] }} - {{ thisWeek[6]}} </h3>
+
+<h3>Usage </h3>
+<canvas id="usageChart"> Graph of usage data </canvas>
+
+<hr>
+
+<h3>Sales</h3>
+<canvas id="salesChart"> Graph of usage data </canvas>
+
+<!-- The below code is adapted from W3 schools -->
+<script>
+var xValues = ["{{thisWeek[0]}}", "{{thisWeek[1]}}","{{thisWeek[2]}}","{{thisWeek[3]}}","{{thisWeek[4]}}","{{thisWeek[5]}}","{{ thisWeek[6]}}"];
+
+new Chart("usageChart", {
+  type: "bar",
+  data: {
+    labels: xValues,
+    datasets: [
+    {
+      label: "Members",
+      backgroundColor: "#a8d5e5",
+      data: {{currentMemberWeek}}
+    },
+    {
+      label: "Non-Members",
+      backgroundColor: "#93adcf",
+      data: {{currentNonMemberWeek}}
+    }]
+  },
+  options: {
+    scales: {
+      yAxes: [{
+        scaleLabel: {
+            display: true,
+            labelString: 'Bookings'
+        },
+        ticks: {
+          beginAtZero: true
+        }
+      }],
+    }
+  }
+});
+
+new Chart("salesChart", {
+  type: "bar",
+  data: {
+    labels: xValues,
+    datasets: [
+    {
+      backgroundColor: "#a8d5e5",
+      data: {{currentSales}}
+    }]
+  },
+  options: {
+    legend: {display: false},
+    layout: {
+        padding: 20
+    },
+    scales: {
+      yAxes: [{
+        scaleLabel: {
+            display: true,
+            labelString: 'Sales (£)'
+        },
+        ticks: {
+          beginAtZero: true
+        }
+      }],
+    }
+  }
+});
+</script>
+
+
+{% endblock %}

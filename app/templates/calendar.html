@@ -1,130 +1,240 @@
 <!-- Template for calender frontend -->
+<!--https://www.youtube.com/watch?v=VXW2A4Q81Ok-->
+<!--https://leimao.github.io/blog/JavaScript-FullCalendar/-->
 {% extends "base.html" %}
 {% block content %}
 
-<!--Basic Header-->
-<h1>Calendar</h1>
-<h2>If you would like to book one of our sessions that is open all day please choose from below.</h2>
-<a href="/repeatEvents/2"><button type="button" class="btns">Lane Swimming</button></a>
-<a href="/repeatEvents/4"><button type="button" class="btns">General Use Swimming</button></a>
-<a href="/repeatEvents/3"><button type="button" class="btns">Swimming Lessons</button></a>
-<a href="/repeatEvents/5"><button type="button" class="btns">Gym</button></a>
-<a href="/repeatEvents/7"><button type="button" class="btns">Climbing</button></a>
-<a href="/repeatEvents/6"><button type="button" class="btns">Squash</button></a>
-<a href="/repeatEvents/12"><button type="button" class="btns">Sports Hall Session</button></a>
+<div class="calendar-container container-fluid">
+
+    <!-- Flashed error Messages -->
+    <div class="d-flex align-items-center flashed-msg-container justify-content-center">
+        {% with messages = get_flashed_messages(with_categories=True) %}
+            {% if messages %}
+            {% for category, message in messages %}
+                <div class="{{ category }} alert-box rounded-4 p-5">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times</span>
+                {{ message }}
+                </div>
+            {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <div class="row m-0 p-0 mb-4 text-center">
+        <!--Basic Header-->
+        <p class="header p-0 m-0 pt-0 mb-0">Calendar</p>
+        <p class="mb-4 text-center">If you would like to book one of our sessions that is open all day please choose
+            from below.</p>
+        <div class="d-flex justify-content-center">
+            <div class="col">
+                <a href="/repeatEvents/2"><button type="button" class="btn btn-primary btn-calendar">Lane Swimming</button></a>
+            </div>
+            <div class="col">
+                <a href="/repeatEvents/4"><button type="button" class="btn  btn-primary btn-calendar">General Use Swimming</button></a>
+            </div>
+            <div class="col">
+                <a href="/repeatEvents/3"><button type="button" class="btn  btn-primary btn-calendar">Swimming Lessons</button></a>
+            </div>
+            <div class="col">
+                <a href="/repeatEvents/5"><button type="button" class="btn  btn-primary btn-calendar">Gym</button></a>
+            </div>
+            <div class="col">
+                <a href="/repeatEvents/7"><button type="button" class="btn  btn-primary btn-calendar">Climbing</button></a>
+            </div>
+            <div class="col">
+                <a href="/repeatEvents/6"><button type="button" class="btn  btn-primary btn-calendar">Squash</button></a>
+            </div>
+            <div class="col">
+                <a href="/repeatEvents/12"><button type="button" class="btn  btn-primary btn-calendar">Sports Hall Session</button></a>
+            </div>
+        </div>
+        
+        <!-- <div class="col"></div>
+        <div class="col"></div> -->
+        <div id="calendar"></div>
+
+    </div>
+</div>
 
 
-<!--Basic table to hold calendar information-->
-<table class="table">
-    <thead>
-        <tr>
-            <th>Week 1</th>
-            <th>Week 2</th>
-        </tr>
-    </thead>
-    <tbody>
-        <!--W1-->
-        <td>
-            {% for j in range(0, 7) %}
-                <table class="table">
-                    <h3>{{weeks[j].strftime("%A")}} - {{weeks[j].strftime("%d/%m/%y")}}</h3>
-                    <thead>
-                        <th>Time</th>
-                        <th>Activity Name</th>
-                        <th>Spaces Left</th>
-                        {% if member == False %}
-                            <th>Price</th>                        
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar@6.1.5/index.global.min.css"></link>
+<script src='https://cdn.jsdelivr.net/npm/@fullcalendar@6.1.5/index.global.min.js'></script>
+
+<script src='https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.5/index.global.min.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@6.1.5/index.global.min.js'></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function(){
+
+        let cElem = document.getElementById('calendar');
+
+        let calendar = new FullCalendar.Calendar(cElem, { 
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            },
+            slotEventOverlap: false,
+            navLinks: true, 
+            editable: false,
+            dayMaxEvents: true,
+            businessHours: {
+                daysOfWeek: [0,1,2,3,4,5,6],
+                startTime: '8:00',
+                endTime: '22:00',
+            },
+            //nowIndicator: true,
+            displayEventTime: true,
+            eventTimeFormat: {
+                hour: 'numeric',
+                minute: '2-digit',
+                meridiem: true,
+            },
+            selectable: true,
+            //https://github.com/fullcalendar/fullcalendar-docs/blob/main/_docs-v6/event-display/event-tooltip-demo.html
+            //https://fullcalendar.io/
+            
+            events: [
+                {% for i in range(numEvents) %}
+                    {
+                        title : '{{eventInfo[i].activityType}}',
+                        {% if isMember == True %}
+                            url : '/makeBooking/{{ events1[i].id }}',
+                        {% else %}
+                            url : '/addBasket/{{ events1[i].id }}',
                         {% endif %}
-                        <th></th>
-                        <th></th>
-                    </thead>
-                    <tbody>
-                        {% for i in range(numEvents) %}
-                            {% if events[i].aDateTime.weekday() == weeks[j].weekday() %} 
-                                <tr>
-                                    <!--display event and event info in the tables-->
-                                    <td>{{events[i].aDateTime.strftime("%H:%M")}}</td>
-                                    <td>{{eventInfo[i].activityType}}</td>
-                                    <td>{{events[i].aCapacity-events[i].aSlotsTaken}}</td>
-                                    {% if member == False %}
-                                        <td>{{events[i].aPrice}}</td>
-                                    {% endif %}
-                                    <!--TODO Popup for event info-->
-                                    {% if current_user.userType == 3 %}
-                                        <td><a href="/editEvent/{{events[i].id}}"><button type="button" class="btns">Edit/View Event</button></td>
-                                    {% else %}
-                                        <td><a href=""><button type="button" class="btns">Event Info</button></td>
-                                    {% endif %}
-                                    <!--If statement to see if acitivity is full and whether or not to dispay bookable button-->
-                                    <td>
-                                        {% if events[i].aSlotsTaken == events[i].aCapacity %}
-                                            <a href=""></a><button type="button" class="btns">Full</button></a>
-                                        {% else %}
-                                            {% if isMember == False %}
-                                                <a href="/addBasket/{{events[i].id}}"><button type="button" class="btns">Add to Basket</button>
-                                            {% else %}    
-                                                <a href="/makeBooking/{{events[i].id}}"><button type="button" class="btns">Book</button>
-                                            {% endif %}
-                                        {% endif %}
-                                    </td>
-                                </tr>
-                            {% endif %}
-                        {% endfor %}
-                    </tbody>
-                </table>
-            {% endfor %}
-        </td>
-        <!--W2-->
-        <td>
-            {% for j in range(0, 7) %}
-                <table class="table">
-                    <h3>{{weeks[j + 7].strftime("%A")}} - {{weeks[j + 7].strftime("%d/%m/%y")}}</h3>
-                    <thead>
-                        <th>Time</th>
-                        <th>Activity Name</th>
-                        <th>Spaces Left</th>
-                        {% if member == False %}
-                            <th>Price</th>
+                        start : '{{events1[i].aDateTime}}',
+                        content: '£{{events1[i].aPrice}} - {{events1[i].aDuration}} hour(s) - Spaces: {{events1[i].aCapacity-events1[i].aSlotsTaken}}',
+                    },
+                {% endfor %}
+                {% for i in range(numEvents2) %}
+                    {
+                        title : '{{eventInfo2[i].activityType}}',
+                        {% if isMember == True %}
+                            url : '/makeBooking/{{ events2[i].id }}',
+                        {% else %}
+                            url : '/addBasket/{{ events2[i].id }}',
                         {% endif %}
-                        <th></th>
-                        <th></th>
-                    </thead>
-                    <tbody>
-                        {% for i in range( numEvents2) %}
-                            {% if events2[i].aDateTime.weekday() == weeks[j].weekday() %} 
-                                <tr>
-                                    <!--display event and event info in the tables-->
-                                    <td>{{events2[i].aDateTime.strftime("%H:%M")}}</td>
-                                    <td>{{eventInfo2[i].activityType}}</td>
-                                    <td>{{events2[i].aCapacity-events2[i].aSlotsTaken}}</td>
-                                    {% if member == False %}
-                                        <td>{{events2[i].aPrice}}</td>
-                                    {% endif %}
-                                    <!--TODO Popup for event info-->
-                                    {% if current_user.userType == 3 %}
-                                        <td><a href="/editEvent/{{events2[i].id}}"><button type="button" class="btns">Edit/View Event</button></td>
-                                    {% else %}
-                                        <td><a href=""><button type="button" class="btns">Event Info</button></td>
-                                    {% endif %}
-                                    <!--If statement to see if acitivity is full and whether or not to dispay bookable button-->
-                                    <td>
-                                        {% if events2[i].aSlotsTaken == events2[i].aCapacity %}
-                                            <a href=""></a><button type="button" class="btns">Full</button></a>
-                                        {% else %}
-                                            {% if isMember == False %}
-                                                <a href="/addBasket/{{events2[i].id}}"><button type="button" class="btns">Add to Basket</button>
-                                            {% else %}    
-                                                <a href="/makeBooking/{{events2[i].id}}"><button type="button" class="btns">Book</button>
-                                            {% endif %}
-                                        {% endif %}
-                                    </td>
-                                </tr>
-                            {% endif %}
-                        {% endfor %}
-                    </tbody>
-                </table>
-            {% endfor %}
-        </td>
-    </tbody>
-</table>
+                        start : '{{events2[i].aDateTime}}',
+                    },
+                {% endfor %}
+            ]
+        });
+
+        calendar.render();
+
+        let eventDivs = document.getElementsByClassName('fc-daygrid-event-harness')
+        // Classes for the info pop up and booking button
+        const popUpClasses  = ['event-info-div', 'rounded-4', 'p-2']
+        const buttonClasses = ['btn', 'btn-responsive-calendar', 'btn-primary']
+
+        // Loop through the event divs and add in their respective details
+        let i = 0
+        let infoDiv, priceP, durationP, slotsLeftP, bookBtn
+        let bookBtnContent = "Book"
+
+
+        {% for i in range(numEvents) %}
+            infoDiv = document.createElement('div')
+            infoDiv.classList.add(...popUpClasses)
+
+            titleP = document.createElement('p')
+            titleP.textContent = '{{ eventInfo[i].activityType }}'
+            infoDiv.appendChild(titleP)
+
+            priceP = document.createElement('p')
+            priceP.textContent = 'Price: £{{ events1[i].aPrice }}'
+            infoDiv.appendChild(priceP)
+
+
+            durationP = document.createElement('p')
+            durationP.textContent = '{{ events1[i].aDuration }} hour(s)'
+            infoDiv.appendChild(durationP)
+
+            slotsLeftP = document.createElement('p')
+            slotsLeftP.textContent = 'Spaces: {{events1[i].aCapacity-events1[i].aSlotsTaken}}'
+            infoDiv.appendChild(slotsLeftP)
+
+
+            // Also want to add the book button
+            bookBtn = document.createElement('a')
+            bookBtn.classList.add(...buttonClasses)
+            bookBtn.nodeType = 'button'
+            {% if userBooked1[i]==True %}
+                bookBtn.href = '#'
+                bookBtnContent = "Booked"
+                bookBtn.classList.add('disabled')
+            {% elif events1[i].aSlotsTaken < events1[i].aCapacity %}
+                {% if isMember %}
+                    bookBtn.href = '/makeBooking/{{ events1[i].id }}'
+                    bookBtnContent = "Book"
+                {% else %}
+                    bookBtn.href = '/addBasket/{{ events1[i].id }}'
+                    bookBtnContent = "Add to basket"
+                {% endif %}
+            {% else %}
+                bookBtn.href = '#'
+                bookBtnContent = "Full"
+                bookBtn.classList.add('disabled')
+            {% endif %}
+
+            bookBtn.textContent = bookBtnContent
+            infoDiv.appendChild(bookBtn)
+            eventDivs[i].appendChild(infoDiv)
+            i ++
+        {% endfor %}
+        i = 0
+        {% for i in range(numEvents2) %}
+            infoDiv = document.createElement('div')
+            infoDiv.classList.add(...popUpClasses)
+
+            titleP = document.createElement('p')
+            titleP.textContent = '{{ eventInfo2[i].activityType }}'
+            infoDiv.appendChild(titleP)
+
+            priceP = document.createElement('p')
+            priceP.textContent = 'Price: £{{ events2[i].aPrice }}'
+            infoDiv.appendChild(priceP)
+
+            durationP = document.createElement('p')
+            durationP.textContent = '{{ events2[i].aDuration }} hour(s)'
+            infoDiv.appendChild(durationP)
+
+            slotsLeftP = document.createElement('p')
+            slotsLeftP.textContent = 'Spaces: {{events2[i].aCapacity-events2[i].aSlotsTaken}}'
+            infoDiv.appendChild(slotsLeftP)
+
+            // Also want to add the book button
+            bookBtn = document.createElement('a')
+            bookBtn.classList.add(...buttonClasses)
+            bookBtn.nodeType = 'button'
+            {% if userBooked2[i]==True %}
+                bookBtn.href = '#'
+                bookBtnContent = "Booked"
+                bookBtn.classList.add('disabled')
+            {% elif events2[i].aSlotsTaken < events2[i].aCapacity %}
+                {% if isMember %}
+                    bookBtn.href = '/makeBooking/{{ events2[i].id }}'
+                    bookBtnContent = "Book"
+                {% else %}
+                    bookBtn.href = '/addBasket/{{ events2[i].id }}'
+                    bookBtnContent = "Add to basket"
+                {% endif %}
+            {% else %}
+                bookBtn.href = '#'
+                bookBtnContent = "Full"
+                bookBtn.classList.add('disabled')
+            {% endif %}
+
+            bookBtn.textContent = bookBtnContent
+            infoDiv.appendChild(bookBtn)
+            eventDivs[i].appendChild(infoDiv)
+
+            eventDivs[ {{numEvents}} + i ].appendChild(infoDiv)
+            i ++
+        {% endfor %}
+
+
+    });
+</script>
 {% endblock %}

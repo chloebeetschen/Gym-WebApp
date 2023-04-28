@@ -2,28 +2,40 @@
 {% extends "base.html" %}
 
 {% block content %}
+
 <title>Memberships</title>
-<h1>Buy a membership: </h1>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Annual: </th>
-            <th>Monthly: </th>
-        </tr>
-        <tr>
-            <th> £300 </th>
-            <th> £35 </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>    
-                <a href="/memberships/annual"><button type="button" class="btn btn-primary">Purchase</button></a>
-            </td>
-            <td>    
-                <a href="/memberships/monthly"><button type="button" class="btn btn-primary">Purchase</button></a>
-            </td>
-        </tr>
-    </tbody>
-</table>
+<div class="container-fluid text-center settings-container">
+    <div class=" login-reg-form-container  rounded-4 pb-4 px-5 pt-3 box-shadow">
+      <div class="row mb-4">
+        <div class="col border-bottom border-3">
+          <h1 class="fw-bold">Memberships</h1>
+        </div>
+      </div>
+
+    {% if isMember %}
+    <div class="row my-2  py-3">
+        <div class="col border-right border-1 text-center">
+          <h4 class="pt-2">Cancel User's Membership:</h4>
+        </div>
+        <div class="col d-flex justify-content-center">
+          <a href="/cancelMembership"><button type="submit" class="btn btn-block btn-primary">Cancel</button></a>
+        </div>
+      </div>
+    
+    {% else %}
+        {% if 'proxyMembership' in session %}
+            <p> Choose a membership for the selected user:   </p>
+            <div class="row text-center">
+                <div class="col">
+                  <p class="fw-bold">Annual Membership: £300</p>
+                  <a href="/memberships/annual"><button type="button" class="btn btn-primary">Purchase</button></a>
+                </div>
+                <div class="col">
+                  <p class="fw-bold">Monthly Membership: £35</p>
+                  <a href="/memberships/monthly"><button type="button" class="btn btn-primary">Purchase</button></a>
+                </div>
+               </div>
+        {% endif %}
+    {% endif %}
+ 
 {% endblock %}

@@ -190,7 +190,7 @@ def addToDB():
         today = today+timedelta(days=1)
 
 
-    # Add admin email if doesn't exist:
+    # Add admin email and dummy data if doesn't exist:
     aEmailExists = UserLogin.query.filter_by(email="admin@admin.com").first()
     if (aEmailExists == None):
         hashedPassword = bcrypt.generate_password_hash('password')
@@ -211,6 +211,8 @@ def addToDB():
         # Add to the database
         db.session.add(newUser)
         db.session.add(newUserDetails)
+
+
 
     db.session.commit()
 
@@ -427,9 +429,16 @@ def makeBooking(id): # << id passed here is the calendar id (not user)
         # If not a team event, increase the slots taken for all other swimming pool events at that time
         else:
             otherEvents = Calendar.query.filter_by(aDateTime=event.aDateTime, aLocation=event.aLocation).all()
+            previousHour = event.aDateTime-timedelta(hours=1)
+            checkTeamEvent = Calendar.query.filter_by(aDateTime=previousHour, aLocation=event.aLocation).all()
             for events in otherEvents:
                 if events.aCapacity != events.aSlotsTaken and events != event:
                     events.aSlotsTaken +=1
+            for events2 in checkTeamEvent:    
+                if events2.activityId == 1 or events2.activityId == 11:
+                    if events2.aCapacity != events2.aSlotsTaken:
+                        events2.aSlotsTaken +=1
+
 
     #get capactiy of that activity
     eventType = Activity.query.get(event.activityId)
@@ -958,6 +967,8 @@ def login():
                     return redirect('/calendar')
             else:
                 flash("Incorrect username/password. Please try again.", "error")
+        else:
+            flash("There is no account linked to this email. Please register and try again.", "error")
 
     return render_template('login.html', form=form, title='Login')
 

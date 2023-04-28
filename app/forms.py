@@ -20,11 +20,15 @@ def validateEmail(form, field):
         raise ValidationError("Not a valid email")
 
 
-# Function to check that registree is old enough to register
+# Function to check that registree is old enough to register but not too old
 def validateAge(form, field):
     oldEnough = datetime.now().date()-timedelta(days=16*365)
+    youngEnough = datetime.now().date()-timedelta(days=122*365) # The oldest person in the world is 122 - have to be inclusive!
     if field.data > oldEnough:
         raise ValidationError("You are not old enough to register")
+    if field.data < youngEnough:
+        raise ValidationError("Please enter a valid year")
+        
 
 # Ensure password contains capital letter and digit
 def passwordPolicy(form, field):

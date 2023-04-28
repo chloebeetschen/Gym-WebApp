@@ -24,20 +24,15 @@
         <p class="header p-0 m-0 pt-0 mb-0">Calendar</p>
         <p class="mb-4 text-center">If you would like to book one of our sessions that is open all day please choose
             from below.</p>
-        <!-- <div class="col"></div>
-        <div class="col"></div> -->
         <div class="d-flex justify-content-center">
             <div class="col">
-                <a href="/repeatEvents/2"><button type="button" class="btn btn-primary btn-calendar">Lane
-                        Swimming</button></a>
+                <a href="/repeatEvents/2"><button type="button" class="btn btn-primary btn-calendar">Lane Swimming</button></a>
             </div>
             <div class="col">
-                <a href="/repeatEvents/4"><button type="button" class="btn  btn-primary btn-calendar">General Use
-                        Swimming</button></a>
+                <a href="/repeatEvents/4"><button type="button" class="btn  btn-primary btn-calendar">General Use Swimming</button></a>
             </div>
             <div class="col">
-                <a href="/repeatEvents/3"><button type="button" class="btn  btn-primary btn-calendar">Swimming
-                        Lessons</button></a>
+                <a href="/repeatEvents/3"><button type="button" class="btn  btn-primary btn-calendar">Swimming Lessons</button></a>
             </div>
             <div class="col">
                 <a href="/repeatEvents/5"><button type="button" class="btn  btn-primary btn-calendar">Gym</button></a>
@@ -49,42 +44,27 @@
                 <a href="/repeatEvents/6"><button type="button" class="btn  btn-primary btn-calendar">Squash</button></a>
             </div>
             <div class="col">
-                <a href="/repeatEvents/12"><button type="button" class="btn  btn-primary btn-calendar">Sports Hall
-                        Session</button></a>
+                <a href="/repeatEvents/12"><button type="button" class="btn  btn-primary btn-calendar">Sports Hall Session</button></a>
             </div>
         </div>
         
-        <!-- <div class="col"></div>
-        <div class="col"></div> -->
     </div>
 
     <!--Basic table to hold calendar information-->
     <div class="row">
         <div class="col calendar-info rounded-5 box-shadow">
-            <!-- Table for whole week -->
-            <!-- <table class="table">
-
-            <thead>-->
             <div class=" mt-0 pt-0 border-bottom">
                 <p class="header"> WEEK 1</p>
             </div>
-
-            <!-- </thead>
-
-            <tbody> -->
-
             {% for j in range(0, 7) %}
-            <!-- <tr> -->
             <table class="table table-responsive">
                 <p class="mb-0 mt-5 calendar-days">{{weeks[j].strftime("%A")}} - {{weeks[j].strftime("%d/%m/%y")}}</p>
                 <thead>
                     {% if weeksCount[j] == 0 %}
                     <th class="text-start pb-5 fw-light">There are no sessions on this day. </th>
-
                     {% else %}
                     <th>Time</th>
                     <th>Activity</th>
-                    <!-- <th>Spaces</th> -->
                     {% if isMember == False %}
                     <th>Price</th>
                     {% endif %}

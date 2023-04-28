@@ -566,7 +566,7 @@ def proxyCustomerBooking(id):
 def repeatEvents(id):
     logging.debug("Repeat events (with id: %s) route request", id)
     week = datetime.now()+timedelta(days=14)
-    events = Calendar.query.filter(Calendar.aDateTime >= date.today()).filter(Calendar.aDateTime < week).filter_by(activityId = id).all()
+    events = Calendar.query.filter(Calendar.aDateTime >= datetime.now()).filter(Calendar.aDateTime < week).filter_by(activityId = id).all()
     eventType = (Activity.query.get(id)).activityType
     today = datetime.now()
     weeks = [today, (today + timedelta(days=1)), (today + timedelta(days=2)), (today + timedelta(days=3)), (today + timedelta(days=4)), (today + timedelta(days=5)), (today + timedelta(days=6)), (today + timedelta(days=7)), (today + timedelta(days=8)), (today + timedelta(days=9)), (today + timedelta(days=10)), (today + timedelta(days=11)), (today + timedelta(days=12)), (today + timedelta(days=13))]

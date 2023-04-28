@@ -100,25 +100,32 @@
                 {% for i in range(numEvents) %}
                     {
                         title : '{{eventInfo[i].activityType}}',
-                        {% if events1[i].aSlotsTaken != events1[i].aCapacity %}
-                            {% if isMember == True %}
-                                url : '/makeBooking/{{ events1[i].id }}',
-                            {% else %}
-                                url : '/addBasket/{{ events1[i].id }}',
+                        {% if current_user.userType == 3 %}
+                            url : '/editEvent/{{ events1[i].id }}',
+                        {% else %}
+                            {% if events1[i].aSlotsTaken != events1[i].aCapacity %}
+                                {% if isMember == True %}
+                                    url : '/makeBooking/{{ events1[i].id }}',
+                                {% else %}
+                                    url : '/addBasket/{{ events1[i].id }}',
+                                {% endif %}
                             {% endif %}
                         {% endif %}
                         start : '{{events1[i].aDateTime}}',
-                        content: '£{{events1[i].aPrice}} - {{events1[i].aDuration}} hour(s) - Spaces: {{events1[i].aCapacity-events1[i].aSlotsTaken}}',
                     },
                 {% endfor %}
                 {% for i in range(numEvents2) %}
                     {
                         title : '{{eventInfo2[i].activityType}}',
-                        {% if events2[i].aSlotsTaken != events2[i].aCapacity %}
-                            {% if isMember == True %}
-                                url : '/makeBooking/{{ events2[i].id }}',
-                            {% else %}
-                                url : '/addBasket/{{ events2[i].id }}',
+                        {% if current_user.userType == 3 %}
+                            url : '/editEvent/{{ events2[i].id }}',
+                        {% else %}
+                            {% if events2[i].aSlotsTaken != events2[i].aCapacity %}
+                                {% if isMember == True %}
+                                    url : '/makeBooking/{{ events2[i].id }}',
+                                {% else %}
+                                    url : '/addBasket/{{ events2[i].id }}',
+                                {% endif %}
                             {% endif %}
                         {% endif %}
                         start : '{{events2[i].aDateTime}}',

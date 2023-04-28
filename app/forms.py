@@ -58,7 +58,6 @@ class SearchForm(FlaskForm):
 
 
 # Form to add an activity to the calendar
-# Can be used for editing and adding calendar events
 class EventForm(FlaskForm):
     aDateTime    = DateTimeLocalField('Date & Time of activity', format='%Y-%m-%dT%H:%M', validators=[DataRequired(), validateFutureDate], render_kw={"placeholder": "Date of activity"})
     aDuration    = IntegerField('Duration of activity', validators=[DataRequired(), NumberRange(min=0)],
@@ -67,6 +66,17 @@ class EventForm(FlaskForm):
     aLocation    = StringField("Location", validators=[DataRequired()], render_kw={"placeholder": "Location"}) 
     aPrice       = FloatField("Price", validators=[NumberRange(min=0.0), DataRequired()], render_kw={"placeholder": "Price of activity"}) 
     aCapacity    = IntegerField('Capacity of activity', validators=[ NumberRange(min=0), DataRequired()],
+                               render_kw={"placeholder": "Capacity of activity"})
+
+# Form to edit calendar event
+class EditEventForm(FlaskForm):
+    aDateTime    = DateTimeLocalField('Date & Time of activity', format='%Y-%m-%dT%H:%M', validators=[Optional(), validateFutureDate], render_kw={"placeholder": "Date of activity"})
+    aDuration    = IntegerField('Duration of activity', validators=[Optional(), NumberRange(min=0)],
+                             render_kw={"placeholder": "Duration of activity"})
+    aStaffName   = StringField("Staff Name", validators=[Optional()], render_kw={"placeholder": "Staff Member"}) 
+    aLocation    = StringField("Location", validators=[Optional()], render_kw={"placeholder": "Location"}) 
+    aPrice       = FloatField("Price", validators=[NumberRange(min=0.0), Optional()], render_kw={"placeholder": "Price of activity"}) 
+    aCapacity    = IntegerField('Capacity of activity', validators=[ NumberRange(min=0), Optional()],
                                render_kw={"placeholder": "Capacity of activity"})
 
 

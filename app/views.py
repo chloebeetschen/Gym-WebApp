@@ -11,6 +11,7 @@ from flask_bcrypt import Bcrypt
 
 import stripe
 import logging
+import random
 
 bcrypt = Bcrypt(app)
 
@@ -63,7 +64,7 @@ def addToDB():
         ])
 
         #get todays date and iterate for 2 weeks from today as events will appear every day
-        today = date.today() + timedelta(days=1)
+        today = date.today() - timedelta(days=30)
         twoWeeks = today+timedelta(days=14)
 
         while today < twoWeeks:
@@ -127,7 +128,7 @@ def addToDB():
     # Check to add daily additions:
 
     #get todays date and iterate for 2 weeks from today as events will appear every day
-    today = date.today() + timedelta(days=1)
+    today = date.today() - timedelta(days=30)
     twoWeeks = today+timedelta(days=14)
 
     while today < twoWeeks:
@@ -190,7 +191,7 @@ def addToDB():
         today = today+timedelta(days=1)
 
 
-    # Add admin email and dummy data if doesn't exist:
+    # Add admin email if doesn't exist:
     aEmailExists = UserLogin.query.filter_by(email="admin@admin.com").first()
     if (aEmailExists == None):
         hashedPassword = bcrypt.generate_password_hash('password')
@@ -212,7 +213,206 @@ def addToDB():
         db.session.add(newUser)
         db.session.add(newUserDetails)
 
+    # Add dummy data if doesn't exist:
+    aEmailExists = UserLogin.query.filter_by(email="hope@nonmember.com").first()
+    if (aEmailExists == None):
 
+        hashedPassword = bcrypt.generate_password_hash('password')
+        oldEnough = datetime.now().date()-timedelta(days=16*365)
+
+
+        #Users without memberships 
+        userEmail = 'hope@nonmember.com'
+        newUser = models.UserLogin(email=userEmail,
+                                password=hashedPassword,
+                                userType=1)
+        newUserDetails = models.UserDetails(name='Hope',
+                                        dateOfBirth=oldEnough,
+                                        loginDetails=newUser.id,
+                                        isMember = False,
+                                        membershipEnd=datetime.now())
+        db.session.add(newUser)
+        db.session.add(newUserDetails)
+
+        userEmail = 'chloe@nonmember.com'
+        newUser = models.UserLogin(email=userEmail,
+                                password=hashedPassword,
+                                userType=1)
+        newUserDetails = models.UserDetails(name='Chloe',
+                                        dateOfBirth=oldEnough,
+                                        loginDetails=newUser.id,
+                                        isMember = False,
+                                        membershipEnd=datetime.now())
+        db.session.add(newUser)
+        db.session.add(newUserDetails)
+
+        userEmail = 'toby@nonmember.com'
+        newUser = models.UserLogin(email=userEmail,
+                                password=hashedPassword,
+                                userType=1)
+        newUserDetails = models.UserDetails(name='Toby',
+                                        dateOfBirth=oldEnough,
+                                        loginDetails=newUser.id,
+                                        isMember = False,
+                                        membershipEnd=datetime.now())
+        db.session.add(newUser)
+        db.session.add(newUserDetails)
+
+        userEmail = 'aaditi@nonmember.com'
+        newUser = models.UserLogin(email=userEmail,
+                                password=hashedPassword,
+                                userType=1)
+        newUserDetails = models.UserDetails(name='Aaditi',
+                                        dateOfBirth=oldEnough,
+                                        loginDetails=newUser.id,
+                                        isMember = False,
+                                        membershipEnd=datetime.now())
+        db.session.add(newUser)
+        db.session.add(newUserDetails)
+
+        userEmail = 'gaelle@nonmember.com'
+        newUser = models.UserLogin(email=userEmail,
+                                password=hashedPassword,
+                                userType=1)
+        newUserDetails = models.UserDetails(name='Gaelle',
+                                        dateOfBirth=oldEnough,
+                                        loginDetails=newUser.id,
+                                        isMember = False,
+                                        membershipEnd=datetime.now())
+        db.session.add(newUser)
+        db.session.add(newUserDetails)
+
+        userEmail = 'archie@nonmember.com'
+        newUser = models.UserLogin(email=userEmail,
+                                password=hashedPassword,
+                                userType=1)
+        newUserDetails = models.UserDetails(name='Archie',
+                                        dateOfBirth=oldEnough,
+                                        loginDetails=newUser.id,
+                                        isMember = False,
+                                        membershipEnd=datetime.now())
+        db.session.add(newUser)
+        db.session.add(newUserDetails)
+
+        #Users with memberships
+        userEmail = 'hope@member.com'
+        newUser = models.UserLogin(email=userEmail,
+                                password=hashedPassword,
+                                userType=1)
+        newUserDetails = models.UserDetails(name='Hope',
+                                        dateOfBirth=oldEnough,
+                                        loginDetails=newUser.id,
+                                        isMember = True,
+                                        membershipEnd=datetime.now()+timedelta(days=30))
+        db.session.add(newUser)
+        db.session.add(newUserDetails)
+
+        userEmail = 'chloe@member.com'
+        newUser = models.UserLogin(email=userEmail,
+                                password=hashedPassword,
+                                userType=1)
+        newUserDetails = models.UserDetails(name='Chloe',
+                                        dateOfBirth=oldEnough,
+                                        loginDetails=newUser.id,
+                                        isMember = True,
+                                        membershipEnd=datetime.now()+timedelta(days=30))
+        db.session.add(newUser)
+        db.session.add(newUserDetails)
+
+        userEmail = 'toby@member.com'
+        newUser = models.UserLogin(email=userEmail,
+                                password=hashedPassword,
+                                userType=1)
+        newUserDetails = models.UserDetails(name='Toby',
+                                        dateOfBirth=oldEnough,
+                                        loginDetails=newUser.id,
+                                        isMember = True,
+                                        membershipEnd=datetime.now()+timedelta(days=30))
+        db.session.add(newUser)
+        db.session.add(newUserDetails)
+
+        userEmail = 'aaditi@member.com'
+        newUser = models.UserLogin(email=userEmail,
+                                password=hashedPassword,
+                                userType=1)
+        newUserDetails = models.UserDetails(name='Aaditi',
+                                        dateOfBirth=oldEnough,
+                                        loginDetails=newUser.id,
+                                        isMember = True,
+                                        membershipEnd=datetime.now()+timedelta(days=365))
+        db.session.add(newUser)
+        db.session.add(newUserDetails)
+
+        userEmail = 'gaelle@member.com'
+        newUser = models.UserLogin(email=userEmail,
+                                password=hashedPassword,
+                                userType=1)
+        newUserDetails = models.UserDetails(name='Gaelle',
+                                        dateOfBirth=oldEnough,
+                                        loginDetails=newUser.id,
+                                        isMember = True,
+                                        membershipEnd=datetime.now()+timedelta(days=365))
+        db.session.add(newUser)
+        db.session.add(newUserDetails)
+
+        userEmail = 'archie@member.com'
+        newUser = models.UserLogin(email=userEmail,
+                                password=hashedPassword,
+                                userType=1)
+        newUserDetails = models.UserDetails(name='Archie',
+                                        dateOfBirth=oldEnough,
+                                        loginDetails=newUser.id,
+                                        isMember = True,
+                                        membershipEnd=datetime.now()+timedelta(days=365))
+        db.session.add(newUser)
+        db.session.add(newUserDetails)
+
+
+        # Employees
+        userEmail = 'employee1@gymcorp.com'
+        newUser = models.UserLogin(email=userEmail,
+                                password=hashedPassword,
+                                userType=2)
+        newUserDetails = models.UserDetails(name='Jeff',
+                                        dateOfBirth=oldEnough,
+                                        loginDetails=newUser.id,
+                                        isMember = False,
+                                        membershipEnd=datetime.now())
+        db.session.add(newUser)
+        db.session.add(newUserDetails)
+
+        userEmail = 'employee2@member.com'
+        newUser = models.UserLogin(email=userEmail,
+                                password=hashedPassword,
+                                userType=2)
+        newUserDetails = models.UserDetails(name='Samantha',
+                                        dateOfBirth=oldEnough,
+                                        loginDetails=newUser.id,
+                                        isMember = True,
+                                        membershipEnd=datetime.now()+timedelta(days=365))
+        db.session.add(newUser)
+        db.session.add(newUserDetails)
+  
+
+        # Make bookings for users/events
+
+        # Get all members and non members and events
+        members = UserDetails.query.filter_by(isMember=True).all()
+        nonMembers = UserDetails.query.filter_by(isMember=False).all() 
+        events = Calendar.query.all()
+
+        # Randomly generate bookings
+        for i in range (0,50):
+            event1 = random.choice(events)
+            user1 = random.choice(members)
+            event2 = random.choice(events)
+            user2 = random.choice(nonMembers)
+            if(event1.aSlotsTaken != event1.aCapacity):
+                newBooking1 = UserBookings(userId = user1.id, calendarId = event1.id)
+                db.session.add(newBooking1)
+            if(event2.aSlotsTaken != event2.aCapacity):
+                newBooking2 = UserBookings(userId = user2.id, calendarId = event2.id)
+                db.session.add(newBooking2)
 
     db.session.commit()
 
@@ -921,7 +1121,7 @@ def editEvent(id):
 
     event = Calendar.query.get(id)
     eventType = (Activity.query.get(event.activityId)).activityType
-    form = EventForm()
+    form = EditEventForm()
     #validate on submission
     if form.validate_on_submit(): 
         if form.aDateTime.data is not None:

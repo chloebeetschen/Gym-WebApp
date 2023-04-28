@@ -38,3 +38,61 @@
 .closebtn:hover {
     color: black;
 }
+
+.calendar-container {
+    padding-top: 1vh;
+    height: auto;
+}
+
+.header {
+    text-align: center;
+    font-size: 2.2vw !important;
+    font-weight: bold;
+}
+
+#calendar {
+    padding-top: 2vw;
+}
+
+.event-info {
+    position: relative;
+    display: inline-block;
+}
+
+.event-info-div p {
+    margin: 0;
+    padding-top: 0.5vw;
+    padding-bottom: 0.5vw;
+}
+
+
+.event-info-div {
+    background-color: solid white;
+    visibility: hidden;
+    position: absolute;
+    transform: translate(0, -55%);
+    z-index: 999;
+    border-radius: 15px;
+    width: 105%;
+    transition: all 0.1s ease-out 0.4s;
+    opacity: 0;
+}
+
+.fc-daygrid-event-harness:hover > .event-info-div {
+    opacity: 0;
+    visibility: hidden;
+}
+
+
+.btn-calendar {
+    height:100%;
+    margin:5px;
+}
+
+.btn-primary {
+    font-weight: bold;
+    border-radius: 40px !important;
+    padding: 12px;
+    width: 150px;
+
+}

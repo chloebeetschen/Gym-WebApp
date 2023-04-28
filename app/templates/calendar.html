@@ -23,8 +23,8 @@
     <div class="row m-0 p-0 mb-4 text-center">
         <!--Basic Header-->
         <p class="header p-0 m-0 pt-0 mb-0">Calendar</p>
-        <p class="mb-4 text-center">If you would like to book one of our sessions that is open all day please choose
-            from below.</p>
+        <p class="mb-4 text-center"><b>If you would like to book one of our sessions that is open all day please choose
+            from below.</b></p>
         <div class="d-flex justify-content-center">
             <div class="col">
                 <a href="/repeatEvents/2"><button type="button" class="btn btn-primary btn-calendar">Lane Swimming</button></a>
@@ -64,6 +64,10 @@
 <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@6.1.5/index.global.min.js'></script>
 
 <script>
+    //refernces:
+    //https://github.com/fullcalendar/fullcalendar-docs/blob/main/_docs-v6/event-display/event-tooltip-demo.html
+    //https://fullcalendar.io/
+    
     document.addEventListener('DOMContentLoaded', function(){
 
         let cElem = document.getElementById('calendar');
@@ -91,29 +95,38 @@
                 meridiem: true,
             },
             selectable: true,
-            //https://github.com/fullcalendar/fullcalendar-docs/blob/main/_docs-v6/event-display/event-tooltip-demo.html
-            //https://fullcalendar.io/
             
             events: [
                 {% for i in range(numEvents) %}
                     {
                         title : '{{eventInfo[i].activityType}}',
-                        {% if isMember == True %}
-                            url : '/makeBooking/{{ events1[i].id }}',
+                        {% if current_user.userType == 3 %}
+                            url : '/editEvent/{{ events1[i].id }}',
                         {% else %}
-                            url : '/addBasket/{{ events1[i].id }}',
+                            {% if events1[i].aSlotsTaken != events1[i].aCapacity %}
+                                {% if isMember == True %}
+                                    url : '/makeBooking/{{ events1[i].id }}',
+                                {% else %}
+                                    url : '/addBasket/{{ events1[i].id }}',
+                                {% endif %}
+                            {% endif %}
                         {% endif %}
                         start : '{{events1[i].aDateTime}}',
-                        content: '£{{events1[i].aPrice}} - {{events1[i].aDuration}} hour(s) - Spaces: {{events1[i].aCapacity-events1[i].aSlotsTaken}}',
                     },
                 {% endfor %}
                 {% for i in range(numEvents2) %}
                     {
                         title : '{{eventInfo2[i].activityType}}',
-                        {% if isMember == True %}
-                            url : '/makeBooking/{{ events2[i].id }}',
+                        {% if current_user.userType == 3 %}
+                            url : '/editEvent/{{ events2[i].id }}',
                         {% else %}
-                            url : '/addBasket/{{ events2[i].id }}',
+                            {% if events2[i].aSlotsTaken != events2[i].aCapacity %}
+                                {% if isMember == True %}
+                                    url : '/makeBooking/{{ events2[i].id }}',
+                                {% else %}
+                                    url : '/addBasket/{{ events2[i].id }}',
+                                {% endif %}
+                            {% endif %}
                         {% endif %}
                         start : '{{events2[i].aDateTime}}',
                     },
@@ -233,8 +246,6 @@
             eventDivs[ {{numEvents}} + i ].appendChild(infoDiv)
             i ++
         {% endfor %}
-
-
     });
 </script>
 {% endblock %}

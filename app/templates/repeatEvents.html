@@ -21,6 +21,7 @@
     <div class="row m-0 p-0 mb-4 text-center">
     <!--Basic Header-->
     <p class="header p-0 m-0 pt-0 mb-0">Calendar</p>
+    <p class="header p-0 m-0 pt-0 mb-0">Please click on an event to book it/add to basket</p>
     <p class="mb-4 text-center">If you would like to book one of our sessions that is open all day please choose
         from below.</p>
     <!-- <div class="col"></div>
@@ -53,12 +54,10 @@
         </div>
     </div>
     
-    <!-- <div class="col"></div>
-    <div class="col"></div> -->
 </div>
 
 <div id="calendar2"></div>
-
+</div>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.4.0/main.min.css"></link>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.4.0/main.min.js"></script>
@@ -67,6 +66,10 @@
 <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@6.1.5/index.global.min.js'></script>
 
 <script>
+    //refernces:
+    //https://github.com/fullcalendar/fullcalendar-docs/blob/main/_docs-v6/event-display/event-tooltip-demo.html
+    //https://fullcalendar.io/
+    
     document.addEventListener('DOMContentLoaded', function(){
 
         let cElem = document.getElementById('calendar2');
@@ -103,12 +106,16 @@
                 {% for i in range(numEvents) %}
                     {
                         start : '{{events[i].aDateTime}}',
-                        {% if isMember == True %}
-                            title : 'Spaces: {{events[i].aCapacity-events[i].aSlotsTaken}} ',
-                            url : '/makeBooking/{{ events[i].id }}',
+                        {% if events[i].aSlotsTaken != events[i].aCapacity %}
+                            {% if isMember == True %}
+                                title : 'Book! Spaces: {{events[i].aCapacity-events[i].aSlotsTaken}} ',
+                                url : '/makeBooking/{{ events[i].id }}',
+                            {% else %}
+                                title : '£{{events[i].aPrice}} - Spaces: {{events[i].aCapacity-events[i].aSlotsTaken}}',
+                                url : '/addBasket/{{ events[i].id }}',
+                            {% endif %}
                         {% else %}
-                            title : '£{{events[i].aPrice}} - Spaces: {{events[i].aCapacity-events[i].aSlotsTaken}}',
-                            url : '/addBasket/{{ events[i].id }}',
+                            title: 'Full'
                         {% endif %}
                     },
                 {% endfor %}

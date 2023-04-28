@@ -34,11 +34,12 @@ class Calendar(db.Model):
     userEvents = db.relationship('UserBookings', backref='calendar')
 
     # Validate that date is in future
-    @validates("aDateTime")
-    def validate_aDateTime(self, key, Calendar):
-        if Calendar < datetime.today():
-            raise ValueError("Event date must be in future")
-        return Calendar
+    # COMMENTED OUT TO PREPOPULATE DB
+    # @validates("aDateTime")
+    # def validate_aDateTime(self, key, Calendar):
+    #     if Calendar < datetime.today():
+    #         raise ValueError("Event date must be in future")
+    #     return Calendar
     # Validates that duration is positive
     @validates("aDuration")
     def validate_aDuration(self, key, Calendar):

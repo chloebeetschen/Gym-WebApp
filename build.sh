@@ -20,3 +20,4 @@ else
 fi
 
 flask run --port=5002
+

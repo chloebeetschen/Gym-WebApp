@@ -262,7 +262,7 @@ def calendarMethod():
     w2 = datetime.now()+timedelta(days=13)
     
     # get all events in order of date and time w1 and w2
-    events = Calendar.query.filter(Calendar.aDateTime >= date.today()).filter(Calendar.aIsRepeat==False).filter(Calendar.aDateTime < w1).order_by(Calendar.aDateTime).all()
+    events1 = Calendar.query.filter(Calendar.aDateTime >= datetime.now()).filter(Calendar.aIsRepeat==False).filter(Calendar.aDateTime < w1).order_by(Calendar.aDateTime).all()
     events2 = Calendar.query.filter(Calendar.aDateTime >= w1).filter(Calendar.aDateTime < w2).filter(Calendar.aIsRepeat==False).order_by(Calendar.aDateTime).all()
 
     userBooked1 = []
@@ -273,7 +273,7 @@ def calendarMethod():
     # get event type for each event found
     eventInfo = []
     eventPrices = []
-    for i in events:
+    for i in events1:
         # Find the index of day in weeks list
         index = dateWeeks.index((i.aDateTime).date())
         weeksCount[index] +=1
@@ -324,9 +324,9 @@ def calendarMethod():
     if 'proxyBooking' in session:
         return render_template('calendar.html',
                             title     = 'Calendar',
-                            numEvents = len(events),
+                            numEvents = len(events1),
                             numEvents2 = len(events2),
-                            events    = events,
+                            events1    = events1,
                             eventInfo = eventInfo,
                             eventPrices = eventPrices,
                             events2    = events2,
@@ -342,9 +342,9 @@ def calendarMethod():
     else:
         return render_template('calendar.html',
                             title     = 'Calendar',
-                            numEvents = len(events),
+                            numEvents = len(events1),
                             numEvents2 = len(events2),
-                            events    = events,
+                            events1    = events1,
                             eventInfo = eventInfo,
                             events2    = events2,
                             eventPrices = eventPrices,
@@ -369,7 +369,7 @@ def proxyCustomerBooking(id):
 @login_required
 def repeatEvents(id):
     logging.debug("Repeat events (with id: %s) route request", id)
-    week = datetime.now()+timedelta(days=7)
+    week = datetime.now()+timedelta(days=14)
     events = Calendar.query.filter(Calendar.aDateTime >= date.today()).filter(Calendar.aDateTime < week).filter_by(activityId = id).all()
     eventType = (Activity.query.get(id)).activityType
     today = datetime.now()
@@ -566,29 +566,33 @@ def checkout():
     user = models.UserDetails.query.filter_by(id=current_user.id).first()
     paymentId = user.paymentId
 
-    if paymentId == None:
-        customer = stripe.Customer.create(
-            email=current_user.email,
-            source=request.form['stripeToken']
-        )
+    try:
+        if paymentId == None:
+            customer = stripe.Customer.create(
+                email=current_user.email,
+                source=request.form['stripeToken']
+            )
 
-        stripe.Charge.create(
-            customer=customer.id,
-            amount=int(session['basketTotal']) * 100,
-            currency='GBP',
-            description='Push and Pull Payment'
-        )
-        # Save payment details for later
-        user.paymentId = customer.id
-        db.session.add(user)
-        db.session.commit()
-    else:
-        stripe.Charge.create(
-            customer=paymentId,
-            amount=int(session['basketTotal']) * 100,
-            currency='GBP',
-            description='Push and Pull Payment'
-        )
+            stripe.Charge.create(
+                customer=customer.id,
+                amount=int(session['basketTotal']) * 100,
+                currency='GBP',
+                description='Push and Pull Payment'
+            )
+            # Save payment details for later
+            user.paymentId = customer.id
+            db.session.add(user)
+            db.session.commit()
+        else:
+            stripe.Charge.create(
+                customer=paymentId,
+                amount=int(session['basketTotal']) * 100,
+                currency='GBP',
+                description='Push and Pull Payment'
+            )
+    except stripe.error.CardError as cardError:
+        flash('Card was declined', 'error')
+        return redirect('/basket')
 
     if 'membership' in session:
         usersDetails = UserDetails.query.get(current_user.id)

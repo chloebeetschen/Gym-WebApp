@@ -18,7 +18,7 @@
 </div>
 
 
-<div class="container-fluid settings-container">
+<div class="container-fluid settings-container py-5">
   <div class=" login-reg-form-container  rounded-4 pb-4 px-5 pt-3 box-shadow">
     <div class="row mb-4">
       <div class="col border-bottom border-3">
@@ -47,13 +47,13 @@
       <div class="row pb-3">
         <div class="col">
           <label for="newpwd" class="fw-bold pb-2">New Password</label>
-          {{ form.Password(class_='form-control', id="newpwd") }}
+          {{ form.NewPassword(class_='form-control', id="newpwd") }}
         </div>
       </div>
       <div class="row pb-3">
         <div class="col">
           <label for="conpwd" class="fw-bold pb-2">Confirm New Password</label>
-          {{ form.Password(class_='form-control', id="conpwd") }}
+          {{ form.NewPasswordx2(class_='form-control', id="conpwd") }}
         </div>
       </div>
 
@@ -69,8 +69,10 @@
         <div class="col border-right border-1 text-center">
           <h3 class="">Cancel Your Membership</h3>
         </div>
-        <div class="col d-flex justify-content-center">
-          <a href="/cancelMembership"><button type="submit" class="btn btn-block btn-primary">Cancel</button></a>
+        <div class="col d-flex justify-content-center align-items-center">
+          <form action="/cancelMembership" method="POST" onsubmit="return confirm('Are you sure you want to cancel your membership?')">
+            <input type="submit" class="btn btn-block btn-primary" value="Cancel">
+          </form>
         </div>
       </div>
     

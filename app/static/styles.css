@@ -468,6 +468,12 @@ th, td {
     font-size: medium;
 }
 
+.alert-error {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+  }
+  
 
 .error{
     background-color: #f44336;
@@ -516,6 +522,7 @@ th, td {
     height: 500px;
     color: white;
 }
+
 
 .column {
     float: left;
@@ -596,6 +603,7 @@ th, td {
 }
 
 
+
 .event-info-div p {
     margin: 0;
     padding-top: 0.5vw;
@@ -627,3 +635,4 @@ th, td {
     opacity: 1;
     visibility: visible;
 }
+

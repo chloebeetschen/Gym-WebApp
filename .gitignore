@@ -5,3 +5,4 @@ app/__pycache__/
 migrations/
 .vim/
 *.log
+squad6.log

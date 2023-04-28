@@ -42,7 +42,7 @@
                         <tr>
                             <!--display event and event info in the tables-->
                             <td>{{eventInfo[i].activityType}}</td>
-                            <td>{{events[i].aDateTime}}</td>
+                            <td>{{events[i].aDateTime.strftime("%d/%m/%y at %H:%M")}}</td>
                             <td>{{events[i].aDuration}} hrs</td>
                             <td>{{events[i].aLocation}}</td>
                             <td>{{events[i].aStaffName}}</td>

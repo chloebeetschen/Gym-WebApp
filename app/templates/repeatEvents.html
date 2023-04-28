@@ -9,6 +9,13 @@
         <h4>
             Staff Member: {{events[0].aStaffName}} - Duration: {{events[0].aDuration}} hour(s)
         </h4>
+        <h4>
+            {% if eventType == 'Squash' %}
+                Location: Squash court 1 or Squash court 2
+            {% else %}
+                Location: {{events[0].aLocation}}
+            {% endif %}
+        </h4>
     </div>
 
     <div class="row m-0 p-0 mb-4 text-center">
@@ -65,12 +72,12 @@
         let cElem = document.getElementById('calendar2');
 
         let calendar = new FullCalendar.Calendar(cElem, { 
-            initialView: 'timeGridWeek',
+            //initialView: 'timeGridWeek',
 
             headerToolbar: {
                 left: 'prev,next today',
                 center: 'title',
-                right: 'timeGridWeek,timeGridDay'
+                right: 'dayGridMonth,timeGridWeek,timeGridDay'
             },
             slotEventOverlap: false,
             navLinks: true, 
@@ -89,22 +96,29 @@
             },
             selectable: true,
             //contentHeight: 700,
+
             
+
             events: [
                 {% for i in range(numEvents) %}
                     {
                         start : '{{events[i].aDateTime}}',
                         {% if isMember == True %}
-                            title : '£{{events[i].aPrice}} - Spaces: {{events[i].aCapacity-events[i].aSlotsTaken}}',
+                            title : 'Spaces: {{events[i].aCapacity-events[i].aSlotsTaken}} ',
+                            url : '/makeBooking/{{ events[i].id }}',
                         {% else %}
-                            title : 'Book! - Spaces: {{events[i].aCapacity-events[i].aSlotsTaken}}',
+                            title : '£{{events[i].aPrice}} - Spaces: {{events[i].aCapacity-events[i].aSlotsTaken}}',
+                            url : '/addBasket/{{ events[i].id }}',
                         {% endif %}
                     },
                 {% endfor %}
             ]
+
         });
 
         calendar.render();
+
+
     });
 </script>
 {% endblock %}

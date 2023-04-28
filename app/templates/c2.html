@@ -139,21 +139,19 @@
                         {% endif %}
                         <!--If statement to see if acitivity is full and whether or not to dispay bookable button-->
                         {% if current_user.userType != 3 %}
-                        <td>
-                            {% if userBooked1[i]==True %}
-                            <a href=""></a><button type="button" class="btn btn-responsive-calendar btn-primary disabled">Booked</button></a>
-                            {% elif events[i].aSlotsTaken == events[i].aCapacity %}
-                            <a href=""></a><button type="button" class="btn btn-responsive-calendar btn-primary disabled">Full</button></a>
-                            {% else %}
-                            {% if isMember == False %}
-                            <a href="/addBasket/{{events[i].id}}"><button type="button" class="btn btn-responsive-calendar btn-primary">Add to
-                                    Basket</button>
+                            <td>
+                                {% if userBooked1[i]==True %}
+                                    <a href=""></a><button type="button" class="btn btn-responsive-calendar btn-primary disabled">Booked</button></a>
+                                {% elif events[i].aSlotsTaken == events[i].aCapacity %}
+                                    <a href=""></a><button type="button" class="btn btn-responsive-calendar btn-primary disabled">Full</button></a>
                                 {% else %}
-                                <a href="/makeBooking/{{events[i].id}}"><button type="button"
-                                        class="btn btn-primary btn-responsive-calendar">Book</button>
+                                    {% if isMember == False %}
+                                        <a href="/addBasket/{{events[i].id}}"><button type="button" class="btn btn-responsive-calendar btn-primary">Add to Basket</button>
+                                    {% else %}
+                                        <a href="/makeBooking/{{events[i].id}}"><button type="button" class="btn btn-primary btn-responsive-calendar">Book</button>
                                     {% endif %}
-                                    {% endif %}
-                        </td>
+                                {% endif %}
+                            </td>
                         {% endif %}
                     </tr>
                     {% endif %}

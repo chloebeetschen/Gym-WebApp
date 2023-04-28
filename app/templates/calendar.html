@@ -83,6 +83,7 @@
                 startTime: '8:00',
                 endTime: '22:00',
             },
+            //nowIndicator: true,
             displayEventTime: true,
             eventTimeFormat: {
                 hour: 'numeric',
@@ -97,6 +98,11 @@
                 {% for i in range(numEvents) %}
                     {
                         title : '{{eventInfo[i].activityType}}',
+                        {% if isMember == True %}
+                            url : '/makeBooking/{{ events1[i].id }}',
+                        {% else %}
+                            url : '/addBasket/{{ events1[i].id }}',
+                        {% endif %}
                         start : '{{events1[i].aDateTime}}',
                         content: '£{{events1[i].aPrice}} - {{events1[i].aDuration}} hour(s) - Spaces: {{events1[i].aCapacity-events1[i].aSlotsTaken}}',
                     },
@@ -104,6 +110,11 @@
                 {% for i in range(numEvents2) %}
                     {
                         title : '{{eventInfo2[i].activityType}}',
+                        {% if isMember == True %}
+                            url : '/makeBooking/{{ events2[i].id }}',
+                        {% else %}
+                            url : '/addBasket/{{ events2[i].id }}',
+                        {% endif %}
                         start : '{{events2[i].aDateTime}}',
                     },
                 {% endfor %}
@@ -113,16 +124,23 @@
         calendar.render();
 
         let eventDivs = document.getElementsByClassName('fc-daygrid-event-harness')
-        // Classes for the info pop up
-        const popUpClasses = ['event-info-div', 'rounded-4', 'p-2']
-        
+        // Classes for the info pop up and booking button
+        const popUpClasses  = ['event-info-div', 'rounded-4', 'p-2']
+        const buttonClasses = ['btn', 'btn-responsive-calendar', 'btn-primary']
+
         // Loop through the event divs and add in their respective details
         let i = 0
-        let infoDiv, priceP, durationP, slotsLeftP
+        let infoDiv, priceP, durationP, slotsLeftP, bookBtn
+        let bookBtnContent = "Book"
+
 
         {% for i in range(numEvents) %}
             infoDiv = document.createElement('div')
             infoDiv.classList.add(...popUpClasses)
+
+            titleP = document.createElement('p')
+            titleP.textContent = '{{ eventInfo[i].activityType }}'
+            infoDiv.appendChild(titleP)
 
             priceP = document.createElement('p')
             priceP.textContent = 'Price: £{{ events1[i].aPrice }}'
@@ -137,6 +155,31 @@
             slotsLeftP.textContent = 'Spaces: {{events1[i].aCapacity-events1[i].aSlotsTaken}}'
             infoDiv.appendChild(slotsLeftP)
 
+
+            // Also want to add the book button
+            bookBtn = document.createElement('a')
+            bookBtn.classList.add(...buttonClasses)
+            bookBtn.nodeType = 'button'
+            {% if userBooked1[i]==True %}
+                bookBtn.href = '#'
+                bookBtnContent = "Booked"
+                bookBtn.classList.add('disabled')
+            {% elif events1[i].aSlotsTaken < events1[i].aCapacity %}
+                {% if isMember %}
+                    bookBtn.href = '/makeBooking/{{ events1[i].id }}'
+                    bookBtnContent = "Book"
+                {% else %}
+                    bookBtn.href = '/addBasket/{{ events1[i].id }}'
+                    bookBtnContent = "Add to basket"
+                {% endif %}
+            {% else %}
+                bookBtn.href = '#'
+                bookBtnContent = "Full"
+                bookBtn.classList.add('disabled')
+            {% endif %}
+
+            bookBtn.textContent = bookBtnContent
+            infoDiv.appendChild(bookBtn)
             eventDivs[i].appendChild(infoDiv)
             i ++
         {% endfor %}
@@ -144,6 +187,10 @@
         {% for i in range(numEvents2) %}
             infoDiv = document.createElement('div')
             infoDiv.classList.add(...popUpClasses)
+
+            titleP = document.createElement('p')
+            titleP.textContent = '{{ eventInfo2[i].activityType }}'
+            infoDiv.appendChild(titleP)
 
             priceP = document.createElement('p')
             priceP.textContent = 'Price: £{{ events2[i].aPrice }}'
@@ -156,6 +203,32 @@
             slotsLeftP = document.createElement('p')
             slotsLeftP.textContent = 'Spaces: {{events2[i].aCapacity-events2[i].aSlotsTaken}}'
             infoDiv.appendChild(slotsLeftP)
+
+            // Also want to add the book button
+            bookBtn = document.createElement('a')
+            bookBtn.classList.add(...buttonClasses)
+            bookBtn.nodeType = 'button'
+            {% if userBooked2[i]==True %}
+                bookBtn.href = '#'
+                bookBtnContent = "Booked"
+                bookBtn.classList.add('disabled')
+            {% elif events2[i].aSlotsTaken < events2[i].aCapacity %}
+                {% if isMember %}
+                    bookBtn.href = '/makeBooking/{{ events2[i].id }}'
+                    bookBtnContent = "Book"
+                {% else %}
+                    bookBtn.href = '/addBasket/{{ events2[i].id }}'
+                    bookBtnContent = "Add to basket"
+                {% endif %}
+            {% else %}
+                bookBtn.href = '#'
+                bookBtnContent = "Full"
+                bookBtn.classList.add('disabled')
+            {% endif %}
+
+            bookBtn.textContent = bookBtnContent
+            infoDiv.appendChild(bookBtn)
+            eventDivs[i].appendChild(infoDiv)
 
             eventDivs[ {{numEvents}} + i ].appendChild(infoDiv)
             i ++

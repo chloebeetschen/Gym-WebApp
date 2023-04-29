@@ -124,6 +124,42 @@
                     </tbody>
                 </table>
             </div>
+                    <div class="row mt-5 border-bottom border-2">
+                <div class="col pb-3">
+                    <h3 class="header fs-2">Managers</h3>
+                    <h4 style="text-align: center;"> <strong>Be wary to not delete your admin account!</strong> </h4>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Email</th>
+                            <th>Edit details</th>
+                            <th>Delete user</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if userTypeNum3 != 0 %}
+                            {% for i in range (0 , userTypeNum3) %}
+                            <tr>
+                                <!--display event and event info in the tables-->
+                                <td>{{userTypeLogin3[i].email}}</td>
+                                <!--Delete activity button-->
+                                <td>
+                                    <a href="/editUser/{{userTypeLogin2[i].id}}"><button type="button"
+                                            class="btn btn-primary">Edit</button></a>
+                                </td>
+                                <td>
+                                    <a href="/deleteUser/{{userTypeLogin2[i].id}}"><button type="button"
+                                            class="btn btn-primary">Delete</button></a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
         {% endif %}
     </div>
 </div>

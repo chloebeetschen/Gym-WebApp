@@ -67,7 +67,7 @@ def addToDB():
         ])
 
         #get todays date and iterate for 2 weeks from today as events will appear every day
-        today = date.today() - timedelta(days=30)
+        today = date.today() ## What the fuck is this? - timedelta(days=30)
         twoWeeks = today+timedelta(days=14)
 
         while today < twoWeeks:
@@ -131,7 +131,7 @@ def addToDB():
     # Check to add daily additions:
 
     #get todays date and iterate for 2 weeks from today as events will appear every day
-    today = date.today() - timedelta(days=30)
+    today = date.today() ## What the fuck is this? - timedelta(days=30)
     twoWeeks = today+timedelta(days=14)
 
     while today < twoWeeks:

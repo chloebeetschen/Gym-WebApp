@@ -9,6 +9,31 @@
     --background-light: #194578;
 }
 
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* Adjust the header div */
+.header-div {
+    color: #ffa9dc;
+    background-color: #194578;
+    font-family: 'Oswald', sans-serif;
+    font-size: 6vw;
+    width: auto;
+    height: auto;
+    text-align: center;
+    padding: 20px 0; /* Add some padding to the header div */
+}
+
+.team-page.container-fluid {
+    margin: 0;
+}
+
+.team-page .row .column {
+    margin: 0;
+}
+
 .flashed-msg-container {
     position: absolute !important;
     top: 15% !important;
@@ -542,7 +567,7 @@ th, td {
     float: left;
     width: 50%;
     margin-bottom: 15px;
-    margin-top: 125px;
+    margin-top: 15px;
     padding: 5px;
 }
 

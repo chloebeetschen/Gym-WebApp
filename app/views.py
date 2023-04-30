@@ -147,11 +147,11 @@ def addToDB():
                 if timeStart < datetime.combine(today, time(20,00)):
                     db.session.add_all([
                         #swimming (lane)
-                        Calendar(aDateTime=timeStart, aDuration=1, aStaffName="Life Guard", aPrice=10, aLocation="Swimming Pool", aCapacity=30, aSlotsTaken=0, aIsRepeat = True, activity=Activity.query.get(2)),
+                        Calendar(aDateTime=timeStart, aDuration=1, aStaffName="Life Guard", aPrice=10, aLocation="Swimming Pool", aCapacity=10, aSlotsTaken=0, aIsRepeat = True, activity=Activity.query.get(2)),
                         #swimming (lessons)
-                        Calendar(aDateTime=timeStart, aDuration=1, aStaffName="Life Guard", aPrice=10, aLocation="Swimming Pool", aCapacity=30, aSlotsTaken=0, aIsRepeat = True, activity=Activity.query.get(3)),
+                        Calendar(aDateTime=timeStart, aDuration=1, aStaffName="Life Guard", aPrice=10, aLocation="Swimming Pool", aCapacity=5, aSlotsTaken=0, aIsRepeat = True, activity=Activity.query.get(3)),
                         #swimming (general)
-                        Calendar(aDateTime=timeStart, aDuration=1, aStaffName="Life Guard", aPrice=10, aLocation="Swimming Pool", aCapacity=30, aSlotsTaken=0, aIsRepeat = True, activity=Activity.query.get(4)),  
+                        Calendar(aDateTime=timeStart, aDuration=1, aStaffName="Life Guard", aPrice=10, aLocation="Swimming Pool", aCapacity=15, aSlotsTaken=0, aIsRepeat = True, activity=Activity.query.get(4)),  
                     ])
                 #climbing wall
                 if timeStart > datetime.combine(today, time(10,00)):
@@ -193,6 +193,10 @@ def addToDB():
         #increment day
         today = today+timedelta(days=1)
 
+    cal = Calendar.query.all()
+    for i in cal:
+        if i.aDateTime < datetime.now():
+            db.session.delete(i)
 
     # Add admin email if doesn't exist:
     aEmailExists = UserLogin.query.filter_by(email="admin@admin.com").first()
@@ -402,19 +406,66 @@ def addToDB():
         # Get all members and non members and events
         members = UserDetails.query.filter_by(isMember=True).all()
         nonMembers = UserDetails.query.filter_by(isMember=False).all() 
-        events = Calendar.query.all()
+        e = Calendar.query.all()
 
         # Randomly generate bookings
-        for i in range (0,50):
-            event1 = random.choice(events)
+        for i in range (0,100):
+            event1 = random.choice(e)
             user1 = random.choice(members)
-            event2 = random.choice(events)
+            event2 = random.choice(e)
             user2 = random.choice(nonMembers)
             if(event1.aSlotsTaken != event1.aCapacity):
                 newBooking1 = UserBookings(userId = user1.id, calendarId = event1.id)
+                event1.aSlotsTaken += 1
+                # Check if booking is for a facility with multiple events on
+                if event1.aLocation == "Swimming Pool" or event1.aLocation == "Sports Hall":
+                    # If a team event, set all other swimming pool/sports hall events to full capacity for 2 hours
+                    if event1.activityId == 1 or event1.activityId == 11:
+                        firstHour = Calendar.query.filter_by(aDateTime=event1.aDateTime, aLocation=event1.aLocation).all()
+                        secondHour = Calendar.query.filter_by(aDateTime=event1.aDateTime+timedelta(hours=1), aLocation=event1.aLocation).all()
+                        otherEvents = firstHour + secondHour
+                        for events in otherEvents:
+                            events.aSlotsTaken = events.aCapacity
+                    # If not a team event, remove team event option
+                    else:
+                        previousHour = event1.aDateTime-timedelta(hours=1)
+                        checkTeamEvent = Calendar.query.filter_by(aDateTime=previousHour, aLocation=event1.aLocation).all()
+                        checkTeamEvent2 = Calendar.query.filter_by(aDateTime=event1.aDateTime, aLocation=event1.aLocation).all()
+                        for events in checkTeamEvent:    
+                            if events.activityId == 1 or events.activityId == 11:
+                                if events.aCapacity != events.aSlotsTaken:
+                                    events.aSlotsTaken +=1
+                        for events2 in checkTeamEvent2:    
+                            if events2.activityId == 1 or events2.activityId == 11:
+                                if events2.aCapacity != events2.aSlotsTaken:
+                                    events2.aSlotsTaken +=1               
+                
                 db.session.add(newBooking1)
             if(event2.aSlotsTaken != event2.aCapacity):
                 newBooking2 = UserBookings(userId = user2.id, calendarId = event2.id)
+                event2.aSlotsTaken += 1
+                # Check if booking is for a facility with multiple events on
+                if event2.aLocation == "Swimming Pool" or event2.aLocation == "Sports Hall":
+                    # If a team event, set all other swimming pool/sports hall events to full capacity for 2 hours
+                    if event2.activityId == 1 or event2.activityId == 11:
+                        firstHour = Calendar.query.filter_by(aDateTime=event2.aDateTime, aLocation=event2.aLocation).all()
+                        secondHour = Calendar.query.filter_by(aDateTime=event2.aDateTime+timedelta(hours=1), aLocation=event2.aLocation).all()
+                        otherEvents = firstHour + secondHour
+                        for events in otherEvents:
+                            events.aSlotsTaken = events.aCapacity
+                    # If not a team event, remove team event option
+                    else:
+                        previousHour = event2.aDateTime-timedelta(hours=1)
+                        checkTeamEvent = Calendar.query.filter_by(aDateTime=previousHour, aLocation=event2.aLocation).all()
+                        checkTeamEvent2 = Calendar.query.filter_by(aDateTime=event2.aDateTime, aLocation=event2.aLocation).all()
+                        for events in checkTeamEvent:    
+                            if events.activityId == 1 or events.activityId == 11:
+                                if events.aCapacity != events.aSlotsTaken:
+                                    events.aSlotsTaken +=1
+                        for events2 in checkTeamEvent2:    
+                            if events2.activityId == 1 or events2.activityId == 11:
+                                if events2.aCapacity != events2.aSlotsTaken:
+                                    events2.aSlotsTaken +=1
                 db.session.add(newBooking2)
 
     db.session.commit()
@@ -636,15 +687,16 @@ def makeBooking(id): # << id passed here is the calendar id (not user)
             otherEvents = firstHour + secondHour
             for events in otherEvents:
                 events.aSlotsTaken = events.aCapacity
-        # If not a team event, increase the slots taken for all other swimming pool events at that time
+        # If not a team event, remove team event option
         else:
-            otherEvents = Calendar.query.filter_by(aDateTime=event.aDateTime, aLocation=event.aLocation).all()
             previousHour = event.aDateTime-timedelta(hours=1)
             checkTeamEvent = Calendar.query.filter_by(aDateTime=previousHour, aLocation=event.aLocation).all()
-            for events in otherEvents:
-                if events.aCapacity != events.aSlotsTaken and events != event:
-                    events.aSlotsTaken +=1
-            for events2 in checkTeamEvent:    
+            checkTeamEvent2 = Calendar.query.filter_by(aDateTime=event.aDateTime, aLocation=event.aLocation).all()
+            for events in checkTeamEvent:    
+                if events.activityId == 1 or events.activityId == 11:
+                    if events.aCapacity != events.aSlotsTaken:
+                        events.aSlotsTaken +=1
+            for events2 in checkTeamEvent2:    
                 if events2.activityId == 1 or events2.activityId == 11:
                     if events2.aCapacity != events2.aSlotsTaken:
                         events2.aSlotsTaken +=1

@@ -1,3 +1,4 @@
+<!-- Template for altering the discount -->
 {% extends "base.html" %}
 {% block content %}
     <h1>Change discount amount:</h1>
@@ -16,10 +17,12 @@
         {% endwith %}
     </div>
 
+    <!-- Form for manager to be able to alter discount applied to user basket's-->
     <form action="" method="post" name="login">
         {{ form.hidden_tag() }}
         <p>{{ form.DiscountAmount(class_='form-control') }}</p>
         <div class="d-flex align-items-center flashed-msg-container justify-content-center">
+            <!--Check for errors-->
             {% for error in form.DiscountAmount.errors %}
             <div class="alert alert-danger" role="alert">
                 <span class="closebtn" onclick="this.parentElement.style.display='none';">&times</span>
@@ -27,6 +30,7 @@
             </div>
             {% endfor %}
         </div>
+        <!--Submit rewuest to change the discount-->
         <p><input type="submit" class="btn btn-primary" value="Submit"></p>
     </form>  
 {% endblock %}

@@ -7,7 +7,7 @@ import logging
 import os
 import stripe
 
-
+#keys for the stripe payment portal for purchasing products
 stripe_keys = {
     'secretKey' : os.environ['TEST_SECRET_KEY'],
     'publicKey' : os.environ['TEST_PUBLISH_KEY']
@@ -15,6 +15,7 @@ stripe_keys = {
 
 stripe.api_key = stripe_keys['secretKey']
 
+#logging the website use
 logging.basicConfig(filename='squad6.log', format='%(levelname)s | %(asctime)s | %(message)s', datefmt='%d/%m/%Y %H:%M:%S', level=logging.DEBUG)
 
 app = Flask(__name__)

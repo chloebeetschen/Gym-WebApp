@@ -4,83 +4,84 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
 </script>
 
+<!--Header explaining what the graphs are going to show-->
 <h2>{{ activityFacility }}, Week of {{ dates[0] }} - {{ dates[6]}}</h2>
 
 <hr>
-
+<!--Usage graph-->
 <h3>Usage </h3>
 <canvas id="usageChart"> Graph of usage data </canvas>
 
 <hr>
-
+<!--Sales graph-->
 <h3>Sales</h3>
 <canvas id="salesChart"> Graph of usage data </canvas>
 
 <!-- The below code is adapted from W3 schools -->
+<!-- JS to create graphs from db data and show them-->
 <script>
-var xValues = ["{{dates[0]}}", "{{dates[1]}}","{{dates[2]}}","{{dates[3]}}","{{dates[4]}}","{{dates[5]}}","{{dates[6]}}"];
-var maxUsage = 0;
+    var xValues = ["{{dates[0]}}", "{{dates[1]}}","{{dates[2]}}","{{dates[3]}}","{{dates[4]}}","{{dates[5]}}","{{dates[6]}}"];
+    var maxUsage = 0;
 
-new Chart("usageChart", {
-  type: "bar",
-  data: {
-    labels: xValues,
-    datasets: [
-    {
-      label: "Members",
-      backgroundColor: "#93adcf",
-      data: {{memberWeek}}
-    },
-    {
-      label: "Non-Members",
-      backgroundColor: "#a8d5e5",
-      data: {{nonMemberWeek}}
-    }]
-  },
-  options: {
-    scales: {
-      yAxes: [{
-        scaleLabel: {
-            display: true,
-            labelString: 'Bookings'
+    new Chart("usageChart", {
+        type: "bar",
+        data: {
+                labels: xValues,
+                datasets: [
+                {
+                label: "Members",
+                backgroundColor: "#93adcf",
+                data: {{memberWeek}}
+                },
+                {
+                label: "Non-Members",
+                backgroundColor: "#a8d5e5",
+                data: {{nonMemberWeek}}
+                }]
         },
-        ticks: {
-          beginAtZero: true
+        options: {
+                scales: {
+                yAxes: [{
+                        scaleLabel: {
+                                display: true,
+                                labelString: 'Bookings'
+                        },
+                        ticks: {
+                        beginAtZero: true
+                        }
+                }],
+                }
         }
-      }],
-    }
-  }
-});
+    });
 
-new Chart("salesChart", {
-  type: "bar",
-  data: {
-    labels: xValues,
-    datasets: [
-    {
-      backgroundColor: "#a8d5e5",
-      data: {{sales}}
-    }]
-  },
-  options: {
-    legend: {display: false},
-    layout: {
-        padding: 20
+    new Chart("salesChart", {
+    type: "bar",
+    data: {
+        labels: xValues,
+        datasets: [
+        {
+            backgroundColor: "#a8d5e5",
+            data: {{sales}}
+        }]
     },
-    scales: {
-      yAxes: [{
-        scaleLabel: {
-            display: true,
-            labelString: 'Sales (£)'
+    options: {
+        legend: {display: false},
+        layout: {
+                padding: 20
         },
-        ticks: {
-          beginAtZero: true
+        scales: {
+            yAxes: [{
+                scaleLabel: {
+                        display: true,
+                        labelString: 'Sales (£)'
+                },
+                ticks: {
+                    beginAtZero: true
+                }
+            }],
         }
-      }],
     }
-  }
-});
+    });
 </script>
-
 
 {% endblock %}

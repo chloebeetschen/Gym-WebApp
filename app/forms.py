@@ -14,7 +14,6 @@ def validateFutureDate(form, field):
 # Email should be of the form xxxxxx@xxx.xxx, with at least one '.' after the @
 # Emails should not start or end with a '.'
 def validateEmail(form, field):
-    #regex = re.compile(r'([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+')
     regex = re.compile(r"^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$" )
     if not re.match(regex, field.data):
         raise ValidationError("Not a valid email")
@@ -79,7 +78,7 @@ class EditEventForm(FlaskForm):
     aCapacity    = IntegerField('Capacity of activity', validators=[ NumberRange(min=0), Optional()],
                                render_kw={"placeholder": "Capacity of activity"})
 
-
+# Form to register a user
 class RegisterForm(FlaskForm):
     Name        = StringField('Name', validators=[DataRequired()], render_kw={"placeholder": "Name"})
     DateOfBirth = DateField('Date of birth', validators=[DataRequired(), validateAge], render_kw={"placeholder": "Date of Birth"})
@@ -89,18 +88,19 @@ class RegisterForm(FlaskForm):
                                                                     EqualTo('Password', message="Passwords must match" )],
                                                                     render_kw={"placeholder": "Reenter Password"})
 
-
+# Form to log in as an existing user
 class LoginForm(FlaskForm):
     Email       = EmailField('email', validators=[DataRequired()], render_kw={"placeholder": "Email"})
     Password    = PasswordField('password', validators=[DataRequired()], render_kw={"placeholder": "Password"})
 
-
+#Form to change a user's details
 class SettingsForm(FlaskForm):
     Name          = StringField('Name', render_kw={"placeholder": "Name"})
     Password      = PasswordField('Old Password', validators=[DataRequired()], render_kw={"placeholder": "Password"})
     NewPassword   = PasswordField('New Password', validators=[Optional(), passwordPolicy, Length(min=8, message="Password must be 8 characters or more")], render_kw={"placeholder": "New Password"})
     NewPasswordx2 = PasswordField('Reenter New Password', validators=[EqualTo('NewPassword', message="Passwords must match")], render_kw={"placeholder": "Reenter New Password"})
 
+#Form to edit a user's details as a manager
 class ManagerForm(FlaskForm):
     Name          = StringField('Name', render_kw={"placeholder": "Name"})
     Email         = EmailField('email', render_kw={"placeholder": "Email"})
@@ -108,11 +108,12 @@ class ManagerForm(FlaskForm):
     NewPasswordx2 = PasswordField('Reenter New Password', validators=[EqualTo('NewPassword', message="Passwords must match")], render_kw={"placeholder": "Reenter New Password"})
     Type        = IntegerField('Type', validators=[Optional(), NumberRange(min=1, max=3, message="Type must be 1, 2 or 3")], render_kw={"placeholder": "Type"})
 
-
+#Form for analysis usage and sales
 class AnalysisForm(FlaskForm):
     #need to add some type of validation here: latest date chosen can be 7 days prior to todays date
     DateOf    = DateField('Date', format='%Y-%m-%d', validators=[DataRequired(message="Please enter a Date")], render_kw={"placeholder": "Date of activity"})
     Facility    = StringField("Facility", render_kw={"placeholder": "Facility"}) 
 
+#Form for editing discount amount
 class DiscountForm(FlaskForm):
     DiscountAmount = IntegerField('Discount', validators=[DataRequired(message="Enter a discount amount")], render_kw={"placeholder": "Amount"})

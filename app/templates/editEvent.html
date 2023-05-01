@@ -19,7 +19,7 @@
     {% endwith %}
 </div>
 
-
+<!--Display the event and event information that has been selected form the calendar and passed through-->
 <h3>
     Selected Event: <br> {{eventType}} @ {{event.aDateTime}} for {{event.aDuration}}hours
 </h3>
@@ -43,6 +43,7 @@
         {{ form.aDateTime(class='form-control')}}
     
     </p>
+    <!--Check for errors-->
     {% for error in form.aDateTime.errors %}
     <div class="alert alert-danger" role="alert">
         [{{ error }}]
@@ -56,6 +57,7 @@
         {{ form.aDuration(class='form-control')}}
     
     </p>
+    <!--Check for errors-->
     {% for error in form.aDuration.errors %}
     <div class="alert alert-danger" role="alert">
         [{{ error }}]
@@ -67,6 +69,7 @@
         Staff Member <br>
         {{ form.aStaffName(class='form-control')}}
     </p>
+    <!--Check for errors-->
     {% for error in form.aStaffName.errors %}
     <div class="alert alert-danger" role="alert">
         [{{ error }}]
@@ -78,6 +81,7 @@
         Location <br>
         {{ form.aLocation(class='form-control')}}
     </p>
+    <!--Check for errors-->
     {% for error in form.aLocation.errors %}
     <div class="alert alert-danger" role="alert">
         [{{ error }}]
@@ -89,6 +93,7 @@
         Price <br>
         {{ form.aPrice(class='form-control')}}
     </p>
+    <!--Check for errors-->
     {% for error in form.aPrice.errors %}
     <div class="alert alert-danger" role="alert">
         [{{ error }}]
@@ -100,21 +105,24 @@
         Capacity <br>
         {{ form.aCapacity(class='form-control')}}
     </p>
+    <!--Check for errors-->
     {% for error in form.aCapacity.errors %}
     <div class="alert alert-danger" role="alert">
         [{{ error }}]
       </div>
     {% endfor %}
-
+      <!--Submit the request to edit the event-->
     <p><input type="submit" class="btn btn-primary" value="Edit Event"></p>
 </form>
 <br> <hr> <br>
+<!--Option to delete an event-->
 <h1>Delete Event</h1>
 <h4 class="">
     Delete the chosen event and <em> all
     associated user bookings. </em>
 </h4>
 <br>
+<!--Button to delete the chosen event-->
 <a href="/deleteEvent/{{event.id}}"><button type="button" class="btn btn-primary">Delete</button>
 <br><br><br><br><br><br><br><br>
 {% endblock %}

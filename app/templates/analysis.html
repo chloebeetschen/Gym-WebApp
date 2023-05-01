@@ -3,6 +3,7 @@
 
 {% block content %}
 
+<!-- JS link for implemented graphs and analysis -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 
 <!--Basic Header-->
@@ -23,7 +24,7 @@
     {% endwith %}
 </div>
 
-
+<!--Form to search for activity/facility and receive an analysis-->
 <h5>Pick a date, and an activity or facility to view usage and sales data</h5>
 <form method="post" name="analysis" >
     {{ form.hidden_tag() }}
@@ -35,15 +36,18 @@
         {{ form.DateOf(class='form-control')}}
         
     </p>
+    <!--Check for errors-->
     {% for error in form.DateOf.errors %}
         [{{ error }}]
     {% endfor %}
 
     <!-- Facility -->
     <label for="facilities">Choose Facility</label>
+    <!--Check there are facilities to choose from -->
     {% if facilities == none %}
         <p>There are currently no facilities.</p>
     {% else %}
+    <!--If there are display them-->
         <select name="facility" class="form-control" id="facilities">
         <option label=" "></option>
         {% for facility in facilities %}
@@ -55,9 +59,11 @@
 
     <!--Type (Name of Activity)-->
     <label for="activities">Choose Activity</label>
+    <!--Check there are activities to choose from-->
     {% if activities == none %}
         <p>There are currently no activites.</p>
     {% else %}
+    <!--If there are display them-->
         <select name="activity" class="form-control" id="activities">
         <option label=" "></option>
         {% for activity in activities %}
@@ -67,11 +73,13 @@
     {% endif %}
     
 <br>
+    <!--Submit-->
     <input type="submit" class="btn btn-primary" value="Submit">
     
 </form>
 <br>
 
+<!--JS to handle form input-->
 <script>
     var facility = document.getElementById('facilities')
     var activity = document.getElementById('activities')
@@ -95,80 +103,82 @@
 </script>
 
 <hr>
-
+<!--Header, displaying time frame chosen by the manager-->
 <h2> Analysis for all bookings this week</h2>
 <h3> Week of {{ thisWeek[0] }} - {{ thisWeek[6]}} </h3>
 
+<!--Usage Graph-->
 <h3>Usage </h3>
 <canvas id="usageChart"> Graph of usage data </canvas>
 
 <hr>
-
+<!--Sales Graph-->
 <h3>Sales</h3>
 <canvas id="salesChart"> Graph of usage data </canvas>
 
 <!-- The below code is adapted from W3 schools -->
+<!-- JS to create graphs from db data and show them-->
 <script>
 var xValues = ["{{thisWeek[0]}}", "{{thisWeek[1]}}","{{thisWeek[2]}}","{{thisWeek[3]}}","{{thisWeek[4]}}","{{thisWeek[5]}}","{{ thisWeek[6]}}"];
 
 new Chart("usageChart", {
-  type: "bar",
-  data: {
-    labels: xValues,
-    datasets: [
-    {
-      label: "Members",
-      backgroundColor: "#a8d5e5",
-      data: {{currentMemberWeek}}
-    },
-    {
-      label: "Non-Members",
-      backgroundColor: "#93adcf",
-      data: {{currentNonMemberWeek}}
-    }]
-  },
-  options: {
-    scales: {
-      yAxes: [{
-        scaleLabel: {
-            display: true,
-            labelString: 'Bookings'
+    type: "bar",
+    data: {
+        labels: xValues,
+        datasets: [
+        {
+        label: "Members",
+        backgroundColor: "#a8d5e5",
+        data: {{currentMemberWeek}}
         },
-        ticks: {
-          beginAtZero: true
+        {
+        label: "Non-Members",
+        backgroundColor: "#93adcf",
+        data: {{currentNonMemberWeek}}
+        }]
+    },
+    options: {
+        scales: {
+        yAxes: [{
+            scaleLabel: {
+                display: true,
+                labelString: 'Bookings'
+            },
+            ticks: {
+            beginAtZero: true
+            }
+        }],
         }
-      }],
     }
-  }
 });
 
 new Chart("salesChart", {
-  type: "bar",
-  data: {
-    labels: xValues,
-    datasets: [
-    {
-      backgroundColor: "#a8d5e5",
-      data: {{currentSales}}
-    }]
-  },
-  options: {
-    legend: {display: false},
-    layout: {
-        padding: 20
+    type: "bar",
+    data: {
+        labels: xValues,
+        datasets: [
+        {
+        backgroundColor: "#a8d5e5",
+        data: {{currentSales}}
+        }]
     },
-    scales: {
-      yAxes: [{
-        scaleLabel: {
-            display: true,
-            labelString: 'Sales (£)'
+    options: {
+        legend: {display: false},
+        layout: {
+            padding: 20
         },
-        ticks: {
-          beginAtZero: true
+        scales: {
+        yAxes: [{
+            scaleLabel: {
+                display: true,
+                labelString: 'Sales (£)'
+            },
+            ticks: {
+            beginAtZero: true
+            }
+        }],
         }
-      }],
     }
-  }
 });
 </script>
 

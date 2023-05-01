@@ -1,3 +1,5 @@
+<!-- Template for basket -->
+
 {% extends "base.html" %}
 {% block content %}
 
@@ -21,6 +23,7 @@
   
     <div class="login-reg-form-container rounded-4 p-4 box-shadow">
         <div class="col text-center border-bottom">
+            <!--Title-->
             <h1 class="fw-bold">Shopping Basket</h1>
         </div>
         <!-- If stuff in basket, display it -->
@@ -28,11 +31,13 @@
         {% if isItems %}
         <div class="table-responsive">
             <table class="table basket-table">
+                <!--Table displaying information of basket items-->
                 <tr>
                     <th class="fw-bold text-start"> Item </th>
                     <th class="fw-bold text-end "> Price </th>
                     <th class="fw-bold text-end"> Remove </th>
                 </tr>
+                <!--Iterate through all basket items and display them-->
                 {% for i in range (0, num) %}
                 <tr>
                     <td class="text-start">
@@ -43,6 +48,7 @@
                         £{{ basketItems[i][1] }}
 
                     </td>
+                    <!--Option to remove from basket-->
                     <td class="text-center">
                         <a href="/deleteBasket/{{i}}"><button class="btn basket-button pb-0 pt-0">X</button></a>
 
@@ -53,11 +59,13 @@
             </table>
         </div>
 
+        <!--Display any discount if there is one-->
         <div class="row align-items-center">
             <div class="col">
                 <div class="m-2 p-2 ">
 
                     <h5>Discounts: -£{{ roundedDiscount }}</h5>
+                    <!--Display price (with discount applied if there is one)-->
                     <h4 class="fw-bold">Total: £{{ roundedTotal }}</h4>
 
                 </div>
@@ -66,8 +74,9 @@
 
 
             <div class="col justify-content-center">
-                
+                <!--Checkout button to be able to pay for basket items-->
                 <form action="/checkout" method="post" class="text-end">
+                    <!--JS To link to stripe payment portal-->
                     <script src="https://checkout.stripe.com/checkout.js" class="stripe-button payment-btn"
                         data-key="{{ key }}" data-description="Push and Pull payment" data-amount="{{ totalPrice * 100 }}"
                         data-locale="auto" data-currency='gbp'>
@@ -91,6 +100,7 @@
 
         {% else %}
         <br>
+        <!--If basket is empty-->
         <h3 class="text-center"> Please add something to your basket</h3>
         {% endif %}
     </div>

@@ -25,7 +25,7 @@
 <form method="post" name="addEvent">
     {{ form.hidden_tag() }}
 
-    <!--Type (Name of Activity)-->
+    <!--Type (Name of Activity) - dropdown -->
     <label for="activities">Choose Activity</label>
     {% if activities == none %}
         <p>There are currently no activites.</p>
@@ -37,12 +37,13 @@
         </select>
     {% endif %}
 
-    <!--Date of activity-->
+    <!--Date of activity - text or calendar option-->
     <p class="mt-4">
         Date <br>
         {{ form.aDateTime(class='form-control')}}
     
     </p>
+    <!--Check for errors-->
     {% for error in form.aDateTime.errors %}
     <div class="alert alert-danger" role="alert">
         [{{ error }}]
@@ -50,7 +51,7 @@
     {% endfor %}
 
 
-    <!-- Duration of activity-->
+    <!-- Duration of activity - text-->
     <p>
         Duration <br>
         {{ form.aDuration(class='form-control')}}
@@ -62,18 +63,19 @@
     </div>
     {% endfor %}
 
-    <!-- Staff member -->
+    <!-- Staff member - text-->
     <p>
         Staff Member <br>
         {{ form.aStaffName(class='form-control')}}
     </p>
+    <!--Check for errors-->
     {% for error in form.aStaffName.errors %}
     <div class="alert alert-danger" role="alert">
         [{{ error }}]
       </div>
     {% endfor %}
 
-    <!-- Location -->
+    <!-- Location - text-->
     <p>
         Location <br>
         {{ form.aLocation(class='form-control')}}
@@ -84,28 +86,31 @@
       </div>
     {% endfor %}
 
-    <!-- Price -->
+    <!-- Price - integer -->
     <p>
         Price <br>
         {{ form.aPrice(class='form-control')}}
     </p>
+    <!--Check for errors-->
     {% for error in form.aPrice.errors %}
     <div class="alert alert-danger" role="alert">
         [{{ error }}]
       </div>
     {% endfor %}
 
-    <!-- Capacity -->
+    <!-- Capacity - integer-->
     <p>
         Capacity <br>
         {{ form.aCapacity(class='form-control')}}
     </p>
+    <!--Check for errors-->
     {% for error in form.aCapacity.errors %}
     <div class="alert alert-danger" role="alert">
         [{{ error }}]
       </div>
     {% endfor %}
 
+    <!--Submit request to cresate an event-->
     <p><input type="submit" class="btn btn-primary" value="Add Event"></p>
 </form>
 {% endblock %}

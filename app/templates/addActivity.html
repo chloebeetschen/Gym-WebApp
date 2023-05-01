@@ -25,16 +25,18 @@
 <form method="post" name="addActivity">
     {{ form.hidden_tag() }}
 
-    <!--Type (Name of activity)-->
+    <!--Type (Name of activity) - text input -->
     <p>
         {{ form.aType(class='form-control')}}
     </p>
+    <!--Check for errors-->    
     {% for error in form.aType.errors %}
     <div class="alert alert-danger" role="alert">
         [{{ error }}]
     </div>
     {% endfor %}
-
+    
+    <!--Submit button to create the new activity-->
     <p><input type="submit" class="btn btn-primary" value="Add Activity"></p>
 
 </form>

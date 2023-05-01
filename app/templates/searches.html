@@ -1,3 +1,4 @@
+<!-- Template for search results after searching for a user -->
 {% extends "base.html" %}
 {% block content %}
 {% with messages = get_flashed_messages() %}
@@ -10,16 +11,17 @@
     {% endif %}
 {% endwith %}
 
-
 <div class="container-fluid settings-container">
     <div class="manage-users-container container p-5 rounded-5 box-shadow">
         <div class="row border-bottom border-3">
             <div class="col">
+                <!--Header-->
                 <h1 class="header pb-2">Manage Users</h1>
             </div>
         </div>
         <div class="row pt-4">
             <div class="col">
+                <!--Search bar to search again-->
                 <form method="post" name="search">
                     {{ form.hidden_tag() }}
                     <label for="search" class="fw-bold fs-5 pl-4 pb-2">Search by email or name</label>
@@ -37,7 +39,7 @@
             </div>
         </div>
         <div class="row mt-2">
-            <!--Basic table to hold booking information of a user-->
+            <!--Basic table to hold information of any users returned by the search-->
             <table class="table">
                 <thead>
                     <tr>

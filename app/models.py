@@ -113,9 +113,11 @@ class UserDetails(db.Model, UserMixin):
             raise ValueError("Not old enough")
         return UserDetails
 
+#Discount amount
 class DiscountAmount(db.Model):
     discountAmount = db.Column(db.Integer, primary_key=True)
 
+    #validate that the discount is within a percentageable amount
     @validates("discountAmount")
     def validate_discountAmount(self, key, DiscountAmount):
         maxDiscount = 100

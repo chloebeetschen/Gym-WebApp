@@ -14,6 +14,10 @@
     padding: 0;
 }
 
+html {
+    background-color: var(--background-dark);
+}
+
 /* Adjust the header div */
 .header-div {
     color: #ffa9dc;
@@ -92,6 +96,7 @@ html, body {
 
 .push-pull {
     font-family: 'Oswald', sans-serif;
+    font-weight: bold;
     font-size: 8vw;
     background-color: #ff0099;
     width: auto;
@@ -405,15 +410,6 @@ li a i:hover {
     color: #ffffff;
 }
 
-.navbar-nav {
-    padding-left: 1vw;
-    padding-right: 1vw;
-}
-
-.navbar {
-    border-bottom: 2px solid var(--btn-color);
-}
-
 .login-reg-bg {
     width: 100%;
     height: 100%;
@@ -696,4 +692,57 @@ th, td {
     background-color: var(--background-light);
 }
 
+/* Custom Navbar Styles */
+.custom-navbar {
+    display: flex;
+    padding: 25px;
+    border-bottom: var(--btn-color) 2px solid;
+}
 
+
+.nav-item {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.nav-link i {
+    font-size: 1.5rem;
+}
+
+.navbar-left, .navbar-right {
+    padding: 0;
+    display: flex;
+    text-decoration: none !important;
+    margin-bottom: 0;
+    width: 50%;
+}
+
+.navbar-left {
+
+}
+
+.navbar-right {
+    justify-content: flex-end;
+}
+
+/* CSS code for phone size */
+@media only screen and (max-width: 767px) {
+    .push-pull {
+        padding: 10px 60px 10px 30px;
+        font-size: 2.5rem;
+    }
+
+    .gym-corp {
+        padding: 5px 80px 5px 20px;
+        font-weight: bold;
+        font-size: 1.7rem;
+    }
+
+    .down-arrow .bi-arrow-down {
+        font-size: 3rem;
+        
+    }
+    .down-arrow #facilities {
+        font-size: 2rem;
+    }
+}

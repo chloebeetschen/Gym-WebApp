@@ -144,6 +144,13 @@
 
         calendar.render();
 
+        // Reload the page on btn press
+        const monthBtn = document.getElementsByClassName('fc-dayGridMonth-button')[0];
+        console.log(monthBtn)
+        monthBtn.addEventListener("click", ()=> {
+            location.reload();
+        });
+
         let eventDivs = document.getElementsByClassName('fc-daygrid-event-harness')
         // Classes for the info pop up and booking button
         const popUpClasses  = ['event-info-div', 'rounded-4', 'p-2']

@@ -1,9 +1,6 @@
 <!-- Template for editing activities -->
 {% extends "base.html" %}
-
 {% block content %}
-
-
 
 <!--Basic Header-->
 <h1>Edit Activity</h1>
@@ -21,7 +18,6 @@
         {% endif %}
     {% endwith %}
 </div>
-
 
 <!--Form for manager to edit an activity-->
 <form action="{{ url_for('editActivity') }}" method="post" name="editActivity">
@@ -80,4 +76,5 @@
     <!--Submit the request to delete-->
     <p><input type="submit" class="btn btn-primary mt-2" value="Delete Activity"></p>
 </form>
+
 {% endblock %}

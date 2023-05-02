@@ -1,6 +1,5 @@
 <!-- Template for manager analysis -->
 {% extends "base.html" %}
-
 {% block content %}
 
 <!-- JS link for implemented graphs and analysis -->
@@ -8,7 +7,6 @@
 
 <!--Basic Header-->
 <h1>Analysis</h1>
-
 
 <!-- Flashed Messages -->
 <div class="d-flex align-items-center flashed-msg-container justify-content-center">
@@ -55,7 +53,6 @@
         {% endfor %}
         </select>
     {% endif %}
-    
 
     <!--Type (Name of Activity)-->
     <label for="activities">Choose Activity</label>
@@ -71,7 +68,7 @@
         {% endfor %}
         </select>
     {% endif %}
-    
+
 <br>
     <!--Submit-->
     <input type="submit" class="btn btn-primary" value="Submit">
@@ -181,6 +178,5 @@ new Chart("salesChart", {
     }
 });
 </script>
-
 
 {% endblock %}

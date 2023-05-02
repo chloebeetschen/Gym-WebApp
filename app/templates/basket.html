@@ -1,33 +1,30 @@
 <!-- Template for basket -->
-
 {% extends "base.html" %}
 {% block content %}
 
 <div class="container-fluid shopping-basket">
 
+    <!-- Flashed error Messages -->
+    <div class="d-flex align-items-center flashed-msg-container justify-content-center">
+        {% with messages = get_flashed_messages(with_categories=True) %}
+            {% if messages %}
+            {% for category, message in messages %}
+                <div class="{{ category }} alert-box rounded-4 p-5">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times</span>
+                {{ message }}
+                </div>
+            {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
 
-<!-- Flashed error Messages -->
-<div class="d-flex align-items-center flashed-msg-container justify-content-center">
-    {% with messages = get_flashed_messages(with_categories=True) %}
-        {% if messages %}
-        {% for category, message in messages %}
-            <div class="{{ category }} alert-box rounded-4 p-5">
-            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times</span>
-            {{ message }}
-            </div>
-        {% endfor %}
-        {% endif %}
-    {% endwith %}
-</div>
-
-  
     <div class="login-reg-form-container rounded-4 p-4 box-shadow">
         <div class="col text-center border-bottom">
             <!--Title-->
             <h1 class="fw-bold">Shopping Basket</h1>
         </div>
-        <!-- If stuff in basket, display it -->
 
+        <!-- If stuff in basket, display it -->
         {% if isItems %}
         <div class="table-responsive">
             <table class="table basket-table">
@@ -51,7 +48,6 @@
                     <!--Option to remove from basket-->
                     <td class="text-center">
                         <a href="/deleteBasket/{{i}}"><button class="btn basket-button pb-0 pt-0">X</button></a>
-
                     </td>
                 </tr>
                 {% endfor %}
@@ -63,15 +59,11 @@
         <div class="row align-items-center">
             <div class="col">
                 <div class="m-2 p-2 ">
-
                     <h5>Discounts: -£{{ roundedDiscount }}</h5>
                     <!--Display price (with discount applied if there is one)-->
                     <h4 class="fw-bold">Total: £{{ roundedTotal }}</h4>
-
                 </div>
-
             </div>
-
 
             <div class="col justify-content-center">
                 <!--Checkout button to be able to pay for basket items-->
@@ -80,9 +72,7 @@
                     <script src="https://checkout.stripe.com/checkout.js" class="stripe-button payment-btn"
                         data-key="{{ key }}" data-description="Push and Pull payment" data-amount="{{ totalPrice * 100 }}"
                         data-locale="auto" data-currency='gbp'>
-
-
-                        </script>
+                    </script>
                     <script>
                         // Hide default stripe button, be careful there if you
                         // have more than 1 button of that class
@@ -93,16 +83,14 @@
                     <button type="submit" class="btn payment-btn p-3 m-2">Pay By Card</button>
                 </form>
             </div>
-
-
         </div>
 
-
+        <!--If basket is empty-->
         {% else %}
         <br>
-        <!--If basket is empty-->
         <h3 class="text-center"> Please add something to your basket</h3>
         {% endif %}
+
     </div>
 </div>
 {% endblock %}

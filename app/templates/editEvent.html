@@ -1,7 +1,7 @@
 <!-- Template for editing events -->
 {% extends "base.html" %}
-
 {% block content %}
+
 <!--Basic Header-->
 <h1>Edit Event (Manager)</h1>
 
@@ -31,6 +31,7 @@
 <h4 class="">
     Fill in any fields that you would like to alter.
 </h4>
+
 <form action="" method="post" name="editEvent">
     {{ form.hidden_tag() }}
 
@@ -41,7 +42,6 @@
     <p class="mt-4">
         Date and Time<br>
         {{ form.aDateTime(class='form-control')}}
-    
     </p>
     <!--Check for errors-->
     {% for error in form.aDateTime.errors %}
@@ -50,12 +50,10 @@
       </div>
     {% endfor %}
 
-
     <!-- Duration of activity-->
     <p>
         Duration <br>
         {{ form.aDuration(class='form-control')}}
-    
     </p>
     <!--Check for errors-->
     {% for error in form.aDuration.errors %}
@@ -114,7 +112,9 @@
       <!--Submit the request to edit the event-->
     <p><input type="submit" class="btn btn-primary" value="Edit Event"></p>
 </form>
+
 <br> <hr> <br>
+
 <!--Option to delete an event-->
 <h1>Delete Event</h1>
 <h4 class="">
@@ -124,5 +124,7 @@
 <br>
 <!--Button to delete the chosen event-->
 <a href="/deleteEvent/{{event.id}}"><button type="button" class="btn btn-primary">Delete</button>
+    
 <br><br><br><br><br><br><br><br>
+
 {% endblock %}

@@ -1,6 +1,7 @@
 <!-- Template for search results after searching for a user -->
 {% extends "base.html" %}
 {% block content %}
+
 {% with messages = get_flashed_messages() %}
     {% if messages %}
         {% for message in messages %}
@@ -81,4 +82,5 @@
         </div>
     </div>
 </div>
+
 {% endblock %}

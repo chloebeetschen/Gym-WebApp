@@ -377,7 +377,7 @@ def addToDB():
         db.session.add(newUser)
         db.session.add(newUserDetails)
 
-        userEmail = 'employee2@member.com'
+        userEmail = 'employee2@gymcorp.com'
         newUser = models.UserLogin(email=userEmail,
                                 password=hashedPassword,
                                 userType=2)

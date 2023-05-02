@@ -1,6 +1,5 @@
 <!-- Template for adding an event -->
 {% extends "base.html" %}
-
 {% block content %}
 
 <!--Basic Header-->
@@ -19,7 +18,6 @@
         {% endif %}
     {% endwith %}
 </div>
-
 
 <!--Form for manager to create a new event for their chosen activity to be insterted into the calendar-->
 <form method="post" name="addEvent">
@@ -49,7 +47,6 @@
         [{{ error }}]
     </div>
     {% endfor %}
-
 
     <!-- Duration of activity - text-->
     <p>
@@ -113,4 +110,5 @@
     <!--Submit request to cresate an event-->
     <p><input type="submit" class="btn btn-primary" value="Add Event"></p>
 </form>
+
 {% endblock %}

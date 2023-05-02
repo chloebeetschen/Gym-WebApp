@@ -7,7 +7,7 @@ from datetime import *
 class Activity(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     activityType = db.Column(db.String(250), nullable=False)
-    # foreign key for activity table
+    # Foreign key for activity table
     calendarEvents = db.relationship('Calendar', backref='activity')
 
     @staticmethod
@@ -24,9 +24,9 @@ class Calendar(db.Model):
     aLocation  = db.Column(db.String(250), nullable=False)
     aPrice     = db.Column(db.Float, nullable=False)
     aCapacity  = db.Column(db.Integer, nullable=False)
-    #this is the number of people signed up to the activity, which will need to be incremented
+    # This is the number of people signed up to the activity, which will need to be incremented
     aSlotsTaken = db.Column(db.Integer, nullable=False)
-    #is it a daily repeated event?
+    # Is it a daily repeated event?
     aIsRepeat  = db.Column(db.Boolean, nullable=False)
     # Relationship with Activity
     activityId = db.Column(db.Integer, db.ForeignKey('activity.id'), nullable=False)
@@ -34,24 +34,26 @@ class Calendar(db.Model):
     userEvents = db.relationship('UserBookings', backref='calendar')
 
     # Validate that date is in future
-    # COMMENTED OUT TO PREPOPULATE DB
-    # @validates("aDateTime")
-    # def validate_aDateTime(self, key, Calendar):
-    #     if Calendar < datetime.today():
-    #         raise ValueError("Event date must be in future")
-    #     return Calendar
+    @validates("aDateTime")
+    def validate_aDateTime(self, key, Calendar):
+        if Calendar < datetime.today():
+            raise ValueError("Event date must be in future")
+        return Calendar
+
     # Validates that duration is positive
     @validates("aDuration")
     def validate_aDuration(self, key, Calendar):
         if Calendar < 0:
             raise ValueError("Duration must be positive")
         return Calendar
+
     # Validates that price is positive
     @validates("aPrice")
     def validate_aPrice(self, key, Calendar):
         if Calendar < 0:
             raise ValueError("Price must be positive")
         return Calendar
+
     # Validates that capacity is positive
     @validates("aCapacity")
     def validate_aCapacity(self, key, Calendar):
@@ -60,26 +62,20 @@ class Calendar(db.Model):
         return Calendar
 
 
-
 class UserBookings(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    
-    #userId = db.Column(db.Integer, nullable=False)
-    #calendarId = db.Column(db.Integer, nullable=False)
-
     userId = db.Column(db.Integer, db.ForeignKey('user_login.id'))
     calendarId = db.Column(db.Integer, db.ForeignKey('calendar.id'))
 
  
-# Login details
 class UserLogin(db.Model, UserMixin):
-    id = db.Column(db.Integer, primary_key=True)  # userId
+    id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(150), nullable=False, unique=True)
     password = db.Column(db.String(150), nullable=False)  # Encrypt (Hash)
-    #Customer is userType 1, Employee is userType 2, and Manager is useType3
+    # Customer is userType 1, Employee is userType 2, and Manager is useType3
     userType = db.Column(db.Integer, nullable=False) 
     userDetails = db.relationship('UserDetails', backref='loginDetails', uselist=False)
-    #relationship with userbookings
+    # Relationship with userbookings
     userbookings = db.relationship('UserBookings', backref='loginDetails')
 
     # Validate that email contains @
@@ -88,12 +84,14 @@ class UserLogin(db.Model, UserMixin):
         if "@" not in UserLogin:
             raise ValueError("Invalid Email")
         return UserLogin
+
     # Validate that user type is 1, 2 or 3
     @validates("userType")
     def validate_userType(self, key, UserLogin):
         if ((UserLogin != 1) and (UserLogin != 2) and (UserLogin != 3)):
             raise ValueError("Invalid User Type")
         return UserLogin
+
 
 # User info (Sensitive info -> encryption)
 class UserDetails(db.Model, UserMixin):
@@ -113,11 +111,12 @@ class UserDetails(db.Model, UserMixin):
             raise ValueError("Not old enough")
         return UserDetails
 
-#Discount amount
+
+# Discount amount
 class DiscountAmount(db.Model):
     discountAmount = db.Column(db.Integer, primary_key=True)
 
-    #validate that the discount is within a percentageable amount
+    # Validate that the discount is a percentageable amount
     @validates("discountAmount")
     def validate_discountAmount(self, key, DiscountAmount):
         maxDiscount = 100

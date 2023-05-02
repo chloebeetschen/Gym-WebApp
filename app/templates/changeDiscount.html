@@ -1,36 +1,38 @@
 <!-- Template for altering the discount -->
 {% extends "base.html" %}
 {% block content %}
-    <h1>Change discount amount:</h1>
 
-    <!-- Flashed error Messages -->
-    <div class="d-flex align-items-center flashed-msg-container justify-content-center">
-        {% with messages = get_flashed_messages(with_categories=True) %}
-            {% if messages %}
-            {% for category, message in messages %}
-                <div class="{{ category }} alert-box rounded-4 p-5">
-                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times</span>
-                {{ message }}
-                </div>
-            {% endfor %}
-            {% endif %}
-        {% endwith %}
-    </div>
-
-    <!-- Form for manager to be able to alter discount applied to user basket's-->
-    <form action="" method="post" name="login">
-        {{ form.hidden_tag() }}
-        <p>{{ form.DiscountAmount(class_='form-control') }}</p>
-        <div class="d-flex align-items-center flashed-msg-container justify-content-center">
-            <!--Check for errors-->
-            {% for error in form.DiscountAmount.errors %}
-            <div class="alert alert-danger" role="alert">
-                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times</span>
-                {{ error }}
+<!-- Flashed error Messages -->
+<div class="d-flex align-items-center flashed-msg-container justify-content-center">
+    {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+        {% for category, message in messages %}
+            <div class="{{ category }} alert-box rounded-4 p-5">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times</span>
+            {{ message }}
             </div>
-            {% endfor %}
+        {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
+
+<h1>Change discount amount:</h1>
+
+<!-- Form for manager to be able to alter discount applied to user basket's-->
+<form action="" method="post" name="login">
+    {{ form.hidden_tag() }}
+    <p>{{ form.DiscountAmount(class_='form-control') }}</p>
+    <div class="d-flex align-items-center flashed-msg-container justify-content-center">
+        <!--Check for errors-->
+        {% for error in form.DiscountAmount.errors %}
+        <div class="alert alert-danger" role="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times</span>
+            {{ error }}
         </div>
-        <!--Submit rewuest to change the discount-->
-        <p><input type="submit" class="btn btn-primary" value="Submit"></p>
-    </form>  
+        {% endfor %}
+    </div>
+    <!--Submit rewuest to change the discount-->
+    <p><input type="submit" class="btn btn-primary" value="Submit"></p>
+</form>  
+
 {% endblock %}

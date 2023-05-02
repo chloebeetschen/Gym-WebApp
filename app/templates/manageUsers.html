@@ -2,7 +2,6 @@
 {% extends "base.html" %}
 {% block content %}
 
-
 <!-- Flashed Messages -->
 <div class="d-flex align-items-center flashed-msg-container justify-content-center">
     {% with messages = get_flashed_messages(with_categories=True) %}
@@ -167,4 +166,5 @@
         {% endif %}
     </div>
 </div>
+
 {% endblock %}

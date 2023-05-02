@@ -1,9 +1,6 @@
 <!-- Template for viewing bookings -->
 {% extends "base.html" %}
-
 {% block content %}
-
-<!--Basic Header-->
 
 <!-- Flashed Messages -->
 <div class="d-flex align-items-center flashed-msg-container justify-content-center">
@@ -47,7 +44,6 @@
                             <td>{{events[i].aLocation}}</td>
                             <td>{{events[i].aStaffName}}</td>
 
-
                     <!--Delete activity button-->
                     <td>
                     {% if events[i].aDateTime > today %}
@@ -60,8 +56,6 @@
                 {% endfor %}
           </tbody>
           </table>
-
-                    
         </div>
     </div>
 </div>

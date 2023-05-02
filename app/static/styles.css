@@ -865,4 +865,16 @@ th, td {
         padding: 15px;
         max-width: 100%;
     }
+
+    .footer-links-header {
+        font-size: 1rem;
+    }
+
+    .footer-container {
+        padding: 1.5rem !important;
+    }
+
+    .footer-container a {
+        font-size: 0.8rem !important;
+    }
 }

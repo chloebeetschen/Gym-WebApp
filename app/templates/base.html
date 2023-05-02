@@ -37,6 +37,43 @@
     </head>
     
     <body>
+      {% if current_user.is_authenticated%}
+      <!-- Navbar with links to all pages -->
+      <nav class="custom-navbar navbar-dark bg-dark">
+          <div class="navbar-list navbar-left ">
+            {% if current_user.userType != 3 %}
+              <div class="nav-item"><a class="nav-link" href="{{ url_for('home') }}"><i class="bi bi-house-door"></i></a></div>
+              <div class="nav-item"><a class="nav-link" href="/calendar"><i class="bi bi-calendar-date"></i></a></div>
+              <div class="nav-item"><a class="nav-link" href="/myBookings"><i class="bi bi-card-checklist"></i></a></div>
+
+              <!-- Only managers should have access to these pages -->
+              {% if current_user.userType == 2 %}
+                <div class="nav-item"><a class="nav-link" href="/manageUsers"><i class="bi bi-person-add"></i></a></div>
+              {% endif %}
+            {% endif %}
+            {% if current_user.userType == 3 %}
+            <div class="nav-item"><a class="nav-link" href="/calendar"> Calendar</a></div>
+              
+              <div class="nav-item"><a class="nav-link" href="/addEvent">Add Event</a></div>
+              <div class="nav-item"><a class="nav-link" href="/addActivity">Add Activity</a></div>
+              <div class="nav-item"><a class="nav-link" href="{{ url_for('editActivity') }}">Edit Activity</a></div>
+              <div class="nav-item"><a class="nav-link" href="/manageUsers">Manage Users</a></div>
+              <div class="nav-item"><a class="nav-link" href="/analysis">Analysis</a></div>
+              <div class="nav-item"><a class="nav-link" href="/changeDiscount">Change discount</a></div>
+            {% endif %}
+          </div>
+
+          <div class="navbar-list navbar-right ">
+            {% if current_user.userType != 3 %}
+              <div class="nav-item"><a class="nav-link" href="/basket"><i class="bi bi-cart2"></i></a></div>
+            {% endif %}
+            <div class="nav-item"><a class="nav-link" href="{{ url_for('settings') }}"><i class="bi bi-gear"></i></a></div>
+            <div class="nav-item"><a class="nav-link" href="/logout"><i class="bi bi-person-dash"></i></a></div>
+          </div>
+      </nav>
+     {% else %}
+      <!-- This is for user's that aren't logged in -->
+      <div class="container-fluid p-md-3 pt-3 bg-light d-flex login-reg-container bg-transparent">
     {% if current_user.is_authenticated%}
     <!-- Navbar with links to all pages -->
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">

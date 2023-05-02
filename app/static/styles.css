@@ -9,6 +9,31 @@
     --background-light: #194578;
 }
 
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* Adjust the header div */
+.header-div {
+    color: #ffa9dc;
+    background-color: #194578;
+    font-family: 'Oswald', sans-serif;
+    font-size: 6vw;
+    width: auto;
+    height: auto;
+    text-align: center;
+    padding: 20px 0; /* Add some padding to the header div */
+}
+
+.team-page.container-fluid {
+    margin: 0;
+}
+
+.team-page .row .column {
+    margin: 0;
+}
+
 .flashed-msg-container {
     position: absolute !important;
     top: 15% !important;
@@ -21,9 +46,11 @@
 .bg-dark {
     background-color: var(--background-dark) !important;
 }
+
 .bg-md {
     background-color: var(--background-medium) !important;
 }
+
 .bg-light {
     background-color: var(--background-light) !important;
 }
@@ -43,13 +70,12 @@ html, body {
 
 .settings-container {
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
     background-image: linear-gradient(to bottom, #051e46, #194578);
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
 
 .title-text-container {
     display: flex;
@@ -116,7 +142,6 @@ html, body {
     font-weight: bold;
 }
 
-
 .box-shadow {
     box-shadow: 0px 0px 20px 1px rgb(30, 30, 30);       
 }
@@ -176,14 +201,6 @@ html, body {
 }
 
 .shopping-basket {
-    /* width: 100%;
-    height: 100%;
-    background-color: #7c9cb6;
-    background-size: cover;
-    background-position: center;
-    z-index: -900;
-    padding: 0;  */
-
     width: 100%;
     height: 100%;
     background-image: linear-gradient(to bottom, #051e46, #194578);
@@ -210,7 +227,6 @@ html, body {
     width: 100%;
 }
 
-
 .membership-container {
     background-color: var(--background-medium);
     margin: 0 !important;
@@ -235,8 +251,6 @@ html, body {
     margin-left: 3vw;
     margin-right: 3vw;
 }
-
-
 
 .header {
     text-align: center;
@@ -326,7 +340,6 @@ html, body {
     margin-right: 1vw;
 }
 
-
 .time-info-body {
     text-align: left;    
     margin-left: 2vw;
@@ -399,9 +412,7 @@ li a i:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
-
 
 .event-info {
     position: relative;
@@ -449,6 +460,8 @@ li a i:hover {
 .mybookings-container {
     background-color: var(--background-dark);
     opacity: 90%;
+    margin-top: 20vh;
+    margin-bottom: 20vh;
 }
 
 th {
@@ -459,8 +472,6 @@ th, td {
     text-align: center;
     vertical-align: middle;
 }
-
-
 
 .alert-box {
     padding: 20px;
@@ -473,7 +484,6 @@ th, td {
     background-color: #f8d7da;
     border-color: #f5c6cb;
   }
-  
 
 .error{
     background-color: #f44336;
@@ -493,18 +503,18 @@ th, td {
     font-size: 30px;
     line-height: 20px;
     cursor: pointer;
-
 }
 
 .closebtn:hover {
     color: black;
 }
 
-
 .manage-users-container {
-    background-color: var(--background-dark);
+    background-color: var(--background-light);
     opacity: 90%;
     font-size: 1.2vw;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
 }
 
 .form-error {
@@ -513,7 +523,6 @@ th, td {
     font-size: medium;
     background-color: #f44336;
     color: white;
-
 }
 
 .card {
@@ -522,7 +531,6 @@ th, td {
     height: 500px;
     color: white;
 }
-
 
 .column {
     float: left;
@@ -536,10 +544,9 @@ th, td {
     float: left;
     width: 50%;
     margin-bottom: 15px;
-    margin-top: 125px;
+    margin-top: 15px;
     padding: 5px;
 }
-
 
 .team-page {
     width: 100%;
@@ -555,14 +562,12 @@ th, td {
     position: absolute;
     font-family: 'Oswald', sans-serif;
     font-size: 6vw;
-    background-color: #ff0099;
+    color: #ffa9dc;
     width: 100%;
     height: 18%;
     opacity: 100%;
     padding: 0 15rem 0 3rem;
-    color: #ffa9dc;
     z-index: 1000;
-
 }
 
 .img-team {
@@ -573,7 +578,6 @@ th, td {
     height: 300px;
     object-fit: scale-down;
 }
-
 
 .footer-container ul {
     color: white;
@@ -602,16 +606,19 @@ th, td {
     margin: 0;
 }
 
-
-
 .event-info-div p {
     margin: 0;
     padding-top: 0.5vw;
     padding-bottom: 0.5vw;
 }
 
+.event-info-div a {
+    width: 70%;
+}
+
 .event-info-div p:nth-child(2),
-.event-info-div p:nth-child(3) {
+.event-info-div p:nth-child(3),
+.event-info-div p:nth-child(4)  {
     border-top: 1px solid white;
 }
 
@@ -636,3 +643,25 @@ th, td {
     visibility: visible;
 }
 
+.fc-timegrid-event-harness {
+    cursor: pointer;
+}
+
+.fc-timegrid-event-harness:hover > .event-info-div {
+    opacity: 1;
+    visibility: visible;
+}
+
+.fc .fc-popover {
+    box-shadow: 0 2px 6px rgba(0,0,0,.15);
+    border-radius: 15px;
+}
+
+.fc .fc-popover-title {
+    color: var(--background-dark);
+}
+
+.fc .fc-more-popover .fc-popover-body{
+    border-radius: 15px;
+    background-color: var(--background-light);
+}

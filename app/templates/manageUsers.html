@@ -1,6 +1,6 @@
+<!-- Template for managing users-->
 {% extends "base.html" %}
 {% block content %}
-
 
 <!-- Flashed Messages -->
 <div class="d-flex align-items-center flashed-msg-container justify-content-center">
@@ -16,7 +16,7 @@
     {% endwith %}
 </div>
 
-
+<!--Search bar to search for users -->
 <div class="container-fluid settings-container">
     <div class="manage-users-container container p-5 rounded-5 box-shadow">
         <div class="row border-bottom border-3">
@@ -26,6 +26,7 @@
         </div>
         <div class="row pt-4">
             <div class="col">
+                <!--enter a string of text into the search bar-->
                 <form method="post" name="search">
                     {{ form.hidden_tag() }}
                     <label for="search" class="fw-bold fs-5 pl-4 pb-2">Search by email or name</label>
@@ -37,6 +38,7 @@
             </div>
         </div>
 
+        <!--Table to return all users in the database-->
         <div class="row mt-5 border-bottom border-2">
             <div class="col mb-3">
                 <h3 class="header fs-2">Customers</h3>
@@ -48,6 +50,7 @@
                 <thead>
                     <tr>
                         <th>Email</th>
+                        <!--If logged in user is not a cutsomer, give the options to edit memberships and bookings-->
                         {% if userType != 3 %}
                         <th>Bookings</th>
                         <th>Change membership</th>
@@ -57,6 +60,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <!--Filter by only Customers-->
                     {% if userTypeNum1 != 0 %}
                         {% for i in range (0 , userTypeNum1) %}
                             <tr>
@@ -96,14 +100,13 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <!--<th>Type</th>-->
-                            <!--<th>Name</th>-->
                             <th>Email</th>
                             <th>Edit details</th>
                             <th>Delete user</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <!--Filter by employees and managers-->
                         {% if userTypeNum2 != 0 %}
                             {% for i in range (0 , userTypeNum2) %}
                             <tr>
@@ -124,7 +127,44 @@
                     </tbody>
                 </table>
             </div>
+            <div class="row mt-5 border-bottom border-2">
+                <div class="col pb-3">
+                    <h3 class="header fs-2">Managers</h3>
+                    <h4 style="text-align: center;"> <strong>Be wary to not delete your admin account!</strong> </h4>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Email</th>
+                            <th>Edit details</th>
+                            <th>Delete user</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if userTypeNum3 != 0 %}
+                            {% for i in range (0 , userTypeNum3) %}
+                            <tr>
+                                <!--display event and event info in the tables-->
+                                <td>{{userTypeLogin3[i].email}}</td>
+                                <!--Delete user button-->
+                                <td>
+                                    <a href="/editUser/{{userTypeLogin2[i].id}}"><button type="button"
+                                            class="btn btn-primary">Edit</button></a>
+                                </td>
+                                <td>
+                                    <a href="/deleteUser/{{userTypeLogin2[i].id}}"><button type="button"
+                                            class="btn btn-primary">Delete</button></a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
         {% endif %}
     </div>
 </div>
+
 {% endblock %}

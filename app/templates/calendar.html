@@ -1,6 +1,7 @@
 <!-- Template for calender frontend -->
 <!--https://www.youtube.com/watch?v=VXW2A4Q81Ok-->
 <!--https://leimao.github.io/blog/JavaScript-FullCalendar/-->
+
 {% extends "base.html" %}
 {% block content %}
 
@@ -23,8 +24,9 @@
     <div class="row m-0 p-0 mb-4 text-center">
         <!--Basic Header-->
         <p class="header p-0 m-0 pt-0 mb-0">Calendar</p>
-        <p class="mb-4 text-center">If you would like to book one of our sessions that is open all day please choose
-            from below.</p>
+        <p class="mb-4 text-center"><b>If you would like to book one of our sessions that is open all day please choose
+            from below.</b></p>
+        <!--Links to go to a calendar for the daily repeated events-->
         <div class="d-flex justify-content-center">
             <div class="col">
                 <a href="/repeatEvents/2"><button type="button" class="btn btn-primary btn-calendar">Lane Swimming</button></a>
@@ -48,80 +50,112 @@
                 <a href="/repeatEvents/12"><button type="button" class="btn  btn-primary btn-calendar">Sports Hall Session</button></a>
             </div>
         </div>
-        
-        <!-- <div class="col"></div>
-        <div class="col"></div> -->
+        <!--Calendar-->
         <div id="calendar"></div>
-
     </div>
 </div>
 
-
+<!--Links to style sheets and javascript libraries used-->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar@6.1.5/index.global.min.css"></link>
 <script src='https://cdn.jsdelivr.net/npm/@fullcalendar@6.1.5/index.global.min.js'></script>
-
 <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.5/index.global.min.js'></script>
 <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@6.1.5/index.global.min.js'></script>
 
 <script>
+    //refernces:
+    //https://github.com/fullcalendar/fullcalendar-docs/blob/main/_docs-v6/event-display/event-tooltip-demo.html
+    //https://fullcalendar.io/
+    
     document.addEventListener('DOMContentLoaded', function(){
 
         let cElem = document.getElementById('calendar');
-
+        //Create calendar elements
         let calendar = new FullCalendar.Calendar(cElem, { 
+            //calendar header buttons and title
             headerToolbar: {
                 left: 'prev,next today',
                 center: 'title',
                 right: 'dayGridMonth,timeGridWeek,timeGridDay'
             },
+            //allow events to overlap
             slotEventOverlap: false,
+            //allow links in the header to navigate
             navLinks: true, 
+            //allow links in the header to navigate
             editable: false,
             dayMaxEvents: true,
+            //set the gym's opening hours so that they're visible in the calendar
             businessHours: {
                 daysOfWeek: [0,1,2,3,4,5,6],
                 startTime: '8:00',
                 endTime: '22:00',
             },
-            //nowIndicator: true,
             displayEventTime: true,
+            //make the time a 2-digit numeric system so that it's easy for users to read
             eventTimeFormat: {
                 hour: 'numeric',
                 minute: '2-digit',
                 meridiem: true,
             },
             selectable: true,
-            //https://github.com/fullcalendar/fullcalendar-docs/blob/main/_docs-v6/event-display/event-tooltip-demo.html
-            //https://fullcalendar.io/
-            
+            //loop through the events passed from views and put them into the calendar
+            //checking if users are members or if capacity is full on events to allow for different information to be shown
+            //adding a url makes the link clickable - if clicked it books/adds to basket            
             events: [
                 {% for i in range(numEvents) %}
                     {
-                        title : '{{eventInfo[i].activityType}}',
-                        {% if isMember == True %}
-                            url : '/makeBooking/{{ events1[i].id }}',
+                        {% if events1[i].aSlotsTaken != events1[i].aCapacity %}
+                            title : '{{ eventInfo[i].activityType }}',
                         {% else %}
-                            url : '/addBasket/{{ events1[i].id }}',
+                            title : 'FULL - {{ eventInfo[i].activityType }}',
+                        {% endif %}                         
+                        {% if current_user.userType == 3 %}
+                            url : '/editEvent/{{ events1[i].id }}',
+                        {% else %}
+                            {% if events1[i].aSlotsTaken != events1[i].aCapacity %}
+                                {% if isMember == True %}
+                                    url : '/makeBooking/{{ events1[i].id }}',
+                                {% else %}
+                                    url : '/addBasket/{{ events1[i].id }}',
+                                {% endif %}
+                            {% endif %}
                         {% endif %}
                         start : '{{events1[i].aDateTime}}',
-                        content: '£{{events1[i].aPrice}} - {{events1[i].aDuration}} hour(s) - Spaces: {{events1[i].aCapacity-events1[i].aSlotsTaken}}',
                     },
                 {% endfor %}
+                //repeat for week 2
                 {% for i in range(numEvents2) %}
                     {
-                        title : '{{eventInfo2[i].activityType}}',
-                        {% if isMember == True %}
-                            url : '/makeBooking/{{ events2[i].id }}',
+                        {% if events2[i].aSlotsTaken != events2[i].aCapacity %}
+                            title : '{{ eventInfo2[i].activityType }}',
                         {% else %}
-                            url : '/addBasket/{{ events2[i].id }}',
+                            title : 'FULL - {{ eventInfo2[i].activityType }}',
+                        {% endif %} 
+                        {% if current_user.userType == 3 %}
+                            url : '/editEvent/{{ events2[i].id }}',
+                        {% else %}
+                            {% if events2[i].aSlotsTaken != events2[i].aCapacity %}
+                                {% if isMember == True %}
+                                    url : '/makeBooking/{{ events2[i].id }}',
+                                {% else %}
+                                    url : '/addBasket/{{ events2[i].id }}',
+                                {% endif %}
+                            {% endif %}
                         {% endif %}
                         start : '{{events2[i].aDateTime}}',
                     },
                 {% endfor %}
             ]
         });
-
+        //render the calendar
         calendar.render();
+
+        // Reload the page on btn press
+        const monthBtn = document.getElementsByClassName('fc-dayGridMonth-button')[0];
+        console.log(monthBtn)
+        monthBtn.addEventListener("click", ()=> {
+            location.reload();
+        });
 
         let eventDivs = document.getElementsByClassName('fc-daygrid-event-harness')
         // Classes for the info pop up and booking button
@@ -133,7 +167,7 @@
         let infoDiv, priceP, durationP, slotsLeftP, bookBtn
         let bookBtnContent = "Book"
 
-
+        //loop through our calendar events setting their information into the popups that will be displayed upon hovering
         {% for i in range(numEvents) %}
             infoDiv = document.createElement('div')
             infoDiv.classList.add(...popUpClasses)
@@ -184,6 +218,7 @@
             i ++
         {% endfor %}
         i = 0
+        //repeat for week 2
         {% for i in range(numEvents2) %}
             infoDiv = document.createElement('div')
             infoDiv.classList.add(...popUpClasses)
@@ -228,13 +263,10 @@
 
             bookBtn.textContent = bookBtnContent
             infoDiv.appendChild(bookBtn)
-            eventDivs[i].appendChild(infoDiv)
 
             eventDivs[ {{numEvents}} + i ].appendChild(infoDiv)
             i ++
         {% endfor %}
-
-
     });
 </script>
 {% endblock %}

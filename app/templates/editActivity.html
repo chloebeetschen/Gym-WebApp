@@ -1,9 +1,6 @@
 <!-- Template for editing activities -->
 {% extends "base.html" %}
-
 {% block content %}
-
-
 
 <!--Basic Header-->
 <h1>Edit Activity</h1>
@@ -22,30 +19,33 @@
     {% endwith %}
 </div>
 
-
 <!--Form for manager to edit an activity-->
 <form action="{{ url_for('editActivity') }}" method="post" name="editActivity">
     {{ form.hidden_tag() }}
 
     <!-- You need to be able to pick the activity you want to edit -->
     <label for="activities">Choose Activity</label>
+    <!--Check there are activities to choose from-->
     {% if activities == none %}
         <p>There are currently no activites.</p>
     {% else %}
+    <!--If there are make a dropdown to choose from-->
         <select name="activity" class="form-control" id="activities">
         {% for activity in activities %}
             <option value="{{activity.activityType}}">{{ activity.activityType }}</option>
         {% endfor %}
         </select>
     {% endif %}
+    <!--Renaming the activity-->
     <label for="newType" class="mt-3">New activity type</label>
     {{ form.aType(id="newType", class="form-control") }}
-
+    <!--Check for errors-->
     {% for error in form.aType.errors %}
     <div class="alert alert-danger" role="alert">
         [{{ error }}]
       </div>
     {% endfor %}
+    <!--Submit the request to edit-->
     <p><input type="submit" class="btn btn-primary mt-2" value="Edit Activity"></p>
 </form>
 
@@ -53,6 +53,7 @@
 <hr>
 <br>
 
+<!--Option to delete the an activity-->
 <h1>Delete Activity</h1>
 <h4 class="">
     Delete the chosen activity and <em> all
@@ -60,16 +61,20 @@
 </h4>
 <form action="{{ url_for('deleteActivity') }}" method="post">
     {{ form.hidden_tag() }}
+    <!--Choosing the activity to delete from a dropdown-->
     <label for="activities">Choose activity to delete</label>
     {% if activities == none %}
         <p>There are currently no activites.</p>
     {% else %}
+    <!--If chosen activity exists-->
         <select name="activity" class="form-control" id="activities">
         {% for activity in activities %}
             <option value="{{activity.activityType}}">{{ activity.activityType }}</option>
         {% endfor %}
         </select>
     {% endif %}
+    <!--Submit the request to delete-->
     <p><input type="submit" class="btn btn-primary mt-2" value="Delete Activity"></p>
 </form>
+
 {% endblock %}

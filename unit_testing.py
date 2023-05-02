@@ -1,5 +1,4 @@
 # Used chat gpt to learn how to use unit test in python 
-# Need to run the tests after password regex stuff is merged, the test should still pass 
 
 import unittest
 import logging

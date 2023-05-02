@@ -36,7 +36,8 @@ class Calendar(db.Model):
     # Validate that date is in future
     @validates("aDateTime")
     def validate_aDateTime(self, key, Calendar):
-        if Calendar < datetime.today():
+        # Compare to 7am rather than now
+        if Calendar < datetime.combine(date.today(), time(7,00)):
             raise ValueError("Event date must be in future")
         return Calendar
 

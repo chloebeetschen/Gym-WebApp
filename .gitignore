@@ -6,3 +6,4 @@ migrations/
 .vim/
 *.log
 squad6.log
+test.log

@@ -1,82 +1,90 @@
 <!-- Template for settings frontend -->
 {% extends "base.html" %}
-
 {% block content %}
 
 <!-- Flashed Messages -->
 <div class="d-flex align-items-center flashed-msg-container justify-content-center">
-  {% with messages = get_flashed_messages(with_categories=True) %}
+{% with messages = get_flashed_messages(with_categories=True) %}
     {% if messages %}
-      {% for category, message in messages %}
-      <div class="{{ category }} alert-box rounded-4 p-5">
+    {% for category, message in messages %}
+    <div class="{{ category }} alert-box rounded-4 p-5">
         <span class="closebtn" onclick="this.parentElement.style.display='none';">&times</span>
         {{ message }}
-      </div>
-      {% endfor %}
+    </div>
+    {% endfor %}
     {% endif %}
-  {% endwith %}
+{% endwith %}
 </div>
-
 
 <div class="container-fluid settings-container py-5">
-  <div class=" login-reg-form-container  rounded-4 pb-4 px-5 pt-3 box-shadow">
-    <div class="row mb-4">
-      <div class="col border-bottom border-3">
-        <h1 class="fw-bold">Settings</h1>
-      </div>
-    </div>
-    <div class="row mb-2">
-      <div class="col">
-        <h3 class="border-bottom pb-2">Amend Your Details</h3>
-      </div>
-    </div>
-    <form action="" method="post">
-      {{ form.hidden_tag() }}
-      <div class="row pb-3">
-        <div class="col">
-          <label for="name" class="fw-bold pb-2">Name</label>
-          {{ form.Name(class_='form-control', id="name") }}
+    <div class=" login-reg-form-container  rounded-4 pb-4 px-5 pt-3 box-shadow">
+        <div class="row mb-4">
+        <div class="col border-bottom border-3">
+            <!--Header-->
+            <h1 class="fw-bold">Settings</h1>
         </div>
-      </div>
-      <div class="row pb-3">
-        <div class="col">
-          <label for="pwd" class="fw-bold pb-2">Password</label>
-          {{ form.Password(class_='form-control', id="pwd") }}
         </div>
-      </div>
-      <div class="row pb-3">
+        <!--Form to edit your details-->
+        <div class="row mb-2">
         <div class="col">
-          <label for="newpwd" class="fw-bold pb-2">New Password</label>
-          {{ form.NewPassword(class_='form-control', id="newpwd") }}
+            <h3 class="border-bottom pb-2">Amend Your Details</h3>
         </div>
-      </div>
-      <div class="row pb-3">
-        <div class="col">
-          <label for="conpwd" class="fw-bold pb-2">Confirm New Password</label>
-          {{ form.NewPasswordx2(class_='form-control', id="conpwd") }}
         </div>
-      </div>
+        <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <div class="row pb-3">
+            <div class="col">
+            <!--Name - text-->
+            <label for="name" class="fw-bold pb-2">Name</label>
+            {{ form.Name(class_='form-control', id="name") }}
+            </div>
+        </div>
+        <div class="row pb-3">
+            <div class="col">
+            <!--original Password  - text-->
+            <label for="pwd" class="fw-bold pb-2">Password</label>
+            {{ form.Password(class_='form-control', id="pwd") }}
+            </div>
+        </div>
+        <div class="row pb-3">
+            <div class="col">
+            <!--new password - text-->
+            <label for="newpwd" class="fw-bold pb-2">New Password</label>
+            {{ form.NewPassword(class_='form-control', id="newpwd") }}
+            </div>
+        </div>
+        <div class="row pb-3">
+            <div class="col">
+            <!--confirm new password - text-->
+            <label for="conpwd" class="fw-bold pb-2">Confirm New Password</label>
+            {{ form.NewPasswordx2(class_='form-control', id="conpwd") }}
+            </div>
+        </div>
 
-      <div class="row pt-1">
-        <div class="col d-flex justify-content-end">
-          <p><input type="submit" class="btn btn-primary" value="Submit"></p>
+        <div class="row pt-1">
+            <div class="col d-flex justify-content-end">
+            <!-- submit request to edit your details-->
+            <p><input type="submit" class="btn btn-primary" value="Submit"></p>
+            </div>
         </div>
-      </div>
-    </form>
+        </form>
 
-    {% if userIsMember %}
-      <div class="row my-2 border-bottom border-top py-3">
-        <div class="col border-right border-1 text-center">
-          <h3 class="">Cancel Your Membership</h3>
+        {% if userIsMember %}
+        <!--if you are a member you can cancel an existing membership here-->
+        <div class="row my-2 border-bottom border-top py-3">
+            <div class="col border-right border-1 text-center">
+            <h3 class="">Cancel Your Membership</h3>
+            </div>
+            <div class="col d-flex justify-content-center align-items-center">
+            <!--submit request to cancel a membership-->
+            <form action="/cancelMembership" method="POST" onsubmit="return confirm('Are you sure you want to cancel your membership?')">
+                <input type="submit" class="btn btn-block btn-primary" value="Cancel">
+            </form>
+            </div>
         </div>
-        <div class="col d-flex justify-content-center align-items-center">
-          <form action="/cancelMembership" method="POST" onsubmit="return confirm('Are you sure you want to cancel your membership?')">
-            <input type="submit" class="btn btn-block btn-primary" value="Cancel">
-          </form>
-        </div>
-      </div>
-    
-    {% endif %}
-  </div>
+        {% endif %}
+
+    </div>
 </div>
+
 {% endblock %}

@@ -19,4 +19,5 @@ else
   export FLASK_DEBUG=1
 fi
 
+#port to run the web application on
 flask run --port=5002

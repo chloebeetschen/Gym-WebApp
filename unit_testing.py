@@ -513,66 +513,137 @@ class TestCase(unittest.TestCase):
                     self.logger.warning('Customer couldnt access edit Activity page: F')
     
 
-    # bug IN SETTINGS PAGE
-    # If a user tries to update their details in the setting page
-    # The changes should be reflected in the userDetails database
-    # def test_userDetail_update(self):
-    #     # First log in a user 
-    #     response = self.app.get(('/login'), follow_redirects = True)
-    #     self.assertEqual(response.status_code, 200)
-    #     with app.test_request_context():
-    #         with app.app_context():
-
-    #             data = {
-    #                 'Email' : 'aaditi@gmail.com',
-    #                 'Password' : 'MichaelScott1'
-    #             }
-    #             form = LoginForm(data=data)
-    #             self.assertTrue(form.validate())
-    #             response = self.app.post('/login', data=form.data, follow_redirects=True)
-    #             self.assertEqual(response.status_code, 200)
+    # Change just the user's name
+    def test_userDetail_update(self):
+        # First register a user 
+        response = self.app.get(('/register'), follow_redirects = True)
+        self.assertEqual(response.status_code, 200)
+        with app.test_request_context():
+            with app.app_context():
+                data = {
+                    'Name' : 'Harry Potter',
+                    'DateOfBirth' : datetime.strptime('2002-03-15', '%Y-%m-%d').date(),
+                    'Email' : 'harry@gmail.com',
+                    'Password' : 'HarryPotter1',
+                    'ReenterPassword' : 'HarryPotter1',
+                    'Type' : 1
+                    }
+                form = RegisterForm(data=data)
+                self.assertTrue(form.validate())
+                if not form.validate():
+                    print(form.errors)
+                response = self.app.post('/register', data=data)
                 
-    #             # Navigate to settings page
-    #             response = self.app.get(('/setting'), follow_redirects = True)
-    #             self.assertEqual(response.status_code, 200)
+                # Then login as user
+                response = self.app.get(('/login'), follow_redirects = True)
+                self.assertEqual(response.status_code, 200)
+                with app.test_request_context():
+                    with app.app_context():
+                        data1 = {
+                            'Email' : 'harry@gmail.com',
+                            'Password' : 'HarryPotter1',
+                        }
+                        form = LoginForm(data=data1)
+                        self.assertTrue(form.validate())
+                        response = self.app.post('/login', data=form.data, follow_redirects=True)
+                        self.assertEqual(response.status_code, 200)
+                        
+                        # Then change name
+                        response = self.app.get(('/settings'), follow_redirects = True)
+                        self.assertEqual(response.status_code, 200)
+                        with app.test_request_context():
+                            with app.app_context():
+                                data2 = {
+                                    'Name' : 'Dumbledore',
+                                    'Password' : 'HarryPotter1'
+                                }
+                                form = SettingsForm(data=data2)
+                                self.assertTrue(form.validate())
+                                response = self.app.post('/settings', data=form.data, follow_redirects=True)
+                                self.assertEqual(response.status_code, 200)
 
-    #             # The user wants to change their name
-    #             data1 = {
-
-    #             }
-        # Submit flask form 
-        # Check the database is updated 
-
+                                # Get the account of the user
+                                user = models.UserLogin.query.filter_by(email='harry@gmail.com').first()
+                                # Check that name has changed
+                                usersName = models.UserDetails.query.filter_by(id=user.id).first()
+                                try:
+                                    self.assertEqual(usersName.name, 'Dumbledore')
+                                    self.logger.info('User changing name: P')
+                                except AssertionError:
+                                    self.logger.warning('User changing name: F')
+                                    raise
+                                
 
     # If a user updates their password 
     # The changes should be reflected in the userDetails database
-    # def test_userDetail_updatePassword(self):
-    #     # First log in a user 
-    #     response = self.app.get(('/login'), follow_redirects = True)
-    #     self.assertEqual(response.status_code, 200)
-    #     with app.test_request_context():
-    #         with app.app_context():
-
-    #             data = {
-    #                 'Email' : 'aaditi@gmail.com',
-    #                 'Password' : 'MichaelScott1'
-    #             }
-    #             form = LoginForm(data=data)
-    #             self.assertTrue(form.validate())
-    #             response = self.app.post('/login', data=form.data, follow_redirects=True)
-    #             self.assertEqual(response.status_code, 200)
+    def test_userDetail_updatePassword(self):
+        # First register a user 
+        response = self.app.get(('/register'), follow_redirects = True)
+        self.assertEqual(response.status_code, 200)
+        with app.test_request_context():
+            with app.app_context():
+                data = {
+                    'Name' : 'Hermione Granger',
+                    'DateOfBirth' : datetime.strptime('2002-03-15', '%Y-%m-%d').date(),
+                    'Email' : 'hermione@gmail.com',
+                    'Password' : 'Hermione1',
+                    'ReenterPassword' : 'Hermione1',
+                    'Type' : 1
+                    }
+                form = RegisterForm(data=data)
+                self.assertTrue(form.validate())
+                if not form.validate():
+                    print(form.errors)
+                response = self.app.post('/register', data=data)
                 
-    #             # Navigate to settings page
-    #             response = self.app.get(('/setting'), follow_redirects = True)
-    #             self.assertEqual(response.status_code, 200)
+                # Then login as user
+                response = self.app.get(('/login'), follow_redirects = True)
+                self.assertEqual(response.status_code, 200)
+                with app.test_request_context():
+                    with app.app_context():
+                        data1 = {
+                            'Email' : 'hermione@gmail.com',
+                            'Password' : 'Hermione1',
+                        }
+                        form = LoginForm(data=data1)
+                        self.assertTrue(form.validate())
+                        response = self.app.post('/login', data=form.data, follow_redirects=True)
+                        self.assertEqual(response.status_code, 200)
+                        
+                        # Then change password
+                        response = self.app.get(('/settings'), follow_redirects = True)
+                        self.assertEqual(response.status_code, 200)
+                        with app.test_request_context():
+                            with app.app_context():
+                                data2 = {
+                                    'Password' : 'Hermione1',
+                                    'NewPassword' : 'Hermione2',
+                                    'NewPasswordx2' : 'Hermione2'
 
-    #             # The user wants to change their name
-    #             data1 = {
+                                }
+                                form = SettingsForm(data=data2)
+                                self.assertTrue(form.validate())
+                                response = self.app.post('/settings', data=form.data, follow_redirects=True)
+                                self.assertEqual(response.status_code, 200)
 
-    #             }
-        # Submit flask form 
-        # Log out the user
-        # Log in the new user with the updated password 
-   
- 
+                                # Then logout
+                                response = self.app.get(('/logout'), follow_redirects = True)
+                                # Login again
+                                response = self.app.get(('/login'), follow_redirects = True)
+                                self.assertEqual(response.status_code, 200)
+                                with app.test_request_context():
+                                    with app.app_context():
+                                        data3 = {
+                                            'Email' : 'hermione@gmail.com',
+                                            'Password' : 'Hermione2',
+                                        }
+                                        form = LoginForm(data=data3)
+                                        self.assertTrue(form.validate())
+                                        response = self.app.post('/login', data=form.data, follow_redirects=True)
+                                        try:
+                                            self.assertEqual(response.status_code, 200)
+                                            self.logger.info('Password changed: P')
+                                        except AssertionError:
+                                            self.logger.warning('Password changed: F')
+                                            raise
 

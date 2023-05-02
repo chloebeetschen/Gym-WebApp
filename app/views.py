@@ -951,14 +951,20 @@ def myBookings():
     logging.debug("My bookings route request")
     today = datetime.now()
     
-    #Deletes a user's booking if the time has elapsed
+    # Deletes a user's booking if the time has elapsed
     bookings = UserBookings.query.filter_by(userId=current_user.id).all()
-    for booking in bookings:
-        # Remove from booking list if event has passed
+
+    # Record list of all bookings in the past
+    pastBookings = []
+    for b in range(0, len(bookings)):
+        booking = bookings[b]
         event = Calendar.query.filter_by(id=booking.calendarId).first()
         eventTime = event.aDateTime
         if (eventTime <= today):
-            bookings.remove(booking)
+            pastBookings.append(booking)
+    # Iterate through past bookings list deleting from bookings
+    for booking in pastBookings:
+        bookings.remove(booking)
 
     # Get events and details of all bookings
     events = []

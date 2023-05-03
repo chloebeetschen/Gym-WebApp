@@ -10,8 +10,16 @@
 }
 
 * {
-    margin: 0;
     padding: 0;
+    font-family: 'Open Sans', sans-serif;
+    padding: 0;
+    margin: 0;
+    color: white;
+    box-sizing: border-box;
+}
+
+html {
+    background-color: var(--background-dark);
 }
 
 /* Adjust the header div */
@@ -55,17 +63,13 @@
     background-color: var(--background-light) !important;
 }
 
-* {
-    font-family: 'Open Sans', sans-serif;
-    padding: 0;
-    margin: 0;
-    color: white;
-    box-sizing: border-box;
-}
-
 html, body {
     width: 100%;
     height: 100%;
+}
+
+html {
+    color: var(--background-dark);
 }
 
 .settings-container {
@@ -402,6 +406,10 @@ li a i:hover {
     border-bottom: 2px solid var(--btn-color);
 }
 
+.time-header {
+    text-decoration: underline;
+}
+
 .login-reg-bg {
     width: 100%;
     height: 100%;
@@ -664,4 +672,192 @@ th, td {
 .fc .fc-more-popover .fc-popover-body{
     border-radius: 15px;
     background-color: var(--background-light);
+}
+
+/* Custom Navbar Styles */
+.custom-navbar {
+    display: flex;
+    padding: 25px;
+    border-bottom: var(--btn-color) 2px solid;
+}
+
+
+.nav-item {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.nav-link i {
+    font-size: 1.5rem;
+}
+
+.navbar-left, .navbar-right {
+    padding: 0;
+    display: flex;
+    text-decoration: none !important;
+    margin-bottom: 0;
+    width: 50%;
+}
+
+.navbar-right {
+    justify-content: flex-end;
+}
+
+
+/* CSS code for phone size */
+@media only screen and (max-width: 767px) {
+    .push-pull {
+        padding: 10px 60px 10px 30px;
+        font-size: 2.5rem;
+    }
+
+    .gym-corp {
+        padding: 5px 80px 5px 20px;
+        font-weight: bold;
+        font-size: 1.7rem;
+    }
+
+    .down-arrow .bi-arrow-down {
+        font-size: 3rem;
+        
+    }
+    .down-arrow #facilities {
+        font-size: 2rem;
+    }
+
+    .facilities-container {
+        height: 80%;
+        flex-direction: column;
+        padding: 0;
+        align-items: center;
+        justify-content: center !important;
+    }
+
+    .facility-text, #facilities-carousel {
+        width: 70% !important;
+    }
+
+    .facility-text {
+        border-bottom: 2px solid var(--btn-color);
+        margin: 0;
+    }
+
+    .facility-text p {
+        font-size: 0.8rem;
+    }
+
+    #facilities-carousel {
+        margin-top: 30px;
+    }
+
+    .header {
+        font-size: 1.3rem !important;
+    }
+    
+    .times-container {
+        height: auto;
+        margin: 0 !important;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .times-info-container {
+        display: flex;
+        width: 75%;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+    }
+
+    .time-header {
+        padding: 0 !important;
+        margin: 0 !important;
+        margin-top: 20px !important;
+        margin-bottom: 20px !important;
+    }
+
+    .time-info {
+        margin: 0 !important;
+        padding: 0 !important;
+        border-radius: 15px !important;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex: 0 !important;
+        margin-bottom: 20px !important;
+    }
+
+    .time-info .header {
+        font-size: 1.1rem !important;
+        padding-top: 10px;
+        margin-bottom: 0 !important;
+    }
+
+    p {
+        margin-top: 5px;
+        margin-bottom: 15px;
+        font-size: 0.7rem;
+    }
+
+    .time-info-body {
+        padding: 0;
+        margin: 0 !important;
+        width: 70%;
+        font-size: 0.6rem;
+    }
+
+    .price {
+        font-size: 0.7rem;
+    }
+
+    .membership-container {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+
+    .buy-membership-container {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        height: 120%;
+        justify-content: space-evenly;
+    }
+
+    .membership-text {
+        margin-bottom: 0 !important; 
+    }
+
+    .membership-info {
+        flex: 0;
+        margin-top: 10px;
+        padding: 25px;
+        height: auto;
+        width: 75% !important;
+    }
+
+
+    .second-header {
+        font-size: 1rem !important;
+    }
+
+    .btn-secondary {
+        padding: 15px;
+        max-width: 100%;
+    }
+
+    .footer-links-header {
+        font-size: 1rem;
+    }
+
+    .footer-container {
+        padding: 1.5rem !important;
+    }
+
+    .footer-container a {
+        font-size: 0.8rem !important;
+    }
 }

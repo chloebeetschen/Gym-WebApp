@@ -93,3 +93,36 @@
     padding: 12px;
     width: 150px;
 }
+
+/* Custom Navbar Styles */
+.custom-navbar {
+    display: flex;
+    padding: 25px;
+    border-bottom: var(--btn-color) 2px solid;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+}
+
+
+.nav-item {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.nav-link i {
+    font-size: 1.5rem;
+}
+
+.navbar-left, .navbar-right {
+    padding: 0;
+    display: flex;
+    text-decoration: none !important;
+    margin-bottom: 0;
+    width: 50%;
+}
+
+.navbar-right {
+    justify-content: flex-end;
+}
